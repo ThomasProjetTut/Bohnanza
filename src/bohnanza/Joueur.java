@@ -1,11 +1,15 @@
 package bohnanza;
 
+import bohnanza.Carte.Carte;
+
 import java.util.ArrayList;
 
 /**
  * Created by Maxime on 13/11/2015.
  */
 public class Joueur {
+    /*
+
     private String nom;
     private ArrayList<Carte> main;
     private Champ champ1;
@@ -54,4 +58,5 @@ public class Joueur {
     public Champ getChamp1() {
         return champ1;
     }
+    */
 }

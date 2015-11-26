@@ -1,5 +1,6 @@
 package bohnanza;
 
+import bohnanza.Carte.Carte;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -9,6 +10,8 @@ import java.util.ArrayList;
  * Created by Maxime on 13/11/2015.
  */
 public class ChampUnitTest {
+
+    /*
 
     @Test
     public void TestChamp(){
@@ -38,6 +41,6 @@ public class ChampUnitTest {
         Champ champ=new Champ(1,list);
         Assert.assertTrue(champ.CompareDerniereCarte(c5));
     }
-
+    */
 
 }

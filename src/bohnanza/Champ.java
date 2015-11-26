@@ -1,11 +1,14 @@
 package bohnanza;
 
+import bohnanza.Carte.Carte;
+
 import java.util.ArrayList;
 
 /**
  * Created by Maxime on 13/11/2015.
  */
 public class Champ {
+    /*
     private int numeroChamp;
     public ArrayList<Carte> haricots;
 
@@ -45,4 +48,5 @@ public class Champ {
             return false;
         }
     }
+    */
 }
