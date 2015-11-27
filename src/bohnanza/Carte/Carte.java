@@ -30,4 +30,29 @@ public abstract class Carte {
     public void setPatatometre(Map<Integer, Integer> patatometre) {
         this.patatometre = patatometre;
     }
+
+    public boolean isPataTecktonik(){
+        return false;
+    }
+    public boolean isPataTentacule(){
+        return false;
+    }
+    public boolean isPataTequilla(){
+        return false;
+    }
+    public boolean isPataTerroriste(){
+        return false;
+    }
+    public boolean isPataTestosterone(){
+        return false;
+    }
+    public boolean isPataTetenucleaire(){
+        return false;
+    }
+    public boolean isPataTetraplegique(){
+        return false;
+    }
+    public boolean isPataTwerk(){
+        return false;
+    }
 }

@@ -7,7 +7,7 @@ public class Carte_Pata_Tentacule extends Carte {
     public Carte_Pata_Tentacule(){
         nom = "Pata Tentacule";
         nbMax = 18;
-        patatometre = new HashMap<>();
+        patatometre = new HashMap<Integer, Integer>();
         patatometre.put(3,1);
         patatometre.put(6,2);
         patatometre.put(8,3);

@@ -7,7 +7,7 @@ public class Carte_Pata_Tetraplegique extends Carte {
     public Carte_Pata_Tetraplegique(){
         nom = "Pata Tetraplegique";
         nbMax = 10;
-        patatometre = new HashMap<>();
+        patatometre = new HashMap<Integer, Integer>();
         patatometre.put(2,1);
         patatometre.put(4,2);
         patatometre.put(5,3);

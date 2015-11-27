@@ -7,7 +7,7 @@ public class Carte_Pata_Twerk extends Carte {
     public Carte_Pata_Twerk(){
         nom = "Pata Twerk";
         nbMax = 20;
-        patatometre = new HashMap<>();
+        patatometre = new HashMap<Integer, Integer>();
         patatometre.put(4,1);
         patatometre.put(6,2);
         patatometre.put(8,3);
