@@ -4,6 +4,7 @@ import bohnanza.Carte.Carte;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maxime on 13/11/2015.
@@ -37,7 +38,8 @@ public class Champ {
 
     public int planter(Carte c) {
         int NombreCarte=patates.size();
-        ArrayList<Integer> nbThunes=new ArrayList<Integer>();
+        List<Integer> nbThunes=new ArrayList<Integer>();
+        int valeurThune=0;
 
 
         if (CompareDerniereCarte(c)){
@@ -47,15 +49,15 @@ public class Champ {
             for(int key :patates.get(0).getPatatometre().keySet()){
                 nbThunes.add(key);
             }
-            for (int i = nbThunes.size(); i >=0 ; i--) {
-                if (NombreCarte>nbThunes.get(i)){
-                    return patates.get(0).getPatatometre().get(i);
+            for(int nbPatateNecessary:nbThunes) {
+                if(NombreCarte>=nbPatateNecessary){
+                    valeurThune=patates.get(0).getPatatometre().get(nbPatateNecessary);
                 }
             }
             patates.clear();
             patates.add(c);
+            return valeurThune;
         }
-        return 0;
     }
 
     public boolean CompareDerniereCarte(Carte c5) {

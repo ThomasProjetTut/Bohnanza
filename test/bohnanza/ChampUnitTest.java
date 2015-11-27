@@ -72,11 +72,25 @@ public class ChampUnitTest {
             // Instance differente
         Carte_Pata_Tecktonik c4=new Carte_Pata_Tecktonik();
         ArrayList<Carte> list3=new ArrayList<Carte>();
-        list.add(c4);
+        list3.add(c4);
         Champ champ1=new Champ(1,list3);
         Carte_Pata_Tentacule c5=new Carte_Pata_Tentacule();
         champ1.planter(c5);
         Assert.assertEquals(c5,champ1.derniereCarte());
+
+            //Instance differente et 4 carte deja de plantees
+        Carte_Pata_Tecktonik c6 = new Carte_Pata_Tecktonik();
+        Carte_Pata_Tecktonik c7 = new Carte_Pata_Tecktonik();
+        ArrayList<Carte> list4=new ArrayList<Carte>();
+        list4.add(c6);
+        list4.add(c7);
+        Champ champ3=new Champ(3,list4);
+        Carte_Pata_Tentacule c8=new Carte_Pata_Tentacule();
+        Assert.assertEquals(c7,champ3.derniereCarte());
+        int d=champ3.planter(c8);
+        //Retourne 0 et non 2
+        Assert.assertEquals(2,d);
+        Assert.assertEquals(c8,champ3.derniereCarte());
 
     }
 
