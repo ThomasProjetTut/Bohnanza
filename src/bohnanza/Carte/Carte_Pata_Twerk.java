@@ -12,6 +12,7 @@ public class Carte_Pata_Twerk extends Carte {
         patatometre.put(6,2);
         patatometre.put(8,3);
         patatometre.put(10,4);
+
     }
 
     public boolean isPataTwerk(){
