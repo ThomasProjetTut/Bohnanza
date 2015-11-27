@@ -20,15 +20,16 @@ public class ChampUnitTest {
     }
 
     @Test
-    //Ne fonctionne pas
     public void TestDerniereCarte(){
         Carte_Pata_Tecktonik c1=Mockito.mock(Carte_Pata_Tecktonik.class);
         Mockito.when(c1.getNom()).thenReturn("test");
-        ArrayList<Carte> list=new ArrayList<>();
         Champ champ=new Champ(1);
         Assert.assertNull(champ.derniereCarte());
+
+        ArrayList<Carte> list=new ArrayList<>();
         list.add(c1);
-        Assert.assertEquals(champ.derniereCarte().getNom(),"test");
+        Champ champ1=new Champ(1,list);
+        Assert.assertEquals(champ1.derniereCarte().getNom(),"test");
     }
 
     @Test
@@ -48,6 +49,11 @@ public class ChampUnitTest {
 
     @Test
     public void TestPlanter(){
+        Champ champ=new Champ(1);
+        Carte_Pata_Tecktonik c1=new Carte_Pata_Tecktonik();
+        int a=champ.planter(c1);
+        Assert.assertEquals(a,0);
+        Assert.assertEquals(champ.derniereCarte(),c1);
 
     }
 

@@ -18,7 +18,7 @@ public class Champ {
             i=3;
         }
         numeroChamp=i;
-        patates=null;
+        patates=new ArrayList<>();
     }
 
     public Champ(int i, ArrayList<Carte> list) {
@@ -59,6 +59,9 @@ public class Champ {
     }
 
     public boolean CompareDerniereCarte(Carte c5) {
+        if (derniereCarte()==null){
+            return true;
+        }
         if(c5.isPataTecktonik()){
             if (derniereCarte().isPataTecktonik()){
                 return true;
