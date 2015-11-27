@@ -3,13 +3,14 @@ package bohnanza;
 import bohnanza.Carte.Carte;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Maxime on 13/11/2015.
  */
 public class Joueur {
-    /*
 
+    private int thunes;
     private String nom;
     private ArrayList<Carte> main;
     private Champ champ1;
@@ -18,27 +19,54 @@ public class Joueur {
 
     public Joueur(){
         nom="";
+        thunes =0;
+
+
         champ1=new Champ(1);
         champ2=new Champ(2);
+
+        main = new ArrayList<>();
     }
 
     public Joueur(String nom) {
         this.nom=nom;
+        thunes =0;
+
         champ1=new Champ(1);
         champ2=new Champ(2);
+
+        main = new ArrayList<>();
     }
 
-    public void recoisMain(ArrayList<Carte> main) {
-        this.main=main;
-        for(Carte c : main){
-            c.print();
+    public void recoisMain() {
+        main.clear();
+
+        // Ajoute la premiere carte & la supprime du jeu de carte
+        for (int i = 0 ; i < 4 ; i++) {
+            piocher();
         }
+    }
+
+    public void piocher() {
+        if (main.size() > 4) {
+            System.out.println("Tu as déjà une main complète.");
+            return;
+        }
+
+        List<Carte> cartes = Jeu.getlisteCarte();
+
+        addCarte(cartes.get(0));
+        Jeu.removeCarte();
     }
 
     public ArrayList<Carte> getMain() {
         return main;
     }
 
+    public void addCarte(Carte carte) {
+        main.add(carte);
+    }
+    /*
     public void jouerCoup() {
         if(champ1.haricots.isEmpty() || champ1.derniereCarte().compareInstance(main.get(0))){
             champ1.planter(main.get(0));

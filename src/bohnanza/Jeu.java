@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Jeu {
 
-    private List<Carte> listeCarte;
+    private static List<Carte> listeCarte;
 
     public Jeu(){
         initListeCarte();
@@ -44,5 +44,13 @@ public class Jeu {
         }
 
         Collections.shuffle(listeCarte);
+    }
+
+    public static List<Carte> getlisteCarte() {
+        return listeCarte;
+    }
+
+    public static void removeCarte() {
+        listeCarte.remove(0);
     }
 }

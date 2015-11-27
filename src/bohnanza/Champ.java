@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by Maxime on 13/11/2015.
  */
 public class Champ {
-    /*
+
     private int numeroChamp;
     public ArrayList<Carte> haricots;
 
@@ -24,6 +24,8 @@ public class Champ {
         numeroChamp=i;
         haricots=list;
     }
+
+    /*
     public Carte derniereCarte(){
 
         if (haricots.size()==0)
