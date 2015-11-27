@@ -43,17 +43,24 @@ public class ChampUnitTest {
         ArrayList<Carte> list=new ArrayList<>();
         list.add(c1);
         Champ champ=new Champ(1,list);
+        //Comparer une carte de la meme instance
         Assert.assertTrue(champ.CompareDerniereCarte(c2));
+        //Comparer une carte différente
         Assert.assertFalse(champ.CompareDerniereCarte(c3));
     }
 
     @Test
     public void TestPlanter(){
+        //Planter lorsqu'un champ est vide
         Champ champ=new Champ(1);
         Carte_Pata_Tecktonik c1=new Carte_Pata_Tecktonik();
         int a=champ.planter(c1);
         Assert.assertEquals(a,0);
         Assert.assertEquals(champ.derniereCarte(),c1);
+
+        //Planter lorsqu'une carte est deja planter
+            // De la meme instance
+            // Instance differente
 
     }
 
