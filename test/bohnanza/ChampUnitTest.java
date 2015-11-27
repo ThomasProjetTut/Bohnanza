@@ -60,7 +60,23 @@ public class ChampUnitTest {
 
         //Planter lorsqu'une carte est deja planter
             // De la meme instance
+        Carte_Pata_Tecktonik c3=new Carte_Pata_Tecktonik();
+        ArrayList<Carte> list=new ArrayList<Carte>();
+        list.add(c3);
+        Champ champ2=new Champ(2,list);
+        Carte_Pata_Tecktonik c2=new Carte_Pata_Tecktonik();
+        int b =champ2.planter(c2);
+        Assert.assertEquals(b,0);
+        Assert.assertEquals(champ2.derniereCarte(),c2);
+
             // Instance differente
+        Carte_Pata_Tecktonik c4=new Carte_Pata_Tecktonik();
+        ArrayList<Carte> list3=new ArrayList<Carte>();
+        list.add(c4);
+        Champ champ1=new Champ(1,list3);
+        Carte_Pata_Tentacule c5=new Carte_Pata_Tentacule();
+        champ1.planter(c5);
+        Assert.assertEquals(c5,champ1.derniereCarte());
 
     }
 
