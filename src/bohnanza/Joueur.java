@@ -1,6 +1,7 @@
 package bohnanza;
 
 import bohnanza.Carte.Carte;
+import bohnanza.Carte.Carte_Pata_Tecktonik;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,22 @@ public class Joueur {
     public void addCarte(Carte carte) {
         main.add(carte);
     }
+
+    public void recoisCarte(Carte c) {
+        zoneEchange.ajouterCarte(c);
+    }
+
+    public void donnerCarte(Carte c, Joueur joueur) {
+        if (main.size()!=0 && main.contains(c)){
+            joueur.recoisCarte(c);
+            main.remove(c);
+        }
+    }
+
+    public Zone getZone() {
+        return zoneEchange;
+    }
+
     /*
     public void jouerCoup() {
         if(champ1.haricots.isEmpty() || champ1.derniereCarte().compareInstance(main.get(0))){
