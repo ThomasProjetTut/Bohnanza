@@ -60,6 +60,16 @@ public class JoueurUnitTest {
         Assert.assertEquals(c2,joueur.getZone().getZone().get(0));
     }
 
+    public void testEchangeCarte(){
+        Joueur joueur=new Joueur("test");
+        Joueur joueur1=new Joueur("test1");
+        Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
+        Carte_Pata_Tecktonik c= Mockito.mock(Carte_Pata_Tecktonik.class);
+        joueur.echangeCarte(c2,joueur1,c);
+        Assert.assertEquals(c,joueur.getZone().getZone().get(0));
+        Assert.assertEquals(c2,joueur1.getZone().getZone().get(0));
+    }
+
     /*
     @Test
     public void testJouerCoup(){

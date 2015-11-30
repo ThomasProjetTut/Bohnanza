@@ -76,14 +76,17 @@ public class Joueur {
     }
 
     public void donnerCarte(Carte c, Joueur joueur) {
-        if (main.size()!=0 && main.contains(c)){
-            joueur.recoisCarte(c);
-            main.remove(c);
-        }
+        joueur.recoisCarte(c);
+        main.remove(c);
     }
 
     public Zone getZone() {
         return zoneEchange;
+    }
+
+    public void echangeCarte(Carte donnee, Joueur cible, Carte recue) {
+        donnerCarte(donnee,cible);
+        cible.donnerCarte(recue,this);
     }
 
     /*
