@@ -16,6 +16,7 @@ public class Joueur {
     private Champ champ1;
     private Champ champ2;
     private Champ champ3;
+    private Zone zoneEchange;
 
     public Joueur(){
         nom="";
@@ -24,6 +25,7 @@ public class Joueur {
 
         champ1=new Champ(1);
         champ2=new Champ(2);
+        zoneEchange=new Zone();
 
         main = new ArrayList<>();
     }
@@ -34,6 +36,7 @@ public class Joueur {
 
         champ1=new Champ(1);
         champ2=new Champ(2);
+        zoneEchange=new Zone();
 
         main = new ArrayList<>();
     }
