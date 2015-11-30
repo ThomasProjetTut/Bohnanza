@@ -18,4 +18,11 @@ public class Zone {
     public List<Carte> getZone(){
         return zoneEchange;
     }
+
+    public Carte donnerCarte(Carte c) {
+        Carte adonner=c;
+        zoneEchange.remove(c);
+        return adonner;
+
+    }
 }
