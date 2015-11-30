@@ -136,9 +136,12 @@ public class Champ {
         for(int nbPatateNecessary:nbThunes) {
             if(NombreCarte>=nbPatateNecessary){
                 valeurThune=patates.get(0).getPatatometre().get(nbPatateNecessary);
+                for (int i = 1; i <nbPatateNecessary ; i++) {
+                    patates.remove(derniereCarte());
+                }
             }
         }
-        patates.clear();
+
         return valeurThune;
     }
 }

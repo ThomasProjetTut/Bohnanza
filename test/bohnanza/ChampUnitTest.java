@@ -98,13 +98,19 @@ public class ChampUnitTest {
     public void TestRecolterChamp(){
         Carte_Pata_Tecktonik c1 = new Carte_Pata_Tecktonik();
         Carte_Pata_Tecktonik c2 = new Carte_Pata_Tecktonik();
+        Carte_Pata_Tecktonik c3 = new Carte_Pata_Tecktonik();
+        Carte_Pata_Tecktonik c4 = new Carte_Pata_Tecktonik();
+        Carte_Pata_Tecktonik c5 = new Carte_Pata_Tecktonik();
         ArrayList<Carte> list=new ArrayList<Carte>();
         list.add(c1);
         list.add(c2);
+        list.add(c3);
+        list.add(c4);
+        list.add(c5);
         Champ champ=new Champ(1,list);
         int a =champ.recolter();
-        Assert.assertEquals(a,2);
-        Assert.assertEquals(champ.derniereCarte(), null);
+        Assert.assertEquals(3,a);
+        Assert.assertEquals(c2,champ.derniereCarte());
     }
 
 
