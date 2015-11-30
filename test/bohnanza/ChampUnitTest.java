@@ -6,6 +6,7 @@ import bohnanza.Carte.Carte_Pata_Tentacule;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Null;
 
 import java.util.ArrayList;
 
@@ -88,10 +89,22 @@ public class ChampUnitTest {
         Carte_Pata_Tentacule c8=new Carte_Pata_Tentacule();
         Assert.assertEquals(c7,champ3.derniereCarte());
         int d=champ3.planter(c8);
-        //Retourne 0 et non 2
         Assert.assertEquals(2,d);
         Assert.assertEquals(c8,champ3.derniereCarte());
 
+    }
+
+    @Test
+    public void TestRecolterChamp(){
+        Carte_Pata_Tecktonik c1 = new Carte_Pata_Tecktonik();
+        Carte_Pata_Tecktonik c2 = new Carte_Pata_Tecktonik();
+        ArrayList<Carte> list=new ArrayList<Carte>();
+        list.add(c1);
+        list.add(c2);
+        Champ champ=new Champ(1,list);
+        int a =champ.recolter();
+        Assert.assertEquals(a,2);
+        Assert.assertEquals(champ.derniereCarte(), null);
     }
 
 
