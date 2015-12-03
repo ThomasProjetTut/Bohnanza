@@ -43,6 +43,29 @@ public class JoueurUnitTest {
     }
 
     @Test
+    public void testPlanter() {
+        Jeu jeu = new Jeu();
+
+        Joueur joueur1 =new Joueur("Henri");
+
+        joueur1.recoisMain();
+
+        ArrayList<Carte> main = (ArrayList<Carte>) joueur1.getMain().clone();
+
+        joueur1.acheterChamps();
+
+        joueur1.planter(1);
+        joueur1.planter(2);
+        joueur1.planter(3);
+
+        Assert.assertEquals(main.get(0), joueur1.getChamp(1).derniereCarte());
+        Assert.assertEquals(main.get(1), joueur1.getChamp(2).derniereCarte());
+        Assert.assertEquals(main.get(2), joueur1.getChamp(3).derniereCarte());
+
+        Assert.assertTrue(joueur1.getMain().size() == 1);
+    }
+
+    @Test
     public void testDonnerCarte(){
         Joueur joueur=new Joueur("truc");
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);

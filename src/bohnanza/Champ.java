@@ -27,7 +27,6 @@ public class Champ {
         patates=list;
     }
 
-
     public Carte derniereCarte(){
 
         if (patates.size()==0) {
