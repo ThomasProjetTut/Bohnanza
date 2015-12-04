@@ -29,19 +29,13 @@ public class Vue{
     private static Texture txtChampDispo = new Texture();
     private static Texture txtChampIndispo = new Texture();
 
-    // Textures joueur
-    private static Texture txtJoueur1 = new Texture();
-    private static Texture txtJoueur2 = new Texture();
-    private static Texture txtJoueur3 = new Texture();
-    private static Texture txtJoueur4 = new Texture();
-
-    //Textures echange
-    private static Texture txtEchangeJ1 = new Texture();
-    private static Texture txtEchangeJ2 = new Texture();
-    private static Texture txtEchangeJ3 = new Texture();
-    private static Texture txtEchangeJ4 = new Texture();
-
+    //Texture carte
     private static Texture txtCarteTequila = new Texture();
+    private static Texture txtCarteTentacule = new Texture();
+    private static Texture txtCarteTerroriste = new Texture();
+    private static Texture txtCarteTestosterone = new Texture();
+    private static Texture txtCarteTeteNucleaire = new Texture();
+    private static Texture txtCarteTetraplegique = new Texture();
 
     //Declaration sprite
     // sprites generaux
@@ -54,10 +48,10 @@ public class Vue{
     private static Sprite[] sprChampJ3 = new Sprite[3];
     private static Sprite[] sprChampJ4 = new Sprite[3];
 
-    private static Sprite sprCarteTequila = new Sprite();
+    //sprite cartes
+    private static ArrayList<Sprite> mainJ1 = new ArrayList<Sprite>();
 
     private static Vector2i positionFenetre = new Vector2i(0,0);
-    private static Vector2i sizeFenetre = new Vector2i(1000,1000);
     ///////////////////////////////////////////////////////////////////////////////
 
     public Vue(){
@@ -90,6 +84,14 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ4[i]);
         }
+
+        afficherCarteTentacule(500, 500, 0);
+        afficherCarteTequila(250, 250, 0);
+        afficherCarteTerroriste(750, 750, 0);
+        afficherCarteTestosteorne(250, 750, 0);
+        afficherCarteTetenucleaire(750, 250, 0);
+        afficherCarteTetraplegique(250, 500, 0);
+
 
         fenetre.display();
 
@@ -128,17 +130,12 @@ public class Vue{
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
 
-            txtJoueur1.loadFromFile(Paths.get("Sprites/Sprite_joueur/joueur1.png"));
-            txtJoueur2.loadFromFile(Paths.get("Sprites/Sprite_joueur/joueur2.png"));
-            txtJoueur3.loadFromFile(Paths.get("Sprites/Sprite_joueur/joueur3.png"));
-            txtJoueur4.loadFromFile(Paths.get("Sprites/Sprite_joueur/joueur4.png"));
-
-            txtEchangeJ1.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ1.png"));
-            txtEchangeJ2.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ2.png"));
-            txtEchangeJ3.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ3.png"));
-            txtEchangeJ4.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ4.png"));
-
-            txtEchangeJ4.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ4.png"));
+            txtCarteTentacule.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
+            txtCarteTequila.loadFromFile(Paths.get("Sprites/Sprite_carte/patatequila.jpg"));
+            txtCarteTerroriste.loadFromFile(Paths.get("Sprites/Sprite_carte/pataterroriste.jpg"));
+            txtCarteTestosterone.loadFromFile(Paths.get("Sprites/Sprite_carte/patatestosterone.jpg"));
+            txtCarteTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetenucleaire.jpg"));
+            txtCarteTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -260,9 +257,9 @@ public class Vue{
             sprChampJ1[i].rotate(-90);
         }
 
-        sprChampJ1[0].setPosition(263, 767);
-        sprChampJ1[1].setPosition(425, 767);
-        sprChampJ1[2].setPosition(587, 767);
+        sprChampJ1[0].setPosition(767, 737);
+        sprChampJ1[1].setPosition(767, 575);
+        sprChampJ1[2].setPosition(767, 413);
 
         for(int i = 0; i < 3; i++){
             sprChampJ2[i].rotate(-90);
@@ -536,4 +533,55 @@ public class Vue{
     public Sprite getFinDeTour(){
         return sprFinTour;
     }
+
+    private void afficherCarteTentacule(int posX, int posY, float rotate){
+        mainJ1.add(new Sprite());
+        mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTentacule);
+        mainJ1.get(mainJ1.size() - 1).setPosition(posX, posY);
+        mainJ1.get(mainJ1.size() - 1).rotate(rotate);
+        fenetre.draw(mainJ1.get(mainJ1.size() - 1));
+    }
+
+    private void afficherCarteTequila(int posX, int posY, float rotate){
+        mainJ1.add(new Sprite());
+        mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTequila);
+        mainJ1.get(mainJ1.size() - 1).setPosition(posX, posY);
+        mainJ1.get(mainJ1.size() - 1).rotate(rotate);
+        fenetre.draw(mainJ1.get(mainJ1.size() - 1));
+    }
+
+    private void afficherCarteTerroriste(int posX, int posY, float rotate){
+        mainJ1.add(new Sprite());
+        mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTerroriste);
+        mainJ1.get(mainJ1.size() - 1).setPosition(posX, posY);
+        mainJ1.get(mainJ1.size() - 1).rotate(rotate);
+        fenetre.draw(mainJ1.get(mainJ1.size() - 1));
+    }
+
+    private void afficherCarteTestosteorne(int posX, int posY, float rotate){
+        mainJ1.add(new Sprite());
+        mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTestosterone);
+        mainJ1.get(mainJ1.size() - 1).setPosition(posX, posY);
+        mainJ1.get(mainJ1.size() - 1).rotate(rotate);
+        fenetre.draw(mainJ1.get(mainJ1.size() - 1));
+    }
+
+    private void afficherCarteTetenucleaire(int posX, int posY, float rotate){
+        mainJ1.add(new Sprite());
+        mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTeteNucleaire);
+        mainJ1.get(mainJ1.size() - 1).setPosition(posX, posY);
+        mainJ1.get(mainJ1.size() - 1).rotate(rotate);
+        fenetre.draw(mainJ1.get(mainJ1.size() - 1));
+    }
+
+    private void afficherCarteTetraplegique(int posX, int posY, float rotate){
+        mainJ1.add(new Sprite());
+        mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTetraplegique);
+        mainJ1.get(mainJ1.size() - 1).setPosition(posX, posY);
+        mainJ1.get(mainJ1.size() - 1).rotate(rotate);
+        fenetre.draw(mainJ1.get(mainJ1.size() - 1));
+    }
+
+
+
 }
