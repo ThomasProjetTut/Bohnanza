@@ -83,6 +83,7 @@ public class JoueurUnitTest {
         Assert.assertEquals(c2,joueur.getZone().getZone().get(0));
     }
 
+    @Test
     public void testEchangeCarte(){
         Joueur joueur=new Joueur("test");
         Joueur joueur1=new Joueur("test1");
