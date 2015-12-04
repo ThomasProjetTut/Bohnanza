@@ -18,6 +18,8 @@ public class Vue{
 
     private static Image icone = new Image();
 
+
+
     //////////////////////////////////////////////////////////////////////////////////////
     //Declaration Textures
     // Textures generales
@@ -53,6 +55,7 @@ public class Vue{
 
     private static Sprite sprCarteTequila = new Sprite();
 
+    private static Vector2i positionFenetre = new Vector2i(0,0);
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -63,6 +66,8 @@ public class Vue{
 
     private void creerFenetre() {
         fenetre.create(new VideoMode(1000, 1000), "Bohnanza");
+
+        fenetre.setPosition(positionFenetre);
 
         fenetre.clear();
 
@@ -182,9 +187,9 @@ public class Vue{
         sprChampJ2[1].rotate(-90);
         sprChampJ2[2].rotate(-90);
 
-        sprChampJ2[0].setPosition(85, 263);
-        sprChampJ2[1].setPosition(85, 425);
-        sprChampJ2[2].setPosition(85, 587);
+        sprChampJ2[0].setPosition(135, 413);
+        sprChampJ2[1].setPosition(135, 575);
+        sprChampJ2[2].setPosition(135, 737);
 
 
         //J3
@@ -199,9 +204,9 @@ public class Vue{
         sprChampJ4[1].rotate(-90);
         sprChampJ4[2].rotate(-90);
 
-        sprChampJ4[0].setPosition(765, 587);
-        sprChampJ4[1].setPosition(765, 425);
-        sprChampJ4[2].setPosition(765, 263);
+        sprChampJ4[0].setPosition(765, 737);
+        sprChampJ4[1].setPosition(765, 575);
+        sprChampJ4[2].setPosition(765, 413);
 
         //////////////////////
 
@@ -283,6 +288,8 @@ public class Vue{
         sprChampJ3[1].setPosition(765, 425);
         sprChampJ3[2].setPosition(765, 263);
 
+        /*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
@@ -298,6 +305,8 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ4[i]);
         }
+
+*/
 
         fenetre.draw(sprFinTour);
 
@@ -350,6 +359,8 @@ public class Vue{
         sprChampJ3[1].setPosition(425, 85);
         sprChampJ3[2].setPosition(587, 85);
 
+        /*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
@@ -365,6 +376,8 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ4[i]);
         }
+
+*/
 
         fenetre.draw(sprFinTour);
 
@@ -418,6 +431,8 @@ public class Vue{
         sprChampJ3[1].setPosition(425, 85);
         sprChampJ3[2].setPosition(587, 85);
 
+        /*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
@@ -434,6 +449,8 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
+
+*/
         fenetre.draw(sprFinTour);
 
         fenetre.display();
@@ -484,6 +501,8 @@ public class Vue{
         sprChampJ3[1].setPosition(425, 85);
         sprChampJ3[2].setPosition(587, 85);
 
+        /*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
@@ -500,7 +519,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
+*/
         fenetre.draw(sprFinTour);
 
         fenetre.display();
