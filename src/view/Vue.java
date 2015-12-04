@@ -58,7 +58,6 @@ public class Vue{
 
     private static Vector2i positionFenetre = new Vector2i(0,0);
     private static Vector2i sizeFenetre = new Vector2i(1000,1000);
-
     ///////////////////////////////////////////////////////////////////////////////
 
     public Vue(){
@@ -257,15 +256,15 @@ public class Vue{
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ1[i].rotate(-90);
         }
 
-        sprChampJ1[0].setPosition(767, 737);
-        sprChampJ1[1].setPosition(767, 575);
-        sprChampJ1[2].setPosition(767, 413);
+        sprChampJ1[0].setPosition(263, 767);
+        sprChampJ1[1].setPosition(425, 767);
+        sprChampJ1[2].setPosition(587, 767);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ2[i].rotate(-90);
         }
 
@@ -274,7 +273,7 @@ public class Vue{
         sprChampJ2[2].setPosition(250, 587);
 
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
@@ -282,7 +281,7 @@ public class Vue{
         sprChampJ3[1].setPosition(425, 85);
         sprChampJ3[0].setPosition(587, 85);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
@@ -295,7 +294,7 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
-
+/*
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -308,7 +307,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
+*/
 
         fenetre.draw(sprFinTour);
 
@@ -328,24 +327,24 @@ public class Vue{
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ1[i].rotate(-90);
         }
 
-        sprChampJ1[0].setPosition(736, 233);
-        sprChampJ1[1].setPosition(574, 233);
-        sprChampJ1[2].setPosition(412, 233);
+        sprChampJ1[0].setPosition(767, 737);
+        sprChampJ1[1].setPosition(767, 575);
+        sprChampJ1[2].setPosition(767, 413);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(263, 765);
-        sprChampJ2[1].setPosition(425, 765);
-        sprChampJ2[2].setPosition(587, 765);
+        sprChampJ2[2].setPosition(268, 85);
+        sprChampJ2[1].setPosition(425, 85);
+        sprChampJ2[0].setPosition(587, 85);
 
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
@@ -353,7 +352,7 @@ public class Vue{
         sprChampJ3[1].setPosition(85, 425);
         sprChampJ3[0].setPosition(85, 587);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
@@ -363,10 +362,11 @@ public class Vue{
 
 
 
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
-
+/*
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -378,6 +378,7 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ4[i]);
         }
+        */
 
 
 
@@ -400,15 +401,15 @@ public class Vue{
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ1[i].rotate(-90);
         }
 
-        sprChampJ1[0].setPosition(233, 262);
-        sprChampJ1[1].setPosition(233, 424);
-        sprChampJ1[2].setPosition(233, 585);
+        sprChampJ1[2].setPosition(418, 238);
+        sprChampJ1[1].setPosition(575, 238);
+        sprChampJ1[0].setPosition(737, 238);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ2[i].rotate(-90);
         }
 
@@ -417,7 +418,7 @@ public class Vue{
         sprChampJ2[2].setPosition(587, 765);
 
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
@@ -425,7 +426,7 @@ public class Vue{
         sprChampJ3[1].setPosition(85, 425);
         sprChampJ3[0].setPosition(85, 587);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
@@ -438,7 +439,7 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
-
+/*
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -451,7 +452,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
+*/
 
         fenetre.draw(sprFinTour);
 
@@ -470,15 +471,15 @@ public class Vue{
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ1[i].rotate(-90);
         }
 
-        sprChampJ1[0].setPosition(263, 767);
-        sprChampJ1[1].setPosition(425, 767);
-        sprChampJ1[2].setPosition(587, 767);
+        sprChampJ1[0].setPosition(235, 263);
+        sprChampJ1[1].setPosition(235, 425);
+        sprChampJ1[2].setPosition(235, 587);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ2[i].rotate(-90);
         }
 
@@ -487,7 +488,7 @@ public class Vue{
         sprChampJ2[2].setPosition(587, 765);
 
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
@@ -495,7 +496,7 @@ public class Vue{
         sprChampJ3[1].setPosition(85, 425);
         sprChampJ3[0].setPosition(85, 587);
 
-        for(int i = 0; i < 2; i++){
+        for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
@@ -508,7 +509,7 @@ public class Vue{
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
-
+/*
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -521,7 +522,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
+*/
         fenetre.draw(sprFinTour);
 
         fenetre.display();
