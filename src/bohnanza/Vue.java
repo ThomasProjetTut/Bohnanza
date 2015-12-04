@@ -38,6 +38,7 @@ public class Vue{
     private static Texture txtEchangeJ3 = new Texture();
     private static Texture txtEchangeJ4 = new Texture();
 
+    private static Texture txtCarteTequila = new Texture();
 
     //Declaration sprite
     // sprites generaux
@@ -49,6 +50,8 @@ public class Vue{
     private static Sprite[] sprChampJ2 = new Sprite[3];
     private static Sprite[] sprChampJ3 = new Sprite[3];
     private static Sprite[] sprChampJ4 = new Sprite[3];
+
+    private static Sprite sprCarteTequila = new Sprite();
 
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -127,6 +130,8 @@ public class Vue{
             txtEchangeJ1.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ1.png"));
             txtEchangeJ2.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ2.png"));
             txtEchangeJ3.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ3.png"));
+            txtEchangeJ4.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ4.png"));
+
             txtEchangeJ4.loadFromFile(Paths.get("Sprites/Sprite_zone_echange/EchangeJ4.png"));
 
         } catch (IOException e) {
