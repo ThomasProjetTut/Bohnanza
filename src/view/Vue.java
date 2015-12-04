@@ -1,4 +1,4 @@
-package bohnanza;
+package view;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;

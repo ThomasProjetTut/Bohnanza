@@ -1,7 +1,6 @@
-package bohnanza;
+package model;
 
-import bohnanza.Carte.Carte;
-import bohnanza.Carte.Carte_Pata_Tecktonik;
+import model.Carte.Carte;
 
 import java.util.ArrayList;
 import java.util.List;

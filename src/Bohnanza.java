@@ -1,4 +1,4 @@
-import bohnanza.Controlleur;
+import controller.Controlleur;
 import org.jsfml.graphics.TextureCreationException;
 
 import java.io.IOException;

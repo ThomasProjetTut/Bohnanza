@@ -1,6 +1,6 @@
-package bohnanza;
+package model;
 
-import bohnanza.Carte.Carte;
+import model.Carte.Carte;
 
 
 import java.util.ArrayList;

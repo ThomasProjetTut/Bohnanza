@@ -1,13 +1,15 @@
-package bohnanza;
+package controller;
 
 import org.jsfml.window.event.Event;
+import view.Vue;
+
 import java.io.IOException;
 
 
 public class Controlleur {
 
 
-        private static Vue vue;
+        private Vue vue;
         private static int joueur;
 
         public Controlleur( ) throws IOException {

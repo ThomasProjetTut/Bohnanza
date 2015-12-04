@@ -1,13 +1,13 @@
-package bohnanza;
+package model;
 
-import bohnanza.Carte.Carte;
-import bohnanza.Carte.Carte_Pata_Tecktonik;
+import controller.Jeu;
+import model.Carte.Carte;
+import model.Carte.Carte_Pata_Tecktonik;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Maxime on 13/11/2015.
@@ -24,7 +24,7 @@ public class JoueurUnitTest {
         joueur1.recoisMain();
         joueur2.recoisMain();
 
-        Assert.assertNotEquals(joueur1, joueur2);
+        Assert.assertNotSame(joueur1, joueur2);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class JoueurUnitTest {
 
         joueur1.piocher();
 
-        Assert.assertNotEquals(nbCartes, joueur1.getMain().size());
+        Assert.assertNotSame(nbCartes, joueur1.getMain().size());
     }
 
     @Test

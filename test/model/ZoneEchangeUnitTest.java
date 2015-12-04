@@ -1,15 +1,11 @@
-package bohnanza;
+package model;
 
-import bohnanza.Carte.Carte;
-import bohnanza.Carte.Carte_Pata_Tecktonik;
+import model.Carte.*;
 import org.junit.Assert;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-/**
- * Created by Maxime on 30/11/2015.
- */
+
 public class ZoneEchangeUnitTest {
 
     @Test
@@ -44,7 +40,7 @@ public class ZoneEchangeUnitTest {
         zone.ajouterCarte(c1);
         zone1.ajouterCarte(c2);
         zone.echangerCarte(c1,zone1,c2);
-        Assert.assertEquals(c1,zone1.getZone().get(0));
+        Assert.assertEquals(c1, zone1.getZone().get(0));
         Assert.assertEquals(c2,zone.getZone().get(0));
 
 

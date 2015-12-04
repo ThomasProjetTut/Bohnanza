@@ -1,4 +1,4 @@
-package bohnanza.Carte;
+package model.Carte;
 
 import junit.framework.Assert;
 import org.junit.Test;

@@ -1,12 +1,11 @@
-package bohnanza;
+package model;
 
-import bohnanza.Carte.Carte;
-import bohnanza.Carte.Carte_Pata_Tecktonik;
-import bohnanza.Carte.Carte_Pata_Tentacule;
+import model.Carte.Carte;
+import model.Carte.Carte_Pata_Tecktonik;
+import model.Carte.Carte_Pata_Tentacule;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Null;
 
 import java.util.ArrayList;
 

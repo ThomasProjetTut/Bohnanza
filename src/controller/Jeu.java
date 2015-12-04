@@ -1,6 +1,6 @@
-package bohnanza;
+package controller;
 
-import bohnanza.Carte.*;
+import model.Carte.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +42,6 @@ public class Jeu {
                 listeCarte.add(new Carte_Pata_Twerk());
             }
         }
-
         Collections.shuffle(listeCarte);
     }
 

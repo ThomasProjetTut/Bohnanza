@@ -1,15 +1,11 @@
-package bohnanza;
+package model;
 
-import bohnanza.Carte.Carte;
-import bohnanza.Carte.Carte_Pata_Tecktonik;
+import controller.Jeu;
+import model.Carte.Carte;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Maxime on 13/11/2015.
- */
 public class Joueur {
 
     private int maxChamps;
