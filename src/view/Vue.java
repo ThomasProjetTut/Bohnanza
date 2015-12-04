@@ -5,6 +5,7 @@ import org.jsfml.system.Vector2i;
 import org.jsfml.window.Keyboard;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.VideoMode;
+import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 import org.jsfml.*;
 
@@ -56,6 +57,7 @@ public class Vue{
     private static Sprite sprCarteTequila = new Sprite();
 
     private static Vector2i positionFenetre = new Vector2i(0,0);
+    private static Vector2i sizeFenetre = new Vector2i(1000,1000);
 
     ///////////////////////////////////////////////////////////////////////////////
 
@@ -65,7 +67,7 @@ public class Vue{
     }
 
     private void creerFenetre() {
-        fenetre.create(new VideoMode(1000, 1000), "Bohnanza");
+        fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
 
         fenetre.setPosition(positionFenetre);
 
