@@ -10,7 +10,12 @@ import java.util.List;
  * Created by Maxime on 30/11/2015.
  */
 public class Zone {
-    public List<Carte> zoneEchange = new ArrayList<Carte>();
+
+    public List<Carte> zoneEchange;
+
+    public Zone(){
+        zoneEchange=new ArrayList<>();
+    }
 
     public void ajouterCarte(Carte c) {
         zoneEchange.add(c);
