@@ -19,8 +19,6 @@ public class Vue{
 
     private static Image icone = new Image();
 
-
-
     //////////////////////////////////////////////////////////////////////////////////////
     //Declaration Textures
     // Textures generales
@@ -28,6 +26,13 @@ public class Vue{
     private static Texture txtFinTour = new Texture();
     private static Texture txtChampDispo = new Texture();
     private static Texture txtChampIndispo = new Texture();
+
+    //Textures menu
+    //menu carte
+    private static Texture txtMCFond = new Texture();
+    private static Texture txtMCEchanger = new Texture();
+    private static Texture txtMCDonner = new Texture();
+    private static Texture txtMCGarder = new Texture();
 
     //Texture carte
     private static Texture txtCarteTequila = new Texture();
@@ -40,7 +45,16 @@ public class Vue{
     //Declaration sprite
     // sprites generaux
     private static Sprite sprFond = new Sprite();
+
+    //sprites boutons
     private static Sprite sprFinTour = new Sprite();
+
+    //sprites menu
+        //menu carte
+    private static Sprite sprMCFond = new Sprite();
+    private static Sprite sprMCEchanger = new Sprite();
+    private static Sprite sprMCDonner = new Sprite();
+    private static Sprite sprMCGarder = new Sprite();
 
     //sprite champs
     private static Sprite[] sprChampJ1 = new Sprite[3];
@@ -61,6 +75,8 @@ public class Vue{
 
     private void creerFenetre() {
         fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
+
+        fenetre.setIcon(icone);
 
         fenetre.setPosition(positionFenetre);
 
@@ -85,6 +101,7 @@ public class Vue{
            fenetre.draw(sprChampJ4[i]);
         }
 
+        creerMenuCarte(500, 500);
 
         fenetre.display();
 
@@ -115,11 +132,16 @@ public class Vue{
             e.printStackTrace();
         }
 
-        fenetre.setIcon(icone);
-
         try {
             txtFond.loadFromFile(Paths.get("Sprites/fond.png"));
-            txtFinTour.loadFromFile(Paths.get("Sprites/finDeTour.png"));
+
+            txtMCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/fondMCarte.png"));
+            txtMCEchanger.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/echange.png"));
+            txtMCDonner.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/don.png"));
+            txtMCGarder.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/garder.png"));
+
+            txtFinTour.loadFromFile(Paths.get("Sprites/Sprite_bouton/finDeTour.png"));
+
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
 
@@ -135,10 +157,19 @@ public class Vue{
         }
 
         //set Txt
-
         sprFond.setTexture(txtFond);
+
+            //menus
+        sprMCFond.setTexture(txtMCFond);
+        sprMCEchanger.setTexture(txtMCEchanger);
+        sprMCDonner.setTexture(txtMCDonner);
+        sprMCGarder.setTexture(txtMCGarder);
+
+
+            //boutons
         sprFinTour.setTexture(txtFinTour);
 
+            //champs
         for(int i = 0; i < 2; i++){
             sprChampJ1[i].setTexture(txtChampDispo);
         }
@@ -568,5 +599,17 @@ public class Vue{
     }
 
 
+    public void creerMenuCarte(int posX, int posY){
+
+        sprMCFond.setPosition(posX,posY);
+        sprMCEchanger.setPosition(posX + 10, posY + 5);
+        sprMCDonner.setPosition(posX + 10, posY + 5 + 50 + 5);
+        sprMCGarder.setPosition(posX + 10, posY + 5 + 50 + 5 + 50 + 5);
+
+        fenetre.draw(sprMCFond);
+        fenetre.draw(sprMCEchanger);
+        fenetre.draw(sprMCDonner);
+        fenetre.draw(sprMCGarder);
+    }
 
 }
