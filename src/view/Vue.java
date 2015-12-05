@@ -16,6 +16,12 @@ import java.util.ArrayList;
 public class Vue{
 
     private static RenderWindow fenetre = new RenderWindow();
+    private static ArrayList<Sprite> spriteCliquable = new ArrayList<>();
+    private static Sprite[] sprsChamps = new Sprite[3];
+    private static Sprite[] sprsMenuCartes = new Sprite[3];
+    private static Sprite[] sprsMenuCartesChoix = new Sprite[8];
+    private static Sprite[] sprsAutresJoueurs = new Sprite[3];
+    private static Sprite[] sprsMenuON = new Sprite[2];
 
     private static Image icone = new Image();
 
@@ -23,7 +29,14 @@ public class Vue{
     //Declaration Textures
     // Textures generales
     private static Texture txtFond = new Texture();
+
+    //bouton
+    private static Texture txtBtEchange = new Texture();
+    private static Texture txtBtPlantage= new Texture();
+    private static Texture txtBtPioche = new Texture();
     private static Texture txtFinTour = new Texture();
+
+    //champ
     private static Texture txtChampDispo = new Texture();
     private static Texture txtChampIndispo = new Texture();
 
@@ -47,7 +60,10 @@ public class Vue{
     private static Sprite sprFond = new Sprite();
 
     //sprites boutons
-    private static Sprite sprFinTour = new Sprite();
+    private static Sprite sprBtEchange = new Sprite();
+    private static Sprite sprBtPlantage = new Sprite();
+    private static Sprite sprBtPioche = new Sprite();
+    private static Sprite sprBtFinTour = new Sprite();
 
     //sprites menu
         //menu carte
@@ -71,40 +87,6 @@ public class Vue{
     public Vue(){
         initAttribut();
         creerFenetre();
-    }
-
-    private void creerFenetre() {
-        fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
-
-        fenetre.setIcon(icone);
-
-        fenetre.setPosition(positionFenetre);
-
-        fenetre.clear();
-
-        fenetre.draw(sprFond);
-        fenetre.draw(sprFinTour);
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ1[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ2[i]);
-        }
-
-        for(int i = 0; i < 3; i++) {
-           fenetre.draw(sprChampJ3[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ4[i]);
-        }
-
-        creerMenuCarte(500, 500);
-
-        fenetre.display();
-
     }
 
     private void initAttribut() {
@@ -140,6 +122,9 @@ public class Vue{
             txtMCDonner.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/don.png"));
             txtMCGarder.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/garder.png"));
 
+            txtBtEchange.loadFromFile(Paths.get("Sprites/Sprite_bouton/phaseDechange.png"));
+            txtBtPlantage.loadFromFile(Paths.get("Sprites/Sprite_bouton/phaseDePlantage.png"));
+            txtBtPioche.loadFromFile(Paths.get("Sprites/Sprite_bouton/phaseDePioche.png"));
             txtFinTour.loadFromFile(Paths.get("Sprites/Sprite_bouton/finDeTour.png"));
 
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
@@ -159,17 +144,20 @@ public class Vue{
         //set Txt
         sprFond.setTexture(txtFond);
 
-            //menus
+        //menus
         sprMCFond.setTexture(txtMCFond);
         sprMCEchanger.setTexture(txtMCEchanger);
         sprMCDonner.setTexture(txtMCDonner);
         sprMCGarder.setTexture(txtMCGarder);
 
 
-            //boutons
-        sprFinTour.setTexture(txtFinTour);
+        //boutons
+        sprBtEchange.setTexture(txtBtEchange);
+        sprBtPlantage.setTexture(txtBtPlantage);
+        sprBtPioche.setTexture(txtBtPioche);
+        sprBtFinTour.setTexture(txtFinTour);
 
-            //champs
+        //champs
         for(int i = 0; i < 2; i++){
             sprChampJ1[i].setTexture(txtChampDispo);
         }
@@ -192,8 +180,10 @@ public class Vue{
 
 
         //set positions
-
-        sprFinTour.setPosition(775, 775);
+        sprBtEchange.setPosition(775, 775);
+        sprBtPlantage.setPosition(775, 830);
+        sprBtPioche.setPosition(775, 885);
+        sprBtFinTour.setPosition(775, 940);
 
 
         //position champ départ
@@ -251,18 +241,39 @@ public class Vue{
 
 
     }
-    public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
 
-        event.asMouseEvent();
-        Vector2i posMouse = Mouse.getPosition(fenetre);
-        Vector2f positionSprite = sprite.getPosition();
-        FloatRect tailleSprite = sprite.getGlobalBounds();
+    private void creerFenetre() {
+        fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
 
-        if(posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height){
-            return true;
-        }else{
-            return false;
+        fenetre.setIcon(icone);
+
+        fenetre.setPosition(positionFenetre);
+
+        fenetre.clear();
+
+        fenetre.draw(sprFond);
+        fenetre.draw(sprBtEchange);
+        fenetre.draw(sprBtPlantage);
+        fenetre.draw(sprBtPioche);
+        fenetre.draw(sprBtFinTour);
+
+        for(int i = 0; i < 3; i++){
+           fenetre.draw(sprChampJ1[i]);
         }
+
+        for(int i = 0; i < 3; i++){
+            fenetre.draw(sprChampJ2[i]);
+        }
+
+        for(int i = 0; i < 3; i++) {
+           fenetre.draw(sprChampJ3[i]);
+        }
+
+        for(int i = 0; i < 3; i++){
+           fenetre.draw(sprChampJ4[i]);
+        }
+
+        fenetre.display();
 
     }
 
@@ -327,9 +338,10 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
-
-        fenetre.draw(sprFinTour);
+        fenetre.draw(sprBtEchange);
+        fenetre.draw(sprBtPlantage);
+        fenetre.draw(sprBtPioche);
+        fenetre.draw(sprBtFinTour);
 
         fenetre.display();
 
@@ -397,10 +409,10 @@ public class Vue{
            fenetre.draw(sprChampJ4[i]);
         }
 
-
-
-
-        fenetre.draw(sprFinTour);
+        fenetre.draw(sprBtEchange);
+        fenetre.draw(sprBtPlantage);
+        fenetre.draw(sprBtPioche);
+        fenetre.draw(sprBtFinTour);
 
         fenetre.display();
 
@@ -470,9 +482,10 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
-
-        fenetre.draw(sprFinTour);
+        fenetre.draw(sprBtEchange);
+        fenetre.draw(sprBtPlantage);
+        fenetre.draw(sprBtPioche);
+        fenetre.draw(sprBtFinTour);
 
         fenetre.display();
 
@@ -540,8 +553,10 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-
-        fenetre.draw(sprFinTour);
+        fenetre.draw(sprBtEchange);
+        fenetre.draw(sprBtPlantage);
+        fenetre.draw(sprBtPioche);
+        fenetre.draw(sprBtFinTour);
 
         fenetre.display();
 
@@ -552,7 +567,7 @@ public class Vue{
     }
 
     public Sprite getFinDeTour(){
-        return sprFinTour;
+        return sprBtFinTour;
     }
 
     private void afficherCarteTentacule(int posX, int posY, float rotate){
@@ -598,6 +613,28 @@ public class Vue{
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
 
+    public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
+
+        event.asMouseEvent();
+        Vector2i posMouse = Mouse.getPosition(fenetre);
+        Vector2f positionSprite = sprite.getPosition();
+        FloatRect tailleSprite = sprite.getGlobalBounds();
+
+        if(posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
+    public boolean isCliquable(Sprite sprite){
+        if(spriteCliquable.contains(sprite)){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 
     public void creerMenuCarte(int posX, int posY){
 
