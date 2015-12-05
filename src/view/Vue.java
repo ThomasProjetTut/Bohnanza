@@ -70,7 +70,7 @@ public class Vue{
         fenetre.draw(sprFinTour);
 
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ1[i]);
+           fenetre.draw(sprChampJ1[i]);
         }
 
         for(int i = 0; i < 3; i++){
@@ -78,19 +78,12 @@ public class Vue{
         }
 
         for(int i = 0; i < 3; i++) {
-            fenetre.draw(sprChampJ3[i]);
+           fenetre.draw(sprChampJ3[i]);
         }
 
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ4[i]);
+           fenetre.draw(sprChampJ4[i]);
         }
-
-        afficherCarteTentacule(500, 500, 0);
-        afficherCarteTequila(250, 250, 0);
-        afficherCarteTerroriste(750, 750, 0);
-        afficherCarteTestosteorne(250, 750, 0);
-        afficherCarteTetenucleaire(750, 250, 0);
-        afficherCarteTetraplegique(250, 500, 0);
 
 
         fenetre.display();
@@ -172,7 +165,7 @@ public class Vue{
         sprFinTour.setPosition(775, 775);
 
 
-        //position champ
+        //position champ départ
         //J1
 
         sprChampJ1[0].setPosition(263, 767);
@@ -257,41 +250,40 @@ public class Vue{
             sprChampJ1[i].rotate(-90);
         }
 
-        sprChampJ1[0].setPosition(767, 737);
-        sprChampJ1[1].setPosition(767, 575);
-        sprChampJ1[2].setPosition(767, 413);
+        sprChampJ1[0].setPosition(263, 767);
+        sprChampJ1[1].setPosition(425, 767);
+        sprChampJ1[2].setPosition(587, 767);
 
         for(int i = 0; i < 3; i++){
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(250, 263);
-        sprChampJ2[1].setPosition(250, 425);
-        sprChampJ2[2].setPosition(250, 587);
+        sprChampJ2[0].setPosition(135, 413);
+        sprChampJ2[1].setPosition(135, 575);
+        sprChampJ2[2].setPosition(135, 737);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[2].setPosition(268, 85);
-        sprChampJ3[1].setPosition(425, 85);
-        sprChampJ3[0].setPosition(587, 85);
+        sprChampJ3[0].setPosition(587, 135);
+        sprChampJ3[1].setPosition(425, 135);
+        sprChampJ3[2].setPosition(268, 135);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(765, 587);
-        sprChampJ3[1].setPosition(765, 425);
-        sprChampJ3[2].setPosition(765, 263);
-
+        sprChampJ4[0].setPosition(765, 413);
+        sprChampJ4[1].setPosition(765, 575);
+        sprChampJ4[2].setPosition(765, 737);
 
 
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ1[i]);
+           fenetre.draw(sprChampJ1[i]);
         }
-/*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -304,7 +296,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-*/
+
 
         fenetre.draw(sprFinTour);
 
@@ -336,36 +328,34 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[2].setPosition(268, 85);
-        sprChampJ2[1].setPosition(425, 85);
-        sprChampJ2[0].setPosition(587, 85);
+        sprChampJ2[0].setPosition(415, 862);
+        sprChampJ2[1].setPosition(578, 862);
+        sprChampJ2[2].setPosition(740, 862);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[2].setPosition(85, 263);
-        sprChampJ3[1].setPosition(85, 425);
-        sprChampJ3[0].setPosition(85, 587);
+        sprChampJ3[0].setPosition(135, 413);
+        sprChampJ3[1].setPosition(135, 575);
+        sprChampJ3[2].setPosition(135, 737);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(263, 85);
-        sprChampJ3[1].setPosition(425, 85);
-        sprChampJ3[2].setPosition(587, 85);
-
-
+        sprChampJ4[2].setPosition(413, 235);
+        sprChampJ4[1].setPosition(575, 235);
+        sprChampJ4[0].setPosition(737, 235);
 
 
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ1[i]);
+          fenetre.draw(sprChampJ1[i]);
         }
-/*
+
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ2[i]);
+           fenetre.draw(sprChampJ2[i]);
         }
 
         for(int i = 0; i < 3; i++) {
@@ -373,9 +363,9 @@ public class Vue{
         }
 
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ4[i]);
+           fenetre.draw(sprChampJ4[i]);
         }
-        */
+
 
 
 
@@ -410,33 +400,33 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(263, 765);
-        sprChampJ2[1].setPosition(425, 765);
-        sprChampJ2[2].setPosition(587, 765);
+        sprChampJ2[0].setPosition(865, 587);
+        sprChampJ2[1].setPosition(865, 425);
+        sprChampJ2[2].setPosition(865, 263);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[2].setPosition(85, 263);
-        sprChampJ3[1].setPosition(85, 425);
-        sprChampJ3[0].setPosition(85, 587);
+        sprChampJ3[0].setPosition(415, 865);
+        sprChampJ3[1].setPosition(575, 865);
+        sprChampJ3[2].setPosition(737, 865);
 
-        for(int i = 0; i < 3; i++){
+        for(int i = 0; i < 3; i++) {
             sprChampJ4[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(263, 85);
-        sprChampJ3[1].setPosition(425, 85);
-        sprChampJ3[2].setPosition(587, 85);
+        sprChampJ4[0].setPosition(235, 263);
+        sprChampJ4[1].setPosition(235, 425);
+        sprChampJ4[2].setPosition(235, 587);
 
 
 
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ1[i]);
         }
-/*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -449,7 +439,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-*/
+
 
         fenetre.draw(sprFinTour);
 
@@ -480,33 +470,33 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(263, 765);
-        sprChampJ2[1].setPosition(425, 765);
-        sprChampJ2[2].setPosition(587, 765);
+        sprChampJ2[0].setPosition(587, 135);
+        sprChampJ2[1].setPosition(425, 135);
+        sprChampJ2[2].setPosition(263, 135);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[2].setPosition(85, 263);
-        sprChampJ3[1].setPosition(85, 425);
-        sprChampJ3[0].setPosition(85, 587);
+        sprChampJ3[2].setPosition(865, 263);
+        sprChampJ3[1].setPosition(865, 425);
+        sprChampJ3[0].setPosition(865, 587);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(263, 85);
-        sprChampJ3[1].setPosition(425, 85);
-        sprChampJ3[2].setPosition(587, 85);
+        sprChampJ4[2].setPosition(263, 765);
+        sprChampJ4[1].setPosition(425, 765);
+        sprChampJ4[0].setPosition(587, 765);
 
 
 
         for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ1[i]);
+           fenetre.draw(sprChampJ1[i]);
         }
-/*
+
         for(int i = 0; i < 3; i++){
             fenetre.draw(sprChampJ2[i]);
         }
@@ -519,7 +509,7 @@ public class Vue{
             fenetre.draw(sprChampJ4[i]);
         }
 
-*/
+
         fenetre.draw(sprFinTour);
 
         fenetre.display();
@@ -541,7 +531,6 @@ public class Vue{
         mainJ1.get(mainJ1.size() - 1).rotate(rotate);
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
-
     private void afficherCarteTequila(int posX, int posY, float rotate){
         mainJ1.add(new Sprite());
         mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTequila);
@@ -549,7 +538,6 @@ public class Vue{
         mainJ1.get(mainJ1.size() - 1).rotate(rotate);
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
-
     private void afficherCarteTerroriste(int posX, int posY, float rotate){
         mainJ1.add(new Sprite());
         mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTerroriste);
@@ -557,7 +545,6 @@ public class Vue{
         mainJ1.get(mainJ1.size() - 1).rotate(rotate);
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
-
     private void afficherCarteTestosteorne(int posX, int posY, float rotate){
         mainJ1.add(new Sprite());
         mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTestosterone);
@@ -565,7 +552,6 @@ public class Vue{
         mainJ1.get(mainJ1.size() - 1).rotate(rotate);
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
-
     private void afficherCarteTetenucleaire(int posX, int posY, float rotate){
         mainJ1.add(new Sprite());
         mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTeteNucleaire);
@@ -573,7 +559,6 @@ public class Vue{
         mainJ1.get(mainJ1.size() - 1).rotate(rotate);
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
-
     private void afficherCarteTetraplegique(int posX, int posY, float rotate){
         mainJ1.add(new Sprite());
         mainJ1.get(mainJ1.size() - 1).setTexture(txtCarteTetraplegique);
