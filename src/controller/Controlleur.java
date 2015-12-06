@@ -17,104 +17,86 @@ public class Controlleur {
 
             joueur = 1;
 
-            updateJeu();
-
+            jeu();
+            //updateJeu();
 
 
 
         }
 
-        private void updateJeu() {
-            while(vue.getFenetre().isOpen()) {
+        private void jeu(){
+            while (true){
+                System.out.println("whiole");
+                etapePlanter();
+            }
+        }
 
-                for (Event event : vue.getFenetre().pollEvents()) {
-                    if (event.type == Event.Type.CLOSED) {
-                        vue.getFenetre().close();
-                    }
+    private void etapePlanter() {
+        System.out.println("etapePlanter");
 
-                /*
-                if (event.type == Event.Type.KEY_PRESSED.) {
+        while(vue.getFenetre().isOpen()){
+            for(Event event : vue.getFenetre().pollEvents()){
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
                     event.asKeyEvent();
-                    if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                        rotationPlateau();
+                    if (vue.cliqueSprite(event, vue.getBouton()[0], vue.getFenetre())) {
+                        etapeEchange();
                     }
 
-                }
-*/
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-
-                    if (event.type == Event.Type.KEY_PRESSED) {
-                        event.asMouseEvent();
-                        if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                            rotationPlateau();
-                        }
-
-                    }
-
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-
-                    if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                        event.asMouseEvent();
-                        if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                            rotationPlateau();
-                        }
-
-                    }
-
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-
-                    if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                        event.asMouseEvent();
-                        if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                            rotationPlateau();
-                        }
-
-                    }
-
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-
-                    if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                        event.asMouseEvent();
-                        if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                            rotationPlateau();
-                        }
-
-                    }
-
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-
-                    if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                        event.asMouseEvent();
-                        if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                            rotationPlateau();
-                        }
-
-                    }
-
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-                    /////////////////////////////////////////////////////////////////////////
-
-                    if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                        event.asMouseEvent();
-                        if (vue.cliqueSprite(event, vue.getFinDeTour(), vue.getFenetre())) {
-                            rotationPlateau();
-                        }
-
-                    }
                 }
             }
         }
+    }
+    private void etapeEchange() {
+        System.out.println("etapeEchange");
+
+        while(vue.getFenetre().isOpen()){
+            for(Event event : vue.getFenetre().pollEvents()){
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                    event.asKeyEvent();
+                    if (vue.cliqueSprite(event, vue.getBouton()[1], vue.getFenetre())) {
+                        etapePlantageEchange();
+                    }
+
+                }
+            }
+        }
+    }
+    private void etapePlantageEchange() {
+        System.out.println("etapePlantageEchange");
+
+        while(vue.getFenetre().isOpen()){
+            for(Event event : vue.getFenetre().pollEvents()){
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                    event.asKeyEvent();
+                    if (vue.cliqueSprite(event, vue.getBouton()[2], vue.getFenetre())) {
+                        etapePioche();
+                    }
+
+                }
+            }
+        }
+    }
+    private void etapePioche() {
+        System.out.println("etapePioche");
+
+        while(vue.getFenetre().isOpen()){
+            for(Event event : vue.getFenetre().pollEvents()){
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                    event.asKeyEvent();
+                    if (vue.cliqueSprite(event, vue.getBouton()[3], vue.getFenetre())) {
+                        finDeTour();
+                    }
+
+                }
+            }
+        }
+    }
+
+    private void finDeTour() {
+        System.out.println("finDeTour");
+        rotationPlateau();
+
+    }
 
         private void rotationPlateau() {
             switch (joueur){

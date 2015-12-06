@@ -21,6 +21,7 @@ public class Vue{
     private static Sprite[] sprsMenuCartes = new Sprite[3];
     private static Sprite[] sprsMenuCartesChoix = new Sprite[8];
     private static Sprite[] sprsAutresJoueurs = new Sprite[3];
+    private static Sprite[] sprsBoutons = new Sprite[4];
     private static Sprite[] sprsMenuON = new Sprite[2];
 
     private static Image icone = new Image();
@@ -178,6 +179,12 @@ public class Vue{
         }
         sprChampJ4[2].setTexture(txtChampIndispo);
 
+        //creation tab sprites
+        sprsBoutons[0] = sprBtEchange;
+        sprsBoutons[1] = sprBtPlantage;
+        sprsBoutons[2] = sprBtPioche;
+        sprsBoutons[3] = sprBtFinTour;
+
 
         //set positions
         sprBtEchange.setPosition(775, 775);
@@ -278,7 +285,7 @@ public class Vue{
     }
 
     public void rotationJ1(){
-        System.out.println("Joueur 1 en position");
+
         //rotation fond
         sprFond.rotate(-90);
         sprFond.setPosition(0, 0);
@@ -347,7 +354,6 @@ public class Vue{
 
     }
     public void rotationJ2(){
-        System.out.println("Joueur 2 en position");
 
         //rotation fond
         sprFond.rotate(-90);
@@ -419,7 +425,6 @@ public class Vue{
 
     }
     public void rotationJ3(){
-        System.out.println("Joueur 3 en position");
 
         //rotation fond
         sprFond.rotate(-90);
@@ -491,7 +496,6 @@ public class Vue{
 
     }
     public void rotationJ4(){
-        System.out.println("Joueur 4 en position");
 
         //rotation fond
         sprFond.rotate(-90);
@@ -566,8 +570,8 @@ public class Vue{
         return fenetre;
     }
 
-    public Sprite getFinDeTour(){
-        return sprBtFinTour;
+    public Sprite[] getBouton(){
+        return sprsBoutons;
     }
 
     private void afficherCarteTentacule(int posX, int posY, float rotate){
