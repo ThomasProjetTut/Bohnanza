@@ -40,13 +40,26 @@ public class Vue{
     private static Texture txtChampIndispo = new Texture();
 
     //Textures menu
-        //menu carte
+    //menu carte
     private static Texture txtMCFond = new Texture();
     private static Texture txtMCEchanger = new Texture();
     private static Texture txtMCDonner = new Texture();
     private static Texture txtMCGarder = new Texture();
 
-        //Texture choix carte
+    //menu choix carte
+
+    private static Texture txtMCCTectonik = new Texture();
+    private static Texture txtMCCTequila = new Texture();
+    private static Texture txtMCCTentacule = new Texture();
+    private static Texture txtMCCTerroriste = new Texture();
+    private static Texture txtMCCTestosterone = new Texture();
+    private static Texture txtMCCTeteNucleaire = new Texture();
+    private static Texture txtMCCTetraplegique = new Texture();
+    private static Texture txtMCCTwerk = new Texture();
+
+    //Texture carte
+    private static Texture txtMCCFond = new Texture();
+
     private static Texture txtCarteTequila = new Texture();
     private static Texture txtCarteTentacule = new Texture();
     private static Texture txtCarteTerroriste = new Texture();
@@ -72,21 +85,21 @@ public class Vue{
     private static Sprite sprCartePiochee2 = new Sprite();
 
     //sprites menu
-        //menu carte
+    //menu carte
     private static Sprite sprMCFond = new Sprite();
     private static Sprite sprMCEchanger = new Sprite();
     private static Sprite sprMCDonner = new Sprite();
     private static Sprite sprMCGarder = new Sprite();
 
-        //menu choix carte
+    //menu choix carte
     private static Sprite sprMCCFond = new Sprite();
 
     private static Sprite sprMCCTentacule = new Sprite();
     private static Sprite sprMCCTequila = new Sprite();
     private static Sprite sprMCCTestosterone = new Sprite();
-    private static Sprite mccTeroriste = new Sprite();
+    private static Sprite sprMCCTerroriste = new Sprite();
     private static Sprite sprMCCTetenucleaire = new Sprite();
-    private static Sprite sprMCCTetraplegiue = new Sprite();
+    private static Sprite sprMCCTetraplegique = new Sprite();
     private static Sprite sprMCCTectonik = new Sprite();
     private static Sprite sprMCCTwerk = new Sprite();
 
@@ -148,12 +161,25 @@ public class Vue{
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
 
+            txtCarteTectonik.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
             txtCarteTentacule.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
             txtCarteTequila.loadFromFile(Paths.get("Sprites/Sprite_carte/patatequila.jpg"));
             txtCarteTerroriste.loadFromFile(Paths.get("Sprites/Sprite_carte/pataterroriste.jpg"));
             txtCarteTestosterone.loadFromFile(Paths.get("Sprites/Sprite_carte/patatestosterone.jpg"));
             txtCarteTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetenucleaire.jpg"));
             txtCarteTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
+            txtCarteTwerk.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
+
+            txtMCCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/fondMCC.png"));
+            txtMCCTectonik.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTectonik.png"));
+            txtMCCTentacule.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTentacule.png"));
+            txtMCCTequila.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTequila.png"));
+            txtMCCTerroriste.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTerroriste.png"));
+            txtMCCTestosterone.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTestosterone.png"));
+            txtMCCTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetenucleaire.png"));
+            txtMCCTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetraplegique.png"));
+            txtMCCTwerk.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTwerk.png"));
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -198,6 +224,21 @@ public class Vue{
 
         etapeEnCours.setTexture(txtBtPlantage);
 
+
+        //menu carte choix
+        sprMCCFond.setTexture(txtMCCFond);
+
+        sprMCCTectonik.setTexture(txtMCCTectonik);
+        sprMCCTentacule.setTexture(txtMCCTentacule);
+        sprMCCTequila.setTexture(txtMCCTequila);
+        sprMCCTerroriste.setTexture(txtMCCTerroriste);
+        sprMCCTestosterone.setTexture(txtMCCTestosterone);
+        sprMCCTetenucleaire.setTexture(txtMCCTeteNucleaire);
+        sprMCCTetraplegique.setTexture(txtMCCTetraplegique);
+        sprMCCTwerk.setTexture(txtMCCTwerk);
+
+
+
         //creation tab sprites
         sprsBoutonsEtapes[0] = sprBtEchange;
         sprsBoutonsEtapes[1] = sprBtPlantage;
@@ -216,10 +257,10 @@ public class Vue{
         sprsMenuCartesChoix[0] = sprMCCTectonik;
         sprsMenuCartesChoix[1] = sprMCCTentacule;
         sprsMenuCartesChoix[2] = sprMCCTequila;
-        sprsMenuCartesChoix[3] = mccTeroriste;
+        sprsMenuCartesChoix[3] = sprMCCTerroriste;
         sprsMenuCartesChoix[4] = sprMCCTestosterone;
         sprsMenuCartesChoix[5] = sprMCCTetenucleaire;
-        sprsMenuCartesChoix[6] = sprMCCTetraplegiue;
+        sprsMenuCartesChoix[6] = sprMCCTetraplegique;
         sprsMenuCartesChoix[7] = sprMCCTwerk;
 
 
@@ -234,7 +275,7 @@ public class Vue{
         sprBtFinTour.setPosition(775, 940);
 
 
-        //position champ départ
+        //position champ d?part
         //J1
 
         sprChampJ1[0].setPosition(263, 767);
@@ -298,9 +339,6 @@ public class Vue{
         fenetre.setPosition(positionFenetre);
 
         fenetre.clear();
-
-        actualiserFenetre();
-
     }
 
     public void rotationJ1(){
@@ -481,7 +519,7 @@ public class Vue{
         sprChampJ4[1].setPosition(425, 765);
         sprChampJ4[0].setPosition(587, 765);
 
-         actualiserFenetre();
+        actualiserFenetre();
 
     }
 
@@ -603,6 +641,7 @@ public class Vue{
     }
 
     public void actualiserFenetreEchange(){
+        System.out.println("actu echange");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -663,6 +702,54 @@ public class Vue{
         fenetre.display();
     }
 
+    private void actualiserFenetreEchangeMenuChoix() {
+        System.out.println("actu menu choix");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        fenetre.draw(sprCartePiochee1);
+        fenetre.draw(sprCartePiochee2);
+
+
+        fenetre.draw(sprMCFond);
+        fenetre.draw(sprMCEchanger);
+        fenetre.draw(sprMCDonner);
+        fenetre.draw(sprMCGarder);
+
+
+        fenetre.draw(sprMCCFond);
+
+        fenetre.draw(sprMCCTectonik);
+        fenetre.draw(sprMCCTentacule);
+        fenetre.draw(sprMCCTequila);
+        fenetre.draw(sprMCCTerroriste);
+        fenetre.draw(sprMCCTestosterone);
+        fenetre.draw(sprMCCTetenucleaire);
+        fenetre.draw(sprMCCTetraplegique);
+        fenetre.draw(sprMCCTwerk);
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+    }
+
+
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
         if(isCliquable(sprite)) {
             event.asMouseEvent();
@@ -674,11 +761,11 @@ public class Vue{
                 System.out.println("clique sprite oui");
                 return true;
             } else {
-                System.out.println("clique sprite non");
+                System.out.println("clique sprite non position");
                 return false;
             }
         }else{
-            System.out.println("clique sprite non");
+            System.out.println("clique sprite non cliquable");
             return false;
         }
 
@@ -720,7 +807,7 @@ public class Vue{
         spriteCliquable.clear();
 
         for(Sprite sprite : sprsMenuCartes)
-        spriteCliquable.add(sprite);
+            spriteCliquable.add(sprite);
 
         //carte 1
         //-> menu
@@ -743,19 +830,39 @@ public class Vue{
 
     public void creerMenuCarte(float posX, float posY){
 
+        float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
+        int espaceInterBouton = 5;
+
         sprMCFond.setPosition(posX,posY);
-        sprMCEchanger.setPosition(posX + 10, posY + 5);
-        sprMCDonner.setPosition(posX + 10, posY + 5 + 50 + 5);
-        sprMCGarder.setPosition(posX + 10, posY + 5 + 50 + 5 + 50 + 5);
+        sprMCEchanger.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
+        sprMCDonner.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
+        sprMCGarder.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
     }
 
-    public void creationSpriteCliquableCarte1() {
+    public void creerMenuCarteChoix(float posX, float posY){
+
+        float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
+        int espaceInterBouton = 5;
+
+        sprMCCFond.setPosition(posX,posY);
+        sprMCCTectonik.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
+        sprMCCTentacule.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
+        sprMCCTequila.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
+        sprMCCTerroriste.setPosition(posX + 10, posY + 4 * espaceInterBouton + 3 * hauteurBouton);
+        sprMCCTestosterone.setPosition(posX + 10, posY + 5 * espaceInterBouton + 4 * hauteurBouton);
+        sprMCCTetenucleaire.setPosition(posX + 10, posY + 6 * espaceInterBouton + 5 * hauteurBouton);
+        sprMCCTetraplegique.setPosition(posX + 10, posY + 7 * espaceInterBouton + 6 * hauteurBouton);
+        sprMCCTwerk.setPosition(posX + 10, posY + 8 * espaceInterBouton + 7 * hauteurBouton);
+    }
+
+    public void creationSpriteCliquableCarte() {
         spriteCliquable.add(sprCartePiochee1);
+        spriteCliquable.add(sprCartePiochee2);
 
     }
 
-    public void creationSpriteCliquableCarte2() {
-
+    public void clearSpritesCliquables(){
+        spriteCliquable.clear();
     }
 
     public void afficherCartePiochee(){
@@ -763,9 +870,23 @@ public class Vue{
         sprCartePiochee1.setTexture(txtCarteTequila);
         sprCartePiochee2.setTexture(txtCarteTequila);
 
-        sprCartePiochee1.setPosition(650, 500);
-        sprCartePiochee2.setPosition(350, 500);
+        sprCartePiochee1.setPosition(509, 495);
+        sprCartePiochee2.setPosition(417, 495);
 
     }
 
+    public Sprite getFond() {
+        return sprFond;
+    }
+
+    public void garderCarte(int id) {
+        System.out.println("garder carte");
+        if(id == 1){
+            sprCartePiochee1.setPosition(509, 625);
+        }else{
+            sprCartePiochee1.setPosition(450, 555);
+        }
+
+        actualiserFenetreEchange();
+    }
 }
