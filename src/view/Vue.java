@@ -856,13 +856,16 @@ public class Vue{
     }
 
     public void creationSpriteCliquableCarte() {
-        spriteCliquable.add(sprCartePiochee1);
-        spriteCliquable.add(sprCartePiochee2);
+        spriteCliquable.clear();
 
     }
 
     public void clearSpritesCliquables(){
         spriteCliquable.clear();
+    }
+
+    public ArrayList<Sprite> getSpriteCliquable(){
+        return spriteCliquable;
     }
 
     public void afficherCartePiochee(){
@@ -882,9 +885,11 @@ public class Vue{
     public void garderCarte(int id) {
         System.out.println("garder carte");
         if(id == 1){
+            delSpriteCliquable(getSprCartePiochee1());
             sprCartePiochee1.setPosition(509, 625);
         }else{
-            sprCartePiochee1.setPosition(450, 555);
+            delSpriteCliquable(getSprCartePiochee2());
+            sprCartePiochee2.setPosition(417, 625);
         }
 
         actualiserFenetreEchange();
