@@ -2,12 +2,10 @@ package view;
 import org.jsfml.graphics.*;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
-import org.jsfml.window.Keyboard;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
-import org.jsfml.*;
 
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -17,11 +15,11 @@ public class Vue{
 
     private static RenderWindow fenetre = new RenderWindow();
     private static ArrayList<Sprite> spriteCliquable = new ArrayList<>();
-    private static Sprite[] sprsChamps = new Sprite[3];
+    private static Sprite[][] sprsChamps = new Sprite[4][3];
     private static Sprite[] sprsMenuCartes = new Sprite[3];
     private static Sprite[] sprsMenuCartesChoix = new Sprite[8];
     private static Sprite[] sprsAutresJoueurs = new Sprite[3];
-    private static Sprite[] sprsBoutons = new Sprite[4];
+    private static Sprite[] sprsBoutonsEtapes = new Sprite[4];
     private static Sprite[] sprsMenuON = new Sprite[2];
 
     private static Image icone = new Image();
@@ -48,17 +46,33 @@ public class Vue{
     private static Texture txtMCDonner = new Texture();
     private static Texture txtMCGarder = new Texture();
 
+    //menu choix carte
+
+    private static Texture txtMCCTectonik = new Texture();
+    private static Texture txtMCCTequila = new Texture();
+    private static Texture txtMCCTentacule = new Texture();
+    private static Texture txtMCCTerroriste = new Texture();
+    private static Texture txtMCCTestosterone = new Texture();
+    private static Texture txtMCCTeteNucleaire = new Texture();
+    private static Texture txtMCCTetraplegique = new Texture();
+    private static Texture txtMCCTwerk = new Texture();
+
     //Texture carte
+    private static Texture txtMCCFond = new Texture();
+
     private static Texture txtCarteTequila = new Texture();
     private static Texture txtCarteTentacule = new Texture();
     private static Texture txtCarteTerroriste = new Texture();
     private static Texture txtCarteTestosterone = new Texture();
     private static Texture txtCarteTeteNucleaire = new Texture();
     private static Texture txtCarteTetraplegique = new Texture();
+    private static Texture txtCarteTectonik = new Texture();
+    private static Texture txtCarteTwerk = new Texture();
 
     //Declaration sprite
     // sprites generaux
     private static Sprite sprFond = new Sprite();
+    private static Sprite etapeEnCours = new Sprite();
 
     //sprites boutons
     private static Sprite sprBtEchange = new Sprite();
@@ -66,12 +80,28 @@ public class Vue{
     private static Sprite sprBtPioche = new Sprite();
     private static Sprite sprBtFinTour = new Sprite();
 
+    //carte
+    private static Sprite sprCartePiochee1 = new Sprite();
+    private static Sprite sprCartePiochee2 = new Sprite();
+
     //sprites menu
-        //menu carte
+    //menu carte
     private static Sprite sprMCFond = new Sprite();
     private static Sprite sprMCEchanger = new Sprite();
     private static Sprite sprMCDonner = new Sprite();
     private static Sprite sprMCGarder = new Sprite();
+
+    //menu choix carte
+    private static Sprite sprMCCFond = new Sprite();
+
+    private static Sprite sprMCCTentacule = new Sprite();
+    private static Sprite sprMCCTequila = new Sprite();
+    private static Sprite sprMCCTestosterone = new Sprite();
+    private static Sprite sprMCCTerroriste = new Sprite();
+    private static Sprite sprMCCTetenucleaire = new Sprite();
+    private static Sprite sprMCCTetraplegique = new Sprite();
+    private static Sprite sprMCCTectonik = new Sprite();
+    private static Sprite sprMCCTwerk = new Sprite();
 
     //sprite champs
     private static Sprite[] sprChampJ1 = new Sprite[3];
@@ -131,12 +161,25 @@ public class Vue{
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
 
+            txtCarteTectonik.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
             txtCarteTentacule.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
             txtCarteTequila.loadFromFile(Paths.get("Sprites/Sprite_carte/patatequila.jpg"));
             txtCarteTerroriste.loadFromFile(Paths.get("Sprites/Sprite_carte/pataterroriste.jpg"));
             txtCarteTestosterone.loadFromFile(Paths.get("Sprites/Sprite_carte/patatestosterone.jpg"));
             txtCarteTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetenucleaire.jpg"));
             txtCarteTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
+            txtCarteTwerk.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
+
+            txtMCCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/fondMCC.png"));
+            txtMCCTectonik.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTectonik.png"));
+            txtMCCTentacule.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTentacule.png"));
+            txtMCCTequila.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTequila.png"));
+            txtMCCTerroriste.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTerroriste.png"));
+            txtMCCTestosterone.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTestosterone.png"));
+            txtMCCTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetenucleaire.png"));
+            txtMCCTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetraplegique.png"));
+            txtMCCTwerk.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTwerk.png"));
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -179,21 +222,60 @@ public class Vue{
         }
         sprChampJ4[2].setTexture(txtChampIndispo);
 
+        etapeEnCours.setTexture(txtBtPlantage);
+
+
+        //menu carte choix
+        sprMCCFond.setTexture(txtMCCFond);
+
+        sprMCCTectonik.setTexture(txtMCCTectonik);
+        sprMCCTentacule.setTexture(txtMCCTentacule);
+        sprMCCTequila.setTexture(txtMCCTequila);
+        sprMCCTerroriste.setTexture(txtMCCTerroriste);
+        sprMCCTestosterone.setTexture(txtMCCTestosterone);
+        sprMCCTetenucleaire.setTexture(txtMCCTeteNucleaire);
+        sprMCCTetraplegique.setTexture(txtMCCTetraplegique);
+        sprMCCTwerk.setTexture(txtMCCTwerk);
+
+
+
         //creation tab sprites
-        sprsBoutons[0] = sprBtEchange;
-        sprsBoutons[1] = sprBtPlantage;
-        sprsBoutons[2] = sprBtPioche;
-        sprsBoutons[3] = sprBtFinTour;
+        sprsBoutonsEtapes[0] = sprBtEchange;
+        sprsBoutonsEtapes[1] = sprBtPlantage;
+        sprsBoutonsEtapes[2] = sprBtPioche;
+        sprsBoutonsEtapes[3] = sprBtFinTour;
+
+        sprsChamps[0] = sprChampJ1;
+        sprsChamps[1] = sprChampJ2;
+        sprsChamps[2] = sprChampJ3;
+        sprsChamps[3] = sprChampJ4;
+
+        sprsMenuCartes[0] = sprMCEchanger;
+        sprsMenuCartes[1] = sprMCDonner;
+        sprsMenuCartes[2] = sprMCGarder;
+
+        sprsMenuCartesChoix[0] = sprMCCTectonik;
+        sprsMenuCartesChoix[1] = sprMCCTentacule;
+        sprsMenuCartesChoix[2] = sprMCCTequila;
+        sprsMenuCartesChoix[3] = sprMCCTerroriste;
+        sprsMenuCartesChoix[4] = sprMCCTestosterone;
+        sprsMenuCartesChoix[5] = sprMCCTetenucleaire;
+        sprsMenuCartesChoix[6] = sprMCCTetraplegique;
+        sprsMenuCartesChoix[7] = sprMCCTwerk;
 
 
         //set positions
+        //generaux
+        etapeEnCours.setPosition(25, 25);
+
+        //bouton
         sprBtEchange.setPosition(775, 775);
         sprBtPlantage.setPosition(775, 830);
         sprBtPioche.setPosition(775, 885);
         sprBtFinTour.setPosition(775, 940);
 
 
-        //position champ départ
+        //position champ d?part
         //J1
 
         sprChampJ1[0].setPosition(263, 767);
@@ -257,31 +339,6 @@ public class Vue{
         fenetre.setPosition(positionFenetre);
 
         fenetre.clear();
-
-        fenetre.draw(sprFond);
-        fenetre.draw(sprBtEchange);
-        fenetre.draw(sprBtPlantage);
-        fenetre.draw(sprBtPioche);
-        fenetre.draw(sprBtFinTour);
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ1[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ2[i]);
-        }
-
-        for(int i = 0; i < 3; i++) {
-           fenetre.draw(sprChampJ3[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ4[i]);
-        }
-
-        fenetre.display();
-
     }
 
     public void rotationJ1(){
@@ -289,8 +346,6 @@ public class Vue{
         //rotation fond
         sprFond.rotate(-90);
         sprFond.setPosition(0, 0);
-
-        fenetre.draw(sprFond);
 
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
@@ -328,29 +383,7 @@ public class Vue{
         sprChampJ4[1].setPosition(765, 575);
         sprChampJ4[2].setPosition(765, 737);
 
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ1[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ2[i]);
-        }
-
-        for(int i = 0; i < 3; i++) {
-            fenetre.draw(sprChampJ3[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ4[i]);
-        }
-
-        fenetre.draw(sprBtEchange);
-        fenetre.draw(sprBtPlantage);
-        fenetre.draw(sprBtPioche);
-        fenetre.draw(sprBtFinTour);
-
-        fenetre.display();
+        actualiserFenetre();
 
     }
     public void rotationJ2(){
@@ -358,9 +391,6 @@ public class Vue{
         //rotation fond
         sprFond.rotate(-90);
         sprFond.setPosition(0, 1000);
-
-        fenetre.draw(sprFond);
-
 
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
@@ -398,29 +428,7 @@ public class Vue{
         sprChampJ4[1].setPosition(575, 235);
         sprChampJ4[0].setPosition(737, 235);
 
-
-        for(int i = 0; i < 3; i++){
-          fenetre.draw(sprChampJ1[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ2[i]);
-        }
-
-        for(int i = 0; i < 3; i++) {
-            fenetre.draw(sprChampJ3[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ4[i]);
-        }
-
-        fenetre.draw(sprBtEchange);
-        fenetre.draw(sprBtPlantage);
-        fenetre.draw(sprBtPioche);
-        fenetre.draw(sprBtFinTour);
-
-        fenetre.display();
+        actualiserFenetre();
 
 
     }
@@ -429,9 +437,6 @@ public class Vue{
         //rotation fond
         sprFond.rotate(-90);
         sprFond.setPosition(1000, 1000);
-
-        fenetre.draw(sprFond);
-
 
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
@@ -469,30 +474,7 @@ public class Vue{
         sprChampJ4[1].setPosition(235, 425);
         sprChampJ4[2].setPosition(235, 587);
 
-
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ1[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ2[i]);
-        }
-
-        for(int i = 0; i < 3; i++) {
-            fenetre.draw(sprChampJ3[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ4[i]);
-        }
-
-        fenetre.draw(sprBtEchange);
-        fenetre.draw(sprBtPlantage);
-        fenetre.draw(sprBtPioche);
-        fenetre.draw(sprBtFinTour);
-
-        fenetre.display();
+        actualiserFenetre();
 
     }
     public void rotationJ4(){
@@ -500,8 +482,6 @@ public class Vue{
         //rotation fond
         sprFond.rotate(-90);
         sprFond.setPosition(1000, 0);
-
-        fenetre.draw(sprFond);
 
         /////////////////////////////////////////////////////////////////////////////
         //rotation champ
@@ -539,30 +519,7 @@ public class Vue{
         sprChampJ4[1].setPosition(425, 765);
         sprChampJ4[0].setPosition(587, 765);
 
-
-
-        for(int i = 0; i < 3; i++){
-           fenetre.draw(sprChampJ1[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ2[i]);
-        }
-
-        for(int i = 0; i < 3; i++) {
-            fenetre.draw(sprChampJ3[i]);
-        }
-
-        for(int i = 0; i < 3; i++){
-            fenetre.draw(sprChampJ4[i]);
-        }
-
-        fenetre.draw(sprBtEchange);
-        fenetre.draw(sprBtPlantage);
-        fenetre.draw(sprBtPioche);
-        fenetre.draw(sprBtFinTour);
-
-        fenetre.display();
+        actualiserFenetre();
 
     }
 
@@ -570,8 +527,29 @@ public class Vue{
         return fenetre;
     }
 
-    public Sprite[] getBouton(){
-        return sprsBoutons;
+    public Sprite[] getSprsBoutonsEtapes(){
+        return sprsBoutonsEtapes;
+    }
+    public Sprite[][] getSprsChamps(){
+        return sprsChamps;
+    }
+    public Sprite[] getSprsMenuCartes(){
+        return sprsMenuCartes;
+    }
+    public Sprite[] getSprsMenuCartesChoix(){
+        return sprsMenuCartesChoix;
+    }
+    public Sprite[] getSprsAutresJoueurs(){
+        return sprsAutresJoueurs;
+    }
+    public Sprite[] getSprsMenuON(){
+        return sprsMenuON;
+    }
+    public Sprite getSprCartePiochee1(){
+        return sprCartePiochee1;
+    }
+    public Sprite getSprCartePiochee2(){
+        return sprCartePiochee2;
     }
 
     private void afficherCarteTentacule(int posX, int posY, float rotate){
@@ -617,16 +595,177 @@ public class Vue{
         fenetre.draw(mainJ1.get(mainJ1.size() - 1));
     }
 
+    public void afficherEtape(int etape){
+        switch (etape){
+            case 1 :
+                etapeEnCours.setTexture(txtBtPlantage);
+                break;
+            case 2 :
+                etapeEnCours.setTexture(txtBtEchange);
+                afficherCartePiochee();
+                break;
+            case 3 :
+                etapeEnCours.setTexture(txtFinTour);
+                break;
+            case 4 :
+                etapeEnCours.setTexture(txtBtPioche);
+                break;
+        }
+
+    }
+
+    public void actualiserFenetre(){
+        System.out.println("act");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+    }
+
+    public void actualiserFenetreEchange(){
+        System.out.println("actu echange");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        fenetre.draw(sprCartePiochee1);
+        fenetre.draw(sprCartePiochee2);
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+    }
+
+    public void actualiserFenetreEchangeMenu() {
+        System.out.println("actu menu");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        fenetre.draw(sprCartePiochee1);
+        fenetre.draw(sprCartePiochee2);
+
+        fenetre.draw(sprMCFond);
+        fenetre.draw(sprMCEchanger);
+        fenetre.draw(sprMCDonner);
+        fenetre.draw(sprMCGarder);
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+    }
+
+    private void actualiserFenetreEchangeMenuChoix() {
+        System.out.println("actu menu choix");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        fenetre.draw(sprCartePiochee1);
+        fenetre.draw(sprCartePiochee2);
+
+
+        fenetre.draw(sprMCFond);
+        fenetre.draw(sprMCEchanger);
+        fenetre.draw(sprMCDonner);
+        fenetre.draw(sprMCGarder);
+
+
+        fenetre.draw(sprMCCFond);
+
+        fenetre.draw(sprMCCTectonik);
+        fenetre.draw(sprMCCTentacule);
+        fenetre.draw(sprMCCTequila);
+        fenetre.draw(sprMCCTerroriste);
+        fenetre.draw(sprMCCTestosterone);
+        fenetre.draw(sprMCCTetenucleaire);
+        fenetre.draw(sprMCCTetraplegique);
+        fenetre.draw(sprMCCTwerk);
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+    }
+
+
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
+        if(isCliquable(sprite)) {
+            event.asMouseEvent();
+            Vector2i posMouse = Mouse.getPosition(fenetre);
+            Vector2f positionSprite = sprite.getPosition();
+            FloatRect tailleSprite = sprite.getGlobalBounds();
 
-        event.asMouseEvent();
-        Vector2i posMouse = Mouse.getPosition(fenetre);
-        Vector2f positionSprite = sprite.getPosition();
-        FloatRect tailleSprite = sprite.getGlobalBounds();
-
-        if(posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height){
-            return true;
+            if (posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height) {
+                System.out.println("clique sprite oui");
+                return true;
+            } else {
+                System.out.println("clique sprite non position");
+                return false;
+            }
         }else{
+            System.out.println("clique sprite non cliquable");
             return false;
         }
 
@@ -640,17 +779,119 @@ public class Vue{
 
     }
 
-    public void creerMenuCarte(int posX, int posY){
+    public void setSpriteCliquable(Sprite sprite){
+        if(!spriteCliquable.contains(sprite)){
+            spriteCliquable.add(sprite);
+        }
 
-        sprMCFond.setPosition(posX,posY);
-        sprMCEchanger.setPosition(posX + 10, posY + 5);
-        sprMCDonner.setPosition(posX + 10, posY + 5 + 50 + 5);
-        sprMCGarder.setPosition(posX + 10, posY + 5 + 50 + 5 + 50 + 5);
-
-        fenetre.draw(sprMCFond);
-        fenetre.draw(sprMCEchanger);
-        fenetre.draw(sprMCDonner);
-        fenetre.draw(sprMCGarder);
     }
 
+    public void delSpriteCliquable(Sprite sprite){
+        if(spriteCliquable.contains(sprite)){
+            spriteCliquable.remove(sprite);
+        }
+
+    }
+
+    public void creationSpriteCliquableEtape1(int joueur){
+        spriteCliquable.clear();
+
+        for(Sprite sprite : getSprsChamps()[joueur - 1]){
+            spriteCliquable.add(sprite);
+        }
+
+    }
+
+    public void creationSpriteCliquableMenuCarte(){
+        System.out.println("creationSpriteCliquableMenuCarte");
+        spriteCliquable.clear();
+
+        for(Sprite sprite : sprsMenuCartes)
+            spriteCliquable.add(sprite);
+
+        //carte 1
+        //-> menu
+    }
+
+    public void creationSpriteCliquableMenuCarteChoix(){
+        spriteCliquable.clear();
+
+        //carte 1
+        //-> menu
+    }
+
+    public void creationSpriteCliquableEtape3(int joueur){
+
+    }
+
+    public void creationSpriteCliquableEtape4(int joueur){
+
+    }
+
+    public void creerMenuCarte(float posX, float posY){
+
+        float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
+        int espaceInterBouton = 5;
+
+        sprMCFond.setPosition(posX,posY);
+        sprMCEchanger.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
+        sprMCDonner.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
+        sprMCGarder.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
+    }
+
+    public void creerMenuCarteChoix(float posX, float posY){
+
+        float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
+        int espaceInterBouton = 5;
+
+        sprMCCFond.setPosition(posX,posY);
+        sprMCCTectonik.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
+        sprMCCTentacule.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
+        sprMCCTequila.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
+        sprMCCTerroriste.setPosition(posX + 10, posY + 4 * espaceInterBouton + 3 * hauteurBouton);
+        sprMCCTestosterone.setPosition(posX + 10, posY + 5 * espaceInterBouton + 4 * hauteurBouton);
+        sprMCCTetenucleaire.setPosition(posX + 10, posY + 6 * espaceInterBouton + 5 * hauteurBouton);
+        sprMCCTetraplegique.setPosition(posX + 10, posY + 7 * espaceInterBouton + 6 * hauteurBouton);
+        sprMCCTwerk.setPosition(posX + 10, posY + 8 * espaceInterBouton + 7 * hauteurBouton);
+    }
+
+    public void creationSpriteCliquableCarte() {
+        spriteCliquable.clear();
+
+    }
+
+    public void clearSpritesCliquables(){
+        spriteCliquable.clear();
+    }
+
+    public ArrayList<Sprite> getSpriteCliquable(){
+        return spriteCliquable;
+    }
+
+    public void afficherCartePiochee(){
+        System.out.println("carte piochee");
+        sprCartePiochee1.setTexture(txtCarteTequila);
+        sprCartePiochee2.setTexture(txtCarteTequila);
+
+        sprCartePiochee1.setPosition(509, 495);
+        sprCartePiochee2.setPosition(417, 495);
+
+    }
+
+    public Sprite getFond() {
+        return sprFond;
+    }
+
+    public void garderCarte(int id) {
+        System.out.println("garder carte");
+        if(id == 1){
+            delSpriteCliquable(getSprCartePiochee1());
+            sprCartePiochee1.setPosition(509, 625);
+        }else{
+            delSpriteCliquable(getSprCartePiochee2());
+            sprCartePiochee2.setPosition(417, 625);
+        }
+
+        actualiserFenetreEchange();
+    }
 }
