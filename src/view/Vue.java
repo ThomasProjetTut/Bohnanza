@@ -18,7 +18,7 @@ public class Vue{
     private Sprite[][] sprsChamps = new Sprite[4][3];
     private Sprite[] sprsMenuCartes = new Sprite[3];
     private Sprite[] sprsMenuCartesChoix = new Sprite[8];
-    private Sprite[] sprsAutresJoueurs = new Sprite[3];
+    private Sprite[] sprsAutresJoueurs = new Sprite[4];
     private Sprite[] sprsBoutonsEtapes = new Sprite[4];
     private Sprite[] sprsMenuON = new Sprite[2];
 
@@ -122,6 +122,11 @@ public class Vue{
     private Sprite[] sprChampJ3 = new Sprite[3];
     private Sprite[] sprChampJ4 = new Sprite[3];
 
+    private Sprite sprJoueurAttente1 = new Sprite();
+    private Sprite sprJoueurAttente2 = new Sprite();
+    private Sprite sprJoueurAttente3 = new Sprite();
+    private Sprite sprJoueurAttente4 = new Sprite();
+
     //sprite cartes
     private ArrayList<Sprite> mainJ1 = new ArrayList<Sprite>();
 
@@ -170,6 +175,16 @@ public class Vue{
             txtBtPlantage.loadFromFile(Paths.get("Sprites/Sprite_bouton/phaseDePlantage.png"));
             txtBtPioche.loadFromFile(Paths.get("Sprites/Sprite_bouton/phaseDePioche.png"));
             txtFinTour.loadFromFile(Paths.get("Sprites/Sprite_bouton/finDeTour.png"));
+
+            txtJoueur1AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur1.png"));
+            txtJoueur2AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur2.png"));
+            txtJoueur3AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur3.png"));
+            txtJoueur4AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur4.png"));
+
+            txtJoueur1AttenteInactif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur_desactive/joueur1.png"));
+            txtJoueur2AttenteInactif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur_desactive/joueur2.png"));
+            txtJoueur3AttenteInactif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur_desactive/joueur3.png"));
+            txtJoueur4AttenteInactif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur_desactive/joueur4.png"));
 
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
@@ -250,7 +265,10 @@ public class Vue{
         sprMCCTetraplegique.setTexture(txtMCCTetraplegique);
         sprMCCTwerk.setTexture(txtMCCTwerk);
 
-
+        sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
 
         //creation tab sprites
         sprsBoutonsEtapes[0] = sprBtEchange;
@@ -276,6 +294,10 @@ public class Vue{
         sprsMenuCartesChoix[6] = sprMCCTetraplegique;
         sprsMenuCartesChoix[7] = sprMCCTwerk;
 
+        sprsAutresJoueurs[0] = sprJoueurAttente1;
+        sprsAutresJoueurs[1] = sprJoueurAttente2;
+        sprsAutresJoueurs[2] = sprJoueurAttente3;
+        sprsAutresJoueurs[3] = sprJoueurAttente4;
 
         //set positions
         //generaux
@@ -324,22 +346,10 @@ public class Vue{
 
         //////////////////////
 
-        for(int i = 0; i < 2; i++) {
-            sprChampJ1[i].setColor(Color.BLACK);
-        }
-
-        for(int i = 0; i < 2; i++) {
-            sprChampJ1[i].setColor(Color.WHITE);
-        }
-
-        for(int i = 0; i < 2; i++) {
-            sprChampJ1[i].setColor(Color.GREEN);
-        }
-
-        for(int i = 0; i < 2; i++) {
-            sprChampJ1[i].setColor(Color.YELLOW);
-        }
-
+        sprJoueurAttente1.setPosition(35, 775);
+        sprJoueurAttente2.setPosition(35, 815);
+        sprJoueurAttente3.setPosition(35, 855);
+        sprJoueurAttente4.setPosition(35, 895);
 
 
     }
@@ -552,8 +562,22 @@ public class Vue{
     public Sprite[] getSprsMenuCartesChoix(){
         return sprsMenuCartesChoix;
     }
-    public Sprite[] getSprsAutresJoueurs(){
-        return sprsAutresJoueurs;
+    public Sprite[] getSprsAutresJoueurs(int joueur){
+        Sprite[] retour = new Sprite[3];
+        int index = 0;
+
+        for (int i = 0; i < 3; i++) {
+            if(i == joueur){
+                index++;
+            }
+
+            retour[i] = sprsAutresJoueurs[index];
+            index++;
+
+        }
+
+
+        return retour;
     }
     public Sprite[] getSprsMenuON(){
         return sprsMenuON;
@@ -647,6 +671,10 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        for(Sprite sprite : sprsAutresJoueurs){
+            fenetre.draw(sprite);
+        }
+
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
@@ -670,6 +698,10 @@ public class Vue{
         }
 
         for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
 
@@ -699,6 +731,10 @@ public class Vue{
         }
 
         for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
 
@@ -732,6 +768,10 @@ public class Vue{
         }
 
         for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
 
@@ -919,5 +959,15 @@ public class Vue{
         }
 
         actualiserFenetreEchange();
+    }
+
+    public void creationSpriteCliquableDon(int joueur) {
+        spriteCliquable.clear();
+        spriteCliquable.add(getFond());
+
+        for(Sprite sprite : getSprsAutresJoueurs(joueur)){
+            spriteCliquable.add(sprite);
+        }
+
     }
 }

@@ -214,6 +214,7 @@ public class Controlleur {
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
+
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
                                     vue.actualiserFenetreEchange();
@@ -265,26 +266,38 @@ public class Controlleur {
                                     System.out.println("retour tentacule");
                                     return 20;
                                 case 1 :
-                                    return 20;
+                                    System.out.println("retour tequila");
+                                    return 21;
                                 case 2 :
-                                    return 20;
+                                    System.out.println("retour terroriste");
+                                    return 22;
                                 case 3 :
-                                    return 20;
+                                    System.out.println("retour testostérone");
+                                    return 23;
                                 case 4 :
-                                    return 20;
+                                    System.out.println("retour tetenucleaire");
+                                    return 24;
                                 case 5 :
-                                    return 20;
+                                    System.out.println("retour tentacule");
+                                    return 25;
                                 case 6 :
-                                    return 20;
+                                    System.out.println("retour tentacule");
+                                    return 26;
                                 case 7 :
-                                    return 20;
+                                    System.out.println("retour tentacule");
+                                    return 27;
                                 case 10 :
+                                    System.out.println("retour retour");
                                     break;
                             }
 
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
+                                vue.creationSpriteCliquableDon(joueur);
+                                vue.actualiserFenetreEchange();
+                                int retour = etapeEchangeMenuCarteDon();
+
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
                                     vue.actualiserFenetreEchange();
@@ -302,6 +315,26 @@ public class Controlleur {
 
         return 5;
 
+    }
+
+    private int etapeEchangeMenuCarteDon() {
+        Sprite[] joueursAttente = new Sprite[3];
+        joueursAttente = vue.getSprsAutresJoueurs(joueur);
+
+        while(vue.getFenetre().isOpen()){
+            for(Event enventDon : vue.getFenetre().pollEvents()){
+
+                if(enventDon.type == Event.Type.CLOSED){
+                    vue.getFenetre().close();
+                }
+
+
+            }
+        }
+
+
+
+        return 0;
     }
 
 

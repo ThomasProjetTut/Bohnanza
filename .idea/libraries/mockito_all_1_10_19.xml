@@ -2,9 +2,10 @@
   <library name="mockito-all-1.10.19">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/mockito-all-1.10.19.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jsfml.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/lib/mockito-all-1.10.19.jar!/" />
+    </SOURCES>
   </library>
 </component>
