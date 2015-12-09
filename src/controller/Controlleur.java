@@ -12,7 +12,7 @@ public class Controlleur {
 
 
     private Vue vue;
-    private static int joueur;
+    private int joueur;
 
     public Controlleur() throws IOException {
         vue = new Vue();
@@ -57,25 +57,24 @@ public class Controlleur {
                         }
                     }
 
-                        if (nbplants < 2) {
-                            System.out.println("nb plant  = " + nbplants);
+                    if (nbplants < 2) {
+                        System.out.println("nb plant  = " + nbplants);
 
 
-                            if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][0], vue.getFenetre())) {
-                                System.out.println("plante premier champ");
+                        if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][0], vue.getFenetre())) {
+                            System.out.println("plante premier champ");
+                            vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
+                            nbplants++;
+                        } else {
+                            if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][1], vue.getFenetre())) {
+                                System.out.println("plante deuxi?me champ");
                                 vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                                 nbplants++;
                             } else {
-                                if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][1], vue.getFenetre())) {
-                                    System.out.println("plante deuxi?me champ");
+                                if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][2], vue.getFenetre())) {
+                                    System.out.println("plante troisi?me champ");
                                     vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                                     nbplants++;
-                                } else {
-                                    if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][2], vue.getFenetre())) {
-                                        System.out.println("plante troisi?me champ");
-                                        vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
-                                        nbplants++;
-                                    }
                                 }
                             }
                         }
@@ -83,12 +82,14 @@ public class Controlleur {
                 }
             }
         }
+    }
 
 
 
     private void etapeEchange() {
         System.out.println("etapeEchange");
         int carteNonJouee = 2;
+        int retour;
 
         vue.afficherEtape(2);
         vue.actualiserFenetreEchange();
@@ -96,10 +97,7 @@ public class Controlleur {
         Sprite carte1 = vue.getSprCartePiochee1();
         Sprite carte2 = vue.getSprCartePiochee2();
 
-        vue.creationSpriteCliquableCarte();//ajout 2 cartes
-        vue.setSpriteCliquable(carte1);
-        vue.setSpriteCliquable(carte2);
-        vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[1]);
+        vue.creationSpriteCliquableCarte();
 
         while (vue.getFenetre().isOpen()) {
             for (Event event : vue.getFenetre().pollEvents()) {
@@ -115,20 +113,40 @@ public class Controlleur {
 
                         vue.creerMenuCarte(carte1.getPosition().x + 75, carte1.getPosition().y);
                         vue.actualiserFenetreEchangeMenu();
-                        etapeEchangeMenuCarte1();
-                        vue.delSpriteCliquable(carte1);
+                        retour = etapeEchangeMenuCarte1();
+                        vue.creationSpriteCliquableCarte();
+                        vue.actualiserFenetreEchange();
+                        if (carteNonJouee == 1) {
+                            vue.delSpriteCliquable(carte2);
+                        }
+                        if(retour != 4) {
+                            vue.delSpriteCliquable(carte1);
+                            carteNonJouee--;
+                        }
+
                     } else {
                         if (vue.cliqueSprite(event, carte2, vue.getFenetre())) {
                             System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
-
                             vue.creerMenuCarte(carte2.getPosition().x + 75, carte2.getPosition().y);
                             vue.actualiserFenetreEchangeMenu();
-                            etapeEchangeMenuCarte2();
-                            vue.delSpriteCliquable(carte2);
+                            retour = etapeEchangeMenuCarte2();
+                            vue.creationSpriteCliquableCarte();
+                            vue.actualiserFenetreEchange();
+                            if (carteNonJouee == 1) {
+                                vue.delSpriteCliquable(carte1);
+                            }
+                            if(retour != 4) {
+                                vue.delSpriteCliquable(carte2);
+                                carteNonJouee--;
+                            }
                         }
                     }
 
                     System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
+
+                    for(Sprite sprite : vue.getSpriteCliquable()){
+                        System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
+                    }
 
                     if (carteNonJouee == 0) {
 
@@ -141,13 +159,12 @@ public class Controlleur {
 
                 }
 
-
             }
         }
     }
 
-    private void etapeEchangeMenuCarte1(){
-        vue.setSpriteCliquable(vue.getFond());
+    private int etapeEchangeMenuCarte1(){
+        vue.creationSpriteCliquableMenuCarte();
 
         while (vue.getFenetre().isOpen()){
             for(Event eventMenu : vue.getFenetre().pollEvents()){
@@ -161,19 +178,47 @@ public class Controlleur {
 
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())) {
                         System.out.println("garder");
+                        System.out.println("appel garder carte 1");
                         vue.garderCarte(1);
-                        return;
+                        vue.creationSpriteCliquableCarte();
+                        return 1;
                     }else{
                         if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
                             System.out.println("echange");
+                            vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
+                            vue.actualiserFenetreEchangeMenuChoix();
+                            int retour = etapeEchangeMenuCarteChoix();
+                            vue.creationSpriteCliquableMenuCarte();
+                            vue.actualiserFenetreEchangeMenu();
+                            switch (retour){
+                                case 0 :
+                                    System.out.println("retour tentacule");
+                                    return 20;
+                                case 1 :
+                                    return 20;
+                                case 2 :
+                                    return 20;
+                                case 3 :
+                                    return 20;
+                                case 4 :
+                                    return 20;
+                                case 5 :
+                                    return 20;
+                                case 6 :
+                                    return 20;
+                                case 7 :
+                                    return 20;
+                                case 10 :
+                                    break;
+                            }
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
                                     vue.actualiserFenetreEchange();
-                                    vue.delSpriteCliquable(vue.getFond());
-                                    return;
+                                    vue.creationSpriteCliquableCarte();
+                                    return 4;
                                 }
                             }
                         }
@@ -184,11 +229,12 @@ public class Controlleur {
 
         }
 
+        return 5;
+
     }
 
-
-    private void etapeEchangeMenuCarte2(){
-        vue.setSpriteCliquable(vue.getFond());
+    private int etapeEchangeMenuCarte2(){
+        vue.creationSpriteCliquableMenuCarte();
 
         while (vue.getFenetre().isOpen()){
             for(Event eventMenu : vue.getFenetre().pollEvents()){
@@ -202,19 +248,48 @@ public class Controlleur {
 
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())){
                         System.out.println("garder");
+                        System.out.println("appel garder 2");
                         vue.garderCarte(2);
-                        return;
+                        vue.creationSpriteCliquableCarte();
+                        return 1;
                     }else{
                         if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
                             System.out.println("echange");
+                            vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
+                            vue.actualiserFenetreEchangeMenuChoix();
+                            int retour = etapeEchangeMenuCarteChoix();
+                            vue.creationSpriteCliquableMenuCarte();
+                            vue.actualiserFenetreEchangeMenu();
+                            switch (retour){
+                                case 0 :
+                                    System.out.println("retour tentacule");
+                                    return 20;
+                                case 1 :
+                                    return 20;
+                                case 2 :
+                                    return 20;
+                                case 3 :
+                                    return 20;
+                                case 4 :
+                                    return 20;
+                                case 5 :
+                                    return 20;
+                                case 6 :
+                                    return 20;
+                                case 7 :
+                                    return 20;
+                                case 10 :
+                                    break;
+                            }
+
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
                                     vue.actualiserFenetreEchange();
-                                    vue.delSpriteCliquable(vue.getFond());
-                                    return;
+                                    vue.creationSpriteCliquableCarte();
+                                    return 4;
                                 }
                             }
                         }
@@ -225,9 +300,74 @@ public class Controlleur {
 
         }
 
+        return 5;
+
     }
 
 
+    private int etapeEchangeMenuCarteChoix() {
+        vue.creationSpriteCliquableMenuCarteChoix();
+        Sprite[] tabSprChoix = new Sprite[8];
+        tabSprChoix = vue.getSprsMenuCartesChoix();
+
+        while(vue.getFenetre().isOpen()){
+            for(Event eventMenuChoix : vue.getFenetre().pollEvents()){
+
+                if (eventMenuChoix.type == Event.Type.CLOSED) {
+                    vue.getFenetre().close();
+                }
+
+                if(eventMenuChoix.type == Event.Type.MOUSE_BUTTON_RELEASED){
+
+                    if(vue.cliqueSprite(eventMenuChoix, tabSprChoix[0], vue.getFenetre())){
+                        System.out.println("choix patatectonik");
+                        return 0;
+                    }else {
+                        if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[1], vue.getFenetre())) {
+                            System.out.println("choix patatentacule");
+                            return 1;
+                        } else {
+                            if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[2], vue.getFenetre())) {
+                                System.out.println("choix patatequila");
+                                return 2;
+                            } else {
+                                if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[3], vue.getFenetre())) {
+                                    System.out.println("choix pataterroriste");
+                                    return 3;
+                                } else {
+                                    if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
+                                        System.out.println("choix patatestostérone");
+                                        return 4;
+                                    } else {
+                                        if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
+                                            System.out.println("choix patatetenuclearire");
+                                            return 5;
+                                        } else {
+                                            if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
+                                                System.out.println("choix patatetraplégique");
+                                                return 6;
+                                            } else {
+                                                if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
+                                                    System.out.println("choix patatwerk");
+                                                    return 7;
+                                                } else {
+                                                    if (vue.cliqueSprite(eventMenuChoix, vue.getFond(), vue.getFenetre())) {
+                                                        return 10;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return -5;
+
+    }
 
     private void etapePlantageEchange(){
         vue.afficherEtape(3);

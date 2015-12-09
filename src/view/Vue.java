@@ -13,106 +13,119 @@ import java.util.ArrayList;
 
 public class Vue{
 
-    private static RenderWindow fenetre = new RenderWindow();
-    private static ArrayList<Sprite> spriteCliquable = new ArrayList<>();
-    private static Sprite[][] sprsChamps = new Sprite[4][3];
-    private static Sprite[] sprsMenuCartes = new Sprite[3];
-    private static Sprite[] sprsMenuCartesChoix = new Sprite[8];
-    private static Sprite[] sprsAutresJoueurs = new Sprite[3];
-    private static Sprite[] sprsBoutonsEtapes = new Sprite[4];
-    private static Sprite[] sprsMenuON = new Sprite[2];
+    private RenderWindow fenetre = new RenderWindow();
+    private ArrayList<Sprite> spriteCliquable = new ArrayList<>();
+    private Sprite[][] sprsChamps = new Sprite[4][3];
+    private Sprite[] sprsMenuCartes = new Sprite[3];
+    private Sprite[] sprsMenuCartesChoix = new Sprite[8];
+    private Sprite[] sprsAutresJoueurs = new Sprite[3];
+    private Sprite[] sprsBoutonsEtapes = new Sprite[4];
+    private Sprite[] sprsMenuON = new Sprite[2];
 
-    private static Image icone = new Image();
+    private Image icone = new Image();
 
     //////////////////////////////////////////////////////////////////////////////////////
     //Declaration Textures
     // Textures generales
-    private static Texture txtFond = new Texture();
+    private Texture txtFond = new Texture();
 
     //bouton
-    private static Texture txtBtEchange = new Texture();
-    private static Texture txtBtPlantage= new Texture();
-    private static Texture txtBtPioche = new Texture();
-    private static Texture txtFinTour = new Texture();
+    private Texture txtBtEchange = new Texture();
+    private Texture txtBtPlantage= new Texture();
+    private Texture txtBtPioche = new Texture();
+    private Texture txtFinTour = new Texture();
 
     //champ
-    private static Texture txtChampDispo = new Texture();
-    private static Texture txtChampIndispo = new Texture();
+    private Texture txtChampDispo = new Texture();
+    private Texture txtChampIndispo = new Texture();
 
     //Textures menu
     //menu carte
-    private static Texture txtMCFond = new Texture();
-    private static Texture txtMCEchanger = new Texture();
-    private static Texture txtMCDonner = new Texture();
-    private static Texture txtMCGarder = new Texture();
+    private Texture txtMCFond = new Texture();
+    private Texture txtMCEchanger = new Texture();
+    private Texture txtMCDonner = new Texture();
+    private Texture txtMCGarder = new Texture();
 
     //menu choix carte
 
-    private static Texture txtMCCTectonik = new Texture();
-    private static Texture txtMCCTequila = new Texture();
-    private static Texture txtMCCTentacule = new Texture();
-    private static Texture txtMCCTerroriste = new Texture();
-    private static Texture txtMCCTestosterone = new Texture();
-    private static Texture txtMCCTeteNucleaire = new Texture();
-    private static Texture txtMCCTetraplegique = new Texture();
-    private static Texture txtMCCTwerk = new Texture();
+    private Texture txtMCCTectonik = new Texture();
+    private Texture txtMCCTequila = new Texture();
+    private Texture txtMCCTentacule = new Texture();
+    private Texture txtMCCTerroriste = new Texture();
+    private Texture txtMCCTestosterone = new Texture();
+    private Texture txtMCCTeteNucleaire = new Texture();
+    private Texture txtMCCTetraplegique = new Texture();
+    private Texture txtMCCTwerk = new Texture();
+
+    //Textures joueurs attentes
+
+    private Texture txtJoueur1AttenteActif = new Texture();
+    private Texture txtJoueur2AttenteActif = new Texture();
+    private Texture txtJoueur3AttenteActif = new Texture();
+    private Texture txtJoueur4AttenteActif = new Texture();
+
+    private Texture txtJoueur1AttenteInactif = new Texture();
+    private Texture txtJoueur2AttenteInactif = new Texture();
+    private Texture txtJoueur3AttenteInactif = new Texture();
+    private Texture txtJoueur4AttenteInactif = new Texture();
+
 
     //Texture carte
-    private static Texture txtMCCFond = new Texture();
+    private Texture txtMCCFond = new Texture();
 
-    private static Texture txtCarteTequila = new Texture();
-    private static Texture txtCarteTentacule = new Texture();
-    private static Texture txtCarteTerroriste = new Texture();
-    private static Texture txtCarteTestosterone = new Texture();
-    private static Texture txtCarteTeteNucleaire = new Texture();
-    private static Texture txtCarteTetraplegique = new Texture();
-    private static Texture txtCarteTectonik = new Texture();
-    private static Texture txtCarteTwerk = new Texture();
+    private Texture txtCarteTequila = new Texture();
+    private Texture txtCarteTentacule = new Texture();
+    private Texture txtCarteTerroriste = new Texture();
+    private Texture txtCarteTestosterone = new Texture();
+    private Texture txtCarteTeteNucleaire = new Texture();
+    private Texture txtCarteTetraplegique = new Texture();
+    private Texture txtCarteTectonik = new Texture();
+    private Texture txtCarteTwerk = new Texture();
 
     //Declaration sprite
     // sprites generaux
-    private static Sprite sprFond = new Sprite();
-    private static Sprite etapeEnCours = new Sprite();
+    private Sprite sprFond = new Sprite();
+    private Sprite etapeEnCours = new Sprite();
 
     //sprites boutons
-    private static Sprite sprBtEchange = new Sprite();
-    private static Sprite sprBtPlantage = new Sprite();
-    private static Sprite sprBtPioche = new Sprite();
-    private static Sprite sprBtFinTour = new Sprite();
+    private Sprite sprBtEchange = new Sprite();
+    private Sprite sprBtPlantage = new Sprite();
+    private Sprite sprBtPioche = new Sprite();
+    private Sprite sprBtFinTour = new Sprite();
 
     //carte
-    private static Sprite sprCartePiochee1 = new Sprite();
-    private static Sprite sprCartePiochee2 = new Sprite();
+    private Sprite sprCartePiochee1 = new Sprite();
+    private Sprite sprCartePiochee2 = new Sprite();
 
     //sprites menu
     //menu carte
-    private static Sprite sprMCFond = new Sprite();
-    private static Sprite sprMCEchanger = new Sprite();
-    private static Sprite sprMCDonner = new Sprite();
-    private static Sprite sprMCGarder = new Sprite();
+    private Sprite sprMCFond = new Sprite();
+    private Sprite sprMCEchanger = new Sprite();
+    private Sprite sprMCDonner = new Sprite();
+    private Sprite sprMCGarder = new Sprite();
 
     //menu choix carte
-    private static Sprite sprMCCFond = new Sprite();
+    private Sprite sprMCCFond = new Sprite();
 
-    private static Sprite sprMCCTentacule = new Sprite();
-    private static Sprite sprMCCTequila = new Sprite();
-    private static Sprite sprMCCTestosterone = new Sprite();
-    private static Sprite sprMCCTerroriste = new Sprite();
-    private static Sprite sprMCCTetenucleaire = new Sprite();
-    private static Sprite sprMCCTetraplegique = new Sprite();
-    private static Sprite sprMCCTectonik = new Sprite();
-    private static Sprite sprMCCTwerk = new Sprite();
+    private Sprite sprMCCTentacule = new Sprite();
+    private Sprite sprMCCTequila = new Sprite();
+    private Sprite sprMCCTestosterone = new Sprite();
+    private Sprite sprMCCTerroriste = new Sprite();
+    private Sprite sprMCCTetenucleaire = new Sprite();
+    private Sprite sprMCCTetraplegique = new Sprite();
+    private Sprite sprMCCTectonik = new Sprite();
+    private Sprite sprMCCTwerk = new Sprite();
 
     //sprite champs
-    private static Sprite[] sprChampJ1 = new Sprite[3];
-    private static Sprite[] sprChampJ2 = new Sprite[3];
-    private static Sprite[] sprChampJ3 = new Sprite[3];
-    private static Sprite[] sprChampJ4 = new Sprite[3];
+    private Sprite[] sprChampJ1 = new Sprite[3];
+    private Sprite[] sprChampJ2 = new Sprite[3];
+    private Sprite[] sprChampJ3 = new Sprite[3];
+    private Sprite[] sprChampJ4 = new Sprite[3];
 
     //sprite cartes
-    private static ArrayList<Sprite> mainJ1 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> mainJ1 = new ArrayList<Sprite>();
 
-    private static Vector2i positionFenetre = new Vector2i(0,0);
+    private Vector2i positionFenetre = new Vector2i(0,0);
     ///////////////////////////////////////////////////////////////////////////////
 
     public Vue(){
@@ -266,13 +279,13 @@ public class Vue{
 
         //set positions
         //generaux
-        etapeEnCours.setPosition(25, 25);
+        etapeEnCours.setPosition(55, 25);
 
         //bouton
-        sprBtEchange.setPosition(775, 775);
-        sprBtPlantage.setPosition(775, 830);
-        sprBtPioche.setPosition(775, 885);
-        sprBtFinTour.setPosition(775, 940);
+        sprBtEchange.setPosition(810, 775);
+        sprBtPlantage.setPosition(810, 830);
+        sprBtPioche.setPosition(810, 885);
+        sprBtFinTour.setPosition(810, 940);
 
 
         //position champ d?part
@@ -702,7 +715,7 @@ public class Vue{
         fenetre.display();
     }
 
-    private void actualiserFenetreEchangeMenuChoix() {
+    public void actualiserFenetreEchangeMenuChoix() {
         System.out.println("actu menu choix");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
@@ -806,18 +819,25 @@ public class Vue{
         System.out.println("creationSpriteCliquableMenuCarte");
         spriteCliquable.clear();
 
-        for(Sprite sprite : sprsMenuCartes)
+        for(Sprite sprite : sprsMenuCartes){
             spriteCliquable.add(sprite);
+        }
 
-        //carte 1
-        //-> menu
+        spriteCliquable.add(sprFond);
+
+
     }
 
     public void creationSpriteCliquableMenuCarteChoix(){
+        System.out.println("creationSpriteCliquableMenuCarteChoix");
         spriteCliquable.clear();
 
-        //carte 1
-        //-> menu
+        for(Sprite sprite : sprsMenuCartesChoix){
+            spriteCliquable.add(sprite);
+        }
+
+        spriteCliquable.add(sprFond);
+
     }
 
     public void creationSpriteCliquableEtape3(int joueur){
@@ -831,7 +851,7 @@ public class Vue{
     public void creerMenuCarte(float posX, float posY){
 
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
-        int espaceInterBouton = 5;
+        int espaceInterBouton = 10;
 
         sprMCFond.setPosition(posX,posY);
         sprMCEchanger.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
@@ -842,21 +862,25 @@ public class Vue{
     public void creerMenuCarteChoix(float posX, float posY){
 
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
-        int espaceInterBouton = 5;
+        int espaceFond = 5;
+        int espaceInterBouton = 17;
 
         sprMCCFond.setPosition(posX,posY);
-        sprMCCTectonik.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
-        sprMCCTentacule.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
-        sprMCCTequila.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
-        sprMCCTerroriste.setPosition(posX + 10, posY + 4 * espaceInterBouton + 3 * hauteurBouton);
-        sprMCCTestosterone.setPosition(posX + 10, posY + 5 * espaceInterBouton + 4 * hauteurBouton);
-        sprMCCTetenucleaire.setPosition(posX + 10, posY + 6 * espaceInterBouton + 5 * hauteurBouton);
-        sprMCCTetraplegique.setPosition(posX + 10, posY + 7 * espaceInterBouton + 6 * hauteurBouton);
-        sprMCCTwerk.setPosition(posX + 10, posY + 8 * espaceInterBouton + 7 * hauteurBouton);
+        sprMCCTectonik.setPosition(posX + 10, posY + 1 * espaceFond + 0 * hauteurBouton);
+        sprMCCTentacule.setPosition(posX + 10, posY +  1 * espaceFond + 1 * espaceInterBouton + 1 * hauteurBouton);
+        sprMCCTequila.setPosition(posX + 10, posY +  1 * espaceFond + 2 * espaceInterBouton + 2 * hauteurBouton);
+        sprMCCTerroriste.setPosition(posX + 10, posY +  1 * espaceFond + 3 * espaceInterBouton + 3 * hauteurBouton);
+        sprMCCTestosterone.setPosition(posX + 10, posY +  1 * espaceFond + 4 * espaceInterBouton + 4 * hauteurBouton);
+        sprMCCTetenucleaire.setPosition(posX + 10, posY +  1 * espaceFond + 5 * espaceInterBouton + 5 * hauteurBouton);
+        sprMCCTetraplegique.setPosition(posX + 10, posY +  1 * espaceFond + 6 * espaceInterBouton + 6 * hauteurBouton);
+        sprMCCTwerk.setPosition(posX + 10, posY +  1 * espaceFond + 7 * espaceInterBouton + 7 * hauteurBouton);
     }
 
     public void creationSpriteCliquableCarte() {
-        spriteCliquable.clear();
+        clearSpritesCliquables();
+        spriteCliquable.add(sprCartePiochee1);
+        spriteCliquable.add(sprCartePiochee2);
+        spriteCliquable.add(sprBtPlantage);
 
     }
 
@@ -885,9 +909,11 @@ public class Vue{
     public void garderCarte(int id) {
         System.out.println("garder carte");
         if(id == 1){
+            System.out.println("garder carte 1");
             delSpriteCliquable(getSprCartePiochee1());
             sprCartePiochee1.setPosition(509, 625);
         }else{
+            System.out.println("garder carte 2");
             delSpriteCliquable(getSprCartePiochee2());
             sprCartePiochee2.setPosition(417, 625);
         }
