@@ -119,7 +119,7 @@ public class Controlleur {
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte2);
                         }
-                        if(retour != 4) {
+                        if(retour != 50) {
                             vue.delSpriteCliquable(carte1);
                             carteNonJouee--;
                         }
@@ -135,7 +135,7 @@ public class Controlleur {
                             if (carteNonJouee == 1) {
                                 vue.delSpriteCliquable(carte1);
                             }
-                            if(retour != 4) {
+                            if(retour != 50) {
                                 vue.delSpriteCliquable(carte2);
                                 carteNonJouee--;
                             }
@@ -195,31 +195,55 @@ public class Controlleur {
                                     System.out.println("retour tentacule");
                                     return 20;
                                 case 1 :
-                                    return 20;
+                                    return 21;
                                 case 2 :
-                                    return 20;
+                                    return 22;
                                 case 3 :
-                                    return 20;
+                                    return 23;
                                 case 4 :
-                                    return 20;
+                                    return 24;
                                 case 5 :
-                                    return 20;
+                                    return 25;
                                 case 6 :
-                                    return 20;
+                                    return 26;
                                 case 7 :
-                                    return 20;
+                                    return 27;
                                 case 10 :
                                     break;
                             }
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
+                                vue.creationSpriteCliquableDon(joueur);
+                                vue.actualiserFenetreEchange();
+                                int retour = etapeEchangeMenuCarteDon();
+                                switch(retour){
+                                    case 1 :
+                                        System.out.println("J1 ?");
+                                        vue.donnerCarteJ1(1);
+                                        return 31;
+                                    case 2 :
+                                        System.out.println("J2 ?");
+                                        vue.donnerCarteJ2(1);
+                                        return 32;
+                                    case 3 :
+                                        System.out.println("J3 ?");
+                                        vue.donnerCarteJ3(1);
+                                        return 33;
+                                    case 4 :
+                                        System.out.println("J4 ?");
+                                        vue.donnerCarteJ4(1);
+                                        return 34;
+                                    case 5 :
+                                        System.out.println("retour");
+                                        return 50;
+                                }
 
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
                                     vue.actualiserFenetreEchange();
                                     vue.creationSpriteCliquableCarte();
-                                    return 4;
+                                    return 50;
                                 }
                             }
                         }
@@ -230,7 +254,7 @@ public class Controlleur {
 
         }
 
-        return 5;
+        return -5;
 
     }
 
@@ -260,7 +284,6 @@ public class Controlleur {
                             vue.actualiserFenetreEchangeMenuChoix();
                             int retour = etapeEchangeMenuCarteChoix();
                             vue.creationSpriteCliquableMenuCarte();
-                            vue.actualiserFenetreEchangeMenu();
                             switch (retour){
                                 case 0 :
                                     System.out.println("retour tentacule");
@@ -297,12 +320,33 @@ public class Controlleur {
                                 vue.creationSpriteCliquableDon(joueur);
                                 vue.actualiserFenetreEchange();
                                 int retour = etapeEchangeMenuCarteDon();
+                                switch(retour){
+                                    case 1 :
+                                        System.out.println("J1 ?");
+                                        vue.donnerCarteJ1(2);
+                                        return 31;
+                                    case 2 :
+                                        System.out.println("J2 ?");
+                                        vue.donnerCarteJ2(2);
+                                        return 32;
+                                    case 3 :
+                                        System.out.println("J3 ?");
+                                        vue.donnerCarteJ3(2);
+                                        return 33;
+                                    case 4 :
+                                        System.out.println("J4 ?");
+                                        vue.donnerCarteJ4(2);
+                                        return 34;
+                                    case 5 :
+                                        System.out.println("retour");
+                                        return 50;
+                                }
 
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
                                     vue.actualiserFenetreEchange();
                                     vue.creationSpriteCliquableCarte();
-                                    return 4;
+                                    return 50;
                                 }
                             }
                         }
@@ -313,7 +357,7 @@ public class Controlleur {
 
         }
 
-        return 5;
+        return -5;
 
     }
 
@@ -322,10 +366,40 @@ public class Controlleur {
         joueursAttente = vue.getSprsAutresJoueurs(joueur);
 
         while(vue.getFenetre().isOpen()){
-            for(Event enventDon : vue.getFenetre().pollEvents()){
-
-                if(enventDon.type == Event.Type.CLOSED){
+            for(Event eventDon : vue.getFenetre().pollEvents()){
+                if(eventDon.type == Event.Type.CLOSED){
                     vue.getFenetre().close();
+                }
+
+                if(eventDon.type == Event.Type.MOUSE_BUTTON_RELEASED){
+                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[0], vue.getFenetre())){
+                        System.out.println("Don J1");
+                        return 1;
+                    }
+
+                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[1], vue.getFenetre())){
+                        System.out.println("Don J2");
+                        return 2;
+                    }
+
+                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[2], vue.getFenetre())){
+                        System.out.println("Don J3");
+                        return 3;
+                    }
+
+                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[3], vue.getFenetre())){
+                        System.out.println("Don J4");
+                        return 4;
+                    }
+
+                    if(vue.cliqueSprite(eventDon, vue.getFond(), vue.getFenetre())){
+                        System.out.println("retour");
+
+                        return 5;
+
+                    }
+
+
                 }
 
 

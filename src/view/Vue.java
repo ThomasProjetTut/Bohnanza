@@ -21,6 +21,7 @@ public class Vue{
     private Sprite[] sprsAutresJoueurs = new Sprite[4];
     private Sprite[] sprsBoutonsEtapes = new Sprite[4];
     private Sprite[] sprsMenuON = new Sprite[2];
+    private Sprite[] sprsCartesPiochee = new Sprite[2];
 
     private Image icone = new Image();
 
@@ -281,6 +282,9 @@ public class Vue{
         sprsChamps[2] = sprChampJ3;
         sprsChamps[3] = sprChampJ4;
 
+        sprsCartesPiochee[0] = sprCartePiochee1;
+        sprsCartesPiochee[1] = sprCartePiochee2;
+
         sprsMenuCartes[0] = sprMCEchanger;
         sprsMenuCartes[1] = sprMCDonner;
         sprsMenuCartes[2] = sprMCGarder;
@@ -347,9 +351,9 @@ public class Vue{
         //////////////////////
 
         sprJoueurAttente1.setPosition(35, 775);
-        sprJoueurAttente2.setPosition(35, 815);
-        sprJoueurAttente3.setPosition(35, 855);
-        sprJoueurAttente4.setPosition(35, 895);
+        sprJoueurAttente2.setPosition(35, 825);
+        sprJoueurAttente3.setPosition(35, 875);
+        sprJoueurAttente4.setPosition(35, 925);
 
 
     }
@@ -562,17 +566,28 @@ public class Vue{
     public Sprite[] getSprsMenuCartesChoix(){
         return sprsMenuCartesChoix;
     }
+    public Sprite[] getSprsJoueurs(){
+        return sprsAutresJoueurs;
+    }
+    public Sprite[] getSprsCartesPiochee(){
+        return sprsCartesPiochee;
+    }
     public Sprite[] getSprsAutresJoueurs(int joueur){
         Sprite[] retour = new Sprite[3];
         int index = 0;
 
         for (int i = 0; i < 3; i++) {
-            if(i == joueur){
+            if(i + 1 == joueur){
                 index++;
             }
 
             retour[i] = sprsAutresJoueurs[index];
             index++;
+
+        }
+
+        for (int i = 0; i < 3; i++) {
+            System.out.println(i + " = " + retour[i].getPosition().x + ", " + retour[i].getPosition().y);
 
         }
 
@@ -650,7 +665,6 @@ public class Vue{
         }
 
     }
-
     public void actualiserFenetre(){
         System.out.println("act");
         fenetre.draw(sprFond);
@@ -671,6 +685,30 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
         for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
@@ -680,7 +718,6 @@ public class Vue{
         fenetre.display();
 
     }
-
     public void actualiserFenetreEchange(){
         System.out.println("actu echange");
         fenetre.draw(sprFond);
@@ -701,6 +738,31 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
+
         for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
@@ -713,7 +775,6 @@ public class Vue{
         fenetre.display();
 
     }
-
     public void actualiserFenetreEchangeMenu() {
         System.out.println("actu menu");
         fenetre.draw(sprFond);
@@ -734,6 +795,30 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
         for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
@@ -750,7 +835,6 @@ public class Vue{
 
         fenetre.display();
     }
-
     public void actualiserFenetreEchangeMenuChoix() {
         System.out.println("actu menu choix");
         fenetre.draw(sprFond);
@@ -770,6 +854,31 @@ public class Vue{
         for (Sprite sprite : sprsBoutonsEtapes){
             fenetre.draw(sprite);
         }
+
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
 
         for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
@@ -934,8 +1043,8 @@ public class Vue{
 
     public void afficherCartePiochee(){
         System.out.println("carte piochee");
-        sprCartePiochee1.setTexture(txtCarteTequila);
-        sprCartePiochee2.setTexture(txtCarteTequila);
+        sprCartePiochee1.setTexture(txtCarteTentacule);
+        sprCartePiochee2.setTexture(txtCarteTeteNucleaire);
 
         sprCartePiochee1.setPosition(509, 495);
         sprCartePiochee2.setPosition(417, 495);
@@ -962,11 +1071,147 @@ public class Vue{
     }
 
     public void creationSpriteCliquableDon(int joueur) {
+        System.out.println("creation sprite don");
         spriteCliquable.clear();
         spriteCliquable.add(getFond());
 
         for(Sprite sprite : getSprsAutresJoueurs(joueur)){
             spriteCliquable.add(sprite);
+        }
+
+    }
+
+    public void donnerCarteJ1(int carte) {
+        switch((int) sprFond.getRotation()){
+            case -90 :
+                sprsCartesPiochee[carte - 1].rotate(-90);
+                sprsCartesPiochee[carte - 1].setPosition(725, 275);
+                break;
+            case -180 :
+                sprsCartesPiochee[carte - 1].rotate(-180);
+                sprsCartesPiochee[carte - 1].setPosition(275, 225);
+                break;
+            case -270 :
+                sprsCartesPiochee[carte - 1].rotate(-270);
+                sprsCartesPiochee[carte - 1].setPosition(225, 275);
+                break;
+        }
+
+    }
+
+    public void donnerCarteJ2(int carte) {
+        switch(carte){
+            case 1 :
+                switch((int) sprFond.getRotation()){
+                    case 0 :
+                        sprsCartesPiochee[0].rotate(90);
+                        sprsCartesPiochee[0].setPosition(380, 510);
+                        break;
+                    case -180 :
+                        sprsCartesPiochee[0].rotate(-90);
+                        sprsCartesPiochee[0].setPosition(725, 275);
+                        break;
+                    case -270 :
+                        sprsCartesPiochee[0].rotate(-180);
+                        sprsCartesPiochee[0].setPosition(275, 225);
+                        break;
+                }
+                break;
+            case 2 :
+                switch((int) sprFond.getRotation()){
+                    case 0 :
+                        sprsCartesPiochee[1].rotate(90);
+                        sprsCartesPiochee[1].setPosition(380, 420);
+                        break;
+                    case -180 :
+                        sprsCartesPiochee[1].rotate(-90);
+                        sprsCartesPiochee[1].setPosition(725, 275);
+                        break;
+                    case -270 :
+                        sprsCartesPiochee[1].rotate(-180);
+                        sprsCartesPiochee[1].setPosition(275, 225);
+                        break;
+                }
+
+
+
+        }
+
+    }
+
+    public void donnerCarteJ3(int carte) {
+        switch(carte){
+            case 1 :
+                switch((int) sprFond.getRotation()){
+                    case -90 :
+                        sprsCartesPiochee[carte - 1].rotate(90);
+                        sprsCartesPiochee[carte - 1].setPosition(725, 275);
+                        break;
+                    case -270 :
+                        sprsCartesPiochee[carte - 1].rotate(-90);
+                        sprsCartesPiochee[carte - 1].setPosition(275, 225);
+                        break;
+                    case 0 :
+                        sprsCartesPiochee[carte - 1].rotate(-180);
+                        sprsCartesPiochee[carte - 1].setPosition(490, 380);
+                        break;
+                }
+                break;
+
+            case 2 :
+                switch((int) sprFond.getRotation()){
+                    case -90 :
+                        sprsCartesPiochee[carte - 1].rotate(90);
+                        sprsCartesPiochee[carte - 1].setPosition(725, 275);
+                        break;
+                    case -270 :
+                        sprsCartesPiochee[carte - 1].rotate(-90);
+                        sprsCartesPiochee[carte - 1].setPosition(275, 225);
+                        break;
+                    case 0 :
+                        sprsCartesPiochee[carte - 1].rotate(-180);
+                        sprsCartesPiochee[carte - 1].setPosition(585, 380);
+                        break;
+                }
+                break;
+        }
+
+    }
+
+    public void donnerCarteJ4(int carte) {
+        switch(carte){
+            case 1 :
+                switch((int) sprFond.getRotation()){
+                    case -90 :
+                        sprsCartesPiochee[0].rotate(-180);
+                        sprsCartesPiochee[0].setPosition(725, 275);
+                        break;
+                    case -180 :
+                        sprsCartesPiochee[0].rotate(90);
+                        sprsCartesPiochee[0].setPosition(275, 225);
+                        break;
+                    case 0 :
+                        sprsCartesPiochee[0].rotate(-90);
+                        sprsCartesPiochee[0].setPosition(620, 490);
+                        break;
+                }
+                break;
+            case 2 :
+                switch((int) sprFond.getRotation()){
+                    case -90 :
+                        sprsCartesPiochee[1].rotate(-180);
+                        sprsCartesPiochee[1].setPosition(725, 275);
+                        break;
+                    case -180 :
+                        sprsCartesPiochee[1].rotate(90);
+                        sprsCartesPiochee[1].setPosition(275, 225);
+                        break;
+                    case 0 :
+                        sprsCartesPiochee[1].rotate(-90);
+                        sprsCartesPiochee[1].setPosition(620, 585);
+                        break;
+                }
+                break;
         }
 
     }
