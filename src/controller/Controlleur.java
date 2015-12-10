@@ -48,7 +48,6 @@ public class Controlleur {
                 }
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                    event.asKeyEvent();
 
                     if (nbplants >= 1) {
 
@@ -108,7 +107,6 @@ public class Controlleur {
                 }
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                    event.asKeyEvent();
                     if (vue.cliqueSprite(event, carte1, vue.getFenetre())) {
                         System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
 
@@ -469,7 +467,6 @@ public class Controlleur {
         return false;
     }
 
-
     private int etapeEchangeMenuCarteDon() {
         Sprite[] joueursAttente = new Sprite[3];
         joueursAttente = vue.getSprsAutresJoueurs(joueur);
@@ -519,7 +516,6 @@ public class Controlleur {
 
         return 0;
     }
-
 
     private int etapeEchangeMenuCarteChoix() {
         vue.creationSpriteCliquableMenuCarteChoix();
@@ -597,7 +593,7 @@ public class Controlleur {
                 }
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                    event.asKeyEvent();
+
                     if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
                         etapePioche();
                         return;
@@ -607,6 +603,7 @@ public class Controlleur {
             }
         }
     }
+
     private void etapePioche() {
         vue.afficherEtape(4);
         vue.actualiserFenetre();
@@ -619,11 +616,18 @@ public class Controlleur {
                 }
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-                    event.asKeyEvent();
+
+
+
+
                     if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[3], vue.getFenetre())) {
                         finDeTour();
                         return;
                     }
+
+
+
+
                 }
             }
         }

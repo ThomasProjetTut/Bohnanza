@@ -137,11 +137,23 @@ public class Vue{
     private Sprite sprJoueurAttente3 = new Sprite();
     private Sprite sprJoueurAttente4 = new Sprite();
 
-    //sprite cartes
+        //liste sprite
+    //sprite main cartes
     private ArrayList<Sprite> mainJ1 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> mainJ2 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> mainJ3 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> mainJ4 = new ArrayList<Sprite>();
+
+
+    //sprite carte à planter
+    private ArrayList<Sprite> zoneEchangeJ1 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> zoneEchangeJ2 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> zoneEchangeJ3 = new ArrayList<Sprite>();
+    private ArrayList<Sprite> zoneEchangeJ4 = new ArrayList<Sprite>();
+
+    ///////////////////////////////////////////////////////////////////////////////
 
     private Vector2i positionFenetre = new Vector2i(0,0);
-    ///////////////////////////////////////////////////////////////////////////////
 
     public Vue(){
         initAttribut();
@@ -621,6 +633,32 @@ public class Vue{
     }
     public Sprite getSprCartePiochee2(){
         return sprCartePiochee2;
+    }
+
+    public ArrayList<Sprite> getMainJ1(){
+        return mainJ1;
+    }
+    public ArrayList<Sprite> getMainJ2(){
+        return mainJ2;
+    }
+    public ArrayList<Sprite> getMainJ3(){
+        return mainJ3;
+    }
+    public ArrayList<Sprite> getMainJ4(){
+        return mainJ4;
+    }
+
+    public ArrayList<Sprite> getZoneEchangeJ1(){
+        return zoneEchangeJ1;
+    }
+    public ArrayList<Sprite> getZoneEchangeJ2(){
+        return zoneEchangeJ2;
+    }
+    public ArrayList<Sprite> getZoneEchangeJ3(){
+        return zoneEchangeJ3;
+    }
+    public ArrayList<Sprite> getZoneEchangeJ4(){
+        return zoneEchangeJ4;
     }
 
     private void afficherCarteTentacule(int posX, int posY, float rotate){
@@ -1172,23 +1210,6 @@ public class Vue{
     }
 
     public void donnerCarteJ1(int carte) {
-        switch((int) sprFond.getRotation()){
-            case -90 :
-                sprsCartesPiochee[carte - 1].rotate(-90);
-                sprsCartesPiochee[carte - 1].setPosition(725, 275);
-                break;
-            case -180 :
-                sprsCartesPiochee[carte - 1].rotate(-180);
-                sprsCartesPiochee[carte - 1].setPosition(275, 225);
-                break;
-            case -270 :
-                sprsCartesPiochee[carte - 1].rotate(-270);
-                sprsCartesPiochee[carte - 1].setPosition(225, 275);
-                break;
-        }
-
-    }
-    public void donnerCarteJ2(int carte) {
         switch(carte){
             case 1 :
                 switch((int) sprFond.getRotation()){
@@ -1225,6 +1246,46 @@ public class Vue{
 
 
         }
+
+        zoneEchangeJ1.add(sprsCartesPiochee[carte - 1]);
+
+    }
+    public void donnerCarteJ2(int carte) {
+        switch(carte){
+            case 1 :
+                switch((int) sprFond.getRotation()){
+                    case 0 :
+                        sprsCartesPiochee[0].rotate(90);
+                        sprsCartesPiochee[0].setPosition(380, 510);
+                        break;
+                    case -180 :
+                        sprsCartesPiochee[0].rotate(-90);
+                        sprsCartesPiochee[0].setPosition(725, 275);
+                        break;
+                    case -270 :
+                        sprsCartesPiochee[0].rotate(-180);
+                        sprsCartesPiochee[0].setPosition(275, 225);
+                        break;
+                }
+                break;
+            case 2 :
+                switch((int) sprFond.getRotation()){
+                    case 0 :
+                        sprsCartesPiochee[1].rotate(90);
+                        sprsCartesPiochee[1].setPosition(380, 420);
+                        break;
+                    case -180 :
+                        sprsCartesPiochee[1].rotate(-90);
+                        sprsCartesPiochee[1].setPosition(725, 275);
+                        break;
+                    case -270 :
+                        sprsCartesPiochee[1].rotate(-180);
+                        sprsCartesPiochee[1].setPosition(275, 225);
+                        break;
+                }
+        }
+
+        zoneEchangeJ2.add(sprsCartesPiochee[carte - 1]);
 
     }
     public void donnerCarteJ3(int carte) {
@@ -1264,6 +1325,9 @@ public class Vue{
                 break;
         }
 
+        zoneEchangeJ3.add(sprsCartesPiochee[carte - 1]);
+
+
     }
     public void donnerCarteJ4(int carte) {
         switch(carte){
@@ -1300,6 +1364,9 @@ public class Vue{
                 }
                 break;
         }
+
+        zoneEchangeJ4.add(sprsCartesPiochee[carte - 1]);
+
 
     }
 
