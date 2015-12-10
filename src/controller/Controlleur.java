@@ -1,12 +1,11 @@
 package controller;
 
-import jdk.nashorn.internal.ir.SplitReturn;
+//import jdk.nashorn.internal.ir.SplitReturn;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.window.event.Event;
 import view.Vue;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class Controlleur {
@@ -93,6 +92,7 @@ public class Controlleur {
 
         vue.afficherEtape(2);
         vue.actualiserFenetreEchange();
+        vue.afficherMainJ1();
 
         Sprite carte1 = vue.getSprCartePiochee1();
         Sprite carte2 = vue.getSprCartePiochee2();
@@ -203,7 +203,7 @@ public class Controlleur {
                                     etapeDemandeEchangeAcceptation(1);
                                     return 22;
                                 case 3 :
-                                    System.out.println("retour testostérone");
+                                    System.out.println("retour testostï¿½rone");
                                     etapeDemandeEchangeAcceptation(1);
                                     return 23;
                                 case 4 :
@@ -268,9 +268,7 @@ public class Controlleur {
             }
 
         }
-
         return -5;
-
     }
 
     private int etapeEchangeMenuCarte2(){
@@ -313,7 +311,7 @@ public class Controlleur {
                                     etapeDemandeEchangeAcceptation(2);
                                     return 22;
                                 case 3 :
-                                    System.out.println("retour testostérone");
+                                    System.out.println("retour testostï¿½rone");
                                     etapeDemandeEchangeAcceptation(2);
                                     return 23;
                                 case 4 :
@@ -504,15 +502,9 @@ public class Controlleur {
                         return 5;
 
                     }
-
-
                 }
-
-
             }
         }
-
-
 
         return 0;
     }
@@ -548,7 +540,7 @@ public class Controlleur {
                                     return 3;
                                 } else {
                                     if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
-                                        System.out.println("choix patatestostérone");
+                                        System.out.println("choix patatestostï¿½rone");
                                         return 4;
                                     } else {
                                         if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
@@ -556,7 +548,7 @@ public class Controlleur {
                                             return 5;
                                         } else {
                                             if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
-                                                System.out.println("choix patatetraplégique");
+                                                System.out.println("choix patatetraplï¿½gique");
                                                 return 6;
                                             } else {
                                                 if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
@@ -617,17 +609,10 @@ public class Controlleur {
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
 
-
-
-
                     if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[3], vue.getFenetre())) {
                         finDeTour();
                         return;
                     }
-
-
-
-
                 }
             }
         }

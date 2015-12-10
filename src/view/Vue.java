@@ -145,7 +145,7 @@ public class Vue{
     private ArrayList<Sprite> mainJ4 = new ArrayList<Sprite>();
 
 
-    //sprite carte à planter
+    //sprite carte ï¿½ planter
     private ArrayList<Sprite> zoneEchangeJ1 = new ArrayList<Sprite>();
     private ArrayList<Sprite> zoneEchangeJ2 = new ArrayList<Sprite>();
     private ArrayList<Sprite> zoneEchangeJ3 = new ArrayList<Sprite>();
@@ -233,6 +233,19 @@ public class Vue{
             txtMCCTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetenucleaire.png"));
             txtMCCTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetraplegique.png"));
             txtMCCTwerk.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTwerk.png"));
+
+            mainJ1.add(0, new Sprite());
+            mainJ1.get(0).setTexture(txtCarteTectonik);
+            mainJ1.add(1, new Sprite());
+            mainJ1.get(1).setTexture(txtCarteTentacule);
+            mainJ1.add(2, new Sprite());
+            mainJ1.get(2).setTexture(txtCarteTequila);
+            mainJ1.add(3, new Sprite());
+            mainJ1.get(3).setTexture(txtCarteTequila);
+            mainJ1.add(4, new Sprite());
+            mainJ1.get(4).setTexture(txtCarteTequila);
+            mainJ1.add(5, new Sprite());
+            mainJ1.get(5).setTexture(txtCarteTequila);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -385,7 +398,6 @@ public class Vue{
         sprJoueurAttente2.setPosition(35, 825);
         sprJoueurAttente3.setPosition(35, 875);
         sprJoueurAttente4.setPosition(35, 925);
-
 
     }
 
@@ -1378,5 +1390,57 @@ public class Vue{
         spriteCliquable.add(sprMenuOui);
         spriteCliquable.add(sprMenuNon);
 
+    }
+
+    public void afficherMainJ1(){
+        int espaceEntreCarte = 380%(75*mainJ1.size())/mainJ1.size();
+        while(mainJ1.size()*(75+espaceEntreCarte) > 370){
+            espaceEntreCarte = espaceEntreCarte - 5;
+        }
+
+       for(int i = 0; i < mainJ1.size(); i++){
+           mainJ1.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+           fenetre.draw(mainJ1.get(i));
+       }
+       fenetre.display();
+    }
+
+    public void afficherMainJ2(){
+        int espaceEntreCarte = 380%(75*mainJ2.size())/mainJ2.size();
+        while(mainJ2.size()*(75+espaceEntreCarte) > 370){
+            espaceEntreCarte = espaceEntreCarte - 5;
+        }
+
+        for(int i = 0; i < mainJ2.size(); i++){
+            mainJ2.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+            fenetre.draw(mainJ2.get(i));
+        }
+        fenetre.display();
+    }
+
+    public void afficherMainJ3(){
+        int espaceEntreCarte = 380%(75*mainJ3.size())/mainJ3.size();
+        while(mainJ3.size()*(75+espaceEntreCarte) > 370){
+            espaceEntreCarte = espaceEntreCarte - 5;
+        }
+
+        for(int i = 0; i < mainJ3.size(); i++){
+            mainJ3.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+            fenetre.draw(mainJ3.get(i));
+        }
+        fenetre.display();
+    }
+
+    public void afficherMainJ4(){
+        int espaceEntreCarte = 380%(75*mainJ4.size())/mainJ4.size();
+        while(mainJ4.size()*(75+espaceEntreCarte) > 370){
+            espaceEntreCarte = espaceEntreCarte - 5;
+        }
+
+        for(int i = 0; i < mainJ4.size(); i++){
+            mainJ4.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+            fenetre.draw(mainJ4.get(i));
+        }
+        fenetre.display();
     }
 }
