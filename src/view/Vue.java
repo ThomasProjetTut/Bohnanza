@@ -1370,6 +1370,7 @@ public class Vue{
 
     }
 
+
     public void creationSpriteCliquableMenuOuiNon() {
         System.out.println("crea sprite O N");
 
