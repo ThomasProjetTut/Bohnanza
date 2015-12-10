@@ -1,5 +1,6 @@
 package controller;
 
+import jdk.nashorn.internal.ir.SplitReturn;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.window.event.Event;
 import view.Vue;
@@ -193,22 +194,38 @@ public class Controlleur {
                             switch (retour){
                                 case 0 :
                                     System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 20;
                                 case 1 :
+                                    System.out.println("retour tequila");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 21;
                                 case 2 :
+                                    System.out.println("retour terroriste");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 22;
                                 case 3 :
+                                    System.out.println("retour testostérone");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 23;
                                 case 4 :
+                                    System.out.println("retour tetenucleaire");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 24;
                                 case 5 :
+                                    System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 25;
                                 case 6 :
+                                    System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 26;
                                 case 7 :
+                                    System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(1);
                                     return 27;
                                 case 10 :
+                                    System.out.println("retour retour");
                                     break;
                             }
                         }else{
@@ -287,27 +304,35 @@ public class Controlleur {
                             switch (retour){
                                 case 0 :
                                     System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 20;
                                 case 1 :
                                     System.out.println("retour tequila");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 21;
                                 case 2 :
                                     System.out.println("retour terroriste");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 22;
                                 case 3 :
                                     System.out.println("retour testostérone");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 23;
                                 case 4 :
                                     System.out.println("retour tetenucleaire");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 24;
                                 case 5 :
                                     System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 25;
                                 case 6 :
                                     System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 26;
                                 case 7 :
                                     System.out.println("retour tentacule");
+                                    etapeDemandeEchangeAcceptation(2);
                                     return 27;
                                 case 10 :
                                     System.out.println("retour retour");
@@ -360,6 +385,90 @@ public class Controlleur {
         return -5;
 
     }
+
+    private int etapeDemandeEchangeAcceptation(int idCarte) {
+        Sprite[] spriteJoueur = new Sprite[3];
+        spriteJoueur = vue.getSprsAutresJoueurs(joueur);
+
+        for (int i = 0; i < 3; i++) {
+            vue.clearSpritesCliquables();
+            vue.creerMenuOuiNon(spriteJoueur[i].getPosition().x + spriteJoueur[i].getGlobalBounds().width + 5, spriteJoueur[i].getPosition().y);
+            vue.actualisationFenetreMenuOuiNon();
+            vue.creationSpriteCliquableMenuOuiNon();
+
+            if(etapeConfirmation(i)) {
+                if(i <= 2) {
+                    System.out.println("Le joueur " + (i + 2));
+                    vue.clearSpritesCliquables();
+                    switch (i + 2){
+                        case 1 :
+                            vue.donnerCarteJ1(idCarte);
+                            break;
+                        case 2 :
+                            vue.donnerCarteJ2(idCarte);
+                            break;
+                        case 3 :
+                            vue.donnerCarteJ3(idCarte);
+                            break;
+                        case 4 :
+                            vue.donnerCarteJ4(idCarte);
+                            break;
+                    }
+
+                    return i + 2;
+                }else {
+                    System.out.println("Le joueur " + (i + 1));
+                    vue.clearSpritesCliquables();
+                    switch (i + 1){
+                        case 1 :
+                            vue.donnerCarteJ1(idCarte);
+                            break;
+                        case 2 :
+                            vue.donnerCarteJ2(idCarte);
+                            break;
+                        case 3 :
+                            vue.donnerCarteJ3(idCarte);
+                            break;
+                        case 4 :
+                            vue.donnerCarteJ4(idCarte);
+                            break;
+                    }
+                    return i + 1;
+                }
+            }
+        }
+        vue.clearSpritesCliquables();
+        System.out.println("Aucun joueur n'accepte");
+        return -5;
+
+    }
+
+    private boolean etapeConfirmation(int id){
+        while(vue.getFenetre().isOpen()) {
+            for (Event eventON : vue.getFenetre().pollEvents()) {
+                if (eventON.type == Event.Type.CLOSED) {
+                    vue.getFenetre().close();
+                }
+
+                if (eventON.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                    if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[0], vue.getFenetre())) {
+                        vue.clearSpritesCliquables();
+                        System.out.println("Le joueur " + (id + 2) + " accepte.");
+                        return true;
+                    }else {
+                        if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[1], vue.getFenetre())) {
+                            System.out.println("Le joueur " + (id + 1) + " refuse.");
+                            return false;
+
+                        }
+                    }
+                }
+
+            }
+        }
+        return false;
+    }
+
 
     private int etapeEchangeMenuCarteDon() {
         Sprite[] joueursAttente = new Sprite[3];

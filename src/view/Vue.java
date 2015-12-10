@@ -26,7 +26,7 @@ public class Vue{
     private Image icone = new Image();
 
     //////////////////////////////////////////////////////////////////////////////////////
-    //Declaration Textures
+        //Declaration Textures
     // Textures generales
     private Texture txtFond = new Texture();
 
@@ -47,8 +47,12 @@ public class Vue{
     private Texture txtMCDonner = new Texture();
     private Texture txtMCGarder = new Texture();
 
-    //menu choix carte
+    //menu oui non
+    private Texture txtMenuOuiNonFond = new Texture();
+    private Texture txtMenuOui = new Texture();
+    private Texture txtMenuNon = new Texture();
 
+    //menu choix carte
     private Texture txtMCCTectonik = new Texture();
     private Texture txtMCCTequila = new Texture();
     private Texture txtMCCTentacule = new Texture();
@@ -59,7 +63,6 @@ public class Vue{
     private Texture txtMCCTwerk = new Texture();
 
     //Textures joueurs attentes
-
     private Texture txtJoueur1AttenteActif = new Texture();
     private Texture txtJoueur2AttenteActif = new Texture();
     private Texture txtJoueur3AttenteActif = new Texture();
@@ -69,7 +72,6 @@ public class Vue{
     private Texture txtJoueur2AttenteInactif = new Texture();
     private Texture txtJoueur3AttenteInactif = new Texture();
     private Texture txtJoueur4AttenteInactif = new Texture();
-
 
     //Texture carte
     private Texture txtMCCFond = new Texture();
@@ -83,7 +85,9 @@ public class Vue{
     private Texture txtCarteTectonik = new Texture();
     private Texture txtCarteTwerk = new Texture();
 
-    //Declaration sprite
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+            //Declaration sprite
     // sprites generaux
     private Sprite sprFond = new Sprite();
     private Sprite etapeEnCours = new Sprite();
@@ -104,6 +108,11 @@ public class Vue{
     private Sprite sprMCEchanger = new Sprite();
     private Sprite sprMCDonner = new Sprite();
     private Sprite sprMCGarder = new Sprite();
+
+    //menu oui non
+    private Sprite sprMenuOuiNonFond = new Sprite();
+    private Sprite sprMenuOui = new Sprite();
+    private Sprite sprMenuNon = new Sprite();
 
     //menu choix carte
     private Sprite sprMCCFond = new Sprite();
@@ -177,6 +186,10 @@ public class Vue{
             txtBtPioche.loadFromFile(Paths.get("Sprites/Sprite_bouton/phaseDePioche.png"));
             txtFinTour.loadFromFile(Paths.get("Sprites/Sprite_bouton/finDeTour.png"));
 
+            txtMenuOuiNonFond.loadFromFile(Paths.get("Sprites/Sprite_menu/oui_non/fond_oui_non.png"));
+            txtMenuOui.loadFromFile(Paths.get("Sprites/Sprite_menu/oui_non/oui.png"));
+            txtMenuNon.loadFromFile(Paths.get("Sprites/Sprite_menu/oui_non/non.png"));
+
             txtJoueur1AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur1.png"));
             txtJoueur2AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur2.png"));
             txtJoueur3AttenteActif.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_joueur/joueur3.png"));
@@ -208,7 +221,6 @@ public class Vue{
             txtMCCTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetenucleaire.png"));
             txtMCCTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetraplegique.png"));
             txtMCCTwerk.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTwerk.png"));
-
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -266,6 +278,10 @@ public class Vue{
         sprMCCTetraplegique.setTexture(txtMCCTetraplegique);
         sprMCCTwerk.setTexture(txtMCCTwerk);
 
+        sprMenuOuiNonFond.setTexture(txtMenuOuiNonFond);
+        sprMenuOui.setTexture(txtMenuOui);
+        sprMenuNon.setTexture(txtMenuNon);
+
         sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
         sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
         sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
@@ -284,6 +300,9 @@ public class Vue{
 
         sprsCartesPiochee[0] = sprCartePiochee1;
         sprsCartesPiochee[1] = sprCartePiochee2;
+
+        sprsMenuON[0] = sprMenuOui;
+        sprsMenuON[1] = sprMenuNon;
 
         sprsMenuCartes[0] = sprMCEchanger;
         sprsMenuCartes[1] = sprMCDonner;
@@ -835,6 +854,68 @@ public class Vue{
 
         fenetre.display();
     }
+
+    public void actualisationFenetreMenuOuiNon(){
+        System.out.println("actu menu oui non");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
+
+        for(Sprite sprite : sprsAutresJoueurs){
+            fenetre.draw(sprite);
+        }
+
+        fenetre.draw(sprCartePiochee1);
+        fenetre.draw(sprCartePiochee2);
+
+        fenetre.draw(sprMenuOuiNonFond);
+        fenetre.draw(sprMenuOui);
+        fenetre.draw(sprMenuNon);
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+    }
+
     public void actualiserFenetreEchangeMenuChoix() {
         System.out.println("actu menu choix");
         fenetre.draw(sprFond);
@@ -998,7 +1079,6 @@ public class Vue{
     }
 
     public void creerMenuCarte(float posX, float posY){
-
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
         int espaceInterBouton = 10;
 
@@ -1006,6 +1086,16 @@ public class Vue{
         sprMCEchanger.setPosition(posX + 10, posY + 1 * espaceInterBouton + 0 * hauteurBouton);
         sprMCDonner.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
         sprMCGarder.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
+    }
+
+    public void creerMenuOuiNon(float x, float y){
+        float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
+        int espaceInterBouton = 10;
+
+        sprMenuOuiNonFond.setPosition(x, y);
+        sprMenuOui.setPosition(x + 5, y + espaceInterBouton);
+        sprMenuNon.setPosition(x + 5, y + hauteurBouton + espaceInterBouton);
+
     }
 
     public void creerMenuCarteChoix(float posX, float posY){
@@ -1098,7 +1188,6 @@ public class Vue{
         }
 
     }
-
     public void donnerCarteJ2(int carte) {
         switch(carte){
             case 1 :
@@ -1138,7 +1227,6 @@ public class Vue{
         }
 
     }
-
     public void donnerCarteJ3(int carte) {
         switch(carte){
             case 1 :
@@ -1177,7 +1265,6 @@ public class Vue{
         }
 
     }
-
     public void donnerCarteJ4(int carte) {
         switch(carte){
             case 1 :
@@ -1213,6 +1300,15 @@ public class Vue{
                 }
                 break;
         }
+
+    }
+
+    public void creationSpriteCliquableMenuOuiNon() {
+        System.out.println("crea sprite O N");
+
+        clearSpritesCliquables();
+        spriteCliquable.add(sprMenuOui);
+        spriteCliquable.add(sprMenuNon);
 
     }
 }
