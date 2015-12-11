@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import model.Carte.*;
 
@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Jeu {
+public class Pioche {
 
     private static List<Carte> listeCarte;
 
-    public Jeu(){
+    public Pioche(){
         initListeCarte();
     }
 

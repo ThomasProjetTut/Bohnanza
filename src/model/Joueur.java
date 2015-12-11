@@ -1,6 +1,5 @@
 package model;
 
-import controller.Jeu;
 import model.Carte.Carte;
 
 import java.util.ArrayList;
@@ -60,10 +59,10 @@ public class Joueur {
             return;
         }
 
-        List<Carte> cartes = Jeu.getlisteCarte();
+        List<Carte> cartes = Pioche.getlisteCarte();
 
         addCarte(cartes.get(0));
-        Jeu.removeCarte();
+        Pioche.removeCarte();
     }
 
     public void acheterChamps() {

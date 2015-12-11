@@ -1,6 +1,5 @@
 package model;
 
-import controller.Jeu;
 import model.Carte.Carte;
 import model.Carte.Carte_Pata_Tecktonik;
 import org.junit.Assert;
@@ -16,7 +15,7 @@ public class JoueurUnitTest {
 
     @Test
     public void TestRecoisMain(){
-        Jeu jeu = new Jeu();
+        Pioche pioche = new Pioche();
 
         Joueur joueur1 =new Joueur("Henri");
         Joueur joueur2 =new Joueur("Henri2");
@@ -29,7 +28,7 @@ public class JoueurUnitTest {
 
     @Test
     public void TestPiocher(){
-        Jeu jeu = new Jeu();
+        Pioche pioche = new Pioche();
 
         Joueur joueur1 =new Joueur("Henri");
 
@@ -44,7 +43,7 @@ public class JoueurUnitTest {
 
     @Test
     public void testPlanter() {
-        Jeu jeu = new Jeu();
+        Pioche pioche = new Pioche();
 
         Joueur joueur1 =new Joueur("Henri");
 
