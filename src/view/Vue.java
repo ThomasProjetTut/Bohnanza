@@ -844,6 +844,7 @@ public class Vue{
 
         fenetre.draw(etapeEnCours);
 
+        afficherMainJ1();
         fenetre.display();
 
     }
