@@ -40,7 +40,7 @@ public class Controlleur {
     private void jeu() {
         while (vue.getFenetre().isOpen()) {
             for(Joueur j:joueurs){
-                j.getMain();
+                j.recoisMain();
             }
             etapePlanter();
         }
