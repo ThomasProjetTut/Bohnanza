@@ -1,6 +1,7 @@
 package controller;
 
 //import jdk.nashorn.internal.ir.SplitReturn;
+import model.Joueur;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.window.event.Event;
 import view.Vue;
@@ -13,12 +14,23 @@ public class Controlleur {
 
 
     private Vue vue;
-    private int joueur;
+    private Joueur[] joueurs;
+    private Joueur joueurActif;
 
     public Controlleur() throws IOException {
         vue = new Vue();
+        joueurs=new Joueur[4];
+        Joueur joueur1=new Joueur(1);
+        Joueur joueur2=new Joueur(2);
+        Joueur joueur3=new Joueur(3);
+        Joueur joueur4=new Joueur(4);
 
-        joueur = 1;
+        joueurs[0]=joueur1;
+        joueurs[1]=joueur2;
+        joueurs[2]=joueur3;
+        joueurs[3]=joueur4;
+
+        joueurActif=joueurs[0];
 
         jeu();
         //updateJeu();
@@ -27,13 +39,16 @@ public class Controlleur {
 
     private void jeu() {
         while (vue.getFenetre().isOpen()) {
+            for(Joueur j:joueurs){
+                j.getMain();
+            }
             etapePlanter();
         }
     }
 
     private void etapePlanter() {
         vue.afficherEtape(1);
-        vue.creationSpriteCliquableEtape1(joueur);
+        vue.creationSpriteCliquableEtape1(joueurActif.getIdJoueur());
         vue.actualiserFenetre();
 
         int nbplants = 0;
@@ -60,17 +75,17 @@ public class Controlleur {
                         System.out.println("nb plant  = " + nbplants);
 
 
-                        if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][0], vue.getFenetre())) {
+                        if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][0], vue.getFenetre())) {
                             System.out.println("plante premier champ");
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
                         } else {
-                            if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][1], vue.getFenetre())) {
+                            if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                                 System.out.println("plante deuxi?me champ");
                                 vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                                 nbplants++;
                             } else {
-                                if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur - 1][2], vue.getFenetre())) {
+                                if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
                                     System.out.println("plante troisi?me champ");
                                     vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                                     nbplants++;
@@ -253,7 +268,7 @@ public class Controlleur {
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
-                                vue.creationSpriteCliquableDon(joueur);
+                                vue.creationSpriteCliquableDon(joueurActif.getIdJoueur());
                                 vue.actualiserFenetreEchange();
                                 int retour = etapeEchangeMenuCarteDon();
                                 switch(retour){
@@ -386,7 +401,7 @@ public class Controlleur {
                         }else{
                             if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
                                 System.out.println("don");
-                                vue.creationSpriteCliquableDon(joueur);
+                                vue.creationSpriteCliquableDon(joueurActif.getIdJoueur());
                                 vue.actualiserFenetreEchange();
                                 int retour = etapeEchangeMenuCarteDon();
                                 switch(retour){
@@ -433,12 +448,12 @@ public class Controlleur {
 
     private int etapeDemandeEchangeAcceptation(int idCarte) {
         Sprite[] spriteJoueur = new Sprite[3];
-        spriteJoueur = vue.getSprsAutresJoueurs(joueur);
+        spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
         for (int i = 0; i < 3; i++) {
             vue.clearSpritesCliquables();
             vue.creerMenuOuiNon(spriteJoueur[i].getPosition().x + spriteJoueur[i].getGlobalBounds().width + 5, spriteJoueur[i].getPosition().y);
-            vue.creationSpriteCliquableMenuOuiNon(joueur);
+            vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
             vue.actualisationFenetreMenuOuiNon();
 
             if(etapeConfirmation(i)) {
@@ -516,7 +531,7 @@ public class Controlleur {
 
     private int etapeEchangeMenuCarteDon() {
         Sprite[] joueursAttente = new Sprite[3];
-        joueursAttente = vue.getSprsAutresJoueurs(joueur);
+        joueursAttente = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
         while(vue.getFenetre().isOpen()){
             for(Event eventDon : vue.getFenetre().pollEvents()){
@@ -719,22 +734,22 @@ public class Controlleur {
     }
 
     private void rotationPlateau() {
-        switch (joueur){
+        switch (joueurActif.getIdJoueur()){
             case 1 :
                 vue.rotationJ2();
-                joueur = 2;
+                joueurActif=joueurs[1];
                 break;
             case 2 :
                 vue.rotationJ3();
-                joueur = 3;
+                joueurActif=joueurs[2];
                 break;
             case 3 :
                 vue.rotationJ4();
-                joueur = 4;
+                joueurActif=joueurs[3];
                 break;
             case 4 :
                 vue.rotationJ1();
-                joueur = 1;
+                joueurActif=joueurs[0];
                 break;
         }
     }

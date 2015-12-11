@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Vue{
 
     private RenderWindow fenetre = new RenderWindow();
-    private ArrayList<Sprite> spriteCliquable = new ArrayList<>();
+    private ArrayList<Sprite> spriteCliquable = new ArrayList<Sprite>();
     private Sprite[][] sprsChamps = new Sprite[4][3];
     private Sprite[] sprsMenuCartes = new Sprite[3];
     private Sprite[] sprsMenuCartesChoix = new Sprite[8];

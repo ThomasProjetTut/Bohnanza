@@ -11,7 +11,7 @@ public class CartePataTwerkUnitTest {
     @Test
     public void testCartePataTwerk(){
         Carte_Pata_Twerk carte_pata_twerk = new Carte_Pata_Twerk();
-        Map<Integer,Integer> testMap = new HashMap<>();
+        Map<Integer,Integer> testMap = new HashMap<Integer,Integer>();
         testMap.put(4, 1);
         testMap.put(6, 2);
         testMap.put(8, 3);

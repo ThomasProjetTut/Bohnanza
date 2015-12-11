@@ -11,7 +11,7 @@ public class CartePataTetraplegiqueUnitTest {
     @Test
     public void testCartePataTetraplegique(){
         Carte_Pata_Tetraplegique carte_pata_tetraplegique = new Carte_Pata_Tetraplegique();
-        Map<Integer,Integer> testMap = new HashMap<>();
+        Map<Integer,Integer> testMap = new HashMap<Integer,Integer>();
         testMap.put(2, 1);
         testMap.put(4, 2);
         testMap.put(5, 3);

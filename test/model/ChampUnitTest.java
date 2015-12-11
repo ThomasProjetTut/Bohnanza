@@ -26,7 +26,7 @@ public class ChampUnitTest {
         Champ champ=new Champ(1);
         Assert.assertNull(champ.derniereCarte());
 
-        ArrayList<Carte> list=new ArrayList<>();
+        ArrayList<Carte> list=new ArrayList<Carte>();
         list.add(c1);
         Champ champ1=new Champ(1,list);
         Assert.assertEquals(champ1.derniereCarte().getNom(),"test");
@@ -40,7 +40,7 @@ public class ChampUnitTest {
         Mockito.when(c1.isPataTecktonik()).thenReturn(true);
         Mockito.when(c2.isPataTecktonik()).thenReturn(true);
         Mockito.when(c3.isPataTecktonik()).thenReturn(false);
-        ArrayList<Carte> list=new ArrayList<>();
+        ArrayList<Carte> list=new ArrayList<Carte>();
         list.add(c1);
         Champ champ=new Champ(1,list);
         //Comparer une carte de la meme instance

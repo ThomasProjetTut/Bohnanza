@@ -11,7 +11,7 @@ public class CartePataTetenucleaireUnitTest {
     @Test
     public void testCartePataTetenucleaire(){
         Carte_Pata_Tetenucleaire carte_pata_tetenucleaire = new Carte_Pata_Tetenucleaire();
-        Map<Integer,Integer> testMap = new HashMap<>();
+        Map<Integer,Integer> testMap = new HashMap<Integer,Integer>();
         testMap.put(2, 1);
         testMap.put(4, 2);
         testMap.put(6, 3);

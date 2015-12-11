@@ -13,7 +13,7 @@ public class Zone {
     public List<Carte> zoneEchange;
 
     public Zone(){
-        zoneEchange=new ArrayList<>();
+        zoneEchange=new ArrayList<Carte>();
     }
 
     public void ajouterCarte(Carte c) {

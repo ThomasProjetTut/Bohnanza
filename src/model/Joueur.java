@@ -16,12 +16,22 @@ public class Joueur {
 
     private Zone zoneEchange;
 
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public void setIdJoueur(int idJoueur) {
+        this.idJoueur = idJoueur;
+    }
+
+    private int idJoueur;
+
     public Joueur(){
         nom="";
-        thunes = new ArrayList<>();
+        thunes = new ArrayList<Carte>();
         nbThunes = thunes.size();
         maxChamps = 2;
-        champs = new ArrayList<>();
+        champs = new ArrayList<Champ>();
 
         for (int i = 0 ; i < maxChamps ; i++) {
             champs.add(new Champ(i+1));
@@ -29,14 +39,14 @@ public class Joueur {
 
         zoneEchange=new Zone();
 
-        main = new ArrayList<>();
+        main = new ArrayList<Carte>();
     }
 
     public Joueur(String nom) {
         this.nom=nom;
-        thunes = new ArrayList<>();
+        thunes = new ArrayList<Carte>();
         maxChamps = 2;
-        champs = new ArrayList<>();
+        champs = new ArrayList<Champ>();
 
         for (int i = 0 ; i < maxChamps ; i++) {
             champs.add(new Champ(i+1));
@@ -44,7 +54,23 @@ public class Joueur {
 
         zoneEchange=new Zone();
 
-        main = new ArrayList<>();
+        main = new ArrayList<Carte>();
+    }
+
+    public Joueur(int id) {
+        nom="";
+        thunes =new ArrayList<Carte>();
+        maxChamps = 2;
+        idJoueur=id;
+        champs = new ArrayList<Champ>();
+
+        for (int i = 0 ; i < maxChamps ; i++) {
+            champs.add(new Champ(i+1));
+        }
+
+        zoneEchange=new Zone();
+
+        main = new ArrayList<Carte>();
     }
 
     public void recoisMain() {

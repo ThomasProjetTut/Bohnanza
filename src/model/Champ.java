@@ -19,7 +19,7 @@ public class Champ {
             i=3;
         }
         numeroChamp=i;
-        patates=new ArrayList<>();
+        patates=new ArrayList<Carte>();
     }
 
     public Champ(int i, ArrayList<Carte> list) {
@@ -131,7 +131,7 @@ public class Champ {
         int NombreCarte=patates.size();
 
         //Différentes Key pour cette carte
-        List<Integer>nbThunes=new ArrayList<>();
+        List<Integer>nbThunes=new ArrayList<Integer>();
 
 
         for(int key :patates.get(0).getPatatometre().keySet()){

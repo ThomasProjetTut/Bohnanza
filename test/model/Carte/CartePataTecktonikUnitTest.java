@@ -11,7 +11,7 @@ public class CartePataTecktonikUnitTest {
     @Test
     public void testCartePataTecktonik(){
         Carte_Pata_Tecktonik carte_pata_tecktonik = new Carte_Pata_Tecktonik();
-        Map<Integer,Integer> testMap = new HashMap<>();
+        Map<Integer,Integer> testMap = new HashMap<Integer,Integer>();
         testMap.put(2,2);
         testMap.put(3,3);
 

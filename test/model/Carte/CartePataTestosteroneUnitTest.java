@@ -11,7 +11,7 @@ public class CartePataTestosteroneUnitTest {
     @Test
     public void testCartePataTestosterone(){
         Carte_Pata_Testosterone carte_pata_testosterone = new Carte_Pata_Testosterone();
-        Map<Integer,Integer> testMap = new HashMap<>();
+        Map<Integer,Integer> testMap = new HashMap<Integer,Integer>();
         testMap.put(3, 1);
         testMap.put(5, 2);
         testMap.put(6, 3);

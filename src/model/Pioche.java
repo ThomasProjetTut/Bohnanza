@@ -15,7 +15,7 @@ public class Pioche {
     }
 
     private void initListeCarte() {
-        listeCarte = new ArrayList<>();
+        listeCarte = new ArrayList<Carte>();
         for (int i = 0; i < 104; i++) {
             if (i<6){
                 listeCarte.add(new Carte_Pata_Tecktonik());
