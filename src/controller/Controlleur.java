@@ -6,6 +6,7 @@ import org.jsfml.window.event.Event;
 import view.Vue;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Controlleur {
@@ -92,7 +93,7 @@ public class Controlleur {
 
         vue.afficherEtape(2);
         vue.actualiserFenetreEchange();
-        vue.afficherMainJ1();
+        //vue.afficherMainJ1();
 
         Sprite carte1 = vue.getSprCartePiochee1();
         Sprite carte2 = vue.getSprCartePiochee2();
@@ -390,7 +391,7 @@ public class Controlleur {
             vue.clearSpritesCliquables();
             vue.creerMenuOuiNon(spriteJoueur[i].getPosition().x + spriteJoueur[i].getGlobalBounds().width + 5, spriteJoueur[i].getPosition().y);
             vue.actualisationFenetreMenuOuiNon();
-            vue.creationSpriteCliquableMenuOuiNon();
+            vue.creationSpriteCliquableMenuOuiNon(joueur);
 
             if(etapeConfirmation(i)) {
                 if(i <= 2) {
@@ -576,21 +577,59 @@ public class Controlleur {
     private void etapePlantageEchange(){
         vue.afficherEtape(3);
         vue.actualiserFenetre();
+        ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
 
-        while(vue.getFenetre().isOpen()){
-            for(Event event : vue.getFenetre().pollEvents()){
+        for (int i = 0; i < 4; i++) {
 
-                if (event.type == Event.Type.CLOSED) {
-                    vue.getFenetre().close();
-                }
+            switch (i) {
+                case 1:
+                    spriteZoneEchange = vue.getZoneEchangeJ1();
+                    break;
+                case 2:
+                    spriteZoneEchange = vue.getZoneEchangeJ2();
+                    break;
+                case 3:
+                    spriteZoneEchange = vue.getZoneEchangeJ3();
+                    break;
+                case 4:
+                    spriteZoneEchange = vue.getZoneEchangeJ4();
+                    break;
+            }
 
-                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+            for (Sprite sprite : spriteZoneEchange) {
 
-                    if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
-                        etapePioche();
-                        return;
+
+                while (vue.getFenetre().isOpen()) {
+                    for (Event event : vue.getFenetre().pollEvents()) {
+
+                        if (event.type == Event.Type.CLOSED) {
+                            vue.getFenetre().close();
+                        }
+
+                        if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+
+                            if (vue.cliqueSprite(event, vue.getSprsChamps()[i][0], vue.getFenetre())) {
+                                System.out.println("Joueur " + (i + 1) + " champ 1");
+                            }
+                        } else {
+                            if (vue.cliqueSprite(event, vue.getSprsChamps()[i][1], vue.getFenetre())) {
+                                System.out.println("Joueur " + (i + 1) + " champ 2");
+                            } else {
+                                if (vue.cliqueSprite(event, vue.getSprsChamps()[i][2], vue.getFenetre())) {
+                                    System.out.println("Joueur " + (i + 1) + " champ 3");
+                                }
+                            }
+                        }
+
+                        if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+
+                            if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
+                                etapePioche();
+                                return;
+                            }
+
+                        }
                     }
-
                 }
             }
         }

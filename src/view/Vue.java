@@ -234,8 +234,9 @@ public class Vue{
             txtMCCTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetraplegique.png"));
             txtMCCTwerk.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTwerk.png"));
 
+
             mainJ1.add(0, new Sprite());
-            mainJ1.get(0).setTexture(txtCarteTectonik);
+            mainJ1.get(0).setTexture(txtCarteTeteNucleaire);
             mainJ1.add(1, new Sprite());
             mainJ1.get(1).setTexture(txtCarteTentacule);
             mainJ1.add(2, new Sprite());
@@ -781,6 +782,8 @@ public class Vue{
         for(Sprite sprite : sprsAutresJoueurs){
             fenetre.draw(sprite);
         }
+
+        afficherMainJ1();
 
         fenetre.draw(etapeEnCours);
 
@@ -1383,10 +1386,15 @@ public class Vue{
     }
 
 
-    public void creationSpriteCliquableMenuOuiNon() {
+    public void creationSpriteCliquableMenuOuiNon(int joueur) {
         System.out.println("crea sprite O N");
-
         clearSpritesCliquables();
+
+       for(Sprite sprite : getSprsAutresJoueurs(joueur)){
+           System.out.println("liudbsfoivjbsdflijvb");
+           spriteCliquable.add(sprite);
+       }
+
         spriteCliquable.add(sprMenuOui);
         spriteCliquable.add(sprMenuNon);
 
@@ -1398,11 +1406,10 @@ public class Vue{
             espaceEntreCarte = espaceEntreCarte - 5;
         }
 
-       for(int i = 0; i < mainJ1.size(); i++){
-           mainJ1.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+       for(int i = mainJ1.size() - 1; i >= 0; i--){
+           mainJ1.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
            fenetre.draw(mainJ1.get(i));
        }
-       fenetre.display();
     }
 
     public void afficherMainJ2(){
@@ -1412,10 +1419,9 @@ public class Vue{
         }
 
         for(int i = 0; i < mainJ2.size(); i++){
-            mainJ2.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+            mainJ2.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
             fenetre.draw(mainJ2.get(i));
         }
-        fenetre.display();
     }
 
     public void afficherMainJ3(){
@@ -1425,10 +1431,9 @@ public class Vue{
         }
 
         for(int i = 0; i < mainJ3.size(); i++){
-            mainJ3.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+            mainJ3.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
             fenetre.draw(mainJ3.get(i));
         }
-        fenetre.display();
     }
 
     public void afficherMainJ4(){
@@ -1438,9 +1443,9 @@ public class Vue{
         }
 
         for(int i = 0; i < mainJ4.size(); i++){
-            mainJ4.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 910);
+            mainJ4.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
             fenetre.draw(mainJ4.get(i));
         }
-        fenetre.display();
     }
+
 }
