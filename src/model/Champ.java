@@ -123,19 +123,28 @@ public class Champ {
     }
 
     public int recolter() {
+
         //Valeur de la récolte en Thunes
         int valeurThune=0;
+
         //Nombre de Carte dans le Champ
         int NombreCarte=patates.size();
+
         //Différentes Key pour cette carte
         List<Integer>nbThunes=new ArrayList<>();
+
+
         for(int key :patates.get(0).getPatatometre().keySet()){
             nbThunes.add(key);
         }
+
         for(int nbPatateNecessary:nbThunes) {
             if(NombreCarte>=nbPatateNecessary){
                 valeurThune=patates.get(0).getPatatometre().get(nbPatateNecessary);
                 for (int i = 1; i <nbPatateNecessary ; i++) {
+
+
+
                     patates.remove(derniereCarte());
                 }
             }

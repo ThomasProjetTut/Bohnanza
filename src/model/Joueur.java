@@ -8,15 +8,18 @@ import java.util.List;
 public class Joueur {
 
     private int maxChamps;
-    private int thunes;
+    private List<Carte> thunes;
+    private int nbThunes;
     private String nom;
-    private ArrayList<Carte> main;
-    private ArrayList<Champ> champs;
+    private List<Carte> main;
+    private List<Champ> champs;
+
     private Zone zoneEchange;
 
     public Joueur(){
         nom="";
-        thunes =0;
+        thunes = new ArrayList<>();
+        nbThunes = thunes.size();
         maxChamps = 2;
         champs = new ArrayList<>();
 
@@ -31,7 +34,7 @@ public class Joueur {
 
     public Joueur(String nom) {
         this.nom=nom;
-        thunes =0;
+        thunes = new ArrayList<>();
         maxChamps = 2;
         champs = new ArrayList<>();
 
@@ -78,7 +81,7 @@ public class Joueur {
         return champs.get(index-1);
     }
 
-    public ArrayList<Carte> getMain() {
+    public List<Carte> getMain() {
         return main;
     }
 
@@ -113,25 +116,22 @@ public class Joueur {
         cible.donnerCarte(recue,this);
     }
 
-    /*
-    public void jouerCoup() {
-        if(champ1.haricots.isEmpty() || champ1.derniereCarte().compareInstance(main.get(0))){
-            champ1.planter(main.get(0));
-        }else {
-            if (champ2.haricots.isEmpty() || champ2.derniereCarte().compareInstance(main.get(0))) {
-                champ2.planter(main.get(0));
-            } else {
-                champ1.planter(main.get(0));
-            }
-        }
+    public List<Carte> getThunes() {
+        return thunes;
     }
 
-    public void troisChamp(){
-        champ3=new Champ(3);
+    public void setThunes(List<Carte> thunes) {
+        this.thunes = thunes;
     }
 
-    public Champ getChamp1() {
-        return champ1;
+
+    public int getNbThunes() {
+        nbThunes = thunes.size();
+        return nbThunes;
     }
-    */
+
+    public void setNbThunes(int nbThunes) {
+        this.nbThunes = nbThunes;
+    }
+
 }
