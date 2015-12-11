@@ -23,7 +23,6 @@ public class Controlleur {
         jeu();
         //updateJeu();
 
-
     }
 
     private void jeu() {
