@@ -839,6 +839,8 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        afficherMainJ1();
+
         fenetre.draw(sprCartePiochee1);
         fenetre.draw(sprCartePiochee2);
 
@@ -904,6 +906,8 @@ public class Vue{
         fenetre.draw(sprMCDonner);
         fenetre.draw(sprMCGarder);
 
+        afficherMainJ1();
+
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
@@ -948,13 +952,15 @@ public class Vue{
         }
 
         if(spriteCliquable.contains(sprJoueurAttente4)){
+            System.out.println("ooui !");
             sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
         }else{
+
+            System.out.println("non !");
             sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
         }
 
-
-        for(Sprite sprite : sprsAutresJoueurs){
+        for(Sprite sprite : getSprsJoueurs()){
             fenetre.draw(sprite);
         }
 
@@ -964,6 +970,8 @@ public class Vue{
         fenetre.draw(sprMenuOuiNonFond);
         fenetre.draw(sprMenuOui);
         fenetre.draw(sprMenuNon);
+
+        afficherMainJ1();
 
         fenetre.draw(etapeEnCours);
 
@@ -1039,6 +1047,8 @@ public class Vue{
         fenetre.draw(sprMCCTetenucleaire);
         fenetre.draw(sprMCCTetraplegique);
         fenetre.draw(sprMCCTwerk);
+
+        afficherMainJ1();
 
         fenetre.draw(etapeEnCours);
 
@@ -1449,4 +1459,19 @@ public class Vue{
         }
     }
 
+    public void creerZoneEchangeJ1() {
+
+    }
+
+    public void creerZoneEchangeJ2() {
+
+    }
+
+    public void creerZoneEchangeJ3() {
+
+    }
+
+    public void creerZoneEchangeJ4() {
+
+    }
 }

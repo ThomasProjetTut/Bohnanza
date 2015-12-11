@@ -192,36 +192,60 @@ public class Controlleur {
                             switch (retour){
                                 case 0 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 20;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else{
+                                        return 20;
+                                    }
                                 case 1 :
                                     System.out.println("retour tequila");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 21;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else {
+                                        return 21;
+                                    }
                                 case 2 :
                                     System.out.println("retour terroriste");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 22;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else {
+                                        return 22;
+                                    }
                                 case 3 :
                                     System.out.println("retour testost�rone");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 23;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else {
+                                        return 23;
+                                    }
                                 case 4 :
                                     System.out.println("retour tetenucleaire");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 24;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else{
+                                        return 24;
+                                    }
                                 case 5 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 25;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else{
+                                        return 25;
+                                    }
                                 case 6 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 26;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else{
+                                        return 26;
+                                    }
                                 case 7 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(1);
-                                    return 27;
+                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                        return 50;
+                                    }else{
+                                        return 27;
+                                    }
                                 case 10 :
                                     System.out.println("retour retour");
                                     break;
@@ -300,39 +324,63 @@ public class Controlleur {
                             switch (retour){
                                 case 0 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 20;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else{
+                                        return 20;
+                                    }
                                 case 1 :
                                     System.out.println("retour tequila");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 21;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else {
+                                        return 21;
+                                    }
                                 case 2 :
                                     System.out.println("retour terroriste");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 22;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else {
+                                        return 22;
+                                    }
                                 case 3 :
                                     System.out.println("retour testost�rone");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 23;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else {
+                                        return 23;
+                                    }
                                 case 4 :
                                     System.out.println("retour tetenucleaire");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 24;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else{
+                                        return 24;
+                                    }
                                 case 5 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 25;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else{
+                                        return 25;
+                                    }
                                 case 6 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 26;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                        return 50;
+                                    }else{
+                                        return 26;
+                                    }
                                 case 7 :
                                     System.out.println("retour tentacule");
-                                    etapeDemandeEchangeAcceptation(2);
-                                    return 27;
+                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                       return 50;
+                                    }else{
+                                        return 27;
+                                    }
                                 case 10 :
                                     System.out.println("retour retour");
-                                    break;
+                                    return 50;
                             }
 
                         }else{
@@ -365,6 +413,7 @@ public class Controlleur {
 
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
+                                    System.out.println("uibvsidjfvbisjdvfoisdhvbf");
                                     vue.actualiserFenetreEchange();
                                     vue.creationSpriteCliquableCarte();
                                     return 50;
@@ -389,8 +438,8 @@ public class Controlleur {
         for (int i = 0; i < 3; i++) {
             vue.clearSpritesCliquables();
             vue.creerMenuOuiNon(spriteJoueur[i].getPosition().x + spriteJoueur[i].getGlobalBounds().width + 5, spriteJoueur[i].getPosition().y);
-            vue.actualisationFenetreMenuOuiNon();
             vue.creationSpriteCliquableMenuOuiNon(joueur);
+            vue.actualisationFenetreMenuOuiNon();
 
             if(etapeConfirmation(i)) {
                 if(i <= 2) {
@@ -578,6 +627,14 @@ public class Controlleur {
         vue.actualiserFenetre();
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
 
+        /////////////////////////////////////////
+        vue.creerZoneEchangeJ1();
+        vue.creerZoneEchangeJ2();
+        vue.creerZoneEchangeJ3();
+        vue.creerZoneEchangeJ4();
+        /////////////////////////////////////////
+
+
         for (int i = 0; i < 4; i++) {
 
             switch (i) {
@@ -609,13 +666,13 @@ public class Controlleur {
 
                             if (vue.cliqueSprite(event, vue.getSprsChamps()[i][0], vue.getFenetre())) {
                                 System.out.println("Joueur " + (i + 1) + " champ 1");
-                            }
-                        } else {
-                            if (vue.cliqueSprite(event, vue.getSprsChamps()[i][1], vue.getFenetre())) {
-                                System.out.println("Joueur " + (i + 1) + " champ 2");
                             } else {
-                                if (vue.cliqueSprite(event, vue.getSprsChamps()[i][2], vue.getFenetre())) {
-                                    System.out.println("Joueur " + (i + 1) + " champ 3");
+                                if (vue.cliqueSprite(event, vue.getSprsChamps()[i][1], vue.getFenetre())) {
+                                    System.out.println("Joueur " + (i + 1) + " champ 2");
+                                } else {
+                                    if (vue.cliqueSprite(event, vue.getSprsChamps()[i][2], vue.getFenetre())) {
+                                        System.out.println("Joueur " + (i + 1) + " champ 3");
+                                    }
                                 }
                             }
                         }
