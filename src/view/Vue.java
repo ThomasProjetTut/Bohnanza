@@ -1511,12 +1511,10 @@ public class Vue{
             System.out.println("garder carte 1");
             delSpriteCliquable(getSprCartePiochee1());
             getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee1);
-            sprCartePiochee1.setPosition(509, 625);
         }else{
             System.out.println("garder carte 2");
             delSpriteCliquable(getSprCartePiochee2());
             getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee2);
-            sprCartePiochee2.setPosition(417, 625);
         }
 
     }
@@ -1533,164 +1531,16 @@ public class Vue{
     }
 
     public void donnerCarteJ1(int carte) {
-        switch(carte){
-            case 1 :
-                switch((int) sprFond.getRotation()){
-                    case 0 :
-                        sprsCartesPiochee[0].rotate(90);
-                        sprsCartesPiochee[0].setPosition(380, 510);
-                        break;
-                    case -180 :
-                        sprsCartesPiochee[0].rotate(-90);
-                        sprsCartesPiochee[0].setPosition(725, 275);
-                        break;
-                    case -270 :
-                        sprsCartesPiochee[0].rotate(-180);
-                        sprsCartesPiochee[0].setPosition(275, 225);
-                        break;
-                }
-                break;
-            case 2 :
-                switch((int) sprFond.getRotation()){
-                    case 0 :
-                        sprsCartesPiochee[1].rotate(90);
-                        sprsCartesPiochee[1].setPosition(380, 420);
-                        break;
-                    case -180 :
-                        sprsCartesPiochee[1].rotate(-90);
-                        sprsCartesPiochee[1].setPosition(725, 275);
-                        break;
-                    case -270 :
-                        sprsCartesPiochee[1].rotate(-180);
-                        sprsCartesPiochee[1].setPosition(275, 225);
-                        break;
-                }
-
-
-
-        }
-
         zoneEchangeJ1.add(sprsCartesPiochee[carte - 1]);
-
     }
     public void donnerCarteJ2(int carte) {
-        switch(carte){
-            case 1 :
-                switch((int) sprFond.getRotation()){
-                    case 0 :
-                        sprsCartesPiochee[0].rotate(90);
-                        sprsCartesPiochee[0].setPosition(380, 510);
-                        break;
-                    case -180 :
-                        sprsCartesPiochee[0].rotate(-90);
-                        sprsCartesPiochee[0].setPosition(725, 275);
-                        break;
-                    case -270 :
-                        sprsCartesPiochee[0].rotate(-180);
-                        sprsCartesPiochee[0].setPosition(275, 225);
-                        break;
-                }
-                break;
-            case 2 :
-                switch((int) sprFond.getRotation()){
-                    case 0 :
-                        sprsCartesPiochee[1].rotate(90);
-                        sprsCartesPiochee[1].setPosition(380, 420);
-                        break;
-                    case -180 :
-                        sprsCartesPiochee[1].rotate(-90);
-                        sprsCartesPiochee[1].setPosition(725, 275);
-                        break;
-                    case -270 :
-                        sprsCartesPiochee[1].rotate(-180);
-                        sprsCartesPiochee[1].setPosition(275, 225);
-                        break;
-                }
-        }
-
         zoneEchangeJ2.add(sprsCartesPiochee[carte - 1]);
-
     }
     public void donnerCarteJ3(int carte) {
-        switch(carte){
-            case 1 :
-                switch((int) sprFond.getRotation()){
-                    case -90 :
-                        sprsCartesPiochee[carte - 1].rotate(90);
-                        sprsCartesPiochee[carte - 1].setPosition(725, 275);
-                        break;
-                    case -270 :
-                        sprsCartesPiochee[carte - 1].rotate(-90);
-                        sprsCartesPiochee[carte - 1].setPosition(275, 225);
-                        break;
-                    case 0 :
-                        sprsCartesPiochee[carte - 1].rotate(-180);
-                        sprsCartesPiochee[carte - 1].setPosition(490, 380);
-                        break;
-                }
-                break;
-
-            case 2 :
-                switch((int) sprFond.getRotation()){
-                    case -90 :
-                        sprsCartesPiochee[carte - 1].rotate(90);
-                        sprsCartesPiochee[carte - 1].setPosition(725, 275);
-                        break;
-                    case -270 :
-                        sprsCartesPiochee[carte - 1].rotate(-90);
-                        sprsCartesPiochee[carte - 1].setPosition(275, 225);
-                        break;
-                    case 0 :
-                        sprsCartesPiochee[carte - 1].rotate(-180);
-                        sprsCartesPiochee[carte - 1].setPosition(585, 380);
-                        break;
-                }
-                break;
-        }
-
         zoneEchangeJ3.add(sprsCartesPiochee[carte - 1]);
-
-
     }
     public void donnerCarteJ4(int carte) {
-        switch(carte){
-            case 1 :
-                switch((int) sprFond.getRotation()){
-                    case -90 :
-                        sprsCartesPiochee[0].rotate(-180);
-                        sprsCartesPiochee[0].setPosition(725, 275);
-                        break;
-                    case -180 :
-                        sprsCartesPiochee[0].rotate(90);
-                        sprsCartesPiochee[0].setPosition(275, 225);
-                        break;
-                    case 0 :
-                        sprsCartesPiochee[0].rotate(-90);
-                        sprsCartesPiochee[0].setPosition(620, 490);
-                        break;
-                }
-                break;
-            case 2 :
-                switch((int) sprFond.getRotation()){
-                    case -90 :
-                        sprsCartesPiochee[1].rotate(-180);
-                        sprsCartesPiochee[1].setPosition(725, 275);
-                        break;
-                    case -180 :
-                        sprsCartesPiochee[1].rotate(90);
-                        sprsCartesPiochee[1].setPosition(275, 225);
-                        break;
-                    case 0 :
-                        sprsCartesPiochee[1].rotate(-90);
-                        sprsCartesPiochee[1].setPosition(620, 585);
-                        break;
-                }
-                break;
-        }
-
         zoneEchangeJ4.add(sprsCartesPiochee[carte - 1]);
-
-
     }
 
 /*
@@ -1837,7 +1687,7 @@ public class Vue{
                 listeCarte.get(0).setRotation(0);
                 listeCarte.get(0).setPosition(509, 625);
                 listeCarte.get(1).setRotation(0);
-                listeCarte.get(1).setPosition(509, 625);
+                listeCarte.get(1).setPosition(517, 625);
                 break;
         }
 
@@ -1848,19 +1698,47 @@ public class Vue{
                 return;
             case 1 :
                 listeCarte.get(0).setRotation(-180);
-                listeCarte.get(0).setPosition(509, 625);
+                listeCarte.get(0).setPosition(275, 225);
                 break;
             case 2 :
                 listeCarte.get(0).setRotation(-180);
-                listeCarte.get(0).setPosition(509, 625);
+                listeCarte.get(0).setPosition(375, 225);
                 listeCarte.get(1).setRotation(-180);
-                listeCarte.get(1).setPosition(509, 625);
+                listeCarte.get(1).setPosition(275, 225);
                 break;
         }
     }
     private void afficherZoneEchangeDroite(ArrayList<Sprite> listeCarte){
+        switch(listeCarte.size()){
+            case 0 :
+                return;
+            case 1 :
+                listeCarte.get(0).setRotation(-90);
+                listeCarte.get(0).setPosition(725, 275);
+                break;
+            case 2 :
+                listeCarte.get(0).setRotation(-90);
+                listeCarte.get(0).setPosition(725, 375);
+                listeCarte.get(1).setRotation(-90);
+                listeCarte.get(1).setPosition(725, 275);
+                break;
+        }
     }
     private void afficherZoneEchangeGauche(ArrayList<Sprite> listeCarte){
+        switch(listeCarte.size()){
+            case 0 :
+                return;
+            case 1 :
+                listeCarte.get(0).setRotation(-270);
+                listeCarte.get(0).setPosition(380, 510);
+                break;
+            case 2 :
+                listeCarte.get(0).setRotation(-270);
+                listeCarte.get(0).setPosition(380, 420);
+                listeCarte.get(1).setRotation(-270);
+                listeCarte.get(1).setPosition(380, 510);
+                break;
+        }
     }
 
     //GETTER AND SETTER

@@ -564,7 +564,7 @@ public class Controlleur {
             vue.clearSpritesCliquables();
             vue.setSpriteCliquable(joueursConcernes.get(i));
             if(etapeConfirmation(i, joueursConcernes.get(i))){
-                if(i <= 2) {
+                if(i <= joueurActif.getIdJoueur() - 1) {
                     System.out.println("Le joueur " + (i + 2));
                     vue.clearSpritesCliquables();
                     switch (i + 2){
