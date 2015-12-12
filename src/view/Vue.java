@@ -676,6 +676,8 @@ public class Vue{
 
         }
 
+        System.out.println("Fonction getSprsAutresJoueurs :");
+
         for (int i = 0; i < 3; i++) {
             System.out.println(i + " = " + retour[i].getPosition().x + ", " + retour[i].getPosition().y);
 

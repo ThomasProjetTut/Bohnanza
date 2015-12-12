@@ -527,30 +527,62 @@ public class Controlleur {
     }
 
     private int etapeDemandeEchangeAcceptation(int idCarte) {
-        Sprite[] spriteJoueur = new Sprite[3];
+
+        Sprite[] spriteJoueur;
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
         ArrayList<Sprite> joueursConcernes = new ArrayList<>();
         for(Sprite sprite : spriteJoueur){
 
             if (sprite == vue.getSprJoueurAttente1() ){
-                if (joueurs[0].haveCarteInMain(idCarte)){
-                    joueursConcernes.add(sprite);
+
+                if (idCarte == 1){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
                 }
+                else if (idCarte == 2){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
+                }
+
+
             }
             else if (sprite == vue.getSprJoueurAttente2() ){
-                if (joueurs[1].haveCarteInMain(idCarte)){
-                    joueursConcernes.add(sprite);
+                if (idCarte == 1){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
+                }
+                else if (idCarte == 2){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
                 }
             }
             else if (sprite == vue.getSprJoueurAttente3() ){
-                if (joueurs[2].haveCarteInMain(idCarte)){
-                    joueursConcernes.add(sprite);
+                if (idCarte == 1){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
+                }
+                else if (idCarte == 2){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
                 }
             }
             else if (sprite == vue.getSprJoueurAttente4() ){
-                if (joueurs[3].haveCarteInMain(idCarte)){
-                    joueursConcernes.add(sprite);
+                if (idCarte == 1){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
+                }
+                else if (idCarte == 2){
+                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
+                        joueursConcernes.add(sprite);
+                    }
                 }
             }
         }
