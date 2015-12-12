@@ -64,10 +64,7 @@ public class Joueur {
     }
 
     public void piocher(Pioche pioche) {
-
-        addCarte(pioche.getPioche().get(pioche.getTaillePioche()-1));
-        pioche.removeCarte();
-
+        addCarte(pioche.giveNextCarte());
     }
 
     public void afficherMain(){
@@ -131,10 +128,6 @@ public class Joueur {
         main.remove(c);
     }
 
-    public Zone getZone() {
-        return zoneEchange;
-    }
-
     public void echangeCarte(Carte donnee, Joueur cible, Carte recue) {
         donnerCarte(donnee,cible);
         cible.donnerCarte(recue,this);
@@ -142,6 +135,17 @@ public class Joueur {
 
     public void addThunes(Carte carte) {
         thunes.add(carte);
+    }
+
+    public boolean haveCarteInMain(int idCarte){
+        boolean retour = false;
+
+        for (Carte carteMain: main) {
+            if (carteMain.getIdCarte() == idCarte)
+                retour = true;
+        }
+
+        return retour;
     }
 
     //GETTER AND SETTER
@@ -172,5 +176,13 @@ public class Joueur {
 
     public void setMaxChamps(int maxChamps) {
         this.maxChamps = maxChamps;
+    }
+
+    public Zone getZoneEchange() {
+        return zoneEchange;
+    }
+
+    public void setZoneEchange(Zone zoneEchange) {
+        this.zoneEchange = zoneEchange;
     }
 }

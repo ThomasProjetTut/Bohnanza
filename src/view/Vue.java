@@ -171,6 +171,7 @@ public class Vue{
         creerFenetre();
     }
 
+
     private void initAttribut() {
 
         for(int i = 0; i < 3; i++){
@@ -1484,12 +1485,18 @@ public class Vue{
 
     public void afficherCartePiochee(){
         System.out.println("carte piochee");
-        sprCartePiochee1.setTexture(txtCarteTentacule);
-        sprCartePiochee2.setTexture(txtCarteTeteNucleaire);
 
         sprCartePiochee1.setPosition(509, 495);
         sprCartePiochee2.setPosition(417, 495);
 
+    }
+
+    public void setTxtCartePiochee1(Texture txtCarte){
+        sprCartePiochee1.setTexture(txtCarte);
+    }
+
+    public void setTxtCartePiochee2(Texture txtCarte){
+        sprCartePiochee2.setTexture(txtCarte);
     }
 
     public Sprite getFond() {
@@ -1880,6 +1887,28 @@ public class Vue{
     public Texture getTxtCarteTwerk() {
         return txtCarteTwerk;
     }
+
+    public Sprite[] getSprsAutresJoueurs() {
+        return sprsAutresJoueurs;
+    }
+
+    public Sprite getSprJoueurAttente1() {
+        return sprJoueurAttente1;
+    }
+
+    public Sprite getSprJoueurAttente2() {
+        return sprJoueurAttente2;
+    }
+
+    public Sprite getSprJoueurAttente3() {
+        return sprJoueurAttente3;
+    }
+
+    public Sprite getSprJoueurAttente4() {
+        return sprJoueurAttente4;
+    }
+
+
 
     public void creationSpriteCliquablePlantagePostEchange(int joueur) {
         for(Sprite sprite : sprsChamps[joueur]){

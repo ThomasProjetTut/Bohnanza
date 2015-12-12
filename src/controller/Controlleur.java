@@ -4,6 +4,7 @@ package controller;
 import model.Carte.Carte;
 import model.Joueur;
 import model.Pioche;
+import model.Zone;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.window.event.Event;
 import view.Vue;
@@ -20,6 +21,7 @@ public class Controlleur {
     private Joueur[] joueurs;
     private Joueur joueurActif;
     private Pioche pioche;
+    private Zone zonePioche;
 
     public Controlleur() throws IOException {
         vue = new Vue();
@@ -37,9 +39,9 @@ public class Controlleur {
         joueurActif=joueurs[0];
 
         pioche = new Pioche();
+        zonePioche = new Zone();
 
         jeu();
-        //updateJeu();
 
     }
 
@@ -129,7 +131,12 @@ public class Controlleur {
 
     private void etapeEchange() {
         System.out.println("ETAPE ECHANGE");
-        int carteNonJouee = 2;
+
+        zonePioche.ajouterCarte(pioche.giveNextCarte());
+        zonePioche.ajouterCarte(pioche.giveNextCarte());
+        setTxtZonePioche();
+
+        int carteNonJouee = zonePioche.getZone().size();
         int retour;
 
         vue.afficherEtape(2);
@@ -192,6 +199,8 @@ public class Controlleur {
                     if (carteNonJouee == 0) {
 
                         if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[1], vue.getFenetre())) {
+
+                            zonePioche.clear();
                             etapePlantageEchange();
                             return;
                         }
@@ -220,12 +229,19 @@ public class Controlleur {
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())) {
                         System.out.println("garder");
                         System.out.println("appel garder carte 1");
+
+                        //METTRE LA CARTE 1 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
+                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(0));
+
+
                         vue.garderCarte(1, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return 1;
                     }else{
                         if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
                             System.out.println("echange");
+
+
                             vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
                             vue.actualiserFenetreEchangeMenuChoix();
                             int retour = etapeEchangeMenuCarteChoix();
@@ -370,6 +386,10 @@ public class Controlleur {
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())){
                         System.out.println("garder");
                         System.out.println("appel garder 2");
+
+                        //METTRE LA CARTE 1 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
+                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(0));
+
                         vue.garderCarte(2, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return 1;
@@ -512,8 +532,26 @@ public class Controlleur {
 
         ArrayList<Sprite> joueursConcernes = new ArrayList<>();
         for(Sprite sprite : spriteJoueur){
-            if(verificatoin model tout ça tout ça){
-                joueursConcernes.add(sprite);
+
+            if (sprite == vue.getSprJoueurAttente1() ){
+                if (joueurs[0].haveCarteInMain(idCarte)){
+                    joueursConcernes.add(sprite);
+                }
+            }
+            else if (sprite == vue.getSprJoueurAttente2() ){
+                if (joueurs[1].haveCarteInMain(idCarte)){
+                    joueursConcernes.add(sprite);
+                }
+            }
+            else if (sprite == vue.getSprJoueurAttente3() ){
+                if (joueurs[2].haveCarteInMain(idCarte)){
+                    joueursConcernes.add(sprite);
+                }
+            }
+            else if (sprite == vue.getSprJoueurAttente4() ){
+                if (joueurs[3].haveCarteInMain(idCarte)){
+                    joueursConcernes.add(sprite);
+                }
             }
         }
 
@@ -671,7 +709,7 @@ public class Controlleur {
                                     return 3;
                                 } else {
                                     if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
-                                        System.out.println("choix patatestost�rone");
+                                        System.out.println("choix patatestostérone");
                                         return 4;
                                     } else {
                                         if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
@@ -679,7 +717,7 @@ public class Controlleur {
                                             return 5;
                                         } else {
                                             if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
-                                                System.out.println("choix patatetrapl�gique");
+                                                System.out.println("choix patatetraplégique");
                                                 return 6;
                                             } else {
                                                 if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
@@ -878,6 +916,65 @@ public class Controlleur {
             else if (carte.isPataTwerk()){
                 vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTwerk());
             }
+        }
+    }
+
+    public void setTxtZonePioche(){
+        int idCartePiochee1 = zonePioche.getZone().get(0).getIdCarte();
+        int idCartePiochee2 = zonePioche.getZone().get(1).getIdCarte();
+
+        switch (idCartePiochee1){
+            case 1:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTectonik());
+                break;
+            case 2:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTentacule());
+                break;
+            case 3:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTequila());
+                break;
+            case 4:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTerroriste());
+                break;
+            case 5:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTestosterone());
+                break;
+            case 6:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTeteNucleaire());
+                break;
+            case 7:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTetraplegique());
+                break;
+            case 8:
+                vue.setTxtCartePiochee1(vue.getTxtCarteTwerk());
+                break;
+        }
+
+        switch (idCartePiochee2){
+            case 1:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTectonik());
+                break;
+            case 2:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTentacule());
+                break;
+            case 3:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTequila());
+                break;
+            case 4:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTerroriste());
+                break;
+            case 5:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTestosterone());
+                break;
+            case 6:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTeteNucleaire());
+                break;
+            case 7:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTetraplegique());
+                break;
+            case 8:
+                vue.setTxtCartePiochee2(vue.getTxtCarteTwerk());
+                break;
         }
     }
 

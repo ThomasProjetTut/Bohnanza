@@ -49,8 +49,11 @@ public class Pioche {
         Collections.shuffle(pioche);
     }
 
-    public void removeCarte() {
+    public Carte giveNextCarte(){
+        Carte carteRetour = pioche.get(pioche.size()-1);
         pioche.remove(pioche.size()-1);
+
+        return carteRetour;
     }
 
     public void addCarteToDefausse(Carte carte){

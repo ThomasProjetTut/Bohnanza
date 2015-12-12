@@ -78,7 +78,7 @@ public class JoueurUnitTest {
         joueur.addCarte(c2);
         Joueur joueur2=new Joueur("machin",1);
         joueur.donnerCarte(c2,joueur2);
-        Assert.assertEquals(joueur2.getZone().getZone().get(0),c2);
+        Assert.assertEquals(joueur2.getZoneEchange().getZone().get(0),c2);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class JoueurUnitTest {
         Joueur joueur=new Joueur("truc",0);
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
         joueur.recoisCarte(c2);
-        Assert.assertEquals(c2,joueur.getZone().getZone().get(0));
+        Assert.assertEquals(c2,joueur.getZoneEchange().getZone().get(0));
     }
 
     @Test
@@ -96,8 +96,8 @@ public class JoueurUnitTest {
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
         Carte_Pata_Tecktonik c= Mockito.mock(Carte_Pata_Tecktonik.class);
         joueur.echangeCarte(c2,joueur1,c);
-        Assert.assertEquals(c,joueur.getZone().getZone().get(0));
-        Assert.assertEquals(c2,joueur1.getZone().getZone().get(0));
+        Assert.assertEquals(c,joueur.getZoneEchange().getZone().get(0));
+        Assert.assertEquals(c2,joueur1.getZoneEchange().getZone().get(0));
     }
 
     /*
