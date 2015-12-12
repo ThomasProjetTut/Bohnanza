@@ -160,10 +160,9 @@ public class Controlleur {
 
                         vue.creerMenuCarte(carte1.getPosition().x + 75, carte1.getPosition().y);
                         vue.actualiserFenetreEchangeMenu();
-
                         retour = etapeEchangeMenuCarte1();
-
                         vue.creationSpriteCliquableCarte();
+                        putSprite();
                         vue.actualiserFenetreEchange();
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte2);
@@ -180,6 +179,7 @@ public class Controlleur {
                             vue.actualiserFenetreEchangeMenu();
                             retour = etapeEchangeMenuCarte2();
                             vue.creationSpriteCliquableCarte();
+                            putSprite();
                             vue.actualiserFenetreEchange();
                             if (carteNonJouee == 1) {
                                 vue.delSpriteCliquable(carte1);
