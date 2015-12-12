@@ -1693,7 +1693,7 @@ public class Vue{
 
     }
 
-
+/*
     public void creationSpriteCliquableMenuOuiNon(int joueur) {
         System.out.println("crea sprite O N");
         clearSpritesCliquables();
@@ -1706,7 +1706,7 @@ public class Vue{
         spriteCliquable.add(sprMenuOui);
         spriteCliquable.add(sprMenuNon);
 
-    }
+    }*/
 
     public void afficherMainJ1(){
         int espaceEntreCarte;

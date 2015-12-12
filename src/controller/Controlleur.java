@@ -342,7 +342,7 @@ public class Controlleur {
                                     case 4 :
                                         System.out.println("J4 ?");
                                         if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
-                                            vue.donnerCarteJ3(1);
+                                            vue.donnerCarteJ4(1);
                                             return 34;
                                         }else{
                                             return 50;
@@ -496,7 +496,7 @@ public class Controlleur {
                                     case 4 :
                                         System.out.println("J4 ?");
                                         if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
-                                            vue.donnerCarteJ3(2);
+                                            vue.donnerCarteJ4(2);
                                             return 34;
                                         }else{
                                             return 50;
@@ -611,7 +611,14 @@ public class Controlleur {
     }
 
     private boolean etapeConfirmation(int id, Sprite sprite){
-        vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y);
+
+        if(sprite == vue.getSprsJoueurs()[3]){
+            vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y - 50);
+
+        }else{
+            vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y);
+        }
+
         vue.actualisationFenetreMenuOuiNon();
 
 
