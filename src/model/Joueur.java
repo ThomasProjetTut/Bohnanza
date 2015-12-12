@@ -119,6 +119,17 @@ public class Joueur {
 
     }
 
+    public void planterViaZoneEchange(int numChamp, Pioche pioche, int placeInZone){
+
+        if (numChamp > maxChamps || numChamp < 1)
+            return;
+
+        if (!champs.get(numChamp - 1).planter(zoneEchange.getZone().get(placeInZone))) {
+            champs.get(numChamp-1).recolter(this, pioche);
+            champs.get(numChamp-1).planter(zoneEchange.getZone().get(placeInZone));
+        }
+    }
+
     public void recoisCarte(Carte c) {
         zoneEchange.ajouterCarte(c);
     }

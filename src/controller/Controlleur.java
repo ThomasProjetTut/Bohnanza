@@ -950,6 +950,7 @@ public class Controlleur {
 
     //Ajout des cartes de toutes les zones d'échange en tant que texture.
     public void putTextureInAllZoneEchange(){
+
         for (int i = 0; i < 4; i++) {
             for (Carte carte: joueurs[i].getZoneEchange().getZone()) {
                 vue.addSpriteIntoZoneEchange(i, carte.getIdCarte());

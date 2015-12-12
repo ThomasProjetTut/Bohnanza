@@ -30,4 +30,11 @@ public class Zone {
             zone.remove(carte);
         }
     }
+
+    public void printZone(){
+        System.out.println("Les carte de la zone :");
+        for (Carte carte : zone) {
+            System.out.println(carte.getNom());
+        }
+    }
 }
