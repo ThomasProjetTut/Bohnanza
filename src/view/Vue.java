@@ -410,6 +410,23 @@ public class Vue{
 
     }
 
+    public void clearMain(int idJoueur){
+        switch (idJoueur){
+            case 1:
+                mainJ1.clear();
+                break;
+            case 2:
+                mainJ2.clear();
+                break;
+            case 3:
+                mainJ3.clear();
+                break;
+            case 4:
+                mainJ4.clear();
+                break;
+        }
+    }
+
     private void creerFenetre() {
         fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
 
@@ -1420,7 +1437,14 @@ public class Vue{
     }
 
     public void afficherMainJ1(){
-        int espaceEntreCarte = 380%(75*mainJ1.size())/mainJ1.size();
+        int espaceEntreCarte;
+        if (mainJ1.size()>0){
+            espaceEntreCarte = 380%(75*mainJ1.size())/mainJ1.size();
+        }
+        else {
+            espaceEntreCarte = 0;
+        }
+
         while(mainJ1.size()*(75+espaceEntreCarte) > 370){
             espaceEntreCarte = espaceEntreCarte - 5;
         }

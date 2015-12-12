@@ -44,36 +44,15 @@ public class Controlleur {
 
     private void jeu() {
         while (vue.getFenetre().isOpen()) {
+
+
             for(Joueur j:joueurs){
                 j.recoisMain(pioche);
                 j.afficherMain();
 
-                for (Carte carte : j.getMain()){
-                    if (carte.isPataTecktonik()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTectonik());
-                    }
-                    else if (carte.isPataTentacule()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTentacule());
-                    }
-                    else if (carte.isPataTequilla()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTequila());
-                    }
-                    else if (carte.isPataTerroriste()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTerroriste());
-                    }
-                    else if (carte.isPataTestosterone()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTestosterone());
-                    }
-                    else if (carte.isPataTetenucleaire()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTeteNucleaire());
-                    }
-                    else if (carte.isPataTetraplegique()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTetraplegique());
-                    }
-                    else if (carte.isPataTwerk()){
-                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTwerk());
-                    }
-                }
+                //Ajout des cartes du model en tant que texture.
+
+                putTextureCarte(j);
 
             }
             System.out.println("Taille de la pioche : "+pioche.getTaillePioche());
@@ -113,14 +92,29 @@ public class Controlleur {
 
                         if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][0], vue.getFenetre())) {
                             System.out.println("plante premier champ");
+
+                            joueurActif.planter(1);
+                            actualiserMain(joueurActif);
+                            vue.actualiserFenetre();
+
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                             System.out.println("plante deuxième champ");
+
+                            joueurActif.planter(2);
+                            actualiserMain(joueurActif);
+                            vue.actualiserFenetre();
+
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
                             System.out.println("plante troisième champ");
+
+                            joueurActif.planter(3);
+                            actualiserMain(joueurActif);
+                            vue.actualiserFenetre();
+
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
                         }
@@ -787,6 +781,39 @@ public class Controlleur {
         }
     }
 
+    public void putTextureCarte(Joueur j){
+        for (Carte carte : j.getMain()){
+            if (carte.isPataTecktonik()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTectonik());
+            }
+            else if (carte.isPataTentacule()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTentacule());
+            }
+            else if (carte.isPataTequilla()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTequila());
+            }
+            else if (carte.isPataTerroriste()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTerroriste());
+            }
+            else if (carte.isPataTestosterone()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTestosterone());
+            }
+            else if (carte.isPataTetenucleaire()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTeteNucleaire());
+            }
+            else if (carte.isPataTetraplegique()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTetraplegique());
+            }
+            else if (carte.isPataTwerk()){
+                vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTwerk());
+            }
+        }
+    }
+
+    public void actualiserMain(Joueur j){
+        vue.clearMain(j.getIdJoueur());
+        putTextureCarte(j);
+    }
 
 }
 
