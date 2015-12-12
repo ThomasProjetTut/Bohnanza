@@ -217,7 +217,7 @@ public class Controlleur {
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())) {
                         System.out.println("garder");
                         System.out.println("appel garder carte 1");
-                        vue.garderCarte(1);
+                        vue.garderCarte(1, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return 1;
                     }else{
@@ -350,7 +350,7 @@ public class Controlleur {
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())){
                         System.out.println("garder");
                         System.out.println("appel garder 2");
-                        vue.garderCarte(2);
+                        vue.garderCarte(2, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return 1;
                     }else{
@@ -666,14 +666,6 @@ public class Controlleur {
         vue.afficherEtape(3);
         vue.actualiserFenetre();
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
-
-        /////////////////////////////////////////
-        vue.creerZoneEchangeJ1();
-        vue.creerZoneEchangeJ2();
-        vue.creerZoneEchangeJ3();
-        vue.creerZoneEchangeJ4();
-        /////////////////////////////////////////
-
 
         for (int i = 0; i < 4; i++) {
 

@@ -26,7 +26,7 @@ public class Vue{
     private Image icone = new Image();
 
     //////////////////////////////////////////////////////////////////////////////////////
-        //Declaration Textures
+    //Declaration Textures
     // Textures generales
     private Texture txtFond = new Texture();
 
@@ -39,6 +39,17 @@ public class Vue{
     //champ
     private Texture txtChampDispo = new Texture();
     private Texture txtChampIndispo = new Texture();
+
+    //champs plantés
+
+    private Texture txtChampTectonik = new Texture();
+    private Texture txtChampTentacule = new Texture();
+    private Texture txtChampTequila = new Texture();
+    private Texture txtChampTerroriste = new Texture();
+    private Texture txtChampTestosterone = new Texture();
+    private Texture txtChampTetenucleaire = new Texture();
+    private Texture txtChampTetraplegique = new Texture();
+    private Texture txtChampTwerk = new Texture();
 
     //Textures menu
     //menu carte
@@ -87,7 +98,7 @@ public class Vue{
 
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
-            //Declaration sprite
+    //Declaration sprite
     // sprites generaux
     private Sprite sprFond = new Sprite();
     private Sprite etapeEnCours = new Sprite();
@@ -137,7 +148,7 @@ public class Vue{
     private Sprite sprJoueurAttente3 = new Sprite();
     private Sprite sprJoueurAttente4 = new Sprite();
 
-        //liste sprite
+    //liste sprite
     //sprite main cartes
     private ArrayList<Sprite> mainJ1 = new ArrayList<Sprite>();
     private ArrayList<Sprite> mainJ2 = new ArrayList<Sprite>();
@@ -214,6 +225,15 @@ public class Vue{
 
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
+
+            txtChampTectonik.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatectonik_plante.png"));
+            txtChampTentacule.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatentacule_plante.png"));
+            txtChampTequila.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatequila_plante.png"));
+            txtChampTerroriste.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_pataterroriste_plante.png"));
+            txtChampTestosterone.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatestosterone_plante.png"));
+            txtChampTetenucleaire.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatetenucleaire_plante.png"));
+            txtChampTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatetraplegique_plante.png"));
+            txtChampTwerk.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatwerk_plante.png"));
 
             txtCarteTectonik.loadFromFile(Paths.get("Sprites/Sprite_carte/patatectonik.png"));
             txtCarteTentacule.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
@@ -698,6 +718,17 @@ public class Vue{
     public ArrayList<Sprite> getZoneEchangeJ4(){
         return zoneEchangeJ4;
     }
+    public ArrayList<Sprite> getZoneEchangeJoueurCourant(int joueurCourant){
+        if(joueurCourant == 0){
+            return getZoneEchangeJ1();
+        }else if (joueurCourant == 1){
+            return getZoneEchangeJ2();
+        }else if (joueurCourant == 2){
+            return getZoneEchangeJ3();
+        }else{
+            return getZoneEchangeJ4();
+        }
+    }
 
     private void afficherCarteTentacule(int posX, int posY, float rotate){
         mainJ1.add(new Sprite());
@@ -1081,6 +1112,242 @@ public class Vue{
 
     }
 
+    public void actualiserFenetrePlantagePostEchangeJ1() {
+        System.out.println("actu menu choix");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
+
+        for(Sprite sprite : sprsAutresJoueurs){
+            fenetre.draw(sprite);
+        }
+
+        afficherZoneEchangeJ1();
+
+        afficherMainJ1();
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+
+    }
+    public void actualiserFenetrePlantagePostEchangeJ2() {
+        System.out.println("actu menu choix");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
+
+        for(Sprite sprite : sprsAutresJoueurs){
+            fenetre.draw(sprite);
+        }
+
+        afficherZoneEchangeJ2();
+
+        afficherMainJ2();
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+
+    }
+    public void actualiserFenetrePlantagePostEchangeJ3() {
+        System.out.println("actu menu choix");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
+
+        for(Sprite sprite : sprsAutresJoueurs){
+            fenetre.draw(sprite);
+        }
+
+        afficherZoneEchangeJ3();
+
+        afficherMainJ3();
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+
+    }
+    public void actualiserFenetrePlantagePostEchangeJ4() {
+        System.out.println("actu menu choix");
+        fenetre.draw(sprFond);
+        for (Sprite sprite : sprChampJ1){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ2){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ3){
+            fenetre.draw(sprite);
+        }
+        for (Sprite sprite : sprChampJ4){
+            fenetre.draw(sprite);
+        }
+
+        for (Sprite sprite : sprsBoutonsEtapes){
+            fenetre.draw(sprite);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente1)){
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
+        }else{
+            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente2)){
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
+        }else{
+            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente3)){
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
+        }else{
+            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
+        }
+
+        if(spriteCliquable.contains(sprJoueurAttente4)){
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
+        }else{
+            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
+        }
+
+
+        for(Sprite sprite : sprsAutresJoueurs){
+            fenetre.draw(sprite);
+        }
+
+        afficherZoneEchangeJ4();
+
+        afficherMainJ4();
+
+        fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+
+
+    }
 
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
         if(isCliquable(sprite)) {
@@ -1159,14 +1426,6 @@ public class Vue{
 
     }
 
-    public void creationSpriteCliquableEtape3(int joueur){
-
-    }
-
-    public void creationSpriteCliquableEtape4(int joueur){
-
-    }
-
     public void creerMenuCarte(float posX, float posY){
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
         int espaceInterBouton = 10;
@@ -1234,19 +1493,20 @@ public class Vue{
         return sprFond;
     }
 
-    public void garderCarte(int id) {
-        System.out.println("garder carte");
+    public void garderCarte(int id, int joueur) {
+        System.out.println("garder carte" + id + " " + joueur);
         if(id == 1){
             System.out.println("garder carte 1");
             delSpriteCliquable(getSprCartePiochee1());
+            getZoneEchangeJoueurCourant(joueur).add(sprCartePiochee1);
             sprCartePiochee1.setPosition(509, 625);
         }else{
             System.out.println("garder carte 2");
             delSpriteCliquable(getSprCartePiochee2());
+            getZoneEchangeJoueurCourant(joueur).add(sprCartePiochee2);
             sprCartePiochee2.setPosition(417, 625);
         }
 
-        actualiserFenetreEchange();
     }
 
     public void creationSpriteCliquableDon(int joueur) {
@@ -1426,10 +1686,10 @@ public class Vue{
         System.out.println("crea sprite O N");
         clearSpritesCliquables();
 
-       for(Sprite sprite : getSprsAutresJoueurs(joueur)){
-           System.out.println("liudbsfoivjbsdflijvb");
-           spriteCliquable.add(sprite);
-       }
+        for(Sprite sprite : getSprsAutresJoueurs(joueur)){
+            System.out.println("liudbsfoivjbsdflijvb");
+            spriteCliquable.add(sprite);
+        }
 
         spriteCliquable.add(sprMenuOui);
         spriteCliquable.add(sprMenuNon);
@@ -1449,12 +1709,11 @@ public class Vue{
             espaceEntreCarte = espaceEntreCarte - 5;
         }
 
-       for(int i = mainJ1.size() - 1; i >= 0; i--){
-           mainJ1.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
-           fenetre.draw(mainJ1.get(i));
-       }
+        for(int i = mainJ1.size() - 1; i >= 0; i--){
+            mainJ1.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
+            fenetre.draw(mainJ1.get(i));
+        }
     }
-
     public void afficherMainJ2(){
         int espaceEntreCarte = 380%(75*mainJ2.size())/mainJ2.size();
         while(mainJ2.size()*(75+espaceEntreCarte) > 370){
@@ -1466,7 +1725,6 @@ public class Vue{
             fenetre.draw(mainJ2.get(i));
         }
     }
-
     public void afficherMainJ3(){
         int espaceEntreCarte = 380%(75*mainJ3.size())/mainJ3.size();
         while(mainJ3.size()*(75+espaceEntreCarte) > 370){
@@ -1478,7 +1736,6 @@ public class Vue{
             fenetre.draw(mainJ3.get(i));
         }
     }
-
     public void afficherMainJ4(){
         int espaceEntreCarte = 380%(75*mainJ4.size())/mainJ4.size();
         while(mainJ4.size()*(75+espaceEntreCarte) > 370){
@@ -1491,20 +1748,14 @@ public class Vue{
         }
     }
 
-    public void creerZoneEchangeJ1() {
 
+    private void afficherZoneEchangeJ1() {
     }
-
-    public void creerZoneEchangeJ2() {
-
+    private void afficherZoneEchangeJ2() {
     }
-
-    public void creerZoneEchangeJ3() {
-
+    private void afficherZoneEchangeJ3() {
     }
-
-    public void creerZoneEchangeJ4() {
-
+    private void afficherZoneEchangeJ4() {
     }
 
     //GETTER AND SETTER
@@ -1540,4 +1791,158 @@ public class Vue{
     public Texture getTxtCarteTwerk() {
         return txtCarteTwerk;
     }
+
+    public void creationSpriteCliquablePlantagePostEchange(int joueur) {
+        for(Sprite sprite : sprsChamps[joueur]){
+
+            spriteCliquable.add(sprite);
+
+        }
+
+
+    }
+
+    public void planterChamp(int joueur, int champ, int idCarte){
+        switch(joueur){
+            case 0 :
+                planterChampJ1(champ, idCarte);
+                break;
+            case 1 :
+                planterChampJ2(champ, idCarte);
+                break;
+            case 2 :
+                planterChampJ3(champ, idCarte);
+                break;
+            case 3 :
+                planterChampJ4(champ, idCarte);
+                break;
+
+        }
+    }
+
+
+    private void planterChampJ1(int champ, int idCarte) {
+        switch (idCarte){
+            case 1 :
+                sprChampJ1[champ].setTexture(txtChampTectonik);
+                break;
+            case 2 :
+                sprChampJ1[champ].setTexture(txtChampTentacule);
+                break;
+            case 3 :
+                sprChampJ1[champ].setTexture(txtChampTequila);
+                break;
+            case 4 :
+                sprChampJ1[champ].setTexture(txtChampTerroriste);
+                break;
+            case 5 :
+                sprChampJ1[champ].setTexture(txtChampTestosterone);
+                break;
+            case 6 :
+                sprChampJ1[champ].setTexture(txtChampTetenucleaire);
+                break;
+            case 7 :
+                sprChampJ1[champ].setTexture(txtChampTetraplegique);
+                break;
+            case 8 :
+                sprChampJ1[champ].setTexture(txtChampTwerk);
+                break;
+
+        }
+        actualiserFenetrePlantagePostEchangeJ1();
+    }
+
+    private void planterChampJ2(int champ, int idCarte) {
+        switch (idCarte){
+            case 1 :
+                sprChampJ2[champ].setTexture(txtChampTectonik);
+                break;
+            case 2 :
+                sprChampJ2[champ].setTexture(txtChampTentacule);
+                break;
+            case 3 :
+                sprChampJ2[champ].setTexture(txtChampTequila);
+                break;
+            case 4 :
+                sprChampJ2[champ].setTexture(txtChampTerroriste);
+                break;
+            case 5 :
+                sprChampJ2[champ].setTexture(txtChampTestosterone);
+                break;
+            case 6 :
+                sprChampJ2[champ].setTexture(txtChampTetenucleaire);
+                break;
+            case 7 :
+                sprChampJ2[champ].setTexture(txtChampTetraplegique);
+                break;
+            case 8 :
+                sprChampJ2[champ].setTexture(txtChampTwerk);
+                break;
+
+        }
+        actualiserFenetrePlantagePostEchangeJ2();
+    }
+
+    private void planterChampJ3(int champ, int idCarte) {
+        switch (idCarte){
+            case 1 :
+                sprChampJ3[champ].setTexture(txtChampTectonik);
+                break;
+            case 2 :
+                sprChampJ3[champ].setTexture(txtChampTentacule);
+                break;
+            case 3 :
+                sprChampJ3[champ].setTexture(txtChampTequila);
+                break;
+            case 4 :
+                sprChampJ3[champ].setTexture(txtChampTerroriste);
+                break;
+            case 5 :
+                sprChampJ3[champ].setTexture(txtChampTestosterone);
+                break;
+            case 6 :
+                sprChampJ3[champ].setTexture(txtChampTetenucleaire);
+                break;
+            case 7 :
+                sprChampJ3[champ].setTexture(txtChampTetraplegique);
+                break;
+            case 8 :
+                sprChampJ3[champ].setTexture(txtChampTwerk);
+                break;
+
+        }
+        actualiserFenetrePlantagePostEchangeJ3();
+    }
+
+    private void planterChampJ4(int champ, int idCarte) {
+        switch (idCarte){
+            case 1 :
+                sprChampJ4[champ].setTexture(txtChampTectonik);
+                break;
+            case 2 :
+                sprChampJ4[champ].setTexture(txtChampTentacule);
+                break;
+            case 3 :
+                sprChampJ4[champ].setTexture(txtChampTequila);
+                break;
+            case 4 :
+                sprChampJ4[champ].setTexture(txtChampTerroriste);
+                break;
+            case 5 :
+                sprChampJ4[champ].setTexture(txtChampTestosterone);
+                break;
+            case 6 :
+                sprChampJ4[champ].setTexture(txtChampTetenucleaire);
+                break;
+            case 7 :
+                sprChampJ4[champ].setTexture(txtChampTetraplegique);
+                break;
+            case 8 :
+                sprChampJ4[champ].setTexture(txtChampTwerk);
+                break;
+
+        }
+        actualiserFenetrePlantagePostEchangeJ4();
+    }
+
 }
