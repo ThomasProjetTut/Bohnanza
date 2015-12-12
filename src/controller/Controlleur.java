@@ -141,7 +141,6 @@ public class Controlleur {
 
         vue.afficherEtape(2);
         vue.actualiserFenetreEchange();
-        //vue.afficherMainJ1();
 
         Sprite carte1 = vue.getSprCartePiochee1();
         Sprite carte2 = vue.getSprCartePiochee2();
@@ -161,7 +160,9 @@ public class Controlleur {
 
                         vue.creerMenuCarte(carte1.getPosition().x + 75, carte1.getPosition().y);
                         vue.actualiserFenetreEchangeMenu();
+
                         retour = etapeEchangeMenuCarte1();
+
                         vue.creationSpriteCliquableCarte();
                         vue.actualiserFenetreEchange();
                         if (carteNonJouee == 1) {
@@ -204,11 +205,8 @@ public class Controlleur {
                             etapePlantageEchange();
                             return;
                         }
-
                     }
-
                 }
-
             }
         }
     }
@@ -237,7 +235,8 @@ public class Controlleur {
                         vue.garderCarte(1, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return 1;
-                    }else{
+                    }
+                    else{
                         if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
                             System.out.println("echange");
 
@@ -569,15 +568,20 @@ public class Controlleur {
                     vue.clearSpritesCliquables();
                     switch (i + 2){
                         case 1 :
+
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ1(idCarte);
                             break;
                         case 2 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ2(idCarte);
                             break;
                         case 3 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ3(idCarte);
                             break;
                         case 4 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ4(idCarte);
                             break;
                     }
@@ -588,15 +592,19 @@ public class Controlleur {
                     vue.clearSpritesCliquables();
                     switch (i + 1){
                         case 1 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ1(idCarte);
                             break;
                         case 2 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ2(idCarte);
                             break;
                         case 3 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ3(idCarte);
                             break;
                         case 4 :
+                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
                             vue.donnerCarteJ4(idCarte);
                             break;
                     }

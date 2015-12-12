@@ -128,13 +128,38 @@ public class Joueur {
         main.remove(c);
     }
 
-    public void echangeCarte(Carte donnee, Joueur cible, Carte recue) {
-        donnerCarte(donnee,cible);
-        cible.donnerCarte(recue,this);
+    public void echangeCarteMainMain(Carte donnee, Joueur cible, Carte recue) {
+
+        if (recue != null){
+            donnerCarte(donnee,cible);
+            cible.donnerCarte(recue,this);
+        }
+    }
+
+    public void echangeCartePiocheMain(Carte donnee, Joueur cible, Carte recue) {
+
+        if (recue != null){
+            cible.recoisCarte(donnee);
+            cible.donnerCarte(recue,this);
+        }
+
     }
 
     public void addThunes(Carte carte) {
         thunes.add(carte);
+    }
+
+    public Carte findCarteById (int idCarte){
+        Carte carteRetour = null;
+
+        for (Carte carte: main) {
+            if (carte.getIdCarte() == idCarte){
+                carteRetour = carte;
+            }
+        }
+
+        return carteRetour;
+
     }
 
     public boolean haveCarteInMain(int idCarte){
