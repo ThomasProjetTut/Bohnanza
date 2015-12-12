@@ -2,6 +2,7 @@ package model;
 
 import model.Carte.Carte;
 
+import javax.net.ssl.SSLContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,21 +14,12 @@ public class Joueur {
     private String nom;
     private List<Carte> main;
     private List<Champ> champs;
-
     private Zone zoneEchange;
-
-    public int getIdJoueur() {
-        return idJoueur;
-    }
-
-    public void setIdJoueur(int idJoueur) {
-        this.idJoueur = idJoueur;
-    }
-
     private int idJoueur;
 
     public Joueur(){
         nom="";
+        idJoueur = 0;
         thunes = new ArrayList<Carte>();
         nbThunes = thunes.size();
         maxChamps = 2;
@@ -42,8 +34,9 @@ public class Joueur {
         main = new ArrayList<Carte>();
     }
 
-    public Joueur(String nom) {
+    public Joueur(String nom, int idJoueur) {
         this.nom=nom;
+        this.idJoueur = idJoueur;
         thunes = new ArrayList<Carte>();
         maxChamps = 2;
         champs = new ArrayList<Champ>();
@@ -57,41 +50,30 @@ public class Joueur {
         main = new ArrayList<Carte>();
     }
 
-    public Joueur(int id) {
-        nom="";
-        thunes =new ArrayList<Carte>();
-        maxChamps = 2;
-        idJoueur=id;
-        champs = new ArrayList<Champ>();
-
-        for (int i = 0 ; i < maxChamps ; i++) {
-            champs.add(new Champ(i+1));
-        }
-
-        zoneEchange=new Zone();
-
-        main = new ArrayList<Carte>();
-    }
-
-    public void recoisMain() {
+    public void recoisMain(Pioche pioche) {
         main.clear();
 
         // Ajoute la premiere carte & la supprime du jeu de carte
         for (int i = 0 ; i < 4 ; i++) {
-            piocher();
+            piocher(pioche);
         }
     }
 
-    public void piocher() {
-        if (main.size() > 4) {
-            System.out.println("Tu as déjà une main complète.");
-            return;
+    public void piocher(Pioche pioche) {
+
+        addCarte(pioche.getlisteCarte().get(0));
+        pioche.removeCarte();
+
+    }
+
+    public void afficherMain(){
+        System.out.println("Main de "+nom+" :");
+
+        for (Carte carte: main) {
+            System.out.println(carte.getNom());
         }
 
-        List<Carte> cartes = Pioche.getlisteCarte();
-
-        addCarte(cartes.get(0));
-        Pioche.removeCarte();
+        System.out.println("Fin de l'affichage des mains.");
     }
 
     public void acheterChamps() {
@@ -142,6 +124,8 @@ public class Joueur {
         cible.donnerCarte(recue,this);
     }
 
+    //GETTER AND SETTER
+
     public List<Carte> getThunes() {
         return thunes;
     }
@@ -150,7 +134,6 @@ public class Joueur {
         this.thunes = thunes;
     }
 
-
     public int getNbThunes() {
         nbThunes = thunes.size();
         return nbThunes;
@@ -158,6 +141,14 @@ public class Joueur {
 
     public void setNbThunes(int nbThunes) {
         this.nbThunes = nbThunes;
+    }
+
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public void setIdJoueur(int idJoueur) {
+        this.idJoueur = idJoueur;
     }
 
 }

@@ -18,11 +18,11 @@ public class JoueurUnitTest {
     public void TestRecoisMain(){
         Pioche pioche = new Pioche();
 
-        Joueur joueur1 =new Joueur("Henri");
-        Joueur joueur2 =new Joueur("Henri2");
+        Joueur joueur1 =new Joueur("Henri",1);
+        Joueur joueur2 =new Joueur("Henri2",2);
 
-        joueur1.recoisMain();
-        joueur2.recoisMain();
+        joueur1.recoisMain(pioche);
+        joueur2.recoisMain(pioche);
 
         Assert.assertNotSame(joueur1, joueur2);
     }
@@ -31,13 +31,13 @@ public class JoueurUnitTest {
     public void TestPiocher(){
         Pioche pioche = new Pioche();
 
-        Joueur joueur1 =new Joueur("Henri");
+        Joueur joueur1 =new Joueur("Henri",1);
 
-        joueur1.recoisMain();
+        joueur1.recoisMain(pioche);
 
         int nbCartes = joueur1.getMain().size();
 
-        joueur1.piocher();
+        joueur1.piocher(pioche);
 
         Assert.assertNotSame(nbCartes, joueur1.getMain().size());
     }
@@ -73,17 +73,17 @@ public class JoueurUnitTest {
 
     @Test
     public void testDonnerCarte(){
-        Joueur joueur=new Joueur("truc");
+        Joueur joueur=new Joueur("truc",0);
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
         joueur.addCarte(c2);
-        Joueur joueur2=new Joueur("machin");
+        Joueur joueur2=new Joueur("machin",1);
         joueur.donnerCarte(c2,joueur2);
         Assert.assertEquals(joueur2.getZone().getZone().get(0),c2);
     }
 
     @Test
     public void testRecevoirCarte(){
-        Joueur joueur=new Joueur("truc");
+        Joueur joueur=new Joueur("truc",0);
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
         joueur.recoisCarte(c2);
         Assert.assertEquals(c2,joueur.getZone().getZone().get(0));
@@ -91,8 +91,8 @@ public class JoueurUnitTest {
 
     @Test
     public void testEchangeCarte(){
-        Joueur joueur=new Joueur("test");
-        Joueur joueur1=new Joueur("test1");
+        Joueur joueur=new Joueur("test",0);
+        Joueur joueur1=new Joueur("test1",1);
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
         Carte_Pata_Tecktonik c= Mockito.mock(Carte_Pata_Tecktonik.class);
         joueur.echangeCarte(c2,joueur1,c);

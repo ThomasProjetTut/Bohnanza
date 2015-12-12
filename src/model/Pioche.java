@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Pioche {
 
-    private static List<Carte> listeCarte;
+    private List<Carte> listeCarte;
 
     public Pioche(){
         initListeCarte();
@@ -45,11 +45,15 @@ public class Pioche {
         Collections.shuffle(listeCarte);
     }
 
-    public static List<Carte> getlisteCarte() {
+    public List<Carte> getlisteCarte() {
         return listeCarte;
     }
 
-    public static void removeCarte() {
+    public void removeCarte() {
         listeCarte.remove(0);
+    }
+
+    public int getTaillePioche(){
+        return listeCarte.size();
     }
 }

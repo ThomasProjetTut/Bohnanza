@@ -1,7 +1,9 @@
 package controller;
 
 //import jdk.nashorn.internal.ir.SplitReturn;
+import model.Carte.Carte;
 import model.Joueur;
+import model.Pioche;
 import org.jsfml.graphics.Sprite;
 import org.jsfml.window.event.Event;
 import view.Vue;
@@ -16,14 +18,15 @@ public class Controlleur {
     private Vue vue;
     private Joueur[] joueurs;
     private Joueur joueurActif;
+    private Pioche pioche;
 
     public Controlleur() throws IOException {
         vue = new Vue();
         joueurs=new Joueur[4];
-        Joueur joueur1=new Joueur(1);
-        Joueur joueur2=new Joueur(2);
-        Joueur joueur3=new Joueur(3);
-        Joueur joueur4=new Joueur(4);
+        Joueur joueur1=new Joueur("Joueur 1",1);
+        Joueur joueur2=new Joueur("Joueur 2",2);
+        Joueur joueur3=new Joueur("Joueur 3",3);
+        Joueur joueur4=new Joueur("Joueur 4",4);
 
         joueurs[0]=joueur1;
         joueurs[1]=joueur2;
@@ -31,6 +34,8 @@ public class Controlleur {
         joueurs[3]=joueur4;
 
         joueurActif=joueurs[0];
+
+        pioche = new Pioche();
 
         jeu();
         //updateJeu();
@@ -40,13 +45,44 @@ public class Controlleur {
     private void jeu() {
         while (vue.getFenetre().isOpen()) {
             for(Joueur j:joueurs){
-                j.recoisMain();
+                j.recoisMain(pioche);
+                j.afficherMain();
+
+                for (Carte carte : j.getMain()){
+                    if (carte.isPataTecktonik()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTectonik());
+                    }
+                    else if (carte.isPataTentacule()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTentacule());
+                    }
+                    else if (carte.isPataTequilla()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTequila());
+                    }
+                    else if (carte.isPataTerroriste()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTerroriste());
+                    }
+                    else if (carte.isPataTestosterone()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTestosterone());
+                    }
+                    else if (carte.isPataTetenucleaire()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTeteNucleaire());
+                    }
+                    else if (carte.isPataTetraplegique()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTetraplegique());
+                    }
+                    else if (carte.isPataTwerk()){
+                        vue.addCarteMain(j.getIdJoueur(), vue.getTxtCarteTwerk());
+                    }
+                }
+
             }
+            System.out.println("Taille de la pioche : "+pioche.getTaillePioche());
             etapePlanter();
         }
     }
 
     private void etapePlanter() {
+
         vue.afficherEtape(1);
         vue.creationSpriteCliquableEtape1(joueurActif.getIdJoueur());
         vue.actualiserFenetre();
@@ -79,24 +115,21 @@ public class Controlleur {
                             System.out.println("plante premier champ");
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
-                        } else {
-                            if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
-                                System.out.println("plante deuxi?me champ");
-                                vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
-                                nbplants++;
-                            } else {
-                                if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
-                                    System.out.println("plante troisi?me champ");
-                                    vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
-                                    nbplants++;
-                                }
-                            }
+                        } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
+                            System.out.println("plante deuxième champ");
+                            vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
+                            nbplants++;
+                        } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
+                            System.out.println("plante troisième champ");
+                            vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
+                            nbplants++;
                         }
                     }
                 }
             }
         }
     }
+
 
 
 

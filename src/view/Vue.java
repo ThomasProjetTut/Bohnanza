@@ -145,7 +145,7 @@ public class Vue{
     private ArrayList<Sprite> mainJ4 = new ArrayList<Sprite>();
 
 
-    //sprite carte � planter
+    //sprite carte à planter
     private ArrayList<Sprite> zoneEchangeJ1 = new ArrayList<Sprite>();
     private ArrayList<Sprite> zoneEchangeJ2 = new ArrayList<Sprite>();
     private ArrayList<Sprite> zoneEchangeJ3 = new ArrayList<Sprite>();
@@ -215,14 +215,14 @@ public class Vue{
             txtChampDispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champactif.png"));
             txtChampIndispo.loadFromFile(Paths.get("Sprites/Sprite_champ/champinactif.png"));
 
-            txtCarteTectonik.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
+            txtCarteTectonik.loadFromFile(Paths.get("Sprites/Sprite_carte/patatectonik.png"));
             txtCarteTentacule.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
             txtCarteTequila.loadFromFile(Paths.get("Sprites/Sprite_carte/patatequila.jpg"));
             txtCarteTerroriste.loadFromFile(Paths.get("Sprites/Sprite_carte/pataterroriste.jpg"));
             txtCarteTestosterone.loadFromFile(Paths.get("Sprites/Sprite_carte/patatestosterone.jpg"));
             txtCarteTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetenucleaire.jpg"));
             txtCarteTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
-            txtCarteTwerk.loadFromFile(Paths.get("Sprites/Sprite_carte/patatetraplegique.jpg"));
+            txtCarteTwerk.loadFromFile(Paths.get("Sprites/Sprite_carte/patatwerk.png"));
 
             txtMCCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/fondMCC.png"));
             txtMCCTectonik.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTectonik.png"));
@@ -233,20 +233,6 @@ public class Vue{
             txtMCCTeteNucleaire.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetenucleaire.png"));
             txtMCCTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTetraplegique.png"));
             txtMCCTwerk.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/menu_choix_carte/MCCTwerk.png"));
-
-
-            mainJ1.add(0, new Sprite());
-            mainJ1.get(0).setTexture(txtCarteTeteNucleaire);
-            mainJ1.add(1, new Sprite());
-            mainJ1.get(1).setTexture(txtCarteTentacule);
-            mainJ1.add(2, new Sprite());
-            mainJ1.get(2).setTexture(txtCarteTequila);
-            mainJ1.add(3, new Sprite());
-            mainJ1.get(3).setTexture(txtCarteTequila);
-            mainJ1.add(4, new Sprite());
-            mainJ1.get(4).setTexture(txtCarteTequila);
-            mainJ1.add(5, new Sprite());
-            mainJ1.get(5).setTexture(txtCarteTequila);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -399,6 +385,28 @@ public class Vue{
         sprJoueurAttente2.setPosition(35, 825);
         sprJoueurAttente3.setPosition(35, 875);
         sprJoueurAttente4.setPosition(35, 925);
+
+    }
+
+    public void addCarteMain(int idJoueur,Texture txt){
+        switch (idJoueur){
+            case 1:
+                mainJ1.add(mainJ1.size(), new Sprite());
+                mainJ1.get(mainJ1.size()-1).setTexture(txt);
+                break;
+            case 2:
+                mainJ2.add(mainJ2.size(), new Sprite());
+                mainJ2.get(mainJ2.size()-1).setTexture(txt);
+                break;
+            case 3:
+                mainJ3.add(mainJ3.size(), new Sprite());
+                mainJ3.get(mainJ3.size()-1).setTexture(txt);
+                break;
+            case 4:
+                mainJ4.add(mainJ4.size(), new Sprite());
+                mainJ4.get(mainJ4.size()-1).setTexture(txt);
+                break;
+        }
 
     }
 
@@ -1473,5 +1481,39 @@ public class Vue{
 
     public void creerZoneEchangeJ4() {
 
+    }
+
+    //GETTER AND SETTER
+
+    public Texture getTxtCarteTequila() {
+        return txtCarteTequila;
+    }
+
+    public Texture getTxtCarteTentacule() {
+        return txtCarteTentacule;
+    }
+
+    public Texture getTxtCarteTerroriste() {
+        return txtCarteTerroriste;
+    }
+
+    public Texture getTxtCarteTestosterone() {
+        return txtCarteTestosterone;
+    }
+
+    public Texture getTxtCarteTeteNucleaire() {
+        return txtCarteTeteNucleaire;
+    }
+
+    public Texture getTxtCarteTetraplegique() {
+        return txtCarteTetraplegique;
+    }
+
+    public Texture getTxtCarteTectonik() {
+        return txtCarteTectonik;
+    }
+
+    public Texture getTxtCarteTwerk() {
+        return txtCarteTwerk;
     }
 }
