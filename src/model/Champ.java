@@ -2,7 +2,6 @@ package model;
 
 import model.Carte.Carte;
 
-
 import java.util.ArrayList;
 import java.util.List;
 

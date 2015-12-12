@@ -93,7 +93,7 @@ public class Controlleur {
                         if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][0], vue.getFenetre())) {
                             System.out.println("plante premier champ");
 
-                            joueurActif.planter(1);
+                            joueurActif.planter(1,pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
 
@@ -102,7 +102,7 @@ public class Controlleur {
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                             System.out.println("plante deuxième champ");
 
-                            joueurActif.planter(2);
+                            joueurActif.planter(2,pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
 
@@ -111,7 +111,7 @@ public class Controlleur {
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
                             System.out.println("plante troisième champ");
 
-                            joueurActif.planter(3);
+                            joueurActif.planter(3,pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
 

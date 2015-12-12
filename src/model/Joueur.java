@@ -106,13 +106,20 @@ public class Joueur {
         main.add(carte);
     }
 
-    public void planter(int champ) {
+    public void planter(int numChamp, Pioche pioche) {
 
-        if (champ > maxChamps || champ < 1)
+        if (numChamp > maxChamps || numChamp < 1)
             return;
 
-        champs.get(champ - 1).planter(main.get(0));
-        main.remove(main.get(0));
+        if (champs.get(numChamp - 1).planter(main.get(0))){
+            main.remove(main.get(0));
+        }
+        else {
+            champs.get(numChamp-1).recolter(this, pioche);
+            champs.get(numChamp-1).planter(main.get(0));
+            main.remove(main.get(0));
+        }
+
     }
 
     public void recoisCarte(Carte c) {
@@ -157,5 +164,13 @@ public class Joueur {
 
     public void setIdJoueur(int idJoueur) {
         this.idJoueur = idJoueur;
+    }
+
+    public int getMaxChamps() {
+        return maxChamps;
+    }
+
+    public void setMaxChamps(int maxChamps) {
+        this.maxChamps = maxChamps;
     }
 }
