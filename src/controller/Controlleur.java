@@ -249,57 +249,57 @@ public class Controlleur {
                             vue.actualiserFenetreEchangeMenu();
                             switch (retour){
                                 case 0 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour tectonik");
+                                    if(etapeDemandeEchangeAcceptation(1,1) == -5){
                                         return 50;
                                     }else{
                                         return 20;
                                     }
                                 case 1 :
-                                    System.out.println("retour tequila");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour tentacule");
+                                    if(etapeDemandeEchangeAcceptation(1,2) == -5){
                                         return 50;
                                     }else {
                                         return 21;
                                     }
                                 case 2 :
-                                    System.out.println("retour terroriste");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour tequila");
+                                    if(etapeDemandeEchangeAcceptation(1,3) == -5){
                                         return 50;
                                     }else {
                                         return 22;
                                     }
                                 case 3 :
-                                    System.out.println("retour testosterone");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour terroriste");
+                                    if(etapeDemandeEchangeAcceptation(1,4) == -5){
                                         return 50;
                                     }else {
                                         return 23;
                                     }
                                 case 4 :
-                                    System.out.println("retour tetenucleaire");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour testosterone");
+                                    if(etapeDemandeEchangeAcceptation(1,5) == -5){
                                         return 50;
                                     }else{
                                         return 24;
                                     }
                                 case 5 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour tetenucleaire");
+                                    if(etapeDemandeEchangeAcceptation(1,6) == -5){
                                         return 50;
                                     }else{
                                         return 25;
                                     }
                                 case 6 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour tetraplegique");
+                                    if(etapeDemandeEchangeAcceptation(1,7) == -5){
                                         return 50;
                                     }else{
                                         return 26;
                                     }
                                 case 7 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(1) == -5){
+                                    System.out.println("retour twerk");
+                                    if(etapeDemandeEchangeAcceptation(1,8) == -5){
                                         return 50;
                                     }else{
                                         return 27;
@@ -402,57 +402,57 @@ public class Controlleur {
                             vue.creationSpriteCliquableMenuCarte();
                             switch (retour){
                                 case 0 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour tectonik");
+                                    if(etapeDemandeEchangeAcceptation(2,1) == -5){
                                         return 50;
                                     }else{
                                         return 20;
                                     }
                                 case 1 :
-                                    System.out.println("retour tequila");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour tentacule");
+                                    if(etapeDemandeEchangeAcceptation(2,2) == -5){
                                         return 50;
                                     }else {
                                         return 21;
                                     }
                                 case 2 :
-                                    System.out.println("retour terroriste");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour tequila");
+                                    if(etapeDemandeEchangeAcceptation(2,3) == -5){
                                         return 50;
                                     }else {
                                         return 22;
                                     }
                                 case 3 :
-                                    System.out.println("retour testost�rone");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour terroriste");
+                                    if(etapeDemandeEchangeAcceptation(2,4) == -5){
                                         return 50;
                                     }else {
                                         return 23;
                                     }
                                 case 4 :
-                                    System.out.println("retour tetenucleaire");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour testosterone");
+                                    if(etapeDemandeEchangeAcceptation(2,5) == -5){
                                         return 50;
                                     }else{
                                         return 24;
                                     }
                                 case 5 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour tetenucleaire");
+                                    if(etapeDemandeEchangeAcceptation(2,6) == -5){
                                         return 50;
                                     }else{
                                         return 25;
                                     }
                                 case 6 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour tetraplegique");
+                                    if(etapeDemandeEchangeAcceptation(2,7) == -5){
                                         return 50;
                                     }else{
                                         return 26;
                                     }
                                 case 7 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(2) == -5){
+                                    System.out.println("retour twerk");
+                                    if(etapeDemandeEchangeAcceptation(2,8) == -5){
                                        return 50;
                                     }else{
                                         return 27;
@@ -526,7 +526,7 @@ public class Controlleur {
 
     }
 
-    private int etapeDemandeEchangeAcceptation(int idCarte) {
+    private int etapeDemandeEchangeAcceptation(int idCarte, int idCarteVoulu) {
 
         Sprite[] spriteJoueur;
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
@@ -535,54 +535,27 @@ public class Controlleur {
         for(Sprite sprite : spriteJoueur){
 
             if (sprite == vue.getSprJoueurAttente1() ){
-
-                if (idCarte == 1){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
+                if (joueurs[0].haveCarteInMain(idCarteVoulu)){
+                    System.out.println("Le joueur 1 a une patate d'id n°"+idCarteVoulu);
+                    joueursConcernes.add(sprite);
                 }
-                else if (idCarte == 2){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
-                }
-
-
             }
             else if (sprite == vue.getSprJoueurAttente2() ){
-                if (idCarte == 1){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
-                }
-                else if (idCarte == 2){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
+                if (joueurs[1].haveCarteInMain(idCarteVoulu)){
+                    System.out.println("Le joueur 2 a une patate d'id n°"+idCarteVoulu);
+                    joueursConcernes.add(sprite);
                 }
             }
             else if (sprite == vue.getSprJoueurAttente3() ){
-                if (idCarte == 1){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
-                }
-                else if (idCarte == 2){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
+                if (joueurs[2].haveCarteInMain(idCarteVoulu)){
+                    System.out.println("Le joueur 3 a une patate d'id n°"+idCarteVoulu);
+                    joueursConcernes.add(sprite);
                 }
             }
             else if (sprite == vue.getSprJoueurAttente4() ){
-                if (idCarte == 1){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(0).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
-                }
-                else if (idCarte == 2){
-                    if (joueurs[0].haveCarteInMain(zonePioche.getZone().get(1).getIdCarte())){
-                        joueursConcernes.add(sprite);
-                    }
+                if (joueurs[3].haveCarteInMain(idCarteVoulu)){
+                    System.out.println("Le joueur 4 a une patate d'id n°"+idCarteVoulu);
+                    joueursConcernes.add(sprite);
                 }
             }
         }
