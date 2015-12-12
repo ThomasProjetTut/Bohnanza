@@ -561,7 +561,8 @@ public class Controlleur {
         }
 
         for (int i = 0; i < joueursConcernes.size(); i++) {
-            vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
+            vue.clearSpritesCliquables();
+            vue.setSpriteCliquable(joueursConcernes.get(i));
             if(etapeConfirmation(i, joueursConcernes.get(i))){
                 if(i <= 2) {
                     System.out.println("Le joueur " + (i + 2));
