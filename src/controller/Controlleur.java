@@ -318,7 +318,6 @@ public class Controlleur {
                                         System.out.println("J1 ?");
                                         if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
                                             joueurs[0].recoisCarte(zonePioche.getZone().get(0));
-                                            vue.donnerCarteJ1(1);
                                             return 31;
                                         }else{
                                             return 50;
@@ -327,7 +326,6 @@ public class Controlleur {
                                         System.out.println("J2 ?");
                                         if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
                                             joueurs[1].recoisCarte(zonePioche.getZone().get(0));
-                                            vue.donnerCarteJ2(1);
                                             return 32;
                                         }else{
                                             return 50;
@@ -336,7 +334,6 @@ public class Controlleur {
                                         System.out.println("J3 ?");
                                         if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
                                             joueurs[2].recoisCarte(zonePioche.getZone().get(0));
-                                            vue.donnerCarteJ3(1);
                                             return 33;
                                         }else{
                                             return 50;
@@ -345,7 +342,6 @@ public class Controlleur {
                                         System.out.println("J4 ?");
                                         if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
                                             joueurs[3].recoisCarte(zonePioche.getZone().get(0));
-                                            vue.donnerCarteJ4(1);
                                             return 34;
                                         }else{
                                             return 50;
@@ -390,8 +386,8 @@ public class Controlleur {
                         System.out.println("garder");
                         System.out.println("appel garder 2");
 
-                        //METTRE LA CARTE 1 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
-                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(0));
+                        //METTRE LA CARTE 2 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
+                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(1));
 
                         vue.garderCarte(2, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
@@ -476,7 +472,6 @@ public class Controlleur {
                                         System.out.println("J1 ?");
                                         if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
                                             joueurs[0].recoisCarte(zonePioche.getZone().get(1));
-                                            vue.donnerCarteJ1(2);
                                             return 31;
                                         }else{
                                             return 50;
@@ -485,7 +480,6 @@ public class Controlleur {
                                         System.out.println("J2 ?");
                                         if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
                                             joueurs[1].recoisCarte(zonePioche.getZone().get(1));
-                                            vue.donnerCarteJ2(2);
                                             return 32;
                                         }else{
                                             return 50;
@@ -494,7 +488,6 @@ public class Controlleur {
                                         System.out.println("J3 ?");
                                         if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
                                             joueurs[2].recoisCarte(zonePioche.getZone().get(1));
-                                            vue.donnerCarteJ3(2);
                                             return 33;
                                         }else{
                                             return 50;
@@ -503,7 +496,6 @@ public class Controlleur {
                                         System.out.println("J4 ?");
                                         if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
                                             joueurs[3].recoisCarte(zonePioche.getZone().get(1));
-                                            vue.donnerCarteJ4(2);
                                             return 34;
                                         }else{
                                             return 50;
@@ -578,19 +570,15 @@ public class Controlleur {
                         case 1 :
 
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ1(idCarte);
                             break;
                         case 2 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ2(idCarte);
                             break;
                         case 3 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ3(idCarte);
                             break;
                         case 4 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ4(idCarte);
                             break;
                     }
 
@@ -601,19 +589,15 @@ public class Controlleur {
                     switch (i + 1){
                         case 1 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ1(idCarte);
                             break;
                         case 2 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ2(idCarte);
                             break;
                         case 3 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ3(idCarte);
                             break;
                         case 4 :
                             joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
-                            vue.donnerCarteJ4(idCarte);
                             break;
                     }
                     return i + 1;
@@ -784,21 +768,29 @@ public class Controlleur {
             switch (i) {
                 case 0:
                     vue.creationSpriteCliquablePlantagePostEchange(0);
+                    vue.clearZonesEchanges();
+                    putSprite();
                     vue.actualiserFenetrePlantagePostEchangeJ1();
                     spriteZoneEchange = vue.getZoneEchangeJ1();
                     break;
                 case 1:
                     vue.creationSpriteCliquablePlantagePostEchange(1);
+                    vue.clearZonesEchanges();
+                    putSprite();
                     vue.actualiserFenetrePlantagePostEchangeJ2();
                     spriteZoneEchange = vue.getZoneEchangeJ2();
                     break;
                 case 2:
                     vue.creationSpriteCliquablePlantagePostEchange(2);
+                    vue.clearZonesEchanges();
+                    putSprite();
                     vue.actualiserFenetrePlantagePostEchangeJ3();
                     spriteZoneEchange = vue.getZoneEchangeJ3();
                     break;
                 case 3:
                     vue.creationSpriteCliquablePlantagePostEchange(3);
+                    vue.clearZonesEchanges();
+                    putSprite();
                     vue.actualiserFenetrePlantagePostEchangeJ4();
                     spriteZoneEchange = vue.getZoneEchangeJ4();
                     break;
@@ -949,9 +941,9 @@ public class Controlleur {
     }
 
     //Ajout des cartes de toutes les zones d'échange en tant que texture.
-    public void putTextureInAllZoneEchange(){
-
+    public void putSprite(){
         for (int i = 0; i < 4; i++) {
+            joueurs[i].getZoneEchange().printZone();
             for (Carte carte: joueurs[i].getZoneEchange().getZone()) {
                 vue.addSpriteIntoZoneEchange(i, carte.getIdCarte());
             }

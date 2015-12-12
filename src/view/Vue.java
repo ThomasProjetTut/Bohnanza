@@ -898,6 +898,8 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        afficherZonesEchanges();
+
         afficherMainJ1();
 
         fenetre.draw(sprCartePiochee1);
@@ -1116,7 +1118,7 @@ public class Vue{
     }
 
     public void actualiserFenetrePlantagePostEchangeJ1() {
-        System.out.println("actu plantage post échange");
+        System.out.println("actu plantage post échange j1");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1164,7 +1166,7 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
-        afficherZoneEchangeJ1();
+        afficherZonesEchanges();
 
         afficherMainJ1();
 
@@ -1175,7 +1177,7 @@ public class Vue{
 
     }
     public void actualiserFenetrePlantagePostEchangeJ2() {
-        System.out.println("actu menu choix");
+        System.out.println("actu menu choix j2");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1234,7 +1236,7 @@ public class Vue{
 
     }
     public void actualiserFenetrePlantagePostEchangeJ3() {
-        System.out.println("actu menu choix");
+        System.out.println("actu menu choix j3");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1293,7 +1295,7 @@ public class Vue{
 
     }
     public void actualiserFenetrePlantagePostEchangeJ4() {
-        System.out.println("actu menu choix");
+        System.out.println("actu menu choix j4");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1530,19 +1532,6 @@ public class Vue{
 
     }
 
-    public void donnerCarteJ1(int carte) {
-        zoneEchangeJ1.add(sprsCartesPiochee[carte - 1]);
-    }
-    public void donnerCarteJ2(int carte) {
-        zoneEchangeJ2.add(sprsCartesPiochee[carte - 1]);
-    }
-    public void donnerCarteJ3(int carte) {
-        zoneEchangeJ3.add(sprsCartesPiochee[carte - 1]);
-    }
-    public void donnerCarteJ4(int carte) {
-        zoneEchangeJ4.add(sprsCartesPiochee[carte - 1]);
-    }
-
 /*
     public void creationSpriteCliquableMenuOuiNon(int joueur) {
         System.out.println("crea sprite O N");
@@ -1608,6 +1597,14 @@ public class Vue{
             mainJ4.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
             fenetre.draw(mainJ4.get(i));
         }
+    }
+
+    private void afficherZonesEchanges(){
+        System.out.println("actu zoneS echangeS");
+        afficherZoneEchangeJ1();
+        afficherZoneEchangeJ2();
+        afficherZoneEchangeJ3();
+        afficherZoneEchangeJ4();
     }
 
     private void afficherZoneEchangeJ1(){
@@ -1682,12 +1679,15 @@ public class Vue{
             case 1 :
                 listeCarte.get(0).setRotation(0);
                 listeCarte.get(0).setPosition(509, 625);
+                fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
                 listeCarte.get(0).setRotation(0);
                 listeCarte.get(0).setPosition(509, 625);
                 listeCarte.get(1).setRotation(0);
-                listeCarte.get(1).setPosition(517, 625);
+                listeCarte.get(1).setPosition(417, 625);
+                fenetre.draw(listeCarte.get(0));
+                fenetre.draw(listeCarte.get(1));
                 break;
         }
 
@@ -1699,12 +1699,15 @@ public class Vue{
             case 1 :
                 listeCarte.get(0).setRotation(-180);
                 listeCarte.get(0).setPosition(275, 225);
+                fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
                 listeCarte.get(0).setRotation(-180);
                 listeCarte.get(0).setPosition(375, 225);
                 listeCarte.get(1).setRotation(-180);
                 listeCarte.get(1).setPosition(275, 225);
+                fenetre.draw(listeCarte.get(0));
+                fenetre.draw(listeCarte.get(1));
                 break;
         }
     }
@@ -1715,12 +1718,15 @@ public class Vue{
             case 1 :
                 listeCarte.get(0).setRotation(-90);
                 listeCarte.get(0).setPosition(725, 275);
+                fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
                 listeCarte.get(0).setRotation(-90);
                 listeCarte.get(0).setPosition(725, 375);
                 listeCarte.get(1).setRotation(-90);
                 listeCarte.get(1).setPosition(725, 275);
+                fenetre.draw(listeCarte.get(0));
+                fenetre.draw(listeCarte.get(1));
                 break;
         }
     }
@@ -1731,12 +1737,15 @@ public class Vue{
             case 1 :
                 listeCarte.get(0).setRotation(-270);
                 listeCarte.get(0).setPosition(380, 510);
+                fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
                 listeCarte.get(0).setRotation(-270);
                 listeCarte.get(0).setPosition(380, 420);
                 listeCarte.get(1).setRotation(-270);
                 listeCarte.get(1).setPosition(380, 510);
+                fenetre.draw(listeCarte.get(0));
+                fenetre.draw(listeCarte.get(1));
                 break;
         }
     }
@@ -1756,6 +1765,11 @@ public class Vue{
                 zoneEchangeJ4.add(getSpriteById(idCarte));
                 break;
         }
+        System.out.println("taille ZJ1 = " + zoneEchangeJ1.size());
+        System.out.println("taille ZJ2 = " + zoneEchangeJ2.size());
+        System.out.println("taille ZJ3 = " + zoneEchangeJ3.size());
+        System.out.println("taille ZJ4 = " + zoneEchangeJ4.size());
+
     }
 
     public Sprite getSpriteById(int idCarte){
@@ -1764,27 +1778,35 @@ public class Vue{
 
         switch (idCarte){
             case 1:
+                System.out.println("techtonique");
                 spriteRetour.setTexture(txtCarteTectonik);
                 break ;
             case 2:
+                System.out.println("tentacule");
                 spriteRetour.setTexture(txtCarteTentacule);
                 break;
             case 3:
+                System.out.println("tequila");
                 spriteRetour.setTexture(txtCarteTequila);
                 break;
             case 4:
+                System.out.println("terrorriste");
                 spriteRetour.setTexture(txtCarteTerroriste);
                 break;
             case 5:
+                System.out.println("testostérone");
                 spriteRetour.setTexture(txtCarteTestosterone);
                 break;
             case 6:
+                System.out.println("tetenucleaire");
                 spriteRetour.setTexture(txtCarteTeteNucleaire);
                 break;
             case 7:
+                System.out.println("tetraplégique");
                 spriteRetour.setTexture(txtCarteTetraplegique);
                 break;
             case 8:
+                System.out.println("twerk");
                 spriteRetour.setTexture(txtCarteTwerk);
                 break;
         }
@@ -1990,4 +2012,11 @@ public class Vue{
         actualiserFenetrePlantagePostEchangeJ4();
     }
 
+    public void clearZonesEchanges() {
+        zoneEchangeJ1.clear();
+        zoneEchangeJ2.clear();
+        zoneEchangeJ3.clear();
+        zoneEchangeJ4.clear();
+
+    }
 }

@@ -88,7 +88,7 @@ public class JoueurUnitTest {
         joueur.recoisCarte(c2);
         Assert.assertEquals(c2,joueur.getZoneEchange().getZone().get(0));
     }
-
+/*
     @Test
     public void testEchangeCarte(){
         Joueur joueur=new Joueur("test",0);
@@ -99,7 +99,7 @@ public class JoueurUnitTest {
         Assert.assertEquals(c,joueur.getZoneEchange().getZone().get(0));
         Assert.assertEquals(c2,joueur1.getZoneEchange().getZone().get(0));
     }
-
+*/
     /*
     @Test
     public void testJouerCoup(){
