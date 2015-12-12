@@ -510,9 +510,16 @@ public class Controlleur {
         Sprite[] spriteJoueur = new Sprite[3];
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
-        for (int i = 0; i < 3; i++) {
+        ArrayList<Sprite> joueursConcernes = new ArrayList<>();
+        for(Sprite sprite : spriteJoueur){
+            if(verificatoin model tout ça tout ça){
+                joueursConcernes.add(sprite);
+            }
+        }
+
+        for (int i = 0; i < joueursConcernes.size(); i++) {
             vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
-            if(etapeConfirmation(i, vue.getSprsAutresJoueurs(joueurActif.getIdJoueur())[i])){
+            if(etapeConfirmation(i, joueursConcernes.get(i))){
                 if(i <= 2) {
                     System.out.println("Le joueur " + (i + 2));
                     vue.clearSpritesCliquables();
