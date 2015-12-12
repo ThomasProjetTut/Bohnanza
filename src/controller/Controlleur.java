@@ -317,6 +317,7 @@ public class Controlleur {
                                     case 1 :
                                         System.out.println("J1 ?");
                                         if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
+                                            joueurs[0].recoisCarte(zonePioche.getZone().get(0));
                                             vue.donnerCarteJ1(1);
                                             return 31;
                                         }else{
@@ -325,6 +326,7 @@ public class Controlleur {
                                     case 2 :
                                         System.out.println("J2 ?");
                                         if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
+                                            joueurs[1].recoisCarte(zonePioche.getZone().get(0));
                                             vue.donnerCarteJ2(1);
                                             return 32;
                                         }else{
@@ -333,6 +335,7 @@ public class Controlleur {
                                     case 3 :
                                         System.out.println("J3 ?");
                                         if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
+                                            joueurs[2].recoisCarte(zonePioche.getZone().get(0));
                                             vue.donnerCarteJ3(1);
                                             return 33;
                                         }else{
@@ -341,6 +344,7 @@ public class Controlleur {
                                     case 4 :
                                         System.out.println("J4 ?");
                                         if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
+                                            joueurs[3].recoisCarte(zonePioche.getZone().get(0));
                                             vue.donnerCarteJ4(1);
                                             return 34;
                                         }else{
@@ -471,6 +475,7 @@ public class Controlleur {
                                     case 1 :
                                         System.out.println("J1 ?");
                                         if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
+                                            joueurs[0].recoisCarte(zonePioche.getZone().get(1));
                                             vue.donnerCarteJ1(2);
                                             return 31;
                                         }else{
@@ -479,6 +484,7 @@ public class Controlleur {
                                     case 2 :
                                         System.out.println("J2 ?");
                                         if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
+                                            joueurs[1].recoisCarte(zonePioche.getZone().get(1));
                                             vue.donnerCarteJ2(2);
                                             return 32;
                                         }else{
@@ -487,6 +493,7 @@ public class Controlleur {
                                     case 3 :
                                         System.out.println("J3 ?");
                                         if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
+                                            joueurs[2].recoisCarte(zonePioche.getZone().get(1));
                                             vue.donnerCarteJ3(2);
                                             return 33;
                                         }else{
@@ -495,6 +502,7 @@ public class Controlleur {
                                     case 4 :
                                         System.out.println("J4 ?");
                                         if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
+                                            joueurs[3].recoisCarte(zonePioche.getZone().get(1));
                                             vue.donnerCarteJ4(2);
                                             return 34;
                                         }else{
