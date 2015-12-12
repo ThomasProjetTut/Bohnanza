@@ -701,9 +701,6 @@ public class Controlleur {
 
 
                 while (vue.getFenetre().isOpen() &&  idEtape==3) {
-
-                    System.out.println("Entrée while étape planter après échange.");
-
                     for (Event event : vue.getFenetre().pollEvents()) {
 
                         if (event.type == Event.Type.CLOSED) {
@@ -735,7 +732,6 @@ public class Controlleur {
                         }
                     }
                 }
-                System.out.println("sortie while étape planter après échange.");
             }
 
         }
