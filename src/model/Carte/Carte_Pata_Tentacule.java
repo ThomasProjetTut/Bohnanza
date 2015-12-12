@@ -12,6 +12,7 @@ public class Carte_Pata_Tentacule extends Carte {
         patatometre.put(6,2);
         patatometre.put(8,3);
         patatometre.put(9,4);
+        idCarte = 2;
     }
 
     public boolean isPataTentacule(){

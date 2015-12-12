@@ -12,6 +12,7 @@ public class Carte_Pata_Terroriste extends Carte {
         patatometre.put(3,2);
         patatometre.put(4,3);
         patatometre.put(5,4);
+        idCarte = 4;
     }
 
     public boolean isPataTerroriste(){

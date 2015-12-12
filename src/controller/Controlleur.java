@@ -251,7 +251,7 @@ public class Controlleur {
                                         return 22;
                                     }
                                 case 3 :
-                                    System.out.println("retour testost�rone");
+                                    System.out.println("retour testosterone");
                                     if(etapeDemandeEchangeAcceptation(1) == -5){
                                         return 50;
                                     }else {

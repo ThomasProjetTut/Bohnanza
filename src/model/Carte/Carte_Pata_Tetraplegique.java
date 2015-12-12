@@ -12,6 +12,7 @@ public class Carte_Pata_Tetraplegique extends Carte {
         patatometre.put(4,2);
         patatometre.put(5,3);
         patatometre.put(6,4);
+        idCarte = 7;
     }
 
     public boolean isPataTetraplegique(){

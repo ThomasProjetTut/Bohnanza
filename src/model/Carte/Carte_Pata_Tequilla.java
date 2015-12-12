@@ -12,6 +12,7 @@ public class Carte_Pata_Tequilla extends Carte {
         patatometre.put(5,2);
         patatometre.put(7,3);
         patatometre.put(8,4);
+        idCarte = 3;
     }
 
     public boolean isPataTequilla(){

@@ -12,6 +12,7 @@ public class Carte_Pata_Tetenucleaire extends Carte {
         patatometre.put(4,2);
         patatometre.put(6,3);
         patatometre.put(7,4);
+        idCarte = 6;
     }
 
     public boolean isPataTetenucleaire(){

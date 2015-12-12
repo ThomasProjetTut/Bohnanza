@@ -12,6 +12,7 @@ public class Carte_Pata_Testosterone extends Carte {
         patatometre.put(5,2);
         patatometre.put(6,3);
         patatometre.put(7,4);
+        idCarte = 5;
     }
 
     public boolean isPataTestosterone(){

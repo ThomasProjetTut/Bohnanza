@@ -10,6 +10,7 @@ public class Carte_Pata_Tecktonik extends Carte {
         patatometre = new HashMap<Integer, Integer>();
         patatometre.put(2,2);
         patatometre.put(3,3);
+        idCarte = 1;
     }
 
     public boolean isPataTecktonik(){

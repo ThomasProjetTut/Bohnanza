@@ -5,6 +5,7 @@ import java.util.Map;
 public abstract class Carte {
     protected String nom;
     protected int nbMax;
+    protected int idCarte;
     protected Map<Integer,Integer> patatometre;
 
     public String getNom() {
