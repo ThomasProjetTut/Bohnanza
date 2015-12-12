@@ -93,6 +93,7 @@ public class Controlleur {
                         if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][0], vue.getFenetre())) {
                             System.out.println("plante premier champ");
 
+                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 0, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(1,pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
@@ -102,6 +103,7 @@ public class Controlleur {
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                             System.out.println("plante deuxième champ");
 
+                            vue.planterChamp(joueurActif.getIdJoueur()- 1, 1, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(2,pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
@@ -111,6 +113,7 @@ public class Controlleur {
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
                             System.out.println("plante troisième champ");
 
+                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(3,pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
@@ -298,24 +301,41 @@ public class Controlleur {
                                 switch(retour){
                                     case 1 :
                                         System.out.println("J1 ?");
-                                        vue.donnerCarteJ1(1);
-                                        return 31;
+                                        if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
+                                            vue.donnerCarteJ1(1);
+                                            return 31;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 2 :
                                         System.out.println("J2 ?");
-                                        vue.donnerCarteJ2(1);
-                                        return 32;
+                                        if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
+                                            vue.donnerCarteJ2(1);
+                                            return 32;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 3 :
                                         System.out.println("J3 ?");
-                                        vue.donnerCarteJ3(1);
-                                        return 33;
+                                        if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
+                                            vue.donnerCarteJ3(1);
+                                            return 33;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 4 :
                                         System.out.println("J4 ?");
-                                        vue.donnerCarteJ4(1);
-                                        return 34;
+                                        if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
+                                            vue.donnerCarteJ3(1);
+                                            return 34;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 5 :
                                         System.out.println("retour");
                                         return 50;
                                 }
+
 
                             }else{
                                 if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
@@ -431,20 +451,36 @@ public class Controlleur {
                                 switch(retour){
                                     case 1 :
                                         System.out.println("J1 ?");
-                                        vue.donnerCarteJ1(2);
-                                        return 31;
+                                        if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
+                                            vue.donnerCarteJ1(2);
+                                            return 31;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 2 :
                                         System.out.println("J2 ?");
-                                        vue.donnerCarteJ2(2);
-                                        return 32;
+                                        if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
+                                            vue.donnerCarteJ2(2);
+                                            return 32;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 3 :
                                         System.out.println("J3 ?");
-                                        vue.donnerCarteJ3(2);
-                                        return 33;
+                                        if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
+                                            vue.donnerCarteJ3(2);
+                                            return 33;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 4 :
                                         System.out.println("J4 ?");
-                                        vue.donnerCarteJ4(2);
-                                        return 34;
+                                        if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
+                                            vue.donnerCarteJ3(2);
+                                            return 34;
+                                        }else{
+                                            return 50;
+                                        }
                                     case 5 :
                                         System.out.println("retour");
                                         return 50;
@@ -475,12 +511,7 @@ public class Controlleur {
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
         for (int i = 0; i < 3; i++) {
-            vue.clearSpritesCliquables();
-            vue.creerMenuOuiNon(spriteJoueur[i].getPosition().x + spriteJoueur[i].getGlobalBounds().width + 5, spriteJoueur[i].getPosition().y);
-            vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
-            vue.actualisationFenetreMenuOuiNon();
-
-            if(etapeConfirmation(i)) {
+            if(etapeConfirmation(i, vue.getSprsAutresJoueurs(joueurActif.getIdJoueur())[i])){
                 if(i <= 2) {
                     System.out.println("Le joueur " + (i + 2));
                     vue.clearSpritesCliquables();
@@ -527,7 +558,13 @@ public class Controlleur {
 
     }
 
-    private boolean etapeConfirmation(int id){
+    private boolean etapeConfirmation(int id, Sprite sprite){
+        vue.clearSpritesCliquables();
+        vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y);
+        vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
+        vue.actualisationFenetreMenuOuiNon();
+
+
         while(vue.getFenetre().isOpen()) {
             for (Event eventON : vue.getFenetre().pollEvents()) {
                 if (eventON.type == Event.Type.CLOSED) {
