@@ -734,6 +734,8 @@ public class Controlleur {
                 }
             }
 
+            etapePioche();
+
         }
     }
 
