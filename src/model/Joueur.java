@@ -10,7 +10,6 @@ public class Joueur {
 
     private int maxChamps;
     private List<Carte> thunes;
-    private int nbThunes;
     private String nom;
     private List<Carte> main;
     private List<Champ> champs;
@@ -21,7 +20,6 @@ public class Joueur {
         nom="";
         idJoueur = 0;
         thunes = new ArrayList<Carte>();
-        nbThunes = thunes.size();
         maxChamps = 2;
         champs = new ArrayList<Champ>();
 
@@ -53,7 +51,7 @@ public class Joueur {
     public void recoisMain(Pioche pioche) {
         main.clear();
 
-        // Ajoute la premiere carte & la supprime du jeu de carte
+        // Ajoute la dernière carte de la liste pioche & la supprime du jeu de carte
         for (int i = 0 ; i < 4 ; i++) {
             piocher(pioche);
         }
@@ -67,7 +65,7 @@ public class Joueur {
 
     public void piocher(Pioche pioche) {
 
-        addCarte(pioche.getlisteCarte().get(0));
+        addCarte(pioche.getPioche().get(pioche.getTaillePioche()-1));
         pioche.removeCarte();
 
     }
@@ -82,12 +80,17 @@ public class Joueur {
         System.out.println("Fin de l'affichage des mains.");
     }
 
-    public void acheterChamps() {
-        if (maxChamps > 3)
-            return;
+    public void acheterChamps(Pioche pioche) {
+        if (maxChamps > 3) return;
+
+        if (thunes.size() < 5) return;
+
+        for (int i = 0; i < 5; i++) {
+            pioche.addCarteToDefausse(thunes.get(thunes.size()-1));
+            thunes.remove(thunes.size()-1);
+        }
 
         maxChamps++;
-
         champs.add(new Champ(maxChamps-1));
     }
 
@@ -130,6 +133,10 @@ public class Joueur {
         cible.donnerCarte(recue,this);
     }
 
+    public void addThunes(Carte carte) {
+        thunes.add(carte);
+    }
+
     //GETTER AND SETTER
 
     public List<Carte> getThunes() {
@@ -140,13 +147,8 @@ public class Joueur {
         this.thunes = thunes;
     }
 
-    public int getNbThunes() {
-        nbThunes = thunes.size();
-        return nbThunes;
-    }
-
-    public void setNbThunes(int nbThunes) {
-        this.nbThunes = nbThunes;
+    public int getNbThunes(){
+        return thunes.size();
     }
 
     public int getIdJoueur() {
@@ -156,5 +158,4 @@ public class Joueur {
     public void setIdJoueur(int idJoueur) {
         this.idJoueur = idJoueur;
     }
-
 }

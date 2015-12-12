@@ -122,7 +122,7 @@ public class Champ {
         }
     }
 
-    public int recolter() {
+    public int recolter(Joueur j, Pioche pioche) {
 
         //Valeur de la récolte en Thunes
         int valeurThune=0;
@@ -141,13 +141,18 @@ public class Champ {
         for(int nbPatateNecessary:nbThunes) {
             if(NombreCarte>=nbPatateNecessary){
                 valeurThune=patates.get(0).getPatatometre().get(nbPatateNecessary);
-                for (int i = 1; i <nbPatateNecessary ; i++) {
-
-
-
-                    patates.remove(derniereCarte());
-                }
             }
+        }
+
+        for (int i = 1; i < patates.size() ; i++) {
+
+            if (i < valeurThune){
+                j.addThunes(derniereCarte());
+            }
+            else{
+                pioche.addCarteToDefausse(derniereCarte());
+            }
+            patates.remove(derniereCarte());
         }
 
         return valeurThune;

@@ -8,52 +8,93 @@ import java.util.List;
 
 public class Pioche {
 
-    private List<Carte> listeCarte;
+    private List<Carte> pioche;
+    private List<Carte> defausse;
+    private int tourDePioche;
 
     public Pioche(){
-        initListeCarte();
+        initPioche();
+        defausse = new ArrayList<>();
+        tourDePioche  = 1;
     }
 
-    private void initListeCarte() {
-        listeCarte = new ArrayList<Carte>();
+    private void initPioche() {
+        pioche = new ArrayList<Carte>();
         for (int i = 0; i < 104; i++) {
             if (i<6){
-                listeCarte.add(new Carte_Pata_Tecktonik());
+                pioche.add(new Carte_Pata_Tecktonik());
             }
             else if(i<14){
-                listeCarte.add(new Carte_Pata_Terroriste());
+                pioche.add(new Carte_Pata_Terroriste());
             }
             else if(i<24){
-                listeCarte.add(new Carte_Pata_Tetraplegique());
+                pioche.add(new Carte_Pata_Tetraplegique());
             }
             else if(i<36){
-                listeCarte.add(new Carte_Pata_Tetenucleaire());
+                pioche.add(new Carte_Pata_Tetenucleaire());
             }
             else if(i<50){
-                listeCarte.add(new Carte_Pata_Testosterone());
+                pioche.add(new Carte_Pata_Testosterone());
             }
             else if(i<66){
-                listeCarte.add(new Carte_Pata_Tequilla());
+                pioche.add(new Carte_Pata_Tequilla());
             }
             else if(i<84){
-                listeCarte.add(new Carte_Pata_Tentacule());
+                pioche.add(new Carte_Pata_Tentacule());
             }
             else {
-                listeCarte.add(new Carte_Pata_Twerk());
+                pioche.add(new Carte_Pata_Twerk());
             }
         }
-        Collections.shuffle(listeCarte);
-    }
-
-    public List<Carte> getlisteCarte() {
-        return listeCarte;
+        Collections.shuffle(pioche);
     }
 
     public void removeCarte() {
-        listeCarte.remove(0);
+        pioche.remove(pioche.size()-1);
     }
 
+    public void addCarteToDefausse(Carte carte){
+        defausse.add(carte);
+    }
+
+    public void nouveauTourDePioche(){
+        if (pioche.size() > 0) return;
+
+        for (Carte carte: defausse) {
+            pioche.add(carte);
+            defausse.remove(carte);
+        }
+
+        tourDePioche++;
+    }
+
+    //GETTER AND SETTER
+
     public int getTaillePioche(){
-        return listeCarte.size();
+        return pioche.size();
+    }
+
+    public List<Carte> getPioche() {
+        return pioche;
+    }
+
+    public void setPioche(List<Carte> pioche) {
+        this.pioche = pioche;
+    }
+
+    public List<Carte> getDefausse() {
+        return defausse;
+    }
+
+    public void setDefausse(List<Carte> defausse) {
+        this.defausse = defausse;
+    }
+
+    public int getTourDePioche() {
+        return tourDePioche;
+    }
+
+    public void setTourDePioche(int tourDePioche) {
+        this.tourDePioche = tourDePioche;
     }
 }
