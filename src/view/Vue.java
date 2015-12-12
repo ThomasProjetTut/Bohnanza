@@ -1741,6 +1741,57 @@ public class Vue{
         }
     }
 
+    public void addSpriteIntoZoneEchange(int numZone, int idCarte){
+        switch (numZone){
+            case 0:
+                zoneEchangeJ1.add(getSpriteById(idCarte));
+                break;
+            case 1:
+                zoneEchangeJ2.add(getSpriteById(idCarte));
+                break;
+            case 2:
+                zoneEchangeJ3.add(getSpriteById(idCarte));
+                break;
+            case 3:
+                zoneEchangeJ4.add(getSpriteById(idCarte));
+                break;
+        }
+    }
+
+    public Sprite getSpriteById(int idCarte){
+
+        Sprite spriteRetour = new Sprite();
+
+        switch (idCarte){
+            case 1:
+                spriteRetour.setTexture(txtCarteTectonik);
+                break ;
+            case 2:
+                spriteRetour.setTexture(txtCarteTentacule);
+                break;
+            case 3:
+                spriteRetour.setTexture(txtCarteTequila);
+                break;
+            case 4:
+                spriteRetour.setTexture(txtCarteTerroriste);
+                break;
+            case 5:
+                spriteRetour.setTexture(txtCarteTestosterone);
+                break;
+            case 6:
+                spriteRetour.setTexture(txtCarteTeteNucleaire);
+                break;
+            case 7:
+                spriteRetour.setTexture(txtCarteTetraplegique);
+                break;
+            case 8:
+                spriteRetour.setTexture(txtCarteTwerk);
+                break;
+        }
+
+        return spriteRetour;
+    }
+
     //GETTER AND SETTER
 
     public Texture getTxtCarteTequila() {

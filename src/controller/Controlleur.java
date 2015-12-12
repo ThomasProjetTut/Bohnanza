@@ -948,6 +948,15 @@ public class Controlleur {
         }
     }
 
+    //Ajout des cartes de toutes les zones d'échange en tant que texture.
+    public void putTextureInAllZoneEchange(){
+        for (int i = 0; i < 4; i++) {
+            for (Carte carte: joueurs[i].getZoneEchange().getZone()) {
+                vue.addSpriteIntoZoneEchange(i, carte.getIdCarte());
+            }
+        }
+    }
+
     public void setTxtZonePioche(){
         int idCartePiochee1 = zonePioche.getZone().get(0).getIdCarte();
         int idCartePiochee2 = zonePioche.getZone().get(1).getIdCarte();
