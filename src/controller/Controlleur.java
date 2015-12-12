@@ -678,22 +678,21 @@ public class Controlleur {
         for (int i = 0; i < 4; i++) {
 
             switch (i) {
-                case 1:
+                case 0:
                     spriteZoneEchange = vue.getZoneEchangeJ1();
                     break;
-                case 2:
+                case 1:
                     spriteZoneEchange = vue.getZoneEchangeJ2();
                     break;
-                case 3:
+                case 2:
                     spriteZoneEchange = vue.getZoneEchangeJ3();
                     break;
-                case 4:
+                case 3:
                     spriteZoneEchange = vue.getZoneEchangeJ4();
                     break;
             }
 
             for (Sprite sprite : spriteZoneEchange) {
-
 
                 while (vue.getFenetre().isOpen()) {
                     for (Event event : vue.getFenetre().pollEvents()) {
@@ -706,29 +705,23 @@ public class Controlleur {
 
                             if (vue.cliqueSprite(event, vue.getSprsChamps()[i][0], vue.getFenetre())) {
                                 System.out.println("Joueur " + (i + 1) + " champ 1");
-                            } else {
-                                if (vue.cliqueSprite(event, vue.getSprsChamps()[i][1], vue.getFenetre())) {
-                                    System.out.println("Joueur " + (i + 1) + " champ 2");
-                                } else {
-                                    if (vue.cliqueSprite(event, vue.getSprsChamps()[i][2], vue.getFenetre())) {
-                                        System.out.println("Joueur " + (i + 1) + " champ 3");
-                                    }
-                                }
+                            } else if (vue.cliqueSprite(event, vue.getSprsChamps()[i][1], vue.getFenetre())) {
+                                System.out.println("Joueur " + (i + 1) + " champ 2");
+                            } else if (vue.cliqueSprite(event, vue.getSprsChamps()[i][2], vue.getFenetre())) {
+                                System.out.println("Joueur " + (i + 1) + " champ 3");
                             }
-                        }
 
-                        if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-
-                            if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
+                            //Possibilité de cliquer sur étape pioche que si l'on ai joueur actif !
+                            if (joueurActif.getIdJoueur() == i && vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
                                 etapePioche();
                                 return;
                             }
-
                         }
                     }
                 }
             }
 
+            //TEMPORAIRE
             etapePioche();
 
         }
