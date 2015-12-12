@@ -511,6 +511,7 @@ public class Controlleur {
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
         for (int i = 0; i < 3; i++) {
+            vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
             if(etapeConfirmation(i, vue.getSprsAutresJoueurs(joueurActif.getIdJoueur())[i])){
                 if(i <= 2) {
                     System.out.println("Le joueur " + (i + 2));
@@ -559,9 +560,7 @@ public class Controlleur {
     }
 
     private boolean etapeConfirmation(int id, Sprite sprite){
-        vue.clearSpritesCliquables();
         vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y);
-        vue.creationSpriteCliquableMenuOuiNon(joueurActif.getIdJoueur());
         vue.actualisationFenetreMenuOuiNon();
 
 
@@ -701,24 +700,43 @@ public class Controlleur {
     private void etapePlantageEchange(){
         System.out.println("ETAPE PLANTER APRES ECHANGE");
         vue.afficherEtape(3);
-        vue.actualiserFenetre();
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
 
         for (int i = 0; i < 4; i++) {
+            vue.clearSpritesCliquables();
+
+            System.out.println("i = " + i);
 
             switch (i) {
                 case 0:
+                    vue.creationSpriteCliquablePlantagePostEchange(0);
+                    vue.actualiserFenetrePlantagePostEchangeJ1();
                     spriteZoneEchange = vue.getZoneEchangeJ1();
                     break;
                 case 1:
+                    vue.creationSpriteCliquablePlantagePostEchange(1);
+                    vue.actualiserFenetrePlantagePostEchangeJ2();
                     spriteZoneEchange = vue.getZoneEchangeJ2();
                     break;
                 case 2:
+                    vue.creationSpriteCliquablePlantagePostEchange(2);
+                    vue.actualiserFenetrePlantagePostEchangeJ3();
                     spriteZoneEchange = vue.getZoneEchangeJ3();
                     break;
                 case 3:
+                    vue.creationSpriteCliquablePlantagePostEchange(3);
+                    vue.actualiserFenetrePlantagePostEchangeJ4();
                     spriteZoneEchange = vue.getZoneEchangeJ4();
                     break;
+            }
+
+            System.out.println("i = " + i);
+            System.out.println("zone echange = " + spriteZoneEchange.size());
+
+            System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
+
+            for(Sprite sprite : vue.getSpriteCliquable()){
+                System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
             }
 
             for (Sprite sprite : spriteZoneEchange) {
@@ -740,20 +758,32 @@ public class Controlleur {
                                 System.out.println("Joueur " + (i + 1) + " champ 3");
                             }
 
-                            //Possibilité de cliquer sur étape pioche que si l'on ai joueur actif !
-                            if (joueurActif.getIdJoueur() == i && vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
-                                etapePioche();
-                                return;
-                            }
                         }
                     }
                 }
             }
+        }
 
-            //TEMPORAIRE
-            etapePioche();
+        while(vue.getFenetre().isOpen()){
+
+            for(Event event : vue.getFenetre().pollEvents()){
+
+                if(event.type == Event.Type.CLOSED){
+                    vue.getFenetre().close();
+                }
+
+                if(event.type == Event.Type.MOUSE_BUTTON_RELEASED){
+                    if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
+                        etapePioche();
+                        return;
+                    }
+
+                }
+
+            }
 
         }
+
     }
 
     private void etapePioche() {

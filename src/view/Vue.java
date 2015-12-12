@@ -1113,7 +1113,7 @@ public class Vue{
     }
 
     public void actualiserFenetrePlantagePostEchangeJ1() {
-        System.out.println("actu menu choix");
+        System.out.println("actu plantage post échange");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1444,6 +1444,9 @@ public class Vue{
         sprMenuOui.setPosition(x + 5, y + espaceInterBouton);
         sprMenuNon.setPosition(x + 5, y + hauteurBouton + espaceInterBouton);
 
+        spriteCliquable.add(sprMenuOui);
+        spriteCliquable.add(sprMenuNon);
+
     }
 
     public void creerMenuCarteChoix(float posX, float posY){
@@ -1498,12 +1501,12 @@ public class Vue{
         if(id == 1){
             System.out.println("garder carte 1");
             delSpriteCliquable(getSprCartePiochee1());
-            getZoneEchangeJoueurCourant(joueur).add(sprCartePiochee1);
+            getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee1);
             sprCartePiochee1.setPosition(509, 625);
         }else{
             System.out.println("garder carte 2");
             delSpriteCliquable(getSprCartePiochee2());
-            getZoneEchangeJoueurCourant(joueur).add(sprCartePiochee2);
+            getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee2);
             sprCartePiochee2.setPosition(417, 625);
         }
 
@@ -1748,14 +1751,107 @@ public class Vue{
         }
     }
 
-
-    private void afficherZoneEchangeJ1() {
+    private void afficherZoneEchangeJ1(){
+        switch ((int) getFond().getRotation()){
+            case 0 :
+                afficherZoneEchangeBas(zoneEchangeJ1);
+                break;
+            case -90 :
+                afficherZoneEchangeDroite(zoneEchangeJ1);
+                break;
+            case -180 :
+                afficherZoneEchangeHaut(zoneEchangeJ1);
+                break;
+            case -270 :
+                afficherZoneEchangeGauche(zoneEchangeJ1);
+                break;
+        }
     }
     private void afficherZoneEchangeJ2() {
+        switch ((int) getFond().getRotation()){
+            case -90 :
+                afficherZoneEchangeBas(zoneEchangeJ2);
+                break;
+            case -180 :
+                afficherZoneEchangeDroite(zoneEchangeJ2);
+                break;
+            case -270 :
+                afficherZoneEchangeHaut(zoneEchangeJ2);
+                break;
+            case -0 :
+                afficherZoneEchangeGauche(zoneEchangeJ2);
+                break;
+        }
     }
     private void afficherZoneEchangeJ3() {
+        switch ((int) getFond().getRotation()){
+            case -180 :
+                afficherZoneEchangeBas(zoneEchangeJ3);
+                break;
+            case -270 :
+                afficherZoneEchangeDroite(zoneEchangeJ3);
+                break;
+            case 0 :
+                afficherZoneEchangeHaut(zoneEchangeJ3);
+                break;
+            case -90 :
+                afficherZoneEchangeGauche(zoneEchangeJ3);
+                break;
+        }
     }
     private void afficherZoneEchangeJ4() {
+        switch ((int) getFond().getRotation()){
+            case -270 :
+                afficherZoneEchangeBas(zoneEchangeJ4);
+                break;
+            case 0 :
+                afficherZoneEchangeDroite(zoneEchangeJ4);
+                break;
+            case -90 :
+                afficherZoneEchangeHaut(zoneEchangeJ4);
+                break;
+            case -180 :
+                afficherZoneEchangeGauche(zoneEchangeJ4);
+                break;
+        }
+    }
+
+    private void afficherZoneEchangeBas(ArrayList<Sprite> listeCarte){
+        switch(listeCarte.size()){
+            case 0 :
+                return;
+            case 1 :
+                listeCarte.get(0).setRotation(0);
+                listeCarte.get(0).setPosition(509, 625);
+                break;
+            case 2 :
+                listeCarte.get(0).setRotation(0);
+                listeCarte.get(0).setPosition(509, 625);
+                listeCarte.get(1).setRotation(0);
+                listeCarte.get(1).setPosition(509, 625);
+                break;
+        }
+
+    }
+    private void afficherZoneEchangeHaut(ArrayList<Sprite> listeCarte){
+        switch(listeCarte.size()){
+            case 0 :
+                return;
+            case 1 :
+                listeCarte.get(0).setRotation(-180);
+                listeCarte.get(0).setPosition(509, 625);
+                break;
+            case 2 :
+                listeCarte.get(0).setRotation(-180);
+                listeCarte.get(0).setPosition(509, 625);
+                listeCarte.get(1).setRotation(-180);
+                listeCarte.get(1).setPosition(509, 625);
+                break;
+        }
+    }
+    private void afficherZoneEchangeDroite(ArrayList<Sprite> listeCarte){
+    }
+    private void afficherZoneEchangeGauche(ArrayList<Sprite> listeCarte){
     }
 
     //GETTER AND SETTER
@@ -1763,43 +1859,32 @@ public class Vue{
     public Texture getTxtCarteTequila() {
         return txtCarteTequila;
     }
-
     public Texture getTxtCarteTentacule() {
         return txtCarteTentacule;
     }
-
     public Texture getTxtCarteTerroriste() {
         return txtCarteTerroriste;
     }
-
     public Texture getTxtCarteTestosterone() {
         return txtCarteTestosterone;
     }
-
     public Texture getTxtCarteTeteNucleaire() {
         return txtCarteTeteNucleaire;
     }
-
     public Texture getTxtCarteTetraplegique() {
         return txtCarteTetraplegique;
     }
-
     public Texture getTxtCarteTectonik() {
         return txtCarteTectonik;
     }
-
     public Texture getTxtCarteTwerk() {
         return txtCarteTwerk;
     }
 
     public void creationSpriteCliquablePlantagePostEchange(int joueur) {
         for(Sprite sprite : sprsChamps[joueur]){
-
             spriteCliquable.add(sprite);
-
         }
-
-
     }
 
     public void planterChamp(int joueur, int champ, int idCarte){
