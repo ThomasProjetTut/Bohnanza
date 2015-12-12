@@ -56,4 +56,13 @@ public abstract class Carte {
     public boolean isPataTwerk(){
         return false;
     }
+
+    public int getIdCarte() {
+        return idCarte;
+    }
+
+    public void setIdCarte(int idCarte) {
+        this.idCarte = idCarte;
+    }
+
 }
