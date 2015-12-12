@@ -753,7 +753,6 @@ public class Controlleur {
         }
     }
 
-
     private void finDeTour() {
         System.out.println("FIN DE TOUR");
 
