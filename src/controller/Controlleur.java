@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class Controlleur {
 
+    private int compteurTour;
+    private int idEtape;
 
     private Vue vue;
     private Joueur[] joueurs;
@@ -43,25 +45,26 @@ public class Controlleur {
     }
 
     private void jeu() {
+        compteurTour = 1;
+        idEtape = 1;
+
+        for(Joueur j:joueurs){
+            j.recoisMain(pioche);
+            j.afficherMain();
+            actualiserMain(j);
+        }
+        System.out.println("Taille de la pioche : "+pioche.getTaillePioche());
+
         while (vue.getFenetre().isOpen()) {
 
-
-            for(Joueur j:joueurs){
-                j.recoisMain(pioche);
-                j.afficherMain();
-
-                //Ajout des cartes du model en tant que texture.
-
-                putTextureCarte(j);
-
-            }
-            System.out.println("Taille de la pioche : "+pioche.getTaillePioche());
             etapePlanter();
         }
     }
 
     private void etapePlanter() {
 
+        System.out.println("ETAPE PLANTER");
+        idEtape=1;
         vue.afficherEtape(1);
         vue.creationSpriteCliquableEtape1(joueurActif.getIdJoueur());
         vue.actualiserFenetre();
@@ -69,7 +72,7 @@ public class Controlleur {
         int nbplants = 0;
         System.out.println("nb plant  = " + nbplants);
 
-        while (vue.getFenetre().isOpen()) {
+        while (vue.getFenetre().isOpen() && idEtape==1 ) {
             for (Event event : vue.getFenetre().pollEvents()) {
 
                 if (event.type == Event.Type.CLOSED) {
@@ -124,11 +127,9 @@ public class Controlleur {
         }
     }
 
-
-
-
     private void etapeEchange() {
-        System.out.println("etapeEchange");
+        System.out.println("ETAPE ECHANGE");
+        idEtape= 2;
         int carteNonJouee = 2;
         int retour;
 
@@ -141,7 +142,7 @@ public class Controlleur {
 
         vue.creationSpriteCliquableCarte();
 
-        while (vue.getFenetre().isOpen()) {
+        while (vue.getFenetre().isOpen() &&  idEtape==2) {
             for (Event event : vue.getFenetre().pollEvents()) {
 
                 if (event.type == Event.Type.CLOSED) {
@@ -207,7 +208,7 @@ public class Controlleur {
     private int etapeEchangeMenuCarte1(){
         vue.creationSpriteCliquableMenuCarte();
 
-        while (vue.getFenetre().isOpen()){
+        while (vue.getFenetre().isOpen() &&  idEtape==2){
             for(Event eventMenu : vue.getFenetre().pollEvents()){
 
 
@@ -340,7 +341,7 @@ public class Controlleur {
     private int etapeEchangeMenuCarte2(){
         vue.creationSpriteCliquableMenuCarte();
 
-        while (vue.getFenetre().isOpen()){
+        while (vue.getFenetre().isOpen() &&  idEtape==2){
             for(Event eventMenu : vue.getFenetre().pollEvents()){
 
 
@@ -531,7 +532,7 @@ public class Controlleur {
     }
 
     private boolean etapeConfirmation(int id){
-        while(vue.getFenetre().isOpen()) {
+        while(vue.getFenetre().isOpen() &&  idEtape==2) {
             for (Event eventON : vue.getFenetre().pollEvents()) {
                 if (eventON.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
@@ -560,7 +561,7 @@ public class Controlleur {
         Sprite[] joueursAttente = new Sprite[3];
         joueursAttente = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
-        while(vue.getFenetre().isOpen()){
+        while(vue.getFenetre().isOpen() &&  idEtape==2){
             for(Event eventDon : vue.getFenetre().pollEvents()){
                 if(eventDon.type == Event.Type.CLOSED){
                     vue.getFenetre().close();
@@ -605,7 +606,7 @@ public class Controlleur {
         Sprite[] tabSprChoix = new Sprite[8];
         tabSprChoix = vue.getSprsMenuCartesChoix();
 
-        while(vue.getFenetre().isOpen()){
+        while(vue.getFenetre().isOpen() &&  idEtape==2){
             for(Event eventMenuChoix : vue.getFenetre().pollEvents()){
 
                 if (eventMenuChoix.type == Event.Type.CLOSED) {
@@ -665,6 +666,8 @@ public class Controlleur {
     }
 
     private void etapePlantageEchange(){
+        System.out.println("ETAPE PLANTER APRES ECHANGE");
+        idEtape= 3;
         vue.afficherEtape(3);
         vue.actualiserFenetre();
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
@@ -697,7 +700,10 @@ public class Controlleur {
             for (Sprite sprite : spriteZoneEchange) {
 
 
-                while (vue.getFenetre().isOpen()) {
+                while (vue.getFenetre().isOpen() &&  idEtape==3) {
+
+                    System.out.println("Entrée while étape planter après échange.");
+
                     for (Event event : vue.getFenetre().pollEvents()) {
 
                         if (event.type == Event.Type.CLOSED) {
@@ -729,15 +735,23 @@ public class Controlleur {
                         }
                     }
                 }
+                System.out.println("sortie while étape planter après échange.");
             }
+
         }
     }
 
     private void etapePioche() {
+        System.out.println("ETAPE PIOCHE (ETAPE 4)");
+        idEtape=4 ;
+
         vue.afficherEtape(4);
+        joueurActif.piocheEtape4(pioche);
+        actualiserMain(joueurActif);
         vue.actualiserFenetre();
 
-        while(vue.getFenetre().isOpen()){
+        while(vue.getFenetre().isOpen() &&  idEtape==4){
+
             for(Event event : vue.getFenetre().pollEvents()){
 
                 if (event.type == Event.Type.CLOSED) {
@@ -757,7 +771,14 @@ public class Controlleur {
 
 
     private void finDeTour() {
+        System.out.println("FIN DE TOUR");
+
         rotationPlateau();
+
+        System.out.println("Fin du tour n°"+compteurTour);
+        compteurTour++;
+
+        etapePlanter();
     }
 
     private void rotationPlateau() {
@@ -781,6 +802,7 @@ public class Controlleur {
         }
     }
 
+    //Ajout des cartes du model en tant que texture.
     public void putTextureCarte(Joueur j){
         for (Carte carte : j.getMain()){
             if (carte.isPataTecktonik()){

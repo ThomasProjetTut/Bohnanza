@@ -59,6 +59,12 @@ public class Joueur {
         }
     }
 
+    public void piocheEtape4(Pioche pioche){
+        for (int i = 0 ; i < 3 ; i++) {
+            piocher(pioche);
+        }
+    }
+
     public void piocher(Pioche pioche) {
 
         addCarte(pioche.getlisteCarte().get(0));
