@@ -15,7 +15,6 @@ import java.util.ArrayList;
 public class Controlleur {
 
     private int compteurTour;
-    private int idEtape;
 
     private Vue vue;
     private Joueur[] joueurs;
@@ -46,7 +45,6 @@ public class Controlleur {
 
     private void jeu() {
         compteurTour = 1;
-        idEtape = 1;
 
         for(Joueur j:joueurs){
             j.recoisMain(pioche);
@@ -64,7 +62,6 @@ public class Controlleur {
     private void etapePlanter() {
 
         System.out.println("ETAPE PLANTER");
-        idEtape=1;
         vue.afficherEtape(1);
         vue.creationSpriteCliquableEtape1(joueurActif.getIdJoueur());
         vue.actualiserFenetre();
@@ -72,7 +69,7 @@ public class Controlleur {
         int nbplants = 0;
         System.out.println("nb plant  = " + nbplants);
 
-        while (vue.getFenetre().isOpen() && idEtape==1 ) {
+        while (vue.getFenetre().isOpen()) {
             for (Event event : vue.getFenetre().pollEvents()) {
 
                 if (event.type == Event.Type.CLOSED) {
@@ -129,7 +126,6 @@ public class Controlleur {
 
     private void etapeEchange() {
         System.out.println("ETAPE ECHANGE");
-        idEtape= 2;
         int carteNonJouee = 2;
         int retour;
 
@@ -142,7 +138,7 @@ public class Controlleur {
 
         vue.creationSpriteCliquableCarte();
 
-        while (vue.getFenetre().isOpen() &&  idEtape==2) {
+        while (vue.getFenetre().isOpen()) {
             for (Event event : vue.getFenetre().pollEvents()) {
 
                 if (event.type == Event.Type.CLOSED) {
@@ -208,7 +204,7 @@ public class Controlleur {
     private int etapeEchangeMenuCarte1(){
         vue.creationSpriteCliquableMenuCarte();
 
-        while (vue.getFenetre().isOpen() &&  idEtape==2){
+        while (vue.getFenetre().isOpen()){
             for(Event eventMenu : vue.getFenetre().pollEvents()){
 
 
@@ -341,7 +337,7 @@ public class Controlleur {
     private int etapeEchangeMenuCarte2(){
         vue.creationSpriteCliquableMenuCarte();
 
-        while (vue.getFenetre().isOpen() &&  idEtape==2){
+        while (vue.getFenetre().isOpen()){
             for(Event eventMenu : vue.getFenetre().pollEvents()){
 
 
@@ -532,7 +528,7 @@ public class Controlleur {
     }
 
     private boolean etapeConfirmation(int id){
-        while(vue.getFenetre().isOpen() &&  idEtape==2) {
+        while(vue.getFenetre().isOpen()) {
             for (Event eventON : vue.getFenetre().pollEvents()) {
                 if (eventON.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
@@ -561,7 +557,7 @@ public class Controlleur {
         Sprite[] joueursAttente = new Sprite[3];
         joueursAttente = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
-        while(vue.getFenetre().isOpen() &&  idEtape==2){
+        while(vue.getFenetre().isOpen()){
             for(Event eventDon : vue.getFenetre().pollEvents()){
                 if(eventDon.type == Event.Type.CLOSED){
                     vue.getFenetre().close();
@@ -606,7 +602,7 @@ public class Controlleur {
         Sprite[] tabSprChoix = new Sprite[8];
         tabSprChoix = vue.getSprsMenuCartesChoix();
 
-        while(vue.getFenetre().isOpen() &&  idEtape==2){
+        while(vue.getFenetre().isOpen()){
             for(Event eventMenuChoix : vue.getFenetre().pollEvents()){
 
                 if (eventMenuChoix.type == Event.Type.CLOSED) {
@@ -667,7 +663,6 @@ public class Controlleur {
 
     private void etapePlantageEchange(){
         System.out.println("ETAPE PLANTER APRES ECHANGE");
-        idEtape= 3;
         vue.afficherEtape(3);
         vue.actualiserFenetre();
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
@@ -700,7 +695,7 @@ public class Controlleur {
             for (Sprite sprite : spriteZoneEchange) {
 
 
-                while (vue.getFenetre().isOpen() &&  idEtape==3) {
+                while (vue.getFenetre().isOpen()) {
                     for (Event event : vue.getFenetre().pollEvents()) {
 
                         if (event.type == Event.Type.CLOSED) {
@@ -741,14 +736,12 @@ public class Controlleur {
 
     private void etapePioche() {
         System.out.println("ETAPE PIOCHE (ETAPE 4)");
-        idEtape=4 ;
-
         vue.afficherEtape(4);
         joueurActif.piocheEtape4(pioche);
         actualiserMain(joueurActif);
         vue.actualiserFenetre();
 
-        while(vue.getFenetre().isOpen() &&  idEtape==4){
+        while(vue.getFenetre().isOpen()){
 
             for(Event event : vue.getFenetre().pollEvents()){
 
