@@ -467,7 +467,7 @@ public class Vue{
     public void rotationJ1(){
 
         //rotation fond
-        sprFond.rotate(-90);
+        sprFond.setRotation(0);
         sprFond.setPosition(0, 0);
 
         /////////////////////////////////////////////////////////////////////////////
@@ -554,7 +554,7 @@ public class Vue{
     public void rotationJ3(){
 
         //rotation fond
-        sprFond.rotate(-90);
+        sprFond.setRotation(-180);
         sprFond.setPosition(1000, 1000);
 
         /////////////////////////////////////////////////////////////////////////////
@@ -597,7 +597,7 @@ public class Vue{
     public void rotationJ4(){
 
         //rotation fond
-        sprFond.rotate(-90);
+        sprFond.setRotation(-270);
         sprFond.setPosition(1000, 0);
 
         /////////////////////////////////////////////////////////////////////////////
