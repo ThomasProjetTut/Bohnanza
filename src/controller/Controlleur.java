@@ -555,16 +555,26 @@ public class Controlleur {
             for (Sprite sprite : spriteZoneEchange) {
                 numCarteAPlanter++;
 
+                System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
+
+                for (Sprite spritecli : vue.getSpriteCliquable()) {
+                    System.out.println(spritecli.getPosition().x + ", " + spritecli.getPosition().y);
+                }
+
+
                 joueurs[i].getZoneEchange().printZone();
 
                 int champChoisi = choixChamp(sprite, i);
-                joueurs[i].planterViaZoneEchange(champChoisi,pioche,numCarteAPlanter);
+                joueurs[i].planterViaZoneEchange(champChoisi, pioche, numCarteAPlanter);
                 System.out.println("retour choix " + champChoisi);
+
+                vue.planterEchange(i, champChoisi, joueurs[i].getZoneEchange().getZone().get(numCarteAPlanter - 1).getIdCarte(), numCarteAPlanter - 1);
 
                 joueurs[i].getChamp(1).printChamp();
                 joueurs[i].getChamp(2).printChamp();
 
             }
+        }
 
             while (vue.getFenetre().isOpen()) {
 
@@ -589,7 +599,7 @@ public class Controlleur {
                 }
 
             }
-        }
+
     }
 
 

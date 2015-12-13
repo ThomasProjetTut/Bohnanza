@@ -2160,4 +2160,64 @@ public class Vue{
         zoneEchangeJ4.clear();
 
     }
-}
+
+    public void planterEchange(int joueur, int champChoisi, int idCarte, int index) {
+        switch (idCarte) {
+            case 1:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTectonik);
+                break;
+            case 2:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTentacule);
+                break;
+            case 3:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTequila);
+                break;
+            case 4:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTerroriste);
+                break;
+            case 5:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTestosterone);
+                break;
+            case 6:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTetenucleaire);
+                break;
+            case 7:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTetraplegique);
+                break;
+            case 8:
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampDispo);
+                getSprsChamps()[joueur][champChoisi - 1].setTexture(txtChampTwerk);
+                break;
+        }
+
+        switch (joueur){
+            case 0 :
+                zoneEchangeJ1.get(index).setTexture(txtCarteVide);
+                actualiserFenetrePlantagePostEchangeJ1();
+                break;
+            case 1 :
+                zoneEchangeJ2.get(index).setTexture(txtCarteVide);
+                actualiserFenetrePlantagePostEchangeJ2();
+                break;
+            case 2 :
+                zoneEchangeJ3.get(index).setTexture(txtCarteVide);
+                actualiserFenetrePlantagePostEchangeJ3();
+                break;
+            case 3 :
+                zoneEchangeJ4.get(index).setTexture(txtCarteVide);
+                actualiserFenetrePlantagePostEchangeJ4();
+                break;
+        }
+
+    }
+
+
+
+    }
