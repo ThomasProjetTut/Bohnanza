@@ -10,7 +10,9 @@ import org.jsfml.window.event.Event;
 import view.Vue;
 
 import java.io.IOException;
+import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controlleur {
@@ -200,6 +202,13 @@ public class Controlleur {
                     if (carteNonJouee == 0) {
 
                         if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[1], vue.getFenetre())) {
+
+                            System.out.println("Liste des Zones d'échange :");
+
+                            for (int i = 0; i < 4; i++) {
+                                System.out.println("Joueur "+(i+1));
+                                joueurs[i].getZoneEchange().printZone();
+                            }
 
                             zonePioche.clear();
                             etapePlantageEchange();
@@ -531,77 +540,81 @@ public class Controlleur {
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
         ArrayList<Sprite> joueursConcernes = new ArrayList<>();
+        List<Integer> numJoueurConcerne = new ArrayList<>();
         for(Sprite sprite : spriteJoueur){
 
             if (sprite == vue.getSprJoueurAttente1() ){
                 if (joueurs[0].haveCarteInMain(idCarteVoulu)){
                     System.out.println("Le joueur 1 a une patate d'id n°"+idCarteVoulu);
                     joueursConcernes.add(sprite);
+                    numJoueurConcerne.add(1);
                 }
             }
             else if (sprite == vue.getSprJoueurAttente2() ){
                 if (joueurs[1].haveCarteInMain(idCarteVoulu)){
                     System.out.println("Le joueur 2 a une patate d'id n°"+idCarteVoulu);
                     joueursConcernes.add(sprite);
+                    numJoueurConcerne.add(2);
                 }
             }
             else if (sprite == vue.getSprJoueurAttente3() ){
                 if (joueurs[2].haveCarteInMain(idCarteVoulu)){
                     System.out.println("Le joueur 3 a une patate d'id n°"+idCarteVoulu);
                     joueursConcernes.add(sprite);
+                    numJoueurConcerne.add(3);
                 }
             }
             else if (sprite == vue.getSprJoueurAttente4() ){
                 if (joueurs[3].haveCarteInMain(idCarteVoulu)){
                     System.out.println("Le joueur 4 a une patate d'id n°"+idCarteVoulu);
                     joueursConcernes.add(sprite);
+                    numJoueurConcerne.add(4);
                 }
             }
         }
 
-        for (int i = 0; i < joueursConcernes.size(); i++) {
+        for (int i = 0; i < numJoueurConcerne.size(); i++) {
             vue.clearSpritesCliquables();
             vue.setSpriteCliquable(joueursConcernes.get(i));
-            if(etapeConfirmation(i, joueursConcernes.get(i))){
-                if(i <= joueurActif.getIdJoueur() - 1) {
-                    System.out.println("Le joueur " + (i + 2));
-                    vue.clearSpritesCliquables();
-                    switch (i + 2){
-                        case 1 :
+            if(etapeConfirmation(numJoueurConcerne.get(i), joueursConcernes.get(i))){
+                vue.clearSpritesCliquables();
+                switch (numJoueurConcerne.get(i)){
+                    case 1 :
+                        System.out.println("L'écahnge a été fait avec le joueur 1.");
+                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
+                                +" contre une "+joueurs[0].findCarteById(idCarteVoulu).getNom());
 
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
-                            break;
-                        case 2 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
-                            break;
-                        case 3 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
-                            break;
-                        case 4 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
-                            break;
-                    }
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
+                        break;
 
-                    return i + 2;
-                }else {
-                    System.out.println("Le joueur " + (i + 1));
-                    vue.clearSpritesCliquables();
-                    switch (i + 1){
-                        case 1 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
-                            break;
-                        case 2 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
-                            break;
-                        case 3 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
-                            break;
-                        case 4 :
-                            joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
-                            break;
-                    }
-                    return i + 1;
+                    case 2 :
+                        System.out.println("L'écahnge a été fait avec le joueur 2.");
+                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
+                                +" contre une "+joueurs[1].findCarteById(idCarteVoulu).getNom());
+
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
+                        break;
+
+                    case 3 :
+                        System.out.println("L'écahnge a été fait avec le joueur 3.");
+                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
+                                +" contre une "+joueurs[2].findCarteById(idCarteVoulu).getNom());
+
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
+                        break;
+
+                    case 4 :
+                        System.out.println("L'écahnge a été fait avec le joueur 4.");
+                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
+                                +" contre une "+joueurs[3].findCarteById(idCarteVoulu).getNom());
+
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
+
+                        break;
                 }
+
+                return numJoueurConcerne.get(i);
+
             }
         }
         vue.clearSpritesCliquables();
@@ -610,7 +623,7 @@ public class Controlleur {
 
     }
 
-    private boolean etapeConfirmation(int id, Sprite sprite){
+    private boolean etapeConfirmation(int idJoueur, Sprite sprite){
 
         if(sprite == vue.getSprsJoueurs()[3]){
             vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y - 50);
@@ -631,11 +644,11 @@ public class Controlleur {
                 if (eventON.type == Event.Type.MOUSE_BUTTON_RELEASED) {
                     if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[0], vue.getFenetre())) {
                         vue.clearSpritesCliquables();
-                        System.out.println("Le joueur " + (id + 2) + " accepte.");
+                        System.out.println("Le joueur " + (idJoueur) + " accepte.");
                         return true;
                     }else {
                         if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[1], vue.getFenetre())) {
-                            System.out.println("Le joueur " + (id + 1) + " refuse.");
+                            System.out.println("Le joueur " + (idJoueur) + " refuse.");
                             return false;
 
                         }
@@ -708,45 +721,37 @@ public class Controlleur {
                     if(vue.cliqueSprite(eventMenuChoix, tabSprChoix[0], vue.getFenetre())){
                         System.out.println("choix patatectonik");
                         return 0;
-                    }else {
-                        if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[1], vue.getFenetre())) {
-                            System.out.println("choix patatentacule");
-                            return 1;
-                        } else {
-                            if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[2], vue.getFenetre())) {
-                                System.out.println("choix patatequila");
-                                return 2;
-                            } else {
-                                if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[3], vue.getFenetre())) {
-                                    System.out.println("choix pataterroriste");
-                                    return 3;
-                                } else {
-                                    if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
-                                        System.out.println("choix patatestostérone");
-                                        return 4;
-                                    } else {
-                                        if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
-                                            System.out.println("choix patatetenuclearire");
-                                            return 5;
-                                        } else {
-                                            if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
-                                                System.out.println("choix patatetraplégique");
-                                                return 6;
-                                            } else {
-                                                if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
-                                                    System.out.println("choix patatwerk");
-                                                    return 7;
-                                                } else {
-                                                    if (vue.cliqueSprite(eventMenuChoix, vue.getFond(), vue.getFenetre())) {
-                                                        return 10;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[1], vue.getFenetre())) {
+                        System.out.println("choix patatentacule");
+                        return 1;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[2], vue.getFenetre())) {
+                        System.out.println("choix patatequila");
+                        return 2;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[3], vue.getFenetre())) {
+                        System.out.println("choix pataterroriste");
+                        return 3;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
+                        System.out.println("choix patatestostérone");
+                        return 4;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
+                        System.out.println("choix patatetenuclearire");
+                        return 5;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
+                        System.out.println("choix patatetraplégique");
+                        return 6;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
+                        System.out.println("choix patatwerk");
+                        return 7;
+                    }
+                    else if (vue.cliqueSprite(eventMenuChoix, vue.getFond(), vue.getFenetre())) {
+                        return 10;
                     }
                 }
             }
