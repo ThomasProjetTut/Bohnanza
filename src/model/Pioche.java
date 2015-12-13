@@ -30,6 +30,7 @@ public class Pioche {
             else if(i<24){
                 pioche.add(new Carte_Pata_Tetraplegique());
             }
+
             else if(i<36){
                 pioche.add(new Carte_Pata_Tetenucleaire());
             }
@@ -60,15 +61,19 @@ public class Pioche {
         defausse.add(carte);
     }
 
-    public void nouveauTourDePioche(){
+    public void verifTourDePioche(){
         if (pioche.size() > 0) return;
 
         for (Carte carte: defausse) {
             pioche.add(carte);
-            defausse.remove(carte);
+        }
+
+        while (defausse.size()>0){
+            defausse.remove(defausse.get(defausse.size()-1));
         }
 
         tourDePioche++;
+        System.out.println("Tour de pioche : "+tourDePioche);
     }
 
     //GETTER AND SETTER

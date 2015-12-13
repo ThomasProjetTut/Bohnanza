@@ -24,7 +24,14 @@ public class Controlleur {
     private Pioche pioche;
     private Zone zonePioche;
 
-    public Controlleur() throws IOException {
+    public Controlleur() {
+
+        initAttributs();
+        jeu();
+
+    }
+
+    private void initAttributs(){
         vue = new Vue();
         joueurs = new Joueur[4];
         Joueur joueur1 = new Joueur("Joueur 1", 1);
@@ -41,9 +48,6 @@ public class Controlleur {
 
         pioche = new Pioche();
         zonePioche = new Zone();
-
-        jeu();
-
     }
 
     private void jeu() {
@@ -54,15 +58,28 @@ public class Controlleur {
             j.afficherMain();
             actualiserMain(j);
         }
-        System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
 
         while (vue.getFenetre().isOpen()) {
 
-            etapePlanter();
+            try {
+                etapePlanter();
+            } catch (ExceptionFinDeJeu e) {
+                System.out.println(e.getMessage());
+
+                System.out.println("Le joueur "+e.getJoueurVainqueur().getNom()+" a gagné avec "
+                +e.getJoueurVainqueur().getNbThunes()+" thunes !");
+
+                vue.getFenetre().close();
+
+                System.out.println("Nouvelle partie !!");
+                initAttributs();
+
+            }
         }
     }
 
-    private void etapePlanter() {
+    private void etapePlanter() throws ExceptionFinDeJeu {
+        System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
 
         System.out.println("ETAPE PLANTER");
         System.out.println("Joueur actif = "+joueurActif.getNom());
@@ -141,11 +158,37 @@ public class Controlleur {
 
     //ETAPE ECHANGE
 
-    private void etapeEchange() {
+    private void etapeEchange() throws ExceptionFinDeJeu {
         System.out.println("ETAPE ECHANGE");
 
         zonePioche.ajouterCarte(pioche.giveNextCarte());
+        pioche.verifTourDePioche();
+        if (pioche.getTourDePioche() > 3){
+
+            Joueur joueurRetour = new Joueur();
+
+            for (Joueur joueur : joueurs) {
+                if (joueur.getNbThunes() > joueurRetour.getNbThunes())
+                    joueurRetour = joueur;
+            }
+
+            throw new ExceptionFinDeJeu(joueurRetour);
+        }
+
         zonePioche.ajouterCarte(pioche.giveNextCarte());
+        pioche.verifTourDePioche();
+        if (pioche.getTourDePioche() > 3){
+            Joueur joueurRetour = new Joueur();
+
+            for (Joueur joueur : joueurs) {
+                if (joueur.getNbThunes() > joueurRetour.getNbThunes())
+                    joueurRetour = joueur;
+            }
+
+            throw new ExceptionFinDeJeu(joueurRetour);
+        }
+
+
         setTxtZonePioche();
 
         int carteNonJouee = zonePioche.getZone().size();
@@ -514,7 +557,7 @@ public class Controlleur {
 
     //FIN ETAPE ECHANGE
 
-    private void etapePlantageEchange() {
+    private void etapePlantageEchange() throws ExceptionFinDeJeu {
         System.out.println("ETAPE PLANTER APRES ECHANGE");
 
         int numCarteAPlanter;
@@ -666,10 +709,21 @@ public class Controlleur {
         return 0;
     }
 
-    private void etapePioche() {
+    private void etapePioche() throws ExceptionFinDeJeu {
         System.out.println("ETAPE PIOCHE (ETAPE 4)");
         vue.afficherEtape(4);
         joueurActif.piocheEtape4(pioche);
+        if (pioche.getTourDePioche() > 3){
+            Joueur joueurRetour = new Joueur();
+
+            for (Joueur joueur : joueurs) {
+                if (joueur.getNbThunes() > joueurRetour.getNbThunes())
+                    joueurRetour = joueur;
+            }
+
+            throw new ExceptionFinDeJeu(joueurRetour);
+        }
+
         actualiserMain(joueurActif);
         vue.actualiserFenetre(joueurActif.getIdJoueur());
 
@@ -695,7 +749,7 @@ public class Controlleur {
         }
     }
 
-    private void finDeTour() {
+    private void finDeTour() throws ExceptionFinDeJeu {
         System.out.println("FIN DE TOUR");
 
         rotationPlateau();

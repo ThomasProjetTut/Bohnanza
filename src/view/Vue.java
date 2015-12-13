@@ -813,7 +813,6 @@ public class Vue{
         }
     }
 
-
     public void actualiserFenetre(int idJoueurActif){
         System.out.println("act");
         fenetre.draw(sprFond);
@@ -1009,7 +1008,6 @@ public class Vue{
 
         fenetre.display();
     }
-
 
     public void actualisationFenetreMenuOuiNon(int idJoueurActif){
         System.out.println("actu menu oui non");
@@ -1289,7 +1287,6 @@ public class Vue{
 
     }
 
-
     public boolean isCliquable(Sprite sprite){
         if(spriteCliquable.contains(sprite)){
             return true;
@@ -1422,7 +1419,6 @@ public class Vue{
         sprCartePiochee2.setTexture(txtCarte);
     }
 
-
     public void garderCarte(int id, int joueur) {
         System.out.println("garder carte" + id + " " + joueur);
         if(id == 1){
@@ -1454,23 +1450,6 @@ public class Vue{
         }
 
     }
-
-
-
-/*
-    public void creationSpriteCliquableMenuOuiNon(int joueur) {
-        System.out.println("crea sprite O N");
-        clearSpritesCliquables();
-
-        for(Sprite sprite : getSprsAutresJoueurs(joueur)){
-            System.out.println("liudbsfoivjbsdflijvb");
-            spriteCliquable.add(sprite);
-        }
-
-        spriteCliquable.add(sprMenuOui);
-        spriteCliquable.add(sprMenuNon);
-
-    }*/
 
     public void afficherMainJ1(){
         switch((int) getFond().getRotation()){
@@ -1539,8 +1518,6 @@ public class Vue{
 
     }
 
-
-
     private void afficherMainBas(ArrayList<Sprite> main){
         int espaceEntreCarte;
         if (main.size()>0){
@@ -1560,8 +1537,6 @@ public class Vue{
             fenetre.draw(main.get(i));
         }
     }
-
-
     private void afficherMainHaut(ArrayList<Sprite> main){
         int espaceEntreCarte;
         if (main.size()>0){
@@ -1581,7 +1556,6 @@ public class Vue{
             fenetre.draw(main.get(i));
         }
     }
-
     private void afficherMainGauche(ArrayList<Sprite> main){
         int espaceEntreCarte;
         if (main.size()>0){
@@ -1601,7 +1575,6 @@ public class Vue{
             fenetre.draw(main.get(i));
         }
     }
-
     private void afficherMainDroite(ArrayList<Sprite> main){
         int espaceEntreCarte;
         if (main.size()>0){
@@ -1629,7 +1602,6 @@ public class Vue{
         afficherZoneEchangeJ3();
         afficherZoneEchangeJ4();
     }
-
     private void afficherZoneEchangeJ1(){
         switch ((int) getFond().getRotation()){
             case 0 :
@@ -1867,24 +1839,18 @@ public class Vue{
     public Sprite[] getSprsAutresJoueurs() {
         return sprsAutresJoueurs;
     }
-
     public Sprite getSprJoueurAttente1() {
         return sprJoueurAttente1;
     }
-
     public Sprite getSprJoueurAttente2() {
         return sprJoueurAttente2;
     }
-
     public Sprite getSprJoueurAttente3() {
         return sprJoueurAttente3;
     }
-
     public Sprite getSprJoueurAttente4() {
         return sprJoueurAttente4;
     }
-
-
 
     public void creationSpriteCliquablePlantagePostEchange(int joueur) {
         for(Sprite sprite : sprsChamps[joueur]){
@@ -1909,7 +1875,6 @@ public class Vue{
 
         }
     }
-
 
     private void planterChampJ1(int champ, int idCarte) {
         switch (idCarte){
@@ -1941,7 +1906,6 @@ public class Vue{
         }
         actualiserFenetrePlantagePostEchange(1);
     }
-
     private void planterChampJ2(int champ, int idCarte) {
         switch (idCarte){
             case 1 :
@@ -1972,7 +1936,6 @@ public class Vue{
         }
         actualiserFenetrePlantagePostEchange(2);
     }
-
     private void planterChampJ3(int champ, int idCarte) {
         switch (idCarte){
             case 1 :
@@ -2003,7 +1966,6 @@ public class Vue{
         }
         actualiserFenetrePlantagePostEchange(3);
     }
-
     private void planterChampJ4(int champ, int idCarte) {
         switch (idCarte){
             case 1 :
@@ -2100,6 +2062,4 @@ public class Vue{
 
     }
 
-
-
-    }
+}

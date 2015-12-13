@@ -65,6 +65,7 @@ public class Joueur {
 
     public void piocher(Pioche pioche) {
         addCarte(pioche.giveNextCarte());
+        pioche.verifTourDePioche();
     }
 
     public void afficherMain(){
