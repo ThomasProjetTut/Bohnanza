@@ -10,7 +10,6 @@ import org.jsfml.window.event.Event;
 import view.Vue;
 
 import java.io.IOException;
-import java.sql.SQLSyntaxErrorException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,7 +103,8 @@ public class Controlleur {
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
-                        } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
+                        }
+                        else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                             System.out.println("plante deuxième champ");
 
                             vue.planterChamp(joueurActif.getIdJoueur()- 1, 1, joueurActif.getMain().get(0).getIdCarte());
@@ -114,22 +114,26 @@ public class Controlleur {
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
-                        } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
-                            System.out.println("plante troisième champ");
+                        }
+                        else if (joueurActif.getMaxChamps() >= 3 && vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
 
-                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
-                            joueurActif.planter(3,pioche);
-                            actualiserMain(joueurActif);
-                            vue.actualiserFenetre();
+                                System.out.println("plante troisième champ");
 
-                            vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
-                            nbplants++;
+                                vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
+                                joueurActif.planter(3, pioche);
+                                actualiserMain(joueurActif);
+                                vue.actualiserFenetre();
+
+                                vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
+                                nbplants++;
                         }
                     }
                 }
             }
         }
     }
+
+    //ETAPE ECHANGE
 
     private void etapeEchange() {
         System.out.println("ETAPE ECHANGE");
@@ -238,7 +242,7 @@ public class Controlleur {
                         return true;
 
                     }
-                    else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
+                    else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())) {
 
                         System.out.println("ECHANGE");
 
@@ -248,13 +252,8 @@ public class Controlleur {
                         vue.creationSpriteCliquableMenuCarte();
                         vue.actualiserFenetreEchangeMenu();
 
-                        if (carteDemande == -1){
-                            return false;
-                        }
+                        return carteDemande != -1 && etapeDemandeEchangeAcceptation(choixCarte, carteDemande);
 
-                        if(etapeDemandeEchangeAcceptation(choixCarte,carteDemande)){
-                            return true;
-                        }
                     }
                     else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
 
@@ -474,35 +473,35 @@ public class Controlleur {
 
                     if(vue.cliqueSprite(eventMenuChoix, tabSprChoix[0], vue.getFenetre())){
                         System.out.println("choix patatectonik");
-                        return 0;
+                        return 1;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[1], vue.getFenetre())) {
                         System.out.println("choix patatentacule");
-                        return 1;
+                        return 2;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[2], vue.getFenetre())) {
                         System.out.println("choix patatequila");
-                        return 2;
+                        return 3;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[3], vue.getFenetre())) {
                         System.out.println("choix pataterroriste");
-                        return 3;
+                        return 4;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
                         System.out.println("choix patatestostérone");
-                        return 4;
+                        return 5;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
                         System.out.println("choix patatetenuclearire");
-                        return 5;
+                        return 6;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
                         System.out.println("choix patatetraplégique");
-                        return 6;
+                        return 7;
                     }
                     else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
                         System.out.println("choix patatwerk");
-                        return 7;
+                        return 8;
                     }
                     else {
                         return -1;
@@ -512,6 +511,8 @@ public class Controlleur {
         }
         return -1;
     }
+
+    //FIN ETAPE ECHANGE
 
     private void etapePlantageEchange(){
         System.out.println("ETAPE PLANTER APRES ECHANGE");
