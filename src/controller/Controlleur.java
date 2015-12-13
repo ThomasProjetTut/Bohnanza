@@ -26,18 +26,18 @@ public class Controlleur {
 
     public Controlleur() throws IOException {
         vue = new Vue();
-        joueurs=new Joueur[4];
-        Joueur joueur1=new Joueur("Joueur 1",1);
-        Joueur joueur2=new Joueur("Joueur 2",2);
-        Joueur joueur3=new Joueur("Joueur 3",3);
-        Joueur joueur4=new Joueur("Joueur 4",4);
+        joueurs = new Joueur[4];
+        Joueur joueur1 = new Joueur("Joueur 1", 1);
+        Joueur joueur2 = new Joueur("Joueur 2", 2);
+        Joueur joueur3 = new Joueur("Joueur 3", 3);
+        Joueur joueur4 = new Joueur("Joueur 4", 4);
 
-        joueurs[0]=joueur1;
-        joueurs[1]=joueur2;
-        joueurs[2]=joueur3;
-        joueurs[3]=joueur4;
+        joueurs[0] = joueur1;
+        joueurs[1] = joueur2;
+        joueurs[2] = joueur3;
+        joueurs[3] = joueur4;
 
-        joueurActif=joueurs[0];
+        joueurActif = joueurs[0];
 
         pioche = new Pioche();
         zonePioche = new Zone();
@@ -49,12 +49,12 @@ public class Controlleur {
     private void jeu() {
         compteurTour = 1;
 
-        for(Joueur j:joueurs){
+        for (Joueur j : joueurs) {
             j.recoisMain(pioche);
             j.afficherMain();
             actualiserMain(j);
         }
-        System.out.println("Taille de la pioche : "+pioche.getTaillePioche());
+        System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
 
         while (vue.getFenetre().isOpen()) {
 
@@ -97,35 +97,33 @@ public class Controlleur {
                             System.out.println("plante premier champ");
 
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 0, joueurActif.getMain().get(0).getIdCarte());
-                            joueurActif.planter(1,pioche);
+                            joueurActif.planter(1, pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
-                        }
-                        else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
+                        } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                             System.out.println("plante deuxième champ");
 
-                            vue.planterChamp(joueurActif.getIdJoueur()- 1, 1, joueurActif.getMain().get(0).getIdCarte());
-                            joueurActif.planter(2,pioche);
+                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 1, joueurActif.getMain().get(0).getIdCarte());
+                            joueurActif.planter(2, pioche);
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre();
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
-                        }
-                        else if (joueurActif.getMaxChamps() >= 3 && vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
+                        } else if (joueurActif.getMaxChamps() >= 3 && vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
 
-                                System.out.println("plante troisième champ");
+                            System.out.println("plante troisième champ");
 
-                                vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
-                                joueurActif.planter(3, pioche);
-                                actualiserMain(joueurActif);
-                                vue.actualiserFenetre();
+                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
+                            joueurActif.planter(3, pioche);
+                            actualiserMain(joueurActif);
+                            vue.actualiserFenetre();
 
-                                vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
-                                nbplants++;
+                            vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
+                            nbplants++;
                         }
                     }
                 }
@@ -174,13 +172,12 @@ public class Controlleur {
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte2);
                         }
-                        if(retour) {
+                        if (retour) {
                             vue.delSpriteCliquable(carte1);
                             carteNonJouee--;
                         }
 
-                    }
-                    else if (vue.cliqueSprite(event, carte2, vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(event, carte2, vue.getFenetre())) {
 
                         System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
                         vue.creerMenuCarte(carte2.getPosition().x + 75, carte2.getPosition().y);
@@ -193,7 +190,7 @@ public class Controlleur {
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte1);
                         }
-                        if(retour) {
+                        if (retour) {
                             vue.delSpriteCliquable(carte2);
                             carteNonJouee--;
                         }
@@ -201,7 +198,7 @@ public class Controlleur {
 
                     System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
 
-                    for(Sprite sprite : vue.getSpriteCliquable()){
+                    for (Sprite sprite : vue.getSpriteCliquable()) {
                         System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
                     }
 
@@ -219,32 +216,31 @@ public class Controlleur {
         }
     }
 
-    private boolean etapeEchangeMenuCarte(int choixCarte){
+    private boolean etapeEchangeMenuCarte(int choixCarte) {
         vue.creationSpriteCliquableMenuCarte();
 
-        while (vue.getFenetre().isOpen()){
-            for(Event eventMenu : vue.getFenetre().pollEvents()){
+        while (vue.getFenetre().isOpen()) {
+            for (Event eventMenu : vue.getFenetre().pollEvents()) {
 
 
                 if (eventMenu.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
                 }
 
-                if(eventMenu.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                if (eventMenu.type == Event.Type.MOUSE_BUTTON_RELEASED) {
 
-                    if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())) {
+                    if (vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())) {
                         System.out.println("GARDER");
 
                         //METTRE LA CARTE 1 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
-                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(choixCarte-1));
+                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(choixCarte - 1));
 
 
                         vue.garderCarte(choixCarte, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return true;
 
-                    }
-                    else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())) {
 
                         System.out.println("ECHANGE");
 
@@ -255,8 +251,7 @@ public class Controlleur {
                         vue.actualiserFenetreEchangeMenu();
                         return carteDemande != -1 && etapeDemandeEchangeAcceptation(choixCarte, carteDemande);
 
-                    }
-                    else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
+                    } else if (vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())) {
 
                         System.out.println("DON");
 
@@ -264,20 +259,17 @@ public class Controlleur {
                         vue.actualiserFenetreEchange();
                         int choixJoueur = etapeEchangeMenuCarteDon();
 
-                        if (choixJoueur == 0){
+                        if (choixJoueur == 0) {
                             return false;
-                        }
-                        else if(etapeConfirmation(choixJoueur, vue.getSprsJoueurs()[choixJoueur-1])){
-                            joueurs[choixJoueur-1].recoisCarte(zonePioche.getZone().get(choixCarte-1));
-                            vue.donnerCarte(choixCarte, choixJoueur-1);
+                        } else if (etapeConfirmation(choixJoueur, vue.getSprsJoueurs()[choixJoueur - 1])) {
+                            joueurs[choixJoueur - 1].recoisCarte(zonePioche.getZone().get(choixCarte - 1));
+                            vue.donnerCarte(choixCarte, choixJoueur - 1);
                             return true;
-                        }
-                        else {
+                        } else {
                             return false;
                         }
 
-                    }
-                    else if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
 
                         System.out.println("RETOUR");
 
@@ -299,32 +291,29 @@ public class Controlleur {
 
         ArrayList<Sprite> joueursConcernes = new ArrayList<>();
         List<Integer> numJoueurConcerne = new ArrayList<>();
-        for(Sprite sprite : spriteJoueur){
+        for (Sprite sprite : spriteJoueur) {
 
-            if (sprite == vue.getSprJoueurAttente1() ){
-                if (joueurs[0].haveCarteInMain(idCarteVoulu)){
-                    System.out.println("Le joueur 1 a une patate d'id n°"+idCarteVoulu);
+            if (sprite == vue.getSprJoueurAttente1()) {
+                if (joueurs[0].haveCarteInMain(idCarteVoulu)) {
+                    System.out.println("Le joueur 1 a une patate d'id n°" + idCarteVoulu);
                     joueursConcernes.add(sprite);
                     numJoueurConcerne.add(1);
                 }
-            }
-            else if (sprite == vue.getSprJoueurAttente2() ){
-                if (joueurs[1].haveCarteInMain(idCarteVoulu)){
-                    System.out.println("Le joueur 2 a une patate d'id n°"+idCarteVoulu);
+            } else if (sprite == vue.getSprJoueurAttente2()) {
+                if (joueurs[1].haveCarteInMain(idCarteVoulu)) {
+                    System.out.println("Le joueur 2 a une patate d'id n°" + idCarteVoulu);
                     joueursConcernes.add(sprite);
                     numJoueurConcerne.add(2);
                 }
-            }
-            else if (sprite == vue.getSprJoueurAttente3() ){
-                if (joueurs[2].haveCarteInMain(idCarteVoulu)){
-                    System.out.println("Le joueur 3 a une patate d'id n°"+idCarteVoulu);
+            } else if (sprite == vue.getSprJoueurAttente3()) {
+                if (joueurs[2].haveCarteInMain(idCarteVoulu)) {
+                    System.out.println("Le joueur 3 a une patate d'id n°" + idCarteVoulu);
                     joueursConcernes.add(sprite);
                     numJoueurConcerne.add(3);
                 }
-            }
-            else if (sprite == vue.getSprJoueurAttente4() ){
-                if (joueurs[3].haveCarteInMain(idCarteVoulu)){
-                    System.out.println("Le joueur 4 a une patate d'id n°"+idCarteVoulu);
+            } else if (sprite == vue.getSprJoueurAttente4()) {
+                if (joueurs[3].haveCarteInMain(idCarteVoulu)) {
+                    System.out.println("Le joueur 4 a une patate d'id n°" + idCarteVoulu);
                     joueursConcernes.add(sprite);
                     numJoueurConcerne.add(4);
                 }
@@ -334,40 +323,40 @@ public class Controlleur {
         for (int i = 0; i < numJoueurConcerne.size(); i++) {
             vue.clearSpritesCliquables();
             vue.setSpriteCliquable(joueursConcernes.get(i));
-            if(etapeConfirmation(numJoueurConcerne.get(i), joueursConcernes.get(i))){
+            if (etapeConfirmation(numJoueurConcerne.get(i), joueursConcernes.get(i))) {
                 vue.clearSpritesCliquables();
-                switch (numJoueurConcerne.get(i)){
-                    case 1 :
+                switch (numJoueurConcerne.get(i)) {
+                    case 1:
                         System.out.println("L'écahnge a été fait avec le joueur 1.");
-                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
-                                +" contre une "+joueurs[0].findCarteById(idCarteVoulu).getNom());
+                        System.out.println("Le joueur actif a échangé une " + zonePioche.getZone().get(idCarte - 1).getNom()
+                                + " contre une " + joueurs[0].findCarteById(idCarteVoulu).getNom());
                         vue.donnerCarte(idCarte, 1);
-                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte - 1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
                         break;
 
-                    case 2 :
+                    case 2:
                         System.out.println("L'écahnge a été fait avec le joueur 2.");
-                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
-                                +" contre une "+joueurs[1].findCarteById(idCarteVoulu).getNom());
+                        System.out.println("Le joueur actif a échangé une " + zonePioche.getZone().get(idCarte - 1).getNom()
+                                + " contre une " + joueurs[1].findCarteById(idCarteVoulu).getNom());
                         vue.donnerCarte(idCarte, 2);
 
-                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte - 1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
                         break;
 
-                    case 3 :
+                    case 3:
                         System.out.println("L'écahnge a été fait avec le joueur 3.");
-                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
-                                +" contre une "+joueurs[2].findCarteById(idCarteVoulu).getNom());
+                        System.out.println("Le joueur actif a échangé une " + zonePioche.getZone().get(idCarte - 1).getNom()
+                                + " contre une " + joueurs[2].findCarteById(idCarteVoulu).getNom());
                         vue.donnerCarte(idCarte, 3);
-                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte - 1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
                         break;
 
-                    case 4 :
+                    case 4:
                         System.out.println("L'écahnge a été fait avec le joueur 4.");
-                        System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
-                                +" contre une "+joueurs[3].findCarteById(idCarteVoulu).getNom());
+                        System.out.println("Le joueur actif a échangé une " + zonePioche.getZone().get(idCarte - 1).getNom()
+                                + " contre une " + joueurs[3].findCarteById(idCarteVoulu).getNom());
                         vue.donnerCarte(idCarte, 4);
-                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
+                        joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte - 1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
 
                         break;
                 }
@@ -382,19 +371,19 @@ public class Controlleur {
 
     }
 
-    private boolean etapeConfirmation(int idJoueur, Sprite sprite){
+    private boolean etapeConfirmation(int idJoueur, Sprite sprite) {
 
-        if(sprite == vue.getSprsJoueurs()[3]){
+        if (sprite == vue.getSprsJoueurs()[3]) {
             vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y - 50);
 
-        }else{
+        } else {
             vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y);
         }
 
         vue.actualisationFenetreMenuOuiNon();
 
 
-        while(vue.getFenetre().isOpen()) {
+        while (vue.getFenetre().isOpen()) {
             for (Event eventON : vue.getFenetre().pollEvents()) {
                 if (eventON.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
@@ -405,7 +394,7 @@ public class Controlleur {
                         vue.clearSpritesCliquables();
                         System.out.println("Le joueur " + (idJoueur) + " accepte.");
                         return true;
-                    }else if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[1], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[1], vue.getFenetre())) {
 
                         System.out.println("Le joueur " + (idJoueur) + " refuse.");
                         return false;
@@ -423,34 +412,32 @@ public class Controlleur {
         Sprite[] joueursAttente = new Sprite[3];
         joueursAttente = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
 
-        while(vue.getFenetre().isOpen()){
-            for(Event eventDon : vue.getFenetre().pollEvents()){
-                if(eventDon.type == Event.Type.CLOSED){
+        while (vue.getFenetre().isOpen()) {
+            for (Event eventDon : vue.getFenetre().pollEvents()) {
+                if (eventDon.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
                 }
 
-                if(eventDon.type == Event.Type.MOUSE_BUTTON_RELEASED){
-                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[0], vue.getFenetre())){
+                if (eventDon.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                    if (vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[0], vue.getFenetre())) {
                         System.out.println("Don J1");
                         return 1;
                     }
 
-                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[1], vue.getFenetre())){
+                    if (vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[1], vue.getFenetre())) {
                         System.out.println("Don J2");
                         return 2;
                     }
 
-                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[2], vue.getFenetre())){
+                    if (vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[2], vue.getFenetre())) {
                         System.out.println("Don J3");
                         return 3;
                     }
 
-                    if(vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[3], vue.getFenetre())){
+                    if (vue.cliqueSprite(eventDon, vue.getSprsJoueurs()[3], vue.getFenetre())) {
                         System.out.println("Don J4");
                         return 4;
-                    }
-
-                    else{
+                    } else {
                         System.out.println("retour");
                         return 0;
                     }
@@ -465,48 +452,40 @@ public class Controlleur {
         Sprite[] tabSprChoix = new Sprite[8];
         tabSprChoix = vue.getSprsMenuCartesChoix();
 
-        while(vue.getFenetre().isOpen()){
-            for(Event eventMenuChoix : vue.getFenetre().pollEvents()){
+        while (vue.getFenetre().isOpen()) {
+            for (Event eventMenuChoix : vue.getFenetre().pollEvents()) {
 
                 if (eventMenuChoix.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
                 }
 
-                if(eventMenuChoix.type == Event.Type.MOUSE_BUTTON_RELEASED){
+                if (eventMenuChoix.type == Event.Type.MOUSE_BUTTON_RELEASED) {
 
-                    if(vue.cliqueSprite(eventMenuChoix, tabSprChoix[0], vue.getFenetre())){
+                    if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[0], vue.getFenetre())) {
                         System.out.println("choix patatectonik");
                         return 1;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[1], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[1], vue.getFenetre())) {
                         System.out.println("choix patatentacule");
                         return 2;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[2], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[2], vue.getFenetre())) {
                         System.out.println("choix patatequila");
                         return 3;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[3], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[3], vue.getFenetre())) {
                         System.out.println("choix pataterroriste");
                         return 4;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[4], vue.getFenetre())) {
                         System.out.println("choix patatestostérone");
                         return 5;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[5], vue.getFenetre())) {
                         System.out.println("choix patatetenuclearire");
                         return 6;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[6], vue.getFenetre())) {
                         System.out.println("choix patatetraplégique");
                         return 7;
-                    }
-                    else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
+                    } else if (vue.cliqueSprite(eventMenuChoix, tabSprChoix[7], vue.getFenetre())) {
                         System.out.println("choix patatwerk");
                         return 8;
-                    }
-                    else {
+                    } else {
                         return -1;
                     }
                 }
@@ -517,7 +496,7 @@ public class Controlleur {
 
     //FIN ETAPE ECHANGE
 
-    private void etapePlantageEchange(){
+    private void etapePlantageEchange() {
         System.out.println("ETAPE PLANTER APRES ECHANGE");
         vue.afficherEtape(3);
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
@@ -563,56 +542,72 @@ public class Controlleur {
 
             System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
 
-            for(Sprite sprite : vue.getSpriteCliquable()){
+            for (Sprite sprite : vue.getSpriteCliquable()) {
                 System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
             }
 
             for (Sprite sprite : spriteZoneEchange) {
+                int champChoisi = choixChamp(sprite, i);
+                System.out.println("retour choix " + champChoisi);
 
-                while (vue.getFenetre().isOpen()) {
-                    for (Event event : vue.getFenetre().pollEvents()) {
+            }
 
-                        if (event.type == Event.Type.CLOSED) {
-                            vue.getFenetre().close();
-                        }
+            while (vue.getFenetre().isOpen()) {
 
-                        if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                for (Event event : vue.getFenetre().pollEvents()) {
 
-                            if (vue.cliqueSprite(event, vue.getSprsChamps()[i][0], vue.getFenetre())) {
-                                System.out.println("Joueur " + (i + 1) + " champ 1");
-                            } else if (vue.cliqueSprite(event, vue.getSprsChamps()[i][1], vue.getFenetre())) {
-                                System.out.println("Joueur " + (i + 1) + " champ 2");
-                            } else if (vue.cliqueSprite(event, vue.getSprsChamps()[i][2], vue.getFenetre())) {
-                                System.out.println("Joueur " + (i + 1) + " champ 3");
-                            }
-
-                        }
+                    if (event.type == Event.Type.CLOSED) {
+                        vue.getFenetre().close();
                     }
+
+                    if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+                        if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
+                            etapePioche();
+                            return;
+                        }
+
+                    }
+
                 }
+
             }
         }
+    }
 
-        while(vue.getFenetre().isOpen()){
 
-            for(Event event : vue.getFenetre().pollEvents()){
+    private int choixChamp(Sprite cartePlantee, int joueur) {
 
-                if(event.type == Event.Type.CLOSED){
+        while (vue.getFenetre().isOpen()) {
+            for (Event event : vue.getFenetre().pollEvents()) {
+
+                if (event.type == Event.Type.CLOSED) {
                     vue.getFenetre().close();
                 }
 
-                if(event.type == Event.Type.MOUSE_BUTTON_RELEASED){
-                    if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
-                        etapePioche();
-                        return;
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
+
+                    if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur][0], vue.getFenetre())) {
+                        System.out.println("Joueur " + (joueur + 1) + " champ 1");
+                        return 1;
+                    } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur][1], vue.getFenetre())) {
+                        System.out.println("Joueur " + (joueur + 1) + " champ 2");
+                        return 2;
+                    } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur][2], vue.getFenetre())) {
+                        System.out.println("Joueur " + (joueur + 1) + " champ 3");
+                        return 3;
                     }
 
                 }
-
             }
-
         }
-
+        return 0;
     }
+
+
+
+
+
+
 
     private void etapePioche() {
         System.out.println("ETAPE PIOCHE (ETAPE 4)");
