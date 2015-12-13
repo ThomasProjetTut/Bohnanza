@@ -26,8 +26,9 @@ public class Zone {
     }
 
     public void clear() {
-        for (Carte carte: zone) {
-            zone.remove(carte);
+
+        while (zone.size()>0){
+            zone.remove(zone.get(zone.size()-1));
         }
     }
 

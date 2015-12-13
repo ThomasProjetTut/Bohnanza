@@ -221,4 +221,12 @@ public class Joueur {
     public void setZoneEchange(Zone zoneEchange) {
         this.zoneEchange = zoneEchange;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }

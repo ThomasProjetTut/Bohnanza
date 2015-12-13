@@ -502,8 +502,6 @@ public class Vue{
         sprChampJ4[1].setPosition(765, 575);
         sprChampJ4[2].setPosition(765, 737);
 
-        actualiserFenetre();
-
     }
     public void rotationJ2(){
 
@@ -546,8 +544,6 @@ public class Vue{
         sprChampJ4[2].setPosition(413, 235);
         sprChampJ4[1].setPosition(575, 235);
         sprChampJ4[0].setPosition(737, 235);
-
-        actualiserFenetre();
 
 
     }
@@ -593,8 +589,6 @@ public class Vue{
         sprChampJ4[1].setPosition(235, 425);
         sprChampJ4[2].setPosition(235, 587);
 
-        actualiserFenetre();
-
     }
     public void rotationJ4(){
 
@@ -637,8 +631,6 @@ public class Vue{
         sprChampJ4[2].setPosition(263, 765);
         sprChampJ4[1].setPosition(425, 765);
         sprChampJ4[0].setPosition(587, 765);
-
-        actualiserFenetre();
 
     }
 
@@ -799,7 +791,26 @@ public class Vue{
         }
 
     }
-    public void actualiserFenetre(){
+
+    public void afficherMain(int idJoueurActif){
+        switch (idJoueurActif){
+            case 1:
+                afficherMainJ1();
+                break;
+            case 2:
+                afficherMainJ2();
+                break;
+            case 3:
+                afficherMainJ3();
+                break;
+            case 4:
+                afficherMainJ4();
+                break;
+        }
+    }
+
+
+    public void actualiserFenetre(int idJoueurActif){
         System.out.println("act");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
@@ -849,14 +860,14 @@ public class Vue{
 
         afficherZonesEchanges();
 
-        afficherMainJ1();
+        afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
 
     }
-    public void actualiserFenetreEchange(){
+    public void actualiserFenetreEchange(int idJoueurActif){
         System.out.println("actu echange");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
@@ -908,7 +919,7 @@ public class Vue{
         afficherZonesEchanges();
 
 
-        afficherMainJ1();
+        afficherMain(idJoueurActif);
 
         if(sprCartePiochee1.getTexture() != txtCarteVide){
             fenetre.draw(sprCartePiochee1);
@@ -925,7 +936,7 @@ public class Vue{
         fenetre.display();
 
     }
-    public void actualiserFenetreEchangeMenu() {
+    public void actualiserFenetreEchangeMenu(int idJoueurActif) {
         System.out.println("actu menu");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
@@ -988,15 +999,15 @@ public class Vue{
         fenetre.draw(sprMCDonner);
         fenetre.draw(sprMCGarder);
 
-
-
-        afficherMainJ1();
+        afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
     }
-    public void actualisationFenetreMenuOuiNon(){
+
+
+    public void actualisationFenetreMenuOuiNon(int idJoueurActif){
         System.out.println("actu menu oui non");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
@@ -1035,7 +1046,7 @@ public class Vue{
         }
 
         if(spriteCliquable.contains(sprJoueurAttente4)){
-            System.out.println("ooui !");
+            System.out.println("oui !");
             sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
         }else{
 
@@ -1063,13 +1074,13 @@ public class Vue{
 
 
 
-        afficherMainJ1();
+        afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
     }
-    public void actualiserFenetreEchangeMenuChoix() {
+    public void actualiserFenetreEchangeMenuChoix(int idJoueurActif) {
         System.out.println("actu menu choix");
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
@@ -1146,17 +1157,17 @@ public class Vue{
         fenetre.draw(sprMCCTetraplegique);
         fenetre.draw(sprMCCTwerk);
 
-
-
-        afficherMainJ1();
+        afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
 
     }
-    public void actualiserFenetrePlantagePostEchangeJ1() {
-        System.out.println("actu plantage post échange j1");
+
+    public void actualiserFenetrePlantagePostEchange(int idJoueurActif){
+        System.out.println("actu plantage post échange j"+idJoueurActif);
+
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1206,190 +1217,11 @@ public class Vue{
 
         afficherZonesEchanges();
 
-        afficherMainJ1();
+        afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
-
-
-    }
-    public void actualiserFenetrePlantagePostEchangeJ2() {
-        System.out.println("actu menu choix j2");
-        fenetre.draw(sprFond);
-        for (Sprite sprite : sprChampJ1){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ2){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ3){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ4){
-            fenetre.draw(sprite);
-        }
-
-        for (Sprite sprite : sprsBoutonsEtapes){
-            fenetre.draw(sprite);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente1)){
-            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
-        }else{
-            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente2)){
-            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
-        }else{
-            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente3)){
-            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
-        }else{
-            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente4)){
-            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
-        }else{
-            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
-        }
-
-
-        for(Sprite sprite : sprsAutresJoueurs){
-            fenetre.draw(sprite);
-        }
-
-        afficherZoneEchangeJ2();
-
-        afficherMainJ2();
-
-        fenetre.draw(etapeEnCours);
-
-        fenetre.display();
-
-
-    }
-    public void actualiserFenetrePlantagePostEchangeJ3() {
-        System.out.println("actu menu choix j3");
-        fenetre.draw(sprFond);
-        for (Sprite sprite : sprChampJ1){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ2){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ3){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ4){
-            fenetre.draw(sprite);
-        }
-
-        for (Sprite sprite : sprsBoutonsEtapes){
-            fenetre.draw(sprite);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente1)){
-            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
-        }else{
-            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente2)){
-            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
-        }else{
-            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente3)){
-            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
-        }else{
-            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente4)){
-            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
-        }else{
-            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
-        }
-
-
-        for(Sprite sprite : sprsAutresJoueurs){
-            fenetre.draw(sprite);
-        }
-
-        afficherZoneEchangeJ3();
-
-        afficherMainJ3();
-
-        fenetre.draw(etapeEnCours);
-
-        fenetre.display();
-
-
-    }
-    public void actualiserFenetrePlantagePostEchangeJ4() {
-        System.out.println("actu menu choix j4");
-        fenetre.draw(sprFond);
-        for (Sprite sprite : sprChampJ1){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ2){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ3){
-            fenetre.draw(sprite);
-        }
-        for (Sprite sprite : sprChampJ4){
-            fenetre.draw(sprite);
-        }
-
-        for (Sprite sprite : sprsBoutonsEtapes){
-            fenetre.draw(sprite);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente1)){
-            sprJoueurAttente1.setTexture(txtJoueur1AttenteActif);
-        }else{
-            sprJoueurAttente1.setTexture(txtJoueur1AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente2)){
-            sprJoueurAttente2.setTexture(txtJoueur2AttenteActif);
-        }else{
-            sprJoueurAttente2.setTexture(txtJoueur2AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente3)){
-            sprJoueurAttente3.setTexture(txtJoueur3AttenteActif);
-        }else{
-            sprJoueurAttente3.setTexture(txtJoueur3AttenteInactif);
-        }
-
-        if(spriteCliquable.contains(sprJoueurAttente4)){
-            sprJoueurAttente4.setTexture(txtJoueur4AttenteActif);
-        }else{
-            sprJoueurAttente4.setTexture(txtJoueur4AttenteInactif);
-        }
-
-
-        for(Sprite sprite : sprsAutresJoueurs){
-            fenetre.draw(sprite);
-        }
-
-        afficherZoneEchangeJ4();
-
-        afficherMainJ4();
-
-        fenetre.draw(etapeEnCours);
-
-        fenetre.display();
-
-
     }
 
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
@@ -1412,6 +1244,8 @@ public class Vue{
         }
 
     }
+
+
     public boolean isCliquable(Sprite sprite){
         if(spriteCliquable.contains(sprite)){
             return true;
@@ -1486,6 +1320,10 @@ public class Vue{
     }
     public ArrayList<Sprite> getSpriteCliquable(){
         return spriteCliquable;
+    }
+
+    public void addToSpriteCliquable(Sprite sprite){
+        spriteCliquable.add(sprite);
     }
 
     public void creerMenuCarte(float posX, float posY){
@@ -1741,7 +1579,7 @@ public class Vue{
     }
 
     private void afficherZonesEchanges(){
-        System.out.println("actu zoneS echangeS");
+        System.out.println("actu zones echanges");
         afficherZoneEchangeJ1();
         afficherZoneEchangeJ2();
         afficherZoneEchangeJ3();
@@ -2057,7 +1895,7 @@ public class Vue{
                 break;
 
         }
-        actualiserFenetrePlantagePostEchangeJ1();
+        actualiserFenetrePlantagePostEchange(1);
     }
 
     private void planterChampJ2(int champ, int idCarte) {
@@ -2088,7 +1926,7 @@ public class Vue{
                 break;
 
         }
-        actualiserFenetrePlantagePostEchangeJ2();
+        actualiserFenetrePlantagePostEchange(2);
     }
 
     private void planterChampJ3(int champ, int idCarte) {
@@ -2119,7 +1957,7 @@ public class Vue{
                 break;
 
         }
-        actualiserFenetrePlantagePostEchangeJ3();
+        actualiserFenetrePlantagePostEchange(3);
     }
 
     private void planterChampJ4(int champ, int idCarte) {
@@ -2150,7 +1988,7 @@ public class Vue{
                 break;
 
         }
-        actualiserFenetrePlantagePostEchangeJ4();
+        actualiserFenetrePlantagePostEchange(4);
     }
 
     public void clearZonesEchanges() {
@@ -2200,19 +2038,19 @@ public class Vue{
         switch (joueur){
             case 0 :
                 zoneEchangeJ1.get(index).setTexture(txtCarteVide);
-                actualiserFenetrePlantagePostEchangeJ1();
+                actualiserFenetrePlantagePostEchange(1);
                 break;
             case 1 :
                 zoneEchangeJ2.get(index).setTexture(txtCarteVide);
-                actualiserFenetrePlantagePostEchangeJ2();
+                actualiserFenetrePlantagePostEchange(2);
                 break;
             case 2 :
                 zoneEchangeJ3.get(index).setTexture(txtCarteVide);
-                actualiserFenetrePlantagePostEchangeJ3();
+                actualiserFenetrePlantagePostEchange(3);
                 break;
             case 3 :
                 zoneEchangeJ4.get(index).setTexture(txtCarteVide);
-                actualiserFenetrePlantagePostEchangeJ4();
+                actualiserFenetrePlantagePostEchange(4);
                 break;
         }
 

@@ -65,9 +65,17 @@ public class Controlleur {
     private void etapePlanter() {
 
         System.out.println("ETAPE PLANTER");
+        System.out.println("Joueur actif = "+joueurActif.getNom());
+
+        for (Joueur joueur : joueurs) {
+            System.out.println(joueur.getNom());
+            joueur.getZoneEchange().clear();
+            joueur.getZoneEchange().printZone();
+        }
+
         vue.afficherEtape(1);
         vue.creationSpriteCliquableEtape1(joueurActif.getIdJoueur());
-        vue.actualiserFenetre();
+        vue.actualiserFenetre(joueurActif.getIdJoueur());
 
         int nbplants = 0;
         System.out.println("nb plant  = " + nbplants);
@@ -99,7 +107,7 @@ public class Controlleur {
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 0, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(1, pioche);
                             actualiserMain(joueurActif);
-                            vue.actualiserFenetre();
+                            vue.actualiserFenetre(joueurActif.getIdJoueur());
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
@@ -109,7 +117,7 @@ public class Controlleur {
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 1, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(2, pioche);
                             actualiserMain(joueurActif);
-                            vue.actualiserFenetre();
+                            vue.actualiserFenetre(joueurActif.getIdJoueur());
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
@@ -120,7 +128,7 @@ public class Controlleur {
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(3, pioche);
                             actualiserMain(joueurActif);
-                            vue.actualiserFenetre();
+                            vue.actualiserFenetre(joueurActif.getIdJoueur());
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
@@ -144,7 +152,7 @@ public class Controlleur {
         boolean retour;
 
         vue.afficherEtape(2);
-        vue.actualiserFenetreEchange();
+        vue.actualiserFenetreEchange(joueurActif.getIdJoueur());
 
         Sprite carte1 = vue.getSprCartePiochee1();
         Sprite carte2 = vue.getSprCartePiochee2();
@@ -163,12 +171,17 @@ public class Controlleur {
                         System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
 
                         vue.creerMenuCarte(carte1.getPosition().x + 75, carte1.getPosition().y);
-                        vue.actualiserFenetreEchangeMenu();
+                        vue.actualiserFenetreEchangeMenu(joueurActif.getIdJoueur());
                         retour = etapeEchangeMenuCarte(1);
+
+                        for (Joueur joueur:joueurs ) {
+                            actualiserMain(joueur);
+                        }
+                        
                         vue.creationSpriteCliquableCarte();
                         vue.clearZonesEchanges();
                         putSprite();
-                        vue.actualiserFenetreEchange();
+                        vue.actualiserFenetreEchange(joueurActif.getIdJoueur());
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte2);
                         }
@@ -181,12 +194,17 @@ public class Controlleur {
 
                         System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
                         vue.creerMenuCarte(carte2.getPosition().x + 75, carte2.getPosition().y);
-                        vue.actualiserFenetreEchangeMenu();
+                        vue.actualiserFenetreEchangeMenu(joueurActif.getIdJoueur());
                         retour = etapeEchangeMenuCarte(2);
+
+                        for (Joueur joueur:joueurs ) {
+                            actualiserMain(joueur);
+                        }
+
                         vue.creationSpriteCliquableCarte();
                         vue.clearZonesEchanges();
                         putSprite();
-                        vue.actualiserFenetreEchange();
+                        vue.actualiserFenetreEchange(joueurActif.getIdJoueur());
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte1);
                         }
@@ -245,10 +263,10 @@ public class Controlleur {
                         System.out.println("ECHANGE");
 
                         vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
-                        vue.actualiserFenetreEchangeMenuChoix();
+                        vue.actualiserFenetreEchangeMenuChoix(joueurActif.getIdJoueur());
                         int carteDemande = etapeEchangeMenuCarteChoix();
                         vue.creationSpriteCliquableMenuCarte();
-                        vue.actualiserFenetreEchangeMenu();
+                        vue.actualiserFenetreEchangeMenu(joueurActif.getIdJoueur());
                         return carteDemande != -1 && etapeDemandeEchangeAcceptation(choixCarte, carteDemande);
 
                     } else if (vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())) {
@@ -256,7 +274,7 @@ public class Controlleur {
                         System.out.println("DON");
 
                         vue.creationSpriteCliquableDon(joueurActif.getIdJoueur());
-                        vue.actualiserFenetreEchange();
+                        vue.actualiserFenetreEchange(joueurActif.getIdJoueur());
                         int choixJoueur = etapeEchangeMenuCarteDon();
 
                         if (choixJoueur == 0) {
@@ -273,7 +291,7 @@ public class Controlleur {
 
                         System.out.println("RETOUR");
 
-                        vue.actualiserFenetreEchange();
+                        vue.actualiserFenetreEchange(joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return false;
 
@@ -380,7 +398,7 @@ public class Controlleur {
             vue.creerMenuOuiNon(sprite.getPosition().x + sprite.getGlobalBounds().width + 5, sprite.getPosition().y);
         }
 
-        vue.actualisationFenetreMenuOuiNon();
+        vue.actualisationFenetreMenuOuiNon(joueurActif.getIdJoueur());
 
 
         while (vue.getFenetre().isOpen()) {
@@ -504,6 +522,9 @@ public class Controlleur {
         vue.afficherEtape(3);
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
 
+        vue.clearZonesEchanges();
+        putSprite();
+
         for (int i = 0; i < 4; i++) {
 
             numCarteAPlanter = 0;
@@ -512,68 +533,87 @@ public class Controlleur {
 
             System.out.println("i = " + i);
 
-            switch (i) {
-                case 0:
-                    vue.creationSpriteCliquablePlantagePostEchange(0);
-                    vue.clearZonesEchanges();
-                    putSprite();
-                    vue.actualiserFenetrePlantagePostEchangeJ1();
-                    spriteZoneEchange = vue.getZoneEchangeJ1();
-                    break;
-                case 1:
-                    vue.creationSpriteCliquablePlantagePostEchange(1);
-                    vue.clearZonesEchanges();
-                    putSprite();
-                    vue.actualiserFenetrePlantagePostEchangeJ2();
-                    spriteZoneEchange = vue.getZoneEchangeJ2();
-                    break;
-                case 2:
-                    vue.creationSpriteCliquablePlantagePostEchange(2);
-                    vue.clearZonesEchanges();
-                    putSprite();
-                    vue.actualiserFenetrePlantagePostEchangeJ3();
-                    spriteZoneEchange = vue.getZoneEchangeJ3();
-                    break;
-                case 3:
-                    vue.creationSpriteCliquablePlantagePostEchange(3);
-                    vue.clearZonesEchanges();
-                    putSprite();
-                    vue.actualiserFenetrePlantagePostEchangeJ4();
-                    spriteZoneEchange = vue.getZoneEchangeJ4();
-                    break;
-            }
+            if (joueurs[i].getZoneEchange().getZone().size() > 0) {
 
-            System.out.println("i = " + i);
-            System.out.println("zone echange = " + spriteZoneEchange.size());
-
-            System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
-
-            for (Sprite sprite : vue.getSpriteCliquable()) {
-                System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
-            }
-
-            for (Sprite sprite : spriteZoneEchange) {
-                numCarteAPlanter++;
-
-                System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
-
-                for (Sprite spritecli : vue.getSpriteCliquable()) {
-                    System.out.println(spritecli.getPosition().x + ", " + spritecli.getPosition().y);
+                switch (i) {
+                    case 0:
+                        vue.creationSpriteCliquablePlantagePostEchange(0);
+                        vue.actualiserFenetrePlantagePostEchange(1);
+                        spriteZoneEchange = vue.getZoneEchangeJ1();
+                        break;
+                    case 1:
+                        vue.creationSpriteCliquablePlantagePostEchange(1);
+                        vue.actualiserFenetrePlantagePostEchange(2);
+                        spriteZoneEchange = vue.getZoneEchangeJ2();
+                        break;
+                    case 2:
+                        vue.creationSpriteCliquablePlantagePostEchange(2);
+                        vue.actualiserFenetrePlantagePostEchange(3);
+                        spriteZoneEchange = vue.getZoneEchangeJ3();
+                        break;
+                    case 3:
+                        vue.creationSpriteCliquablePlantagePostEchange(3);
+                        vue.actualiserFenetrePlantagePostEchange(4);
+                        spriteZoneEchange = vue.getZoneEchangeJ4();
+                        break;
                 }
 
 
-                joueurs[i].getZoneEchange().printZone();
+                System.out.println("i = " + i);
+                System.out.println("zone echange = " + spriteZoneEchange.size());
 
-                int champChoisi = choixChamp(sprite, i);
-                joueurs[i].planterViaZoneEchange(champChoisi, pioche, numCarteAPlanter);
-                System.out.println("retour choix " + champChoisi);
+                System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
 
-                vue.planterEchange(i, champChoisi, joueurs[i].getZoneEchange().getZone().get(numCarteAPlanter - 1).getIdCarte(), numCarteAPlanter - 1);
+                for (Sprite sprite : vue.getSpriteCliquable()) {
+                    System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
+                }
 
-                joueurs[i].getChamp(1).printChamp();
-                joueurs[i].getChamp(2).printChamp();
+                for (Sprite sprite : spriteZoneEchange) {
+                    numCarteAPlanter++;
 
+                    System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
+
+                    for (Sprite spritecli : vue.getSpriteCliquable()) {
+                        System.out.println(spritecli.getPosition().x + ", " + spritecli.getPosition().y);
+                    }
+
+
+                    joueurs[i].getZoneEchange().printZone();
+
+                    int champChoisi = choixChamp(sprite, i);
+                    joueurs[i].planterViaZoneEchange(champChoisi, pioche, numCarteAPlanter);
+                    System.out.println("retour choix " + champChoisi);
+
+                    vue.planterEchange(i, champChoisi, joueurs[i].getZoneEchange().getZone().get(numCarteAPlanter - 1).getIdCarte(), numCarteAPlanter - 1);
+
+                    joueurs[i].getChamp(1).printChamp();
+                    joueurs[i].getChamp(2).printChamp();
+
+                }
             }
+        }
+
+        for (Joueur joueur : joueurs) {
+            joueur.getZoneEchange().clear();
+        }
+
+        vue.clearSpritesCliquables();
+        vue.clearZonesEchanges();
+
+        vue.addToSpriteCliquable(vue.getSprsBoutonsEtapes()[2]);
+        vue.actualiserFenetrePlantagePostEchange(joueurActif.getIdJoueur());
+
+        System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
+
+        for (Sprite sprite : vue.getSpriteCliquable()) {
+            System.out.println(sprite.getPosition().x + ", " + sprite.getPosition().y);
+        }
+
+        if (vue.isCliquable(vue.getSprsBoutonsEtapes()[2]) ){
+            System.out.println("Sprite bouton Pioche cliquable");
+        }
+        else{
+            System.out.println("Sprite bouton Pioche non cliquable");
         }
 
             while (vue.getFenetre().isOpen()) {
@@ -587,17 +627,11 @@ public class Controlleur {
                     if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
                         if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
 
-                            for (Joueur joueur : joueurs) {
-                                joueur.getZoneEchange().clear();
-                            }
                             etapePioche();
                             return;
                         }
-
                     }
-
                 }
-
             }
 
     }
@@ -637,7 +671,10 @@ public class Controlleur {
         vue.afficherEtape(4);
         joueurActif.piocheEtape4(pioche);
         actualiserMain(joueurActif);
-        vue.actualiserFenetre();
+        vue.actualiserFenetre(joueurActif.getIdJoueur());
+
+        vue.clearSpritesCliquables();
+        vue.addToSpriteCliquable(vue.getSprsBoutonsEtapes()[3]);
 
         while(vue.getFenetre().isOpen()){
 
@@ -688,6 +725,8 @@ public class Controlleur {
                 joueurActif=joueurs[0];
                 break;
         }
+
+        vue.actualiserFenetre(joueurActif.getIdJoueur());
     }
 
     //Ajout des cartes du model en tant que texture.
