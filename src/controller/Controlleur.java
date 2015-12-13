@@ -139,7 +139,7 @@ public class Controlleur {
         setTxtZonePioche();
 
         int carteNonJouee = zonePioche.getZone().size();
-        int retour;
+        boolean retour;
 
         vue.afficherEtape(2);
         vue.actualiserFenetreEchange();
@@ -162,34 +162,34 @@ public class Controlleur {
 
                         vue.creerMenuCarte(carte1.getPosition().x + 75, carte1.getPosition().y);
                         vue.actualiserFenetreEchangeMenu();
-                        retour = etapeEchangeMenuCarte1();
+                        retour = etapeEchangeMenuCarte(1);
                         vue.creationSpriteCliquableCarte();
                         putSprite();
                         vue.actualiserFenetreEchange();
                         if (carteNonJouee == 1) {
                             vue.delSpriteCliquable(carte2);
                         }
-                        if(retour != 50) {
+                        if(retour) {
                             vue.delSpriteCliquable(carte1);
                             carteNonJouee--;
                         }
 
-                    } else {
-                        if (vue.cliqueSprite(event, carte2, vue.getFenetre())) {
-                            System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
-                            vue.creerMenuCarte(carte2.getPosition().x + 75, carte2.getPosition().y);
-                            vue.actualiserFenetreEchangeMenu();
-                            retour = etapeEchangeMenuCarte2();
-                            vue.creationSpriteCliquableCarte();
-                            putSprite();
-                            vue.actualiserFenetreEchange();
-                            if (carteNonJouee == 1) {
-                                vue.delSpriteCliquable(carte1);
-                            }
-                            if(retour != 50) {
-                                vue.delSpriteCliquable(carte2);
-                                carteNonJouee--;
-                            }
+                    }
+                    else if (vue.cliqueSprite(event, carte2, vue.getFenetre())) {
+
+                        System.out.println("sprite cliquable :" + vue.getSpriteCliquable().size());
+                        vue.creerMenuCarte(carte2.getPosition().x + 75, carte2.getPosition().y);
+                        vue.actualiserFenetreEchangeMenu();
+                        retour = etapeEchangeMenuCarte(2);
+                        vue.creationSpriteCliquableCarte();
+                        putSprite();
+                        vue.actualiserFenetreEchange();
+                        if (carteNonJouee == 1) {
+                            vue.delSpriteCliquable(carte1);
+                        }
+                        if(retour) {
+                            vue.delSpriteCliquable(carte2);
+                            carteNonJouee--;
                         }
                     }
 
@@ -203,13 +203,6 @@ public class Controlleur {
 
                         if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[1], vue.getFenetre())) {
 
-                            System.out.println("Liste des Zones d'échange :");
-
-                            for (int i = 0; i < 4; i++) {
-                                System.out.println("Joueur "+(i+1));
-                                joueurs[i].getZoneEchange().printZone();
-                            }
-
                             zonePioche.clear();
                             etapePlantageEchange();
                             return;
@@ -220,7 +213,7 @@ public class Controlleur {
         }
     }
 
-    private int etapeEchangeMenuCarte1(){
+    private boolean etapeEchangeMenuCarte(int choixCarte){
         vue.creationSpriteCliquableMenuCarte();
 
         while (vue.getFenetre().isOpen()){
@@ -234,307 +227,71 @@ public class Controlleur {
                 if(eventMenu.type == Event.Type.MOUSE_BUTTON_RELEASED) {
 
                     if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())) {
-                        System.out.println("garder");
-                        System.out.println("appel garder carte 1");
+                        System.out.println("GARDER");
 
                         //METTRE LA CARTE 1 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
-                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(0));
+                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(choixCarte-1));
 
 
                         vue.garderCarte(1, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
-                        return 1;
+                        return true;
+
                     }
-                    else{
-                        if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
-                            System.out.println("echange");
+                    else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
 
+                        System.out.println("ECHANGE");
 
-                            vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
-                            vue.actualiserFenetreEchangeMenuChoix();
-                            int retour = etapeEchangeMenuCarteChoix();
-                            vue.creationSpriteCliquableMenuCarte();
-                            vue.actualiserFenetreEchangeMenu();
-                            switch (retour){
-                                case 0 :
-                                    System.out.println("retour tectonik");
-                                    if(etapeDemandeEchangeAcceptation(1,1) == -5){
-                                        return 50;
-                                    }else{
-                                        return 20;
-                                    }
-                                case 1 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(1,2) == -5){
-                                        return 50;
-                                    }else {
-                                        return 21;
-                                    }
-                                case 2 :
-                                    System.out.println("retour tequila");
-                                    if(etapeDemandeEchangeAcceptation(1,3) == -5){
-                                        return 50;
-                                    }else {
-                                        return 22;
-                                    }
-                                case 3 :
-                                    System.out.println("retour terroriste");
-                                    if(etapeDemandeEchangeAcceptation(1,4) == -5){
-                                        return 50;
-                                    }else {
-                                        return 23;
-                                    }
-                                case 4 :
-                                    System.out.println("retour testosterone");
-                                    if(etapeDemandeEchangeAcceptation(1,5) == -5){
-                                        return 50;
-                                    }else{
-                                        return 24;
-                                    }
-                                case 5 :
-                                    System.out.println("retour tetenucleaire");
-                                    if(etapeDemandeEchangeAcceptation(1,6) == -5){
-                                        return 50;
-                                    }else{
-                                        return 25;
-                                    }
-                                case 6 :
-                                    System.out.println("retour tetraplegique");
-                                    if(etapeDemandeEchangeAcceptation(1,7) == -5){
-                                        return 50;
-                                    }else{
-                                        return 26;
-                                    }
-                                case 7 :
-                                    System.out.println("retour twerk");
-                                    if(etapeDemandeEchangeAcceptation(1,8) == -5){
-                                        return 50;
-                                    }else{
-                                        return 27;
-                                    }
-                                case 10 :
-                                    System.out.println("retour retour");
-                                    break;
-                            }
-                        }else{
-                            if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
-                                System.out.println("don");
-                                vue.creationSpriteCliquableDon(joueurActif.getIdJoueur());
-                                vue.actualiserFenetreEchange();
-                                int retour = etapeEchangeMenuCarteDon();
-                                switch(retour){
-                                    case 1 :
-                                        System.out.println("J1 ?");
-                                        if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
-                                            joueurs[0].recoisCarte(zonePioche.getZone().get(0));
-                                            return 31;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 2 :
-                                        System.out.println("J2 ?");
-                                        if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
-                                            joueurs[1].recoisCarte(zonePioche.getZone().get(0));
-                                            return 32;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 3 :
-                                        System.out.println("J3 ?");
-                                        if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
-                                            joueurs[2].recoisCarte(zonePioche.getZone().get(0));
-                                            return 33;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 4 :
-                                        System.out.println("J4 ?");
-                                        if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
-                                            joueurs[3].recoisCarte(zonePioche.getZone().get(0));
-                                            return 34;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 5 :
-                                        System.out.println("retour");
-                                        return 50;
-                                }
+                        vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
+                        vue.actualiserFenetreEchangeMenuChoix();
+                        int carteDemande = etapeEchangeMenuCarteChoix();
+                        vue.creationSpriteCliquableMenuCarte();
+                        vue.actualiserFenetreEchangeMenu();
 
+                        if (carteDemande == -1){
+                            return false;
+                        }
 
-                            }else{
-                                if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
-                                    vue.actualiserFenetreEchange();
-                                    vue.creationSpriteCliquableCarte();
-                                    return 50;
-                                }
-                            }
+                        if(etapeDemandeEchangeAcceptation(choixCarte,carteDemande)){
+                            return true;
                         }
                     }
-                }
+                    else if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
 
-            }
+                        System.out.println("DON");
 
-        }
-        return -5;
-    }
+                        vue.creationSpriteCliquableDon(joueurActif.getIdJoueur());
+                        vue.actualiserFenetreEchange();
+                        int choixJoueur = etapeEchangeMenuCarteDon();
 
-    private int etapeEchangeMenuCarte2(){
-        vue.creationSpriteCliquableMenuCarte();
+                        if (choixJoueur == 0){
+                            return false;
+                        }
+                        else if(etapeConfirmation(choixJoueur, vue.getSprsJoueurs()[choixJoueur-1])){
+                            joueurs[choixJoueur-1].recoisCarte(zonePioche.getZone().get(choixCarte-1));
+                            return true;
+                        }
+                        else {
+                            return false;
+                        }
 
-        while (vue.getFenetre().isOpen()){
-            for(Event eventMenu : vue.getFenetre().pollEvents()){
+                    }
+                    else if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
 
+                        System.out.println("RETOUR");
 
-                if (eventMenu.type == Event.Type.CLOSED) {
-                    vue.getFenetre().close();
-                }
-
-                if(eventMenu.type == Event.Type.MOUSE_BUTTON_RELEASED) {
-
-                    if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[2], vue.getFenetre())){
-                        System.out.println("garder");
-                        System.out.println("appel garder 2");
-
-                        //METTRE LA CARTE 2 DE ZONE PIOCHE DANS LA ZONE ECHANGE DU JOUEUR ACTIF
-                        joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(1));
-
-                        vue.garderCarte(2, joueurActif.getIdJoueur());
+                        vue.actualiserFenetreEchange();
                         vue.creationSpriteCliquableCarte();
-                        return 1;
-                    }else{
-                        if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[0], vue.getFenetre())){
-                            System.out.println("echange");
-                            vue.creerMenuCarteChoix(vue.getSprsMenuCartes()[0].getPosition().x + 140, vue.getSprsMenuCartes()[0].getPosition().y - 10);
-                            vue.actualiserFenetreEchangeMenuChoix();
-                            int retour = etapeEchangeMenuCarteChoix();
-                            vue.creationSpriteCliquableMenuCarte();
-                            switch (retour){
-                                case 0 :
-                                    System.out.println("retour tectonik");
-                                    if(etapeDemandeEchangeAcceptation(2,1) == -5){
-                                        return 50;
-                                    }else{
-                                        return 20;
-                                    }
-                                case 1 :
-                                    System.out.println("retour tentacule");
-                                    if(etapeDemandeEchangeAcceptation(2,2) == -5){
-                                        return 50;
-                                    }else {
-                                        return 21;
-                                    }
-                                case 2 :
-                                    System.out.println("retour tequila");
-                                    if(etapeDemandeEchangeAcceptation(2,3) == -5){
-                                        return 50;
-                                    }else {
-                                        return 22;
-                                    }
-                                case 3 :
-                                    System.out.println("retour terroriste");
-                                    if(etapeDemandeEchangeAcceptation(2,4) == -5){
-                                        return 50;
-                                    }else {
-                                        return 23;
-                                    }
-                                case 4 :
-                                    System.out.println("retour testosterone");
-                                    if(etapeDemandeEchangeAcceptation(2,5) == -5){
-                                        return 50;
-                                    }else{
-                                        return 24;
-                                    }
-                                case 5 :
-                                    System.out.println("retour tetenucleaire");
-                                    if(etapeDemandeEchangeAcceptation(2,6) == -5){
-                                        return 50;
-                                    }else{
-                                        return 25;
-                                    }
-                                case 6 :
-                                    System.out.println("retour tetraplegique");
-                                    if(etapeDemandeEchangeAcceptation(2,7) == -5){
-                                        return 50;
-                                    }else{
-                                        return 26;
-                                    }
-                                case 7 :
-                                    System.out.println("retour twerk");
-                                    if(etapeDemandeEchangeAcceptation(2,8) == -5){
-                                       return 50;
-                                    }else{
-                                        return 27;
-                                    }
-                                case 10 :
-                                    System.out.println("retour retour");
-                                    return 50;
-                            }
+                        return false;
 
-                        }else{
-                            if(vue.cliqueSprite(eventMenu, vue.getSprsMenuCartes()[1], vue.getFenetre())){
-                                System.out.println("don");
-                                vue.creationSpriteCliquableDon(joueurActif.getIdJoueur());
-                                vue.actualiserFenetreEchange();
-                                int retour = etapeEchangeMenuCarteDon();
-                                switch(retour){
-                                    case 1 :
-                                        System.out.println("J1 ?");
-                                        if(etapeConfirmation(1, vue.getSprsJoueurs()[0])){
-                                            joueurs[0].recoisCarte(zonePioche.getZone().get(1));
-                                            return 31;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 2 :
-                                        System.out.println("J2 ?");
-                                        if(etapeConfirmation(2, vue.getSprsJoueurs()[1])){
-                                            joueurs[1].recoisCarte(zonePioche.getZone().get(1));
-                                            return 32;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 3 :
-                                        System.out.println("J3 ?");
-                                        if(etapeConfirmation(3, vue.getSprsJoueurs()[2])){
-                                            joueurs[2].recoisCarte(zonePioche.getZone().get(1));
-                                            return 33;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 4 :
-                                        System.out.println("J4 ?");
-                                        if(etapeConfirmation(4, vue.getSprsJoueurs()[3])){
-                                            joueurs[3].recoisCarte(zonePioche.getZone().get(1));
-                                            return 34;
-                                        }else{
-                                            return 50;
-                                        }
-                                    case 5 :
-                                        System.out.println("retour");
-                                        return 50;
-                                }
-
-                            }else{
-                                if (vue.cliqueSprite(eventMenu, vue.getFond(), vue.getFenetre())) {
-                                    System.out.println("uibvsidjfvbisjdvfoisdhvbf");
-                                    vue.actualiserFenetreEchange();
-                                    vue.creationSpriteCliquableCarte();
-                                    return 50;
-                                }
-                            }
-                        }
                     }
                 }
-
             }
-
         }
-
-        return -5;
-
+        return false;
     }
 
-    private int etapeDemandeEchangeAcceptation(int idCarte, int idCarteVoulu) {
+    private boolean etapeDemandeEchangeAcceptation(int idCarte, int idCarteVoulu) {
 
         Sprite[] spriteJoueur;
         spriteJoueur = vue.getSprsAutresJoueurs(joueurActif.getIdJoueur());
@@ -613,13 +370,13 @@ public class Controlleur {
                         break;
                 }
 
-                return numJoueurConcerne.get(i);
+                return true;
 
             }
         }
         vue.clearSpritesCliquables();
         System.out.println("Aucun joueur n'accepte");
-        return -5;
+        return false;
 
     }
 
@@ -646,13 +403,13 @@ public class Controlleur {
                         vue.clearSpritesCliquables();
                         System.out.println("Le joueur " + (idJoueur) + " accepte.");
                         return true;
-                    }else {
-                        if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[1], vue.getFenetre())) {
-                            System.out.println("Le joueur " + (idJoueur) + " refuse.");
-                            return false;
+                    }else if (vue.cliqueSprite(eventON, vue.getSprsMenuON()[1], vue.getFenetre())) {
 
-                        }
+                        System.out.println("Le joueur " + (idJoueur) + " refuse.");
+                        return false;
+
                     }
+                    return false;
                 }
 
             }
@@ -691,16 +448,13 @@ public class Controlleur {
                         return 4;
                     }
 
-                    if(vue.cliqueSprite(eventDon, vue.getFond(), vue.getFenetre())){
+                    else{
                         System.out.println("retour");
-
-                        return 5;
-
+                        return 0;
                     }
                 }
             }
         }
-
         return 0;
     }
 
@@ -750,14 +504,13 @@ public class Controlleur {
                         System.out.println("choix patatwerk");
                         return 7;
                     }
-                    else if (vue.cliqueSprite(eventMenuChoix, vue.getFond(), vue.getFenetre())) {
-                        return 10;
+                    else {
+                        return -1;
                     }
                 }
             }
         }
-        return -5;
-
+        return -1;
     }
 
     private void etapePlantageEchange(){
