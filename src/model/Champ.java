@@ -35,16 +35,21 @@ public class Champ {
 
         if (CompareDerniereCarte(c)){
             patates.add(c);
+
+            System.out.println("Ajout de "+c.getNom()+" réussie");
             return true;
         }
-        else return false;
+        else{
+            System.out.println("Impossible de planter une "+c.getNom()+" car il y a au moins une "+derniereCarte().getNom()+" dans le champ.");
+            return false;
+        }
     }
 
     public boolean CompareDerniereCarte(Carte carte) {
         return derniereCarte() == null || derniereCarte().getIdCarte() == carte.getIdCarte();
     }
 
-    public int recolter(Joueur j, Pioche pioche) {
+    public void recolter(Joueur j, Pioche pioche) {
 
         //Valeur de la récolte en Thunes
         int valeurThune=0;
@@ -74,9 +79,28 @@ public class Champ {
             else{
                 pioche.addCarteToDefausse(derniereCarte());
             }
-            patates.remove(derniereCarte());
         }
 
-        return valeurThune;
+        patates.clear();
+
+        System.out.println("Récolte de "+valeurThune+" thunes avec cette récolte.");
+    }
+
+    public void printChamp(){
+        if (patates.size() != 0){
+            System.out.println("Il y a "+patates.size()+" "+derniereCarte().getNom()+" dans le champ n°"+numeroChamp+".");
+        }
+        else {
+            System.out.println("Il n'y a aucune patate dans le champ n°"+numeroChamp+".");
+        }
+
+    }
+
+    public int getNumeroChamp() {
+        return numeroChamp;
+    }
+
+    public void setNumeroChamp(int numeroChamp) {
+        this.numeroChamp = numeroChamp;
     }
 }

@@ -498,10 +498,16 @@ public class Controlleur {
 
     private void etapePlantageEchange() {
         System.out.println("ETAPE PLANTER APRES ECHANGE");
+
+        int numCarteAPlanter;
+
         vue.afficherEtape(3);
         ArrayList<Sprite> spriteZoneEchange = new ArrayList<Sprite>();
 
         for (int i = 0; i < 4; i++) {
+
+            numCarteAPlanter = 0;
+
             vue.clearSpritesCliquables();
 
             System.out.println("i = " + i);
@@ -547,8 +553,16 @@ public class Controlleur {
             }
 
             for (Sprite sprite : spriteZoneEchange) {
+                numCarteAPlanter++;
+
+                joueurs[i].getZoneEchange().printZone();
+
                 int champChoisi = choixChamp(sprite, i);
+                joueurs[i].planterViaZoneEchange(champChoisi,pioche,numCarteAPlanter);
                 System.out.println("retour choix " + champChoisi);
+
+                joueurs[i].getChamp(1).printChamp();
+                joueurs[i].getChamp(2).printChamp();
 
             }
 
@@ -562,6 +576,10 @@ public class Controlleur {
 
                     if (event.type == Event.Type.MOUSE_BUTTON_RELEASED) {
                         if (vue.cliqueSprite(event, vue.getSprsBoutonsEtapes()[2], vue.getFenetre())) {
+
+                            for (Joueur joueur : joueurs) {
+                                joueur.getZoneEchange().clear();
+                            }
                             etapePioche();
                             return;
                         }
@@ -592,7 +610,8 @@ public class Controlleur {
                     } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur][1], vue.getFenetre())) {
                         System.out.println("Joueur " + (joueur + 1) + " champ 2");
                         return 2;
-                    } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueur][2], vue.getFenetre())) {
+                    } else if (joueurActif.getMaxChamps() >= 3 && vue.cliqueSprite(event, vue.getSprsChamps()[joueur][2], vue.getFenetre())) {
+
                         System.out.println("Joueur " + (joueur + 1) + " champ 3");
                         return 3;
                     }
@@ -602,12 +621,6 @@ public class Controlleur {
         }
         return 0;
     }
-
-
-
-
-
-
 
     private void etapePioche() {
         System.out.println("ETAPE PIOCHE (ETAPE 4)");

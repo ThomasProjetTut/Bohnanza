@@ -124,9 +124,9 @@ public class Joueur {
         if (numChamp > maxChamps || numChamp < 1)
             return;
 
-        if (!champs.get(numChamp - 1).planter(zoneEchange.getZone().get(placeInZone))) {
-            champs.get(numChamp-1).recolter(this, pioche);
-            champs.get(numChamp-1).planter(zoneEchange.getZone().get(placeInZone));
+        if (!getChamp(numChamp).planter(zoneEchange.getZone().get(placeInZone-1))) {
+            getChamp(numChamp).recolter(this, pioche);
+            getChamp(numChamp).planter(zoneEchange.getZone().get(placeInZone-1));
         }
     }
 
