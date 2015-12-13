@@ -64,6 +64,8 @@ public class Vue{
     private Texture txtMenuNon = new Texture();
 
     //menu choix carte
+    private Texture txtMCCFond = new Texture();
+
     private Texture txtMCCTectonik = new Texture();
     private Texture txtMCCTequila = new Texture();
     private Texture txtMCCTentacule = new Texture();
@@ -85,8 +87,7 @@ public class Vue{
     private Texture txtJoueur4AttenteInactif = new Texture();
 
     //Texture carte
-    private Texture txtMCCFond = new Texture();
-
+    private Texture txtCarteVide = new Texture();
     private Texture txtCarteTequila = new Texture();
     private Texture txtCarteTentacule = new Texture();
     private Texture txtCarteTerroriste = new Texture();
@@ -236,6 +237,7 @@ public class Vue{
             txtChampTetraplegique.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatetraplegique_plante.png"));
             txtChampTwerk.loadFromFile(Paths.get("Sprites/Sprite_champ/champ_plante/champ_patatwerk_plante.png"));
 
+            txtCarteVide.loadFromFile(Paths.get("Sprites/Sprite_carte/carte_vide.png"));
             txtCarteTectonik.loadFromFile(Paths.get("Sprites/Sprite_carte/patatectonik.png"));
             txtCarteTentacule.loadFromFile(Paths.get("Sprites/Sprite_carte/patatentacule.jpg"));
             txtCarteTequila.loadFromFile(Paths.get("Sprites/Sprite_carte/patatequila.jpg"));
@@ -695,6 +697,9 @@ public class Vue{
     public Sprite getSprCartePiochee2(){
         return sprCartePiochee2;
     }
+    public Sprite getFond() {
+        return sprFond;
+    }
 
     public ArrayList<Sprite> getMainJ1(){
         return mainJ1;
@@ -842,6 +847,8 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        afficherZonesEchanges();
+
         afficherMainJ1();
 
         fenetre.draw(etapeEnCours);
@@ -900,14 +907,21 @@ public class Vue{
 
         afficherZonesEchanges();
 
+
         afficherMainJ1();
 
-        fenetre.draw(sprCartePiochee1);
-        fenetre.draw(sprCartePiochee2);
+        if(sprCartePiochee1.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee1);
+        }
+
+        if(sprCartePiochee2.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee2);
+        }
+
+
 
         fenetre.draw(etapeEnCours);
 
-        afficherMainJ1();
         fenetre.display();
 
     }
@@ -959,13 +973,22 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
-        fenetre.draw(sprCartePiochee1);
-        fenetre.draw(sprCartePiochee2);
+        afficherZonesEchanges();
+
+        if(sprCartePiochee1.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee1);
+        }
+
+        if(sprCartePiochee2.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee2);
+        }
 
         fenetre.draw(sprMCFond);
         fenetre.draw(sprMCEchanger);
         fenetre.draw(sprMCDonner);
         fenetre.draw(sprMCGarder);
+
+
 
         afficherMainJ1();
 
@@ -973,7 +996,6 @@ public class Vue{
 
         fenetre.display();
     }
-
     public void actualisationFenetreMenuOuiNon(){
         System.out.println("actu menu oui non");
         fenetre.draw(sprFond);
@@ -1025,12 +1047,21 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
-        fenetre.draw(sprCartePiochee1);
-        fenetre.draw(sprCartePiochee2);
+        afficherZonesEchanges();
+
+        if(sprCartePiochee1.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee1);
+        }
+
+        if(sprCartePiochee2.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee2);
+        }
 
         fenetre.draw(sprMenuOuiNonFond);
         fenetre.draw(sprMenuOui);
         fenetre.draw(sprMenuNon);
+
+
 
         afficherMainJ1();
 
@@ -1038,7 +1069,6 @@ public class Vue{
 
         fenetre.display();
     }
-
     public void actualiserFenetreEchangeMenuChoix() {
         System.out.println("actu menu choix");
         fenetre.draw(sprFond);
@@ -1088,8 +1118,15 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
-        fenetre.draw(sprCartePiochee1);
-        fenetre.draw(sprCartePiochee2);
+        afficherZonesEchanges();
+
+        if(sprCartePiochee1.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee1);
+        }
+
+        if(sprCartePiochee2.getTexture() != txtCarteVide){
+            fenetre.draw(sprCartePiochee2);
+        }
 
 
         fenetre.draw(sprMCFond);
@@ -1109,6 +1146,8 @@ public class Vue{
         fenetre.draw(sprMCCTetraplegique);
         fenetre.draw(sprMCCTwerk);
 
+
+
         afficherMainJ1();
 
         fenetre.draw(etapeEnCours);
@@ -1116,7 +1155,6 @@ public class Vue{
         fenetre.display();
 
     }
-
     public void actualiserFenetrePlantagePostEchangeJ1() {
         System.out.println("actu plantage post échange j1");
         fenetre.draw(sprFond);
@@ -1382,14 +1420,12 @@ public class Vue{
         }
 
     }
-
     public void setSpriteCliquable(Sprite sprite){
         if(!spriteCliquable.contains(sprite)){
             spriteCliquable.add(sprite);
         }
 
     }
-
     public void delSpriteCliquable(Sprite sprite){
         if(spriteCliquable.contains(sprite)){
             spriteCliquable.remove(sprite);
@@ -1397,6 +1433,16 @@ public class Vue{
 
     }
 
+    public void creationSpriteCliquableDon(int joueur) {
+        System.out.println("creation sprite don");
+        spriteCliquable.clear();
+        spriteCliquable.add(getFond());
+
+        for(Sprite sprite : getSprsAutresJoueurs(joueur)){
+            spriteCliquable.add(sprite);
+        }
+
+    }
     public void creationSpriteCliquableEtape1(int joueur){
         spriteCliquable.clear();
 
@@ -1405,7 +1451,6 @@ public class Vue{
         }
 
     }
-
     public void creationSpriteCliquableMenuCarte(){
         System.out.println("creationSpriteCliquableMenuCarte");
         spriteCliquable.clear();
@@ -1418,7 +1463,6 @@ public class Vue{
 
 
     }
-
     public void creationSpriteCliquableMenuCarteChoix(){
         System.out.println("creationSpriteCliquableMenuCarteChoix");
         spriteCliquable.clear();
@@ -1430,6 +1474,19 @@ public class Vue{
         spriteCliquable.add(sprFond);
 
     }
+    public void creationSpriteCliquableCarte() {
+        clearSpritesCliquables();
+        spriteCliquable.add(sprCartePiochee1);
+        spriteCliquable.add(sprCartePiochee2);
+        spriteCliquable.add(sprBtPlantage);
+
+    }
+    public void clearSpritesCliquables(){
+        spriteCliquable.clear();
+    }
+    public ArrayList<Sprite> getSpriteCliquable(){
+        return spriteCliquable;
+    }
 
     public void creerMenuCarte(float posX, float posY){
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
@@ -1440,7 +1497,6 @@ public class Vue{
         sprMCDonner.setPosition(posX + 10, posY + 2 * espaceInterBouton + 1 * hauteurBouton);
         sprMCGarder.setPosition(posX + 10, posY + 3 * espaceInterBouton + 2 * hauteurBouton);
     }
-
     public void creerMenuOuiNon(float x, float y){
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
         int espaceInterBouton = 10;
@@ -1453,7 +1509,6 @@ public class Vue{
         spriteCliquable.add(sprMenuNon);
 
     }
-
     public void creerMenuCarteChoix(float posX, float posY){
 
         float hauteurBouton = sprMCEchanger.getGlobalBounds().height;
@@ -1471,22 +1526,6 @@ public class Vue{
         sprMCCTwerk.setPosition(posX + 10, posY +  1 * espaceFond + 7 * espaceInterBouton + 7 * hauteurBouton);
     }
 
-    public void creationSpriteCliquableCarte() {
-        clearSpritesCliquables();
-        spriteCliquable.add(sprCartePiochee1);
-        spriteCliquable.add(sprCartePiochee2);
-        spriteCliquable.add(sprBtPlantage);
-
-    }
-
-    public void clearSpritesCliquables(){
-        spriteCliquable.clear();
-    }
-
-    public ArrayList<Sprite> getSpriteCliquable(){
-        return spriteCliquable;
-    }
-
     public void afficherCartePiochee(){
         System.out.println("carte piochee");
 
@@ -1494,18 +1533,13 @@ public class Vue{
         sprCartePiochee2.setPosition(417, 495);
 
     }
-
     public void setTxtCartePiochee1(Texture txtCarte){
         sprCartePiochee1.setTexture(txtCarte);
     }
-
     public void setTxtCartePiochee2(Texture txtCarte){
         sprCartePiochee2.setTexture(txtCarte);
     }
 
-    public Sprite getFond() {
-        return sprFond;
-    }
 
     public void garderCarte(int id, int joueur) {
         System.out.println("garder carte" + id + " " + joueur);
@@ -1513,24 +1547,33 @@ public class Vue{
             System.out.println("garder carte 1");
             delSpriteCliquable(getSprCartePiochee1());
             getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee1);
+            sprCartePiochee1.setTexture(txtCarteVide);
         }else{
             System.out.println("garder carte 2");
             delSpriteCliquable(getSprCartePiochee2());
             getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee2);
+            sprCartePiochee2.setTexture(txtCarteVide);
         }
 
     }
 
-    public void creationSpriteCliquableDon(int joueur) {
-        System.out.println("creation sprite don");
-        spriteCliquable.clear();
-        spriteCliquable.add(getFond());
-
-        for(Sprite sprite : getSprsAutresJoueurs(joueur)){
-            spriteCliquable.add(sprite);
+    public void donnerCarte(int id, int joueur){
+        System.out.println("donner carte" + id + " " + joueur);
+        if(id == 1){
+            System.out.println("donner carte 1");
+            delSpriteCliquable(getSprCartePiochee1());
+            getZoneEchangeJoueurCourant(joueur - 1).add(0, sprCartePiochee1);
+            sprCartePiochee1.setTexture(txtCarteVide);
+        }else{
+            System.out.println("donner carte 2");
+            delSpriteCliquable(getSprCartePiochee2());
+            getZoneEchangeJoueurCourant(joueur - 1).add(sprCartePiochee2);
+            sprCartePiochee2.setTexture(txtCarteVide);
         }
 
     }
+
+
 
 /*
     public void creationSpriteCliquableMenuOuiNon(int joueur) {
@@ -1698,14 +1741,14 @@ public class Vue{
                 return;
             case 1 :
                 listeCarte.get(0).setRotation(-180);
-                listeCarte.get(0).setPosition(275, 225);
+                listeCarte.get(0).setPosition(490, 375);
                 fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
-                listeCarte.get(0).setRotation(-180);
-                listeCarte.get(0).setPosition(375, 225);
                 listeCarte.get(1).setRotation(-180);
-                listeCarte.get(1).setPosition(275, 225);
+                listeCarte.get(1).setPosition(585, 375);
+                listeCarte.get(0).setRotation(-180);
+                listeCarte.get(0).setPosition(490, 375);
                 fenetre.draw(listeCarte.get(0));
                 fenetre.draw(listeCarte.get(1));
                 break;
@@ -1717,14 +1760,14 @@ public class Vue{
                 return;
             case 1 :
                 listeCarte.get(0).setRotation(-90);
-                listeCarte.get(0).setPosition(725, 275);
+                listeCarte.get(0).setPosition(625, 490);
                 fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
-                listeCarte.get(0).setRotation(-90);
-                listeCarte.get(0).setPosition(725, 375);
                 listeCarte.get(1).setRotation(-90);
-                listeCarte.get(1).setPosition(725, 275);
+                listeCarte.get(1).setPosition(625, 585);
+                listeCarte.get(0).setRotation(-90);
+                listeCarte.get(0).setPosition(625, 490);
                 fenetre.draw(listeCarte.get(0));
                 fenetre.draw(listeCarte.get(1));
                 break;
@@ -1740,10 +1783,10 @@ public class Vue{
                 fenetre.draw(listeCarte.get(0));
                 break;
             case 2 :
-                listeCarte.get(0).setRotation(-270);
-                listeCarte.get(0).setPosition(380, 420);
                 listeCarte.get(1).setRotation(-270);
-                listeCarte.get(1).setPosition(380, 510);
+                listeCarte.get(1).setPosition(380, 420);
+                listeCarte.get(0).setRotation(-270);
+                listeCarte.get(0).setPosition(380, 510);
                 fenetre.draw(listeCarte.get(0));
                 fenetre.draw(listeCarte.get(1));
                 break;

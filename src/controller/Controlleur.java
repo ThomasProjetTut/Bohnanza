@@ -168,6 +168,7 @@ public class Controlleur {
                         vue.actualiserFenetreEchangeMenu();
                         retour = etapeEchangeMenuCarte(1);
                         vue.creationSpriteCliquableCarte();
+                        vue.clearZonesEchanges();
                         putSprite();
                         vue.actualiserFenetreEchange();
                         if (carteNonJouee == 1) {
@@ -186,6 +187,7 @@ public class Controlleur {
                         vue.actualiserFenetreEchangeMenu();
                         retour = etapeEchangeMenuCarte(2);
                         vue.creationSpriteCliquableCarte();
+                        vue.clearZonesEchanges();
                         putSprite();
                         vue.actualiserFenetreEchange();
                         if (carteNonJouee == 1) {
@@ -237,7 +239,7 @@ public class Controlleur {
                         joueurActif.getZoneEchange().ajouterCarte(zonePioche.getZone().get(choixCarte-1));
 
 
-                        vue.garderCarte(1, joueurActif.getIdJoueur());
+                        vue.garderCarte(choixCarte, joueurActif.getIdJoueur());
                         vue.creationSpriteCliquableCarte();
                         return true;
 
@@ -251,7 +253,6 @@ public class Controlleur {
                         int carteDemande = etapeEchangeMenuCarteChoix();
                         vue.creationSpriteCliquableMenuCarte();
                         vue.actualiserFenetreEchangeMenu();
-
                         return carteDemande != -1 && etapeDemandeEchangeAcceptation(choixCarte, carteDemande);
 
                     }
@@ -268,6 +269,7 @@ public class Controlleur {
                         }
                         else if(etapeConfirmation(choixJoueur, vue.getSprsJoueurs()[choixJoueur-1])){
                             joueurs[choixJoueur-1].recoisCarte(zonePioche.getZone().get(choixCarte-1));
+                            vue.donnerCarte(choixCarte, choixJoueur-1);
                             return true;
                         }
                         else {
