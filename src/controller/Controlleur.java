@@ -341,7 +341,7 @@ public class Controlleur {
                         System.out.println("L'écahnge a été fait avec le joueur 1.");
                         System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
                                 +" contre une "+joueurs[0].findCarteById(idCarteVoulu).getNom());
-
+                        vue.donnerCarte(idCarte, 1);
                         joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[0], joueurs[0].findCarteById(idCarteVoulu));
                         break;
 
@@ -349,6 +349,7 @@ public class Controlleur {
                         System.out.println("L'écahnge a été fait avec le joueur 2.");
                         System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
                                 +" contre une "+joueurs[1].findCarteById(idCarteVoulu).getNom());
+                        vue.donnerCarte(idCarte, 2);
 
                         joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[1], joueurs[1].findCarteById(idCarteVoulu));
                         break;
@@ -357,7 +358,7 @@ public class Controlleur {
                         System.out.println("L'écahnge a été fait avec le joueur 3.");
                         System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
                                 +" contre une "+joueurs[2].findCarteById(idCarteVoulu).getNom());
-
+                        vue.donnerCarte(idCarte, 3);
                         joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[2], joueurs[2].findCarteById(idCarteVoulu));
                         break;
 
@@ -365,7 +366,7 @@ public class Controlleur {
                         System.out.println("L'écahnge a été fait avec le joueur 4.");
                         System.out.println("Le joueur actif a échangé une "+zonePioche.getZone().get(idCarte-1).getNom()
                                 +" contre une "+joueurs[3].findCarteById(idCarteVoulu).getNom());
-
+                        vue.donnerCarte(idCarte, 4);
                         joueurActif.echangeCartePiocheMain(zonePioche.getZone().get(idCarte-1), joueurs[3], joueurs[3].findCarteById(idCarteVoulu));
 
                         break;
