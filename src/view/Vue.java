@@ -1591,54 +1591,152 @@ public class Vue{
     }*/
 
     public void afficherMainJ1(){
+        switch((int) getFond().getRotation()){
+            case 0 :
+                afficherMainBas(mainJ1);
+                break;
+            case -90 :
+                afficherMainDroite(mainJ1);
+                break;
+            case -180 :
+                afficherMainHaut(mainJ1);
+                break;
+            case -270 :
+                afficherMainGauche(mainJ1);
+                break;
+        }
+    }
+    public void afficherMainJ2(){
+        switch((int) getFond().getRotation()){
+            case 0 :
+                afficherMainGauche(mainJ2);
+                break;
+            case -90 :
+                afficherMainBas(mainJ2);
+                break;
+            case -180 :
+                afficherMainDroite(mainJ2);
+                break;
+            case -270 :
+                afficherMainHaut(mainJ2);
+                break;
+        }
+    }
+    public void afficherMainJ3(){
+        switch((int) getFond().getRotation()){
+            case 0 :
+                afficherMainHaut(mainJ3);
+                break;
+            case -90 :
+                afficherMainGauche(mainJ3);
+                break;
+            case -180 :
+                afficherMainBas(mainJ3);
+                break;
+            case -270 :
+                afficherMainDroite(mainJ3);
+                break;
+        }
+
+    }
+    public void afficherMainJ4(){
+        switch((int) getFond().getRotation()){
+            case 0 :
+                afficherMainDroite(mainJ4);
+                break;
+            case -90 :
+                afficherMainHaut(mainJ4);
+                break;
+            case -180 :
+                afficherMainGauche(mainJ4);
+                break;
+            case -270 :
+                afficherMainBas(mainJ4);
+                break;
+        }
+
+    }
+
+
+
+    private void afficherMainBas(ArrayList<Sprite> main){
         int espaceEntreCarte;
-        if (mainJ1.size()>0){
-            espaceEntreCarte = 380%(75*mainJ1.size())/mainJ1.size();
+        if (main.size()>0){
+            espaceEntreCarte = 380%(75*main.size())/main.size();
         }
         else {
             espaceEntreCarte = 0;
         }
 
-        while(mainJ1.size()*(75+espaceEntreCarte) > 370){
+        while(main.size()*(75+espaceEntreCarte) > 370){
             espaceEntreCarte = espaceEntreCarte - 5;
         }
 
-        for(int i = mainJ1.size() - 1; i >= 0; i--){
-            mainJ1.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
-            fenetre.draw(mainJ1.get(i));
+        for(int i = main.size() - 1; i >= 0; i--){
+            main.get(i).setRotation(0);
+            main.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
+            fenetre.draw(main.get(i));
         }
     }
-    public void afficherMainJ2(){
-        int espaceEntreCarte = 380%(75*mainJ2.size())/mainJ2.size();
-        while(mainJ2.size()*(75+espaceEntreCarte) > 370){
+
+
+    private void afficherMainHaut(ArrayList<Sprite> main){
+        int espaceEntreCarte;
+        if (main.size()>0){
+            espaceEntreCarte = 380%(75*main.size())/main.size();
+        }
+        else {
+            espaceEntreCarte = 0;
+        }
+
+        while(main.size()*(75+espaceEntreCarte) > 370){
             espaceEntreCarte = espaceEntreCarte - 5;
         }
 
-        for(int i = 0; i < mainJ2.size(); i++){
-            mainJ2.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
-            fenetre.draw(mainJ2.get(i));
+        for(int i = main.size() - 1; i >= 0; i--){
+            main.get(i).setRotation(-180);
+            main.get(i).setPosition(i * (75 + espaceEntreCarte) + 410 , 95);
+            fenetre.draw(main.get(i));
         }
     }
-    public void afficherMainJ3(){
-        int espaceEntreCarte = 380%(75*mainJ3.size())/mainJ3.size();
-        while(mainJ3.size()*(75+espaceEntreCarte) > 370){
+
+    private void afficherMainGauche(ArrayList<Sprite> main){
+        int espaceEntreCarte;
+        if (main.size()>0){
+            espaceEntreCarte = 380%(75*main.size())/main.size();
+        }
+        else {
+            espaceEntreCarte = 0;
+        }
+
+        while(main.size()*(75+espaceEntreCarte) > 370){
             espaceEntreCarte = espaceEntreCarte - 5;
         }
 
-        for(int i = 0; i < mainJ3.size(); i++){
-            mainJ3.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
-            fenetre.draw(mainJ3.get(i));
+        for(int i = main.size() - 1; i >= 0; i--){
+            main.get(i).setRotation(-270);
+            main.get(i).setPosition(95 , i * (75 + espaceEntreCarte) +  330);
+            fenetre.draw(main.get(i));
         }
     }
-    public void afficherMainJ4(){
-        int espaceEntreCarte = 380%(75*mainJ4.size())/mainJ4.size();
-        while(mainJ4.size()*(75+espaceEntreCarte) > 370){
+
+    private void afficherMainDroite(ArrayList<Sprite> main){
+        int espaceEntreCarte;
+        if (main.size()>0){
+            espaceEntreCarte = 380%(75*main.size())/main.size();
+        }
+        else {
+            espaceEntreCarte = 0;
+        }
+
+        while(main.size()*(75+espaceEntreCarte) > 370){
             espaceEntreCarte = espaceEntreCarte - 5;
         }
 
-        for(int i = 0; i < mainJ4.size(); i++){
-            mainJ4.get(i).setPosition(i * (75 + espaceEntreCarte) + 310 , 905);
-            fenetre.draw(mainJ4.get(i));
+        for(int i = main.size() - 1; i >= 0; i--){
+            main.get(i).setRotation(-90);
+            main.get(i).setPosition(905 , i * (75 + espaceEntreCarte) + 410);
+            fenetre.draw(main.get(i));
         }
     }
 
