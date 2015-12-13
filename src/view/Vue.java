@@ -377,20 +377,24 @@ public class Vue{
 
         //J2
 
-        sprChampJ2[0].rotate(-90);
-        sprChampJ2[1].rotate(-90);
-        sprChampJ2[2].rotate(-90);
+        sprChampJ2[0].rotate(-270);
+        sprChampJ2[1].rotate(-270);
+        sprChampJ2[2].rotate(-270);
 
-        sprChampJ2[0].setPosition(135, 413);
-        sprChampJ2[1].setPosition(135, 575);
-        sprChampJ2[2].setPosition(135, 737);
+        sprChampJ2[0].setPosition(235, 262);
+        sprChampJ2[1].setPosition(235, 425);
+        sprChampJ2[2].setPosition(235, 587);
 
 
         //J3
 
-        sprChampJ3[0].setPosition(587, 135);
-        sprChampJ3[1].setPosition(425, 135);
-        sprChampJ3[2].setPosition(263, 135);
+        sprChampJ3[0].rotate(-180);
+        sprChampJ3[1].rotate(-180);
+        sprChampJ3[2].rotate(-180);
+
+        sprChampJ3[2].setPosition(413, 235);
+        sprChampJ3[1].setPosition(575, 235);
+        sprChampJ3[0].setPosition(737, 235);
 
         //J4
 
@@ -481,18 +485,18 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(135, 413);
-        sprChampJ2[1].setPosition(135, 575);
-        sprChampJ2[2].setPosition(135, 737);
+        sprChampJ2[0].setPosition(235, 262);
+        sprChampJ2[1].setPosition(235, 425);
+        sprChampJ2[2].setPosition(235, 587);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(587, 135);
-        sprChampJ3[1].setPosition(425, 135);
-        sprChampJ3[2].setPosition(268, 135);
+        sprChampJ3[2].setPosition(413, 235);
+        sprChampJ3[1].setPosition(575, 235);
+        sprChampJ3[0].setPosition(737, 235);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
@@ -506,7 +510,7 @@ public class Vue{
     public void rotationJ2(){
 
         //rotation fond
-        sprFond.rotate(-90);
+        sprFond.setRotation(-90);
         sprFond.setPosition(0, 1000);
 
         /////////////////////////////////////////////////////////////////////////////
@@ -524,18 +528,18 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(415, 862);
-        sprChampJ2[1].setPosition(578, 862);
-        sprChampJ2[2].setPosition(740, 862);
+        sprChampJ2[0].setPosition(263, 767);
+        sprChampJ2[1].setPosition(425, 767);
+        sprChampJ2[2].setPosition(587, 767);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(135, 413);
-        sprChampJ3[1].setPosition(135, 575);
-        sprChampJ3[2].setPosition(135, 737);
+        sprChampJ3[0].setPosition(235, 263);
+        sprChampJ3[1].setPosition(235, 425);
+        sprChampJ3[2].setPosition(235, 587);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
@@ -568,18 +572,18 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(865, 587);
-        sprChampJ2[1].setPosition(865, 425);
-        sprChampJ2[2].setPosition(865, 263);
+        sprChampJ2[0].setPosition(767, 737);
+        sprChampJ2[1].setPosition(767, 575);
+        sprChampJ2[2].setPosition(767, 413);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[0].setPosition(415, 865);
-        sprChampJ3[1].setPosition(575, 865);
-        sprChampJ3[2].setPosition(737, 865);
+        sprChampJ3[0].setPosition(263, 767);
+        sprChampJ3[1].setPosition(425, 767);
+        sprChampJ3[2].setPosition(587, 767);
 
         for(int i = 0; i < 3; i++) {
             sprChampJ4[i].rotate(-90);
@@ -611,26 +615,26 @@ public class Vue{
             sprChampJ2[i].rotate(-90);
         }
 
-        sprChampJ2[0].setPosition(587, 135);
-        sprChampJ2[1].setPosition(425, 135);
-        sprChampJ2[2].setPosition(263, 135);
+        sprChampJ2[0].setPosition(418, 238);
+        sprChampJ2[1].setPosition(575, 238);
+        sprChampJ2[2].setPosition(737, 238);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].rotate(-90);
         }
 
-        sprChampJ3[2].setPosition(865, 263);
-        sprChampJ3[1].setPosition(865, 425);
-        sprChampJ3[0].setPosition(865, 587);
+        sprChampJ3[2].setPosition(765, 737);
+        sprChampJ3[1].setPosition(765, 575);
+        sprChampJ3[0].setPosition(765, 413);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].rotate(-90);
         }
 
-        sprChampJ4[2].setPosition(263, 765);
+        sprChampJ4[0].setPosition(263, 765);
         sprChampJ4[1].setPosition(425, 765);
-        sprChampJ4[0].setPosition(587, 765);
+        sprChampJ4[2].setPosition(587, 765);
 
     }
 
@@ -1225,23 +1229,63 @@ public class Vue{
     }
 
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
-        if(isCliquable(sprite)) {
-            event.asMouseEvent();
-            Vector2i posMouse = Mouse.getPosition(fenetre);
-            Vector2f positionSprite = sprite.getPosition();
-            FloatRect tailleSprite = sprite.getGlobalBounds();
+        if(sprite.getRotation() == -180){
+            if(isCliquable(sprite)) {
+                event.asMouseEvent();
+                Vector2i posMouse = Mouse.getPosition(fenetre);
+                Vector2f positionSprite = sprite.getPosition();
+                FloatRect tailleSprite = sprite.getGlobalBounds();
 
-            if (posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height) {
-                System.out.println("clique sprite oui");
-                return true;
-            } else {
-                System.out.println("clique sprite non position");
+                if (posMouse.x < positionSprite.x && posMouse.x > positionSprite.x - tailleSprite.width && posMouse.y < positionSprite.y && posMouse.y > positionSprite.y - tailleSprite.height) {
+                    System.out.println("clique sprite oui");
+                    return true;
+                } else {
+                    System.out.println("clique sprite non position");
+                    return false;
+                }
+            }else{
+                System.out.println("clique sprite non cliquable");
+                return false;
+            }
+        }else if (sprite.getRotation() == -270){
+            if(isCliquable(sprite)) {
+                event.asMouseEvent();
+                Vector2i posMouse = Mouse.getPosition(fenetre);
+                Vector2f positionSprite = sprite.getPosition();
+                FloatRect tailleSprite = sprite.getGlobalBounds();
+
+                if (posMouse.x < positionSprite.x && posMouse.x > positionSprite.x - tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height) {
+                    System.out.println("clique sprite oui");
+                    return true;
+                } else {
+                    System.out.println("clique sprite non position");
+                    return false;
+                }
+            }else{
+                System.out.println("clique sprite non cliquable");
                 return false;
             }
         }else{
-            System.out.println("clique sprite non cliquable");
-            return false;
+            if(isCliquable(sprite)) {
+                event.asMouseEvent();
+                Vector2i posMouse = Mouse.getPosition(fenetre);
+                Vector2f positionSprite = sprite.getPosition();
+                FloatRect tailleSprite = sprite.getGlobalBounds();
+
+                if (posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y > positionSprite.y && posMouse.y < positionSprite.y + tailleSprite.height) {
+                    System.out.println("clique sprite oui");
+                    return true;
+                } else {
+                    System.out.println("clique sprite non position");
+                    return false;
+                }
+            }else{
+                System.out.println("clique sprite non cliquable");
+                return false;
+            }
         }
+
+
 
     }
 
