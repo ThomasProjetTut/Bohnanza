@@ -474,7 +474,7 @@ public class Vue{
         //rotation champ
 
         for(int i = 0; i < 3; i++){
-            sprChampJ1[i].rotate(-90);
+            sprChampJ1[i].setRotation(0);
         }
 
         sprChampJ1[0].setPosition(263, 767);
@@ -482,7 +482,7 @@ public class Vue{
         sprChampJ1[2].setPosition(587, 767);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ2[i].rotate(-90);
+            sprChampJ2[i].setRotation(-270);
         }
 
         sprChampJ2[0].setPosition(235, 262);
@@ -491,7 +491,7 @@ public class Vue{
 
 
         for(int i = 0; i < 3; i++){
-            sprChampJ3[i].rotate(-90);
+            sprChampJ3[i].setRotation(-180);
         }
 
         sprChampJ3[2].setPosition(413, 235);
@@ -499,7 +499,7 @@ public class Vue{
         sprChampJ3[0].setPosition(737, 235);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ4[i].rotate(-90);
+            sprChampJ4[i].setRotation(-90);
         }
 
         sprChampJ4[0].setPosition(765, 413);
@@ -517,7 +517,7 @@ public class Vue{
         //rotation champ
 
         for(int i = 0; i < 3; i++){
-            sprChampJ1[i].rotate(-90);
+            sprChampJ1[i].setRotation(-90);
         }
 
         sprChampJ1[0].setPosition(767, 737);
@@ -525,7 +525,7 @@ public class Vue{
         sprChampJ1[2].setPosition(767, 413);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ2[i].rotate(-90);
+            sprChampJ2[i].setRotation(0);
         }
 
         sprChampJ2[0].setPosition(263, 767);
@@ -534,7 +534,7 @@ public class Vue{
 
 
         for(int i = 0; i < 3; i++){
-            sprChampJ3[i].rotate(-90);
+            sprChampJ3[i].setRotation(-270);
         }
 
         sprChampJ3[0].setPosition(235, 263);
@@ -542,7 +542,7 @@ public class Vue{
         sprChampJ3[2].setPosition(235, 587);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ4[i].rotate(-90);
+            sprChampJ4[i].setRotation(-180);
         }
 
         sprChampJ4[2].setPosition(413, 235);
@@ -561,7 +561,7 @@ public class Vue{
         //rotation champ
 
         for(int i = 0; i < 3; i++){
-            sprChampJ1[i].rotate(-90);
+            sprChampJ1[i].setRotation(-180);
         }
 
         sprChampJ1[2].setPosition(418, 238);
@@ -569,7 +569,7 @@ public class Vue{
         sprChampJ1[0].setPosition(737, 238);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ2[i].rotate(-90);
+            sprChampJ2[i].setRotation(-90);
         }
 
         sprChampJ2[0].setPosition(767, 737);
@@ -578,7 +578,7 @@ public class Vue{
 
 
         for(int i = 0; i < 3; i++){
-            sprChampJ3[i].rotate(-90);
+            sprChampJ3[i].setRotation(0);
         }
 
         sprChampJ3[0].setPosition(263, 767);
@@ -586,7 +586,7 @@ public class Vue{
         sprChampJ3[2].setPosition(587, 767);
 
         for(int i = 0; i < 3; i++) {
-            sprChampJ4[i].rotate(-90);
+            sprChampJ4[i].setRotation(-270);
         }
 
         sprChampJ4[0].setPosition(235, 263);
@@ -604,7 +604,7 @@ public class Vue{
         //rotation champ
 
         for(int i = 0; i < 3; i++){
-            sprChampJ1[i].rotate(-90);
+            sprChampJ1[i].setRotation(-270);
         }
 
         sprChampJ1[0].setPosition(235, 263);
@@ -612,7 +612,7 @@ public class Vue{
         sprChampJ1[2].setPosition(235, 587);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ2[i].rotate(-90);
+            sprChampJ2[i].setRotation(-180);
         }
 
         sprChampJ2[0].setPosition(418, 238);
@@ -621,7 +621,7 @@ public class Vue{
 
 
         for(int i = 0; i < 3; i++){
-            sprChampJ3[i].rotate(-90);
+            sprChampJ3[i].setRotation(-90);
         }
 
         sprChampJ3[2].setPosition(765, 737);
@@ -629,7 +629,7 @@ public class Vue{
         sprChampJ3[0].setPosition(765, 413);
 
         for(int i = 0; i < 3; i++){
-            sprChampJ4[i].rotate(-90);
+            sprChampJ4[i].setRotation(0);
         }
 
         sprChampJ4[0].setPosition(263, 765);
