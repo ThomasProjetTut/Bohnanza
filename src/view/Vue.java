@@ -7,6 +7,7 @@ import org.jsfml.window.VideoMode;
 import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 
+import javax.smartcardio.TerminalFactory;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,6 +37,8 @@ public class Vue{
     private Texture txtVictoire3 = new Texture();
     private Texture txtVictoire4 = new Texture();
     private Texture txtBouttonDebut = new Texture();
+    private Texture txtBouttonRejouer = new Texture();
+    private Texture txtBouttonQuitter = new Texture();
 
     //bouton
     private Texture txtBtEchange = new Texture();
@@ -111,6 +114,9 @@ public class Vue{
     private Sprite sprFond = new Sprite();
     private Sprite etapeEnCours = new Sprite();
     private Sprite sprBouttonDepart = new Sprite();
+    private Sprite sprBouttonRejouer = new Sprite();
+    private Sprite sprBouttonQuitter = new Sprite();
+
 
     //sprites boutons
     private Sprite sprBtEchange = new Sprite();
@@ -213,6 +219,8 @@ public class Vue{
             txtVictoire3.loadFromFile(Paths.get("Sprites/victoire_joueur_3.png"));
             txtVictoire4.loadFromFile(Paths.get("Sprites/victoire_joueur_4.png"));
             txtBouttonDebut.loadFromFile(Paths.get("Sprites/boutton_debut_tour.png"));
+            txtBouttonQuitter.loadFromFile(Paths.get("Sprites/boutton_quitter.png"));
+            txtBouttonRejouer.loadFromFile(Paths.get("Sprites/boutton_rejouer.png"));
 
             txtMCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/fondMCarte.png"));
             txtMCEchanger.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/echange.png"));
@@ -276,6 +284,8 @@ public class Vue{
 
         //set Txt
         sprFond.setTexture(txtFond);
+        sprBouttonRejouer.setTexture(txtBouttonRejouer);
+        sprBouttonQuitter.setTexture(txtBouttonQuitter);
 
         //menus
         sprMCFond.setTexture(txtMCFond);
@@ -708,6 +718,12 @@ public class Vue{
     }
     public Sprite getFond() {
         return sprFond;
+    }
+    public Sprite getSprBouttonRejouer(){
+        return sprBouttonRejouer;
+    }
+    public Sprite getSprBouttonQuitter(){
+        return sprBouttonQuitter;
     }
 
     public ArrayList<Sprite> getMainJ1(){
@@ -1251,6 +1267,36 @@ public class Vue{
 
         fenetre.display();
     }
+    public void actualiserFenetreFinDePartie(int vainqueur) {
+        switch (vainqueur){
+            case 1 :
+                sprFond.setTexture(txtVictoire1);
+                break;
+            case 2 :
+                sprFond.setTexture(txtVictoire2);
+                break;
+            case 3 :
+                sprFond.setTexture(txtVictoire3);
+                break;
+            case 4 :
+                sprFond.setTexture(txtVictoire4);
+                break;
+        }
+
+        fenetre.draw(sprFond);
+
+        sprBouttonQuitter.setPosition(753, 74);
+
+        fenetre.draw(sprBouttonQuitter);
+
+        sprBouttonRejouer.setPosition(363, 777);
+
+        fenetre.draw(sprBouttonRejouer);
+
+        fenetre.display();
+
+    }
+
 
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
         if(sprite.getRotation() == -180){

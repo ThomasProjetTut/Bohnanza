@@ -82,7 +82,7 @@ public class Controlleur {
                             System.out.println("Le joueur "+e.getJoueurVainqueur().getNom()+" a gagné avec "
                                     +e.getJoueurVainqueur().getNbThunes()+" thunes !");
 
-                            vue.getFenetre().close();
+                            finDePartie(e.getJoueurVainqueur().getIdJoueur());
 
                             System.out.println("Nouvelle partie !!");
                             initAttributs();
@@ -93,8 +93,8 @@ public class Controlleur {
                 }
 
             }
-        
         }
+
     }
 
     private void etapePlanter() throws ExceptionFinDeJeu {
@@ -776,6 +776,51 @@ public class Controlleur {
         compteurTour++;
 
         etapePlanter();
+    }
+
+    private void finDePartie(int vainqueur) {
+        vue.actualiserFenetreFinDePartie(vainqueur);
+
+        vue.setSpriteCliquable(vue.getSprBouttonQuitter());
+        vue.setSpriteCliquable(vue.getSprBouttonRejouer());
+
+        while (vue.getFenetre().isOpen()) {
+
+            vue.actualiserFenetreFinDePartie(1);
+
+            for(Event event : vue.getFenetre().pollEvents()){
+
+                if (event.type == Event.Type.CLOSED){
+                    vue.getFenetre().close();
+                }
+
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED){
+                    if(vue.cliqueSprite(event, vue.getSprBouttonRejouer(), vue.getFenetre())){
+                        try {
+                            etapePlanter();
+                        } catch (ExceptionFinDeJeu e) {
+                            System.out.println(e.getMessage());
+
+                            System.out.println("Le joueur "+e.getJoueurVainqueur().getNom()+" a gagné avec "
+                                    +e.getJoueurVainqueur().getNbThunes()+" thunes !");
+
+                            finDePartie(e.getJoueurVainqueur().getIdJoueur());
+
+                            System.out.println("Nouvelle partie !!");
+                            jeu();
+
+                        }
+
+                    }else{
+                        if(vue.cliqueSprite(event, vue.getSprBouttonQuitter(), vue.getFenetre())){
+                            vue.getFenetre().close();
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
 
     private void rotationPlateau() {
