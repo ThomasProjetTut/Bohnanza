@@ -1,6 +1,7 @@
 package model;
 
 import model.Carte.Carte;
+import org.mockito.internal.matchers.Null;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,9 @@ public class Champ {
 
     public boolean planter(Carte c) {
 
+        if (c == null)
+            return false;
+
         if (CompareDerniereCarte(c)){
             patates.add(c);
 
@@ -46,7 +50,14 @@ public class Champ {
     }
 
     public boolean CompareDerniereCarte(Carte carte) {
-        return derniereCarte() == null || derniereCarte().getIdCarte() == carte.getIdCarte();
+
+        if (derniereCarte() == null) // Si le champs est vide
+            return true;
+
+        if (derniereCarte().getIdCarte() != carte.getIdCarte())
+            return false;
+
+        return true;
     }
 
     public void recolter(Joueur j, Pioche pioche) {

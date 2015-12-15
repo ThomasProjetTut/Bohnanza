@@ -13,13 +13,13 @@ public class Pioche {
     private int tourDePioche;
 
     public Pioche(){
+        pioche = new ArrayList<Carte>();
         initPioche();
         defausse = new ArrayList<>();
         tourDePioche  = 1;
     }
 
     private void initPioche() {
-        pioche = new ArrayList<Carte>();
         for (int i = 0; i < 104; i++) {
             if (i<6){
                 pioche.add(new Carte_Pata_Tecktonik());
@@ -62,7 +62,7 @@ public class Pioche {
     }
 
     public void verifTourDePioche(){
-        if (pioche.size() > 0) return;
+        if (getTaillePioche() > 0) return;
 
         for (Carte carte: defausse) {
             pioche.add(carte);

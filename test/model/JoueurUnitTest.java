@@ -2,6 +2,7 @@ package model;
 
 import model.Carte.Carte;
 import model.Carte.Carte_Pata_Tecktonik;
+import model.Carte.Carte_Pata_Testosterone;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -42,34 +43,43 @@ public class JoueurUnitTest {
         Assert.assertNotSame(nbCartes, joueur1.getMain().size());
     }
 
-    /*
+    @Test
+    public void testAcheterChamps() {
+        Pioche pioche = new Pioche();
+
+        Joueur joueur1 =new Joueur();
+
+        joueur1.acheterChamps(pioche);
+        Assert.assertEquals(joueur1.getMaxChamps(), 2);
+
+        joueur1.addThunes(new Carte_Pata_Testosterone());
+        joueur1.addThunes(new Carte_Pata_Testosterone());
+        joueur1.addThunes(new Carte_Pata_Testosterone());
+        joueur1.addThunes(new Carte_Pata_Testosterone());
+        joueur1.addThunes(new Carte_Pata_Testosterone());
+
+        joueur1.acheterChamps(pioche);
+        Assert.assertEquals(joueur1.getMaxChamps(), 3);
+    }
+
     @Test
     public void testPlanter() {
         Pioche pioche = new Pioche();
 
-        Joueur joueur1 =new Joueur("Henri");
+        Joueur joueur1 =new Joueur();
 
-        joueur1.recoisMain();
+        joueur1.recoisMain(pioche);
 
-        List<Carte> main = new ArrayList<>();
+        List<Carte> main = new ArrayList<>(joueur1.getMain());
 
-        for (Carte carte : joueur1.getMain()){
-            main.add(carte.clone());
-        }
-
-        joueur1.acheterChamps();
-
-        joueur1.planter(1);
-        joueur1.planter(2);
-        joueur1.planter(3);
+        joueur1.planter(1, pioche);
+        joueur1.planter(2, pioche);
 
         Assert.assertEquals(main.get(0), joueur1.getChamp(1).derniereCarte());
         Assert.assertEquals(main.get(1), joueur1.getChamp(2).derniereCarte());
-        Assert.assertEquals(main.get(2), joueur1.getChamp(3).derniereCarte());
 
-        Assert.assertTrue(joueur1.getMain().size() == 1);
+        Assert.assertTrue(joueur1.getMain().size() != main.size());
     }
-    */
 
     @Test
     public void testDonnerCarte(){
@@ -88,18 +98,58 @@ public class JoueurUnitTest {
         joueur.recoisCarte(c2);
         Assert.assertEquals(c2,joueur.getZoneEchange().getZone().get(0));
     }
-/*
+
     @Test
-    public void testEchangeCarte(){
+    public void testEchangeCarteMainMain(){
+
         Joueur joueur=new Joueur("test",0);
         Joueur joueur1=new Joueur("test1",1);
+
         Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
         Carte_Pata_Tecktonik c= Mockito.mock(Carte_Pata_Tecktonik.class);
-        joueur.echangeCarte(c2,joueur1,c);
-        Assert.assertEquals(c,joueur.getZoneEchange().getZone().get(0));
-        Assert.assertEquals(c2,joueur1.getZoneEchange().getZone().get(0));
+
+        joueur.echangeCarteMainMain(c2, joueur1, c);
+
+        Assert.assertEquals(c, joueur.getZoneEchange().getZone().get(0));
+        Assert.assertEquals(c2, joueur1.getZoneEchange().getZone().get(0));
     }
-*/
+
+    @Test
+    public void testEchangeCartePiocheMain(){
+
+        Joueur joueur=new Joueur("test",0);
+
+        Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
+        Carte_Pata_Tecktonik c= Mockito.mock(Carte_Pata_Tecktonik.class);
+
+        joueur.echangeCartePiocheMain(c2, joueur, c);
+
+        Assert.assertEquals(c2, joueur.getZoneEchange().getZone().get(0));
+        Assert.assertEquals(c, joueur.getZoneEchange().getZone().get(1));
+    }
+
+    @Test
+    public void testHavecarteInMain(){
+
+        Joueur joueur=new Joueur("test",0);
+
+        Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
+        joueur.addCarte(c2);
+
+        Assert.assertTrue(joueur.haveCarteInMain(c2.getIdCarte()));
+    }
+
+    @Test
+    public void testFindCarteById(){
+
+        Joueur joueur=new Joueur("test",0);
+
+        Carte_Pata_Tecktonik c2= Mockito.mock(Carte_Pata_Tecktonik.class);
+        joueur.addCarte(c2);
+
+        Assert.assertEquals(c2, joueur.findCarteById(c2.getIdCarte()));
+    }
+
     /*
     @Test
     public void testJouerCoup(){

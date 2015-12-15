@@ -79,7 +79,7 @@ public class Joueur {
     }
 
     public void acheterChamps(Pioche pioche) {
-        if (maxChamps > 3) return;
+        if (maxChamps >= 3) return;
 
         if (thunes.size() < 5) return;
 

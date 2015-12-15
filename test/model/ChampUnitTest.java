@@ -34,12 +34,9 @@ public class ChampUnitTest {
 
     @Test
     public void TestCompareDerniereCarte(){
-        Carte_Pata_Tecktonik c1=Mockito.mock(Carte_Pata_Tecktonik.class);
-        Carte_Pata_Tecktonik c2=Mockito.mock(Carte_Pata_Tecktonik.class);
-        Carte_Pata_Tentacule c3=Mockito.mock(Carte_Pata_Tentacule.class);
-        Mockito.when(c1.isPataTecktonik()).thenReturn(true);
-        Mockito.when(c2.isPataTecktonik()).thenReturn(true);
-        Mockito.when(c3.isPataTecktonik()).thenReturn(false);
+        Carte_Pata_Tecktonik c1= new Carte_Pata_Tecktonik();
+        Carte_Pata_Tecktonik c2= new Carte_Pata_Tecktonik();
+        Carte_Pata_Tentacule c3= new Carte_Pata_Tentacule();
         ArrayList<Carte> list=new ArrayList<Carte>();
         list.add(c1);
         Champ champ=new Champ(1,list);
@@ -49,7 +46,6 @@ public class ChampUnitTest {
         Assert.assertFalse(champ.CompareDerniereCarte(c3));
     }
 
-    /* A REFAIRE
     @Test
     public void TestPlanter(){
         //Planter lorsqu'un champ est vide
@@ -77,7 +73,7 @@ public class ChampUnitTest {
         Champ champ1=new Champ(1,list3);
         Carte_Pata_Tentacule c5=new Carte_Pata_Tentacule();
         champ1.planter(c5);
-        Assert.assertEquals(c5,champ1.derniereCarte());
+        Assert.assertNotEquals(c5,champ1.derniereCarte());
 
             //Instance differente et 4 carte deja de plantees
         Carte_Pata_Tecktonik c6 = new Carte_Pata_Tecktonik();
@@ -89,15 +85,16 @@ public class ChampUnitTest {
         Carte_Pata_Tentacule c8=new Carte_Pata_Tentacule();
         Assert.assertEquals(c7,champ3.derniereCarte());
         boolean d=champ3.planter(c8);
-        Assert.assertEquals(2,d);
-        Assert.assertEquals(c8,champ3.derniereCarte());
+        Assert.assertEquals(false, champ3.planter(c8));
+        Assert.assertNotEquals(c8,champ3.derniereCarte());
 
     }
-    */
 
-    /* A REFAIRE !!!!
     @Test
     public void TestRecolterChamp(){
+        Joueur joueur = new Joueur();
+        Pioche pioche = new Pioche();
+        int thune = 0;
         Carte_Pata_Tecktonik c1 = new Carte_Pata_Tecktonik();
         Carte_Pata_Tecktonik c2 = new Carte_Pata_Tecktonik();
         Carte_Pata_Tecktonik c3 = new Carte_Pata_Tecktonik();
@@ -110,10 +107,10 @@ public class ChampUnitTest {
         list.add(c4);
         list.add(c5);
         Champ champ=new Champ(1,list);
-        int a =champ.recolter();
-        Assert.assertEquals(3,a);
-        Assert.assertEquals(c2,champ.derniereCarte());
-    }
-    */
 
+        champ.recolter(joueur, pioche);
+
+        Assert.assertNotEquals(thune, joueur.getThunes());
+        Assert.assertEquals(0, champ.patates.size());
+    }
 }
