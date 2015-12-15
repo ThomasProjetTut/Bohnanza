@@ -1,15 +1,16 @@
 package view;
 import org.jsfml.graphics.*;
+import org.jsfml.graphics.Font;
+import org.jsfml.graphics.Image;
 import org.jsfml.system.Vector2f;
 import org.jsfml.system.Vector2i;
 import org.jsfml.window.Mouse;
 import org.jsfml.window.VideoMode;
 import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
+import org.jsfml.graphics.*;
 
-import javax.smartcardio.TerminalFactory;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -24,7 +25,7 @@ public class Vue{
     private Sprite[] sprsBoutonsEtapes = new Sprite[4];
     private Sprite[] sprsMenuON = new Sprite[2];
     private Sprite[] sprsCartesPiochee = new Sprite[2];
-
+    private Font arial = new Font();
     private Image icone = new Image();
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +40,14 @@ public class Vue{
     private Texture txtBouttonDebut = new Texture();
     private Texture txtBouttonRejouer = new Texture();
     private Texture txtBouttonQuitter = new Texture();
+
+    //scores
+    private Texture txtScore = new Texture();
+    private Text scoreJ1 = new Text();
+    private Text scoreJ2 = new Text();;
+    private Text scoreJ3 = new Text();;
+    private Text scoreJ4 = new Text();;
+
 
     //bouton
     private Texture txtBtEchange = new Texture();
@@ -116,6 +125,7 @@ public class Vue{
     private Sprite sprBouttonDepart = new Sprite();
     private Sprite sprBouttonRejouer = new Sprite();
     private Sprite sprBouttonQuitter = new Sprite();
+    private Sprite sprScore = new Sprite();
 
 
     //sprites boutons
@@ -212,6 +222,8 @@ public class Vue{
         }
 
         try {
+            arial.loadFromFile(Paths.get("Sprites/arial.ttf"));
+
             txtFond.loadFromFile(Paths.get("Sprites/fond.png"));
             txtDebut.loadFromFile(Paths.get("Sprites/debut.png"));
             txtVictoire1.loadFromFile(Paths.get("Sprites/victoire_joueur_1.png"));
@@ -221,6 +233,7 @@ public class Vue{
             txtBouttonDebut.loadFromFile(Paths.get("Sprites/boutton_debut_tour.png"));
             txtBouttonQuitter.loadFromFile(Paths.get("Sprites/boutton_quitter.png"));
             txtBouttonRejouer.loadFromFile(Paths.get("Sprites/boutton_rejouer.png"));
+            txtScore.loadFromFile(Paths.get("Sprites/Sprite_score.png"));
 
             txtMCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/fondMCarte.png"));
             txtMCEchanger.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/echange.png"));
@@ -286,6 +299,7 @@ public class Vue{
         sprFond.setTexture(txtFond);
         sprBouttonRejouer.setTexture(txtBouttonRejouer);
         sprBouttonQuitter.setTexture(txtBouttonQuitter);
+        sprScore.setTexture(txtScore);
 
         //menus
         sprMCFond.setTexture(txtMCFond);
@@ -383,6 +397,7 @@ public class Vue{
         //set positions
         //generaux
         etapeEnCours.setPosition(55, 25);
+        sprScore.setPosition(750, 0);
 
         //bouton
         sprBtEchange.setPosition(810, 775);
@@ -435,6 +450,31 @@ public class Vue{
         sprJoueurAttente2.setPosition(35, 825);
         sprJoueurAttente3.setPosition(35, 875);
         sprJoueurAttente4.setPosition(35, 925);
+
+        scoreJ1.setString("0");
+        scoreJ2.setString("0");
+        scoreJ3.setString("0");
+        scoreJ4.setString("0");
+
+        scoreJ1.setPosition(870, 37);
+        scoreJ2.setPosition(870, 87);
+        scoreJ3.setPosition(870, 137);
+        scoreJ4.setPosition(870, 187);
+
+        scoreJ1.setFont(arial);
+        scoreJ2.setFont(arial);
+        scoreJ3.setFont(arial);
+        scoreJ4.setFont(arial);
+
+        scoreJ1.setCharacterSize(45);
+        scoreJ2.setCharacterSize(45);
+        scoreJ3.setCharacterSize(45);
+        scoreJ4.setCharacterSize(45);
+
+        scoreJ1.setColor(Color.BLACK);
+        scoreJ2.setColor(Color.BLACK);
+        scoreJ3.setColor(Color.BLACK);
+        scoreJ4.setColor(Color.BLACK);
 
     }
 
@@ -659,10 +699,6 @@ public class Vue{
         sprChampJ4[1].setPosition(425, 765);
         sprChampJ4[2].setPosition(587, 765);
 
-    }
-
-    public RenderWindow getFenetre(){
-        return fenetre;
     }
 
     public Sprite[] getSprsBoutonsEtapes(){
@@ -893,6 +929,8 @@ public class Vue{
             fenetre.draw(sprite);
         }
 
+        afficherScore();
+
         afficherZonesEchanges();
 
         afficherMain(idJoueurActif);
@@ -953,6 +991,7 @@ public class Vue{
 
         afficherZonesEchanges();
 
+        afficherScore();
 
         afficherMain(idJoueurActif);
 
@@ -1020,6 +1059,8 @@ public class Vue{
         }
 
         afficherZonesEchanges();
+
+        afficherScore();
 
         if(sprCartePiochee1.getTexture() != txtCarteVide){
             fenetre.draw(sprCartePiochee1);
@@ -1093,6 +1134,8 @@ public class Vue{
 
         afficherZonesEchanges();
 
+        afficherScore();
+
         if(sprCartePiochee1.getTexture() != txtCarteVide){
             fenetre.draw(sprCartePiochee1);
         }
@@ -1163,6 +1206,8 @@ public class Vue{
         }
 
         afficherZonesEchanges();
+
+        afficherScore();
 
         if(sprCartePiochee1.getTexture() != txtCarteVide){
             fenetre.draw(sprCartePiochee1);
@@ -1249,6 +1294,8 @@ public class Vue{
 
         afficherZonesEchanges();
 
+        afficherScore();
+
         afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
@@ -1297,6 +1344,21 @@ public class Vue{
 
     }
 
+    private void afficherScore() {
+        fenetre.draw(sprScore);
+
+        fenetre.draw(scoreJ1);
+        fenetre.draw(scoreJ2);
+        fenetre.draw(scoreJ3);
+        fenetre.draw(scoreJ4);
+    }
+
+    public void actualiserScores(int score1, int score2, int score3, int score4){
+        scoreJ1.setString(String.valueOf(score1));
+        scoreJ2.setString(String.valueOf(score2));
+        scoreJ3.setString(String.valueOf(score3));
+        scoreJ4.setString(String.valueOf(score4));
+    }
 
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
         if(sprite.getRotation() == -180){
@@ -1887,7 +1949,9 @@ public class Vue{
     }
 
     //GETTER AND SETTER
-
+    public RenderWindow getFenetre(){
+        return fenetre;
+    }
     public Texture getTxtCarteTequila() {
         return txtCarteTequila;
     }
