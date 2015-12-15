@@ -58,23 +58,42 @@ public class Controlleur {
             j.afficherMain();
             actualiserMain(j);
         }
+        System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
+
+        vue.setSpriteCliquable(vue.getSprBouttonDepart());
 
         while (vue.getFenetre().isOpen()) {
 
-            try {
-                etapePlanter();
-            } catch (ExceptionFinDeJeu e) {
-                System.out.println(e.getMessage());
+            vue.actualisationDepart();
 
-                System.out.println("Le joueur "+e.getJoueurVainqueur().getNom()+" a gagné avec "
-                +e.getJoueurVainqueur().getNbThunes()+" thunes !");
+            for(Event event : vue.getFenetre().pollEvents()){
 
-                vue.getFenetre().close();
+                if (event.type == Event.Type.CLOSED){
+                    vue.getFenetre().close();
+                }
 
-                System.out.println("Nouvelle partie !!");
-                initAttributs();
+                if (event.type == Event.Type.MOUSE_BUTTON_RELEASED){
+                    if(vue.cliqueSprite(event, vue.getSprBouttonDepart(), vue.getFenetre())){
+                        try {
+                            etapePlanter();
+                        } catch (ExceptionFinDeJeu e) {
+                            System.out.println(e.getMessage());
+
+                            System.out.println("Le joueur "+e.getJoueurVainqueur().getNom()+" a gagné avec "
+                                    +e.getJoueurVainqueur().getNbThunes()+" thunes !");
+
+                            vue.getFenetre().close();
+
+                            System.out.println("Nouvelle partie !!");
+                            initAttributs();
+
+                        }
+
+                    }
+                }
 
             }
+        
         }
     }
 
@@ -678,7 +697,6 @@ public class Controlleur {
             }
 
     }
-
 
     private int choixChamp(Sprite cartePlantee, int joueur) {
 

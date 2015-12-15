@@ -8,6 +8,7 @@ import org.jsfml.window.WindowStyle;
 import org.jsfml.window.event.Event;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -28,7 +29,13 @@ public class Vue{
     //////////////////////////////////////////////////////////////////////////////////////
     //Declaration Textures
     // Textures generales
+    private Texture txtDebut = new Texture();
     private Texture txtFond = new Texture();
+    private Texture txtVictoire1 = new Texture();
+    private Texture txtVictoire2 = new Texture();
+    private Texture txtVictoire3 = new Texture();
+    private Texture txtVictoire4 = new Texture();
+    private Texture txtBouttonDebut = new Texture();
 
     //bouton
     private Texture txtBtEchange = new Texture();
@@ -103,6 +110,7 @@ public class Vue{
     // sprites generaux
     private Sprite sprFond = new Sprite();
     private Sprite etapeEnCours = new Sprite();
+    private Sprite sprBouttonDepart = new Sprite();
 
     //sprites boutons
     private Sprite sprBtEchange = new Sprite();
@@ -172,7 +180,6 @@ public class Vue{
         creerFenetre();
     }
 
-
     private void initAttribut() {
 
         for(int i = 0; i < 3; i++){
@@ -200,6 +207,12 @@ public class Vue{
 
         try {
             txtFond.loadFromFile(Paths.get("Sprites/fond.png"));
+            txtDebut.loadFromFile(Paths.get("Sprites/debut.png"));
+            txtVictoire1.loadFromFile(Paths.get("Sprites/victoire_joueur_1.png"));
+            txtVictoire2.loadFromFile(Paths.get("Sprites/victoire_joueur_2.png"));
+            txtVictoire3.loadFromFile(Paths.get("Sprites/victoire_joueur_3.png"));
+            txtVictoire4.loadFromFile(Paths.get("Sprites/victoire_joueur_4.png"));
+            txtBouttonDebut.loadFromFile(Paths.get("Sprites/boutton_debut_tour.png"));
 
             txtMCFond.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/fondMCarte.png"));
             txtMCEchanger.loadFromFile(Paths.get("Sprites/Sprite_menu/menu_carte/echange.png"));
@@ -415,6 +428,16 @@ public class Vue{
 
     }
 
+    private void creerFenetre() {
+        fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
+
+        fenetre.setIcon(icone);
+
+        fenetre.setPosition(positionFenetre);
+
+        fenetre.clear();
+    }
+
     public void addCarteMain(int idJoueur,Texture txt){
         switch (idJoueur){
             case 1:
@@ -452,16 +475,6 @@ public class Vue{
                 mainJ4.clear();
                 break;
         }
-    }
-
-    private void creerFenetre() {
-        fenetre.create(new VideoMode(1000, 1000), "Bohnanza", WindowStyle.CLOSE);
-
-        fenetre.setIcon(icone);
-
-        fenetre.setPosition(positionFenetre);
-
-        fenetre.clear();
     }
 
     public void rotationJ1(){
@@ -815,6 +828,9 @@ public class Vue{
 
     public void actualiserFenetre(int idJoueurActif){
         System.out.println("act");
+
+        sprFond.setTexture(txtFond);
+
         fenetre.draw(sprFond);
         for (Sprite sprite : sprChampJ1){
             fenetre.draw(sprite);
@@ -1008,7 +1024,6 @@ public class Vue{
 
         fenetre.display();
     }
-
     public void actualisationFenetreMenuOuiNon(int idJoueurActif){
         System.out.println("actu menu oui non");
         fenetre.draw(sprFond);
@@ -1166,7 +1181,6 @@ public class Vue{
         fenetre.display();
 
     }
-
     public void actualiserFenetrePlantagePostEchange(int idJoueurActif){
         System.out.println("actu plantage post échange j"+idJoueurActif);
 
@@ -1222,6 +1236,18 @@ public class Vue{
         afficherMain(idJoueurActif);
 
         fenetre.draw(etapeEnCours);
+
+        fenetre.display();
+    }
+    public void actualisationDepart(){
+        sprBouttonDepart.setPosition(231, 798);
+        sprFond.setTexture(txtDebut);
+
+        fenetre.draw(sprFond);
+
+        sprBouttonDepart.setTexture(txtBouttonDebut);
+
+        fenetre.draw(sprBouttonDepart);
 
         fenetre.display();
     }
@@ -1286,7 +1312,6 @@ public class Vue{
 
 
     }
-
     public boolean isCliquable(Sprite sprite){
         if(spriteCliquable.contains(sprite)){
             return true;
@@ -1307,7 +1332,6 @@ public class Vue{
         }
 
     }
-
     public void creationSpriteCliquableDon(int joueur) {
         System.out.println("creation sprite don");
         spriteCliquable.clear();
@@ -1359,10 +1383,14 @@ public class Vue{
     public void clearSpritesCliquables(){
         spriteCliquable.clear();
     }
+    public void creationSpriteCliquablePlantagePostEchange(int joueur) {
+        for(Sprite sprite : sprsChamps[joueur]){
+            spriteCliquable.add(sprite);
+        }
+    }
     public ArrayList<Sprite> getSpriteCliquable(){
         return spriteCliquable;
     }
-
     public void addToSpriteCliquable(Sprite sprite){
         spriteCliquable.add(sprite);
     }
@@ -1434,7 +1462,6 @@ public class Vue{
         }
 
     }
-
     public void donnerCarte(int id, int joueur){
         System.out.println("donner carte" + id + " " + joueur);
         if(id == 1){
@@ -1517,7 +1544,6 @@ public class Vue{
         }
 
     }
-
     private void afficherMainBas(ArrayList<Sprite> main){
         int espaceEntreCarte;
         if (main.size()>0){
@@ -1666,7 +1692,6 @@ public class Vue{
                 break;
         }
     }
-
     private void afficherZoneEchangeBas(ArrayList<Sprite> listeCarte){
         switch(listeCarte.size()){
             case 0 :
@@ -1744,7 +1769,13 @@ public class Vue{
                 break;
         }
     }
+    public void clearZonesEchanges() {
+        zoneEchangeJ1.clear();
+        zoneEchangeJ2.clear();
+        zoneEchangeJ3.clear();
+        zoneEchangeJ4.clear();
 
+    }
     public void addSpriteIntoZoneEchange(int numZone, int idCarte){
         switch (numZone){
             case 0:
@@ -1851,11 +1882,8 @@ public class Vue{
     public Sprite getSprJoueurAttente4() {
         return sprJoueurAttente4;
     }
-
-    public void creationSpriteCliquablePlantagePostEchange(int joueur) {
-        for(Sprite sprite : sprsChamps[joueur]){
-            spriteCliquable.add(sprite);
-        }
+    public Sprite getSprBouttonDepart(){
+        return sprBouttonDepart;
     }
 
     public void planterChamp(int joueur, int champ, int idCarte){
@@ -1875,7 +1903,6 @@ public class Vue{
 
         }
     }
-
     private void planterChampJ1(int champ, int idCarte) {
         switch (idCarte){
             case 1 :
@@ -1996,15 +2023,6 @@ public class Vue{
         }
         actualiserFenetrePlantagePostEchange(4);
     }
-
-    public void clearZonesEchanges() {
-        zoneEchangeJ1.clear();
-        zoneEchangeJ2.clear();
-        zoneEchangeJ3.clear();
-        zoneEchangeJ4.clear();
-
-    }
-
     public void planterEchange(int joueur, int champChoisi, int idCarte, int index) {
         switch (idCarte) {
             case 1:
