@@ -740,9 +740,9 @@ public class Vue{
         textChamps[0][1].setPosition(550, 130);
         textChamps[0][0].setPosition(716, 130);
 
-        textChamps[1][2].setPosition(842, 697);
+        textChamps[1][0].setPosition(842, 697);
         textChamps[1][1].setPosition(842, 535);
-        textChamps[1][0].setPosition(842, 373);
+        textChamps[1][2].setPosition(842, 373);
 
 
 
@@ -768,18 +768,18 @@ public class Vue{
             sprChampJ2[i].setRotation(-180);
         }
 
-        sprChampJ2[0].setPosition(418, 238);
+        sprChampJ2[2].setPosition(418, 238);
         sprChampJ2[1].setPosition(575, 238);
-        sprChampJ2[2].setPosition(737, 238);
+        sprChampJ2[0].setPosition(737, 238);
 
 
         for(int i = 0; i < 3; i++){
             sprChampJ3[i].setRotation(-90);
         }
 
-        sprChampJ3[2].setPosition(765, 737);
+        sprChampJ3[0].setPosition(765, 737);
         sprChampJ3[1].setPosition(765, 575);
-        sprChampJ3[0].setPosition(765, 413);
+        sprChampJ3[2].setPosition(765, 413);
 
         for(int i = 0; i < 3; i++){
             sprChampJ4[i].setRotation(0);
@@ -797,13 +797,13 @@ public class Vue{
         textChamps[0][1].setPosition(140, 423);
         textChamps[0][0].setPosition(140, 258);
 
-        textChamps[1][2].setPosition(388, 130);
+        textChamps[1][0].setPosition(388, 130);
         textChamps[1][1].setPosition(550, 130);
-        textChamps[1][0].setPosition(716, 130);
+        textChamps[1][2].setPosition(716, 130);
 
-        textChamps[2][2].setPosition(842, 697);
+        textChamps[2][0].setPosition(842, 697);
         textChamps[2][1].setPosition(842, 535);
-        textChamps[2][0].setPosition(842, 373);
+        textChamps[2][2].setPosition(842, 373);
     }
 
     public Sprite[] getSprsBoutonsEtapes(){
