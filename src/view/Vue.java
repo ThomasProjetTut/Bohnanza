@@ -1467,7 +1467,10 @@ public class Vue{
         fenetre.display();
     }
     public void actualiserFenetreFinDePartie(int vainqueur) {
+        System.out.println("chucrutte");
+
         sprFond.setRotation(0);
+        sprFond.setPosition(0,0);
 
         switch (vainqueur){
             case 1 :
