@@ -291,6 +291,7 @@ public class Vue{
         }
 
         //set Txt
+        sprFond.setRotation(0);
         sprFond.setTexture(txtFond);
         sprBouttonRejouer.setTexture(txtBouttonRejouer);
         sprBouttonQuitter.setTexture(txtBouttonQuitter);
