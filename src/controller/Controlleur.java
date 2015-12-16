@@ -157,17 +157,32 @@ public class Controlleur {
 
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
-                        } else if (joueurActif.getMaxChamps() >= 3 && vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
+                        } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2], vue.getFenetre())) {
 
-                            System.out.println("plante troisième champ");
+                            if(joueurActif.getMaxChamps() >= 3){
+                                System.out.println("plante troisième champ");
 
-                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
-                            joueurActif.planter(3, pioche);
-                            actualiserMain(joueurActif);
-                            vue.actualiserFenetre(joueurActif.getIdJoueur());
+                                vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
+                                joueurActif.planter(3, pioche);
+                                actualiserMain(joueurActif);
+                                vue.actualiserFenetre(joueurActif.getIdJoueur());
 
-                            vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
-                            nbplants++;
+                                vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
+                                nbplants++;
+                            }else{
+                                if(etapeConfirmation(joueurActif.getIdJoueur(), vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2])){
+
+                                    //model.acheter Champ
+
+                                    vue.acheter3emeChamp(joueurActif.getIdJoueur());
+
+
+
+                                }
+                            }
+
+
+
                         }
                     }
                 }

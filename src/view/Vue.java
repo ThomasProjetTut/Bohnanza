@@ -2353,4 +2353,8 @@ public class Vue{
 
     }
 
+    public void acheter3emeChamp(int idJoueur) {
+        sprsChamps[idJoueur - 1][2].setTexture(txtChampDispo);
+    }
+
 }
