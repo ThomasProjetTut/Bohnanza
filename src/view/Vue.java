@@ -25,6 +25,7 @@ public class Vue{
     private Sprite[] sprsBoutonsEtapes = new Sprite[4];
     private Sprite[] sprsMenuON = new Sprite[2];
     private Sprite[] sprsCartesPiochee = new Sprite[2];
+    private Text[][] textChamps = new Text[4][3];
     private Font arial = new Font();
     private Image icone = new Image();
 
@@ -405,45 +406,6 @@ public class Vue{
         sprBtPioche.setPosition(810, 885);
         sprBtFinTour.setPosition(810, 940);
 
-
-        //position champ d?part
-        //J1
-
-        sprChampJ1[0].setPosition(263, 767);
-        sprChampJ1[1].setPosition(425, 767);
-        sprChampJ1[2].setPosition(587, 767);
-
-        //J2
-
-        sprChampJ2[0].rotate(-270);
-        sprChampJ2[1].rotate(-270);
-        sprChampJ2[2].rotate(-270);
-
-        sprChampJ2[0].setPosition(235, 262);
-        sprChampJ2[1].setPosition(235, 425);
-        sprChampJ2[2].setPosition(235, 587);
-
-
-        //J3
-
-        sprChampJ3[0].rotate(-180);
-        sprChampJ3[1].rotate(-180);
-        sprChampJ3[2].rotate(-180);
-
-        sprChampJ3[2].setPosition(413, 235);
-        sprChampJ3[1].setPosition(575, 235);
-        sprChampJ3[0].setPosition(737, 235);
-
-        //J4
-
-        sprChampJ4[0].rotate(-90);
-        sprChampJ4[1].rotate(-90);
-        sprChampJ4[2].rotate(-90);
-
-        sprChampJ4[0].setPosition(765, 737);
-        sprChampJ4[1].setPosition(765, 575);
-        sprChampJ4[2].setPosition(765, 413);
-
         //////////////////////
 
         sprJoueurAttente1.setPosition(35, 775);
@@ -475,6 +437,86 @@ public class Vue{
         scoreJ2.setColor(Color.BLACK);
         scoreJ3.setColor(Color.BLACK);
         scoreJ4.setColor(Color.BLACK);
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                textChamps[i][j] = new Text();
+                textChamps[i][j].setString("0");
+                textChamps[i][j].setFont(arial);
+                textChamps[i][j].setCharacterSize(35);
+                textChamps[i][j].setColor(Color.BLACK);
+            }
+        }
+
+        //position champ d?part
+        //J1
+
+        sprChampJ1[0].setPosition(263, 767);
+        sprChampJ1[1].setPosition(425, 767);
+        sprChampJ1[2].setPosition(587, 767);
+
+        textChamps[0][0].setString("1-1");
+        textChamps[0][1].setString("1-2");
+        textChamps[0][2].setString("1-3");
+
+        textChamps[0][0].setPosition(268,828);
+        textChamps[0][1].setPosition(431,828);
+        textChamps[0][2].setPosition(592,828);
+
+        // J2
+
+        sprChampJ2[0].rotate(-270);
+        sprChampJ2[1].rotate(-270);
+        sprChampJ2[2].rotate(-270);
+
+        sprChampJ2[0].setPosition(235, 262);
+        sprChampJ2[1].setPosition(235, 425);
+        sprChampJ2[2].setPosition(235, 587);
+
+        textChamps[1][0].setString("2-1");
+        textChamps[1][1].setString("2-2");
+        textChamps[1][2].setString("2-3");
+
+        textChamps[1][0].setPosition(140, 583);
+        textChamps[1][1].setPosition(140, 423);
+        textChamps[1][2].setPosition(140, 258);
+
+        //J3
+
+        sprChampJ3[0].rotate(-180);
+        sprChampJ3[1].rotate(-180);
+        sprChampJ3[2].rotate(-180);
+
+        sprChampJ3[2].setPosition(413, 235);
+        sprChampJ3[1].setPosition(575, 235);
+        sprChampJ3[0].setPosition(737, 235);
+
+        textChamps[2][0].setString("3-1");
+        textChamps[2][1].setString("3-2");
+        textChamps[2][2].setString("3-3");
+
+        textChamps[2][0].setPosition(388, 130);
+        textChamps[2][1].setPosition(550, 130);
+        textChamps[2][2].setPosition(716, 130);
+
+
+        //J4
+
+        sprChampJ4[0].rotate(-90);
+        sprChampJ4[1].rotate(-90);
+        sprChampJ4[2].rotate(-90);
+
+        sprChampJ4[0].setPosition(765, 737);
+        sprChampJ4[1].setPosition(765, 575);
+        sprChampJ4[2].setPosition(765, 413);
+
+        textChamps[3][0].setString("4-1");
+        textChamps[3][1].setString("4-2");
+        textChamps[3][2].setString("4-3");
+
+        textChamps[3][0].setPosition(842, 697);
+        textChamps[3][1].setPosition(842, 535);
+        textChamps[3][2].setPosition(842, 373);
 
     }
 
@@ -569,6 +611,22 @@ public class Vue{
         sprChampJ4[1].setPosition(765, 575);
         sprChampJ4[2].setPosition(765, 737);
 
+        textChamps[0][0].setPosition(268, 828);
+        textChamps[0][1].setPosition(431, 828);
+        textChamps[0][2].setPosition(592, 828);
+
+        textChamps[1][0].setPosition(140, 583);
+        textChamps[1][1].setPosition(140, 423);
+        textChamps[1][2].setPosition(140, 258);
+
+        textChamps[2][0].setPosition(388, 130);
+        textChamps[2][1].setPosition(550, 130);
+        textChamps[2][2].setPosition(716, 130);
+
+        textChamps[3][0].setPosition(842, 697);
+        textChamps[3][1].setPosition(842, 535);
+        textChamps[3][2].setPosition(842, 373);
+
     }
     public void rotationJ2(){
 
@@ -612,7 +670,21 @@ public class Vue{
         sprChampJ4[1].setPosition(575, 235);
         sprChampJ4[0].setPosition(737, 235);
 
+        textChamps[1][0].setPosition(268, 828);
+        textChamps[1][1].setPosition(431, 828);
+        textChamps[1][2].setPosition(592, 828);
 
+        textChamps[2][0].setPosition(140, 583);
+        textChamps[2][1].setPosition(140, 423);
+        textChamps[2][2].setPosition(140, 258);
+
+        textChamps[3][0].setPosition(388, 130);
+        textChamps[3][1].setPosition(550, 130);
+        textChamps[3][2].setPosition(716, 130);
+
+        textChamps[0][0].setPosition(842, 697);
+        textChamps[0][1].setPosition(842, 535);
+        textChamps[0][2].setPosition(842, 373);
     }
     public void rotationJ3(){
 
@@ -655,6 +727,24 @@ public class Vue{
         sprChampJ4[0].setPosition(235, 263);
         sprChampJ4[1].setPosition(235, 425);
         sprChampJ4[2].setPosition(235, 587);
+
+        textChamps[2][0].setPosition(268, 828);
+        textChamps[2][1].setPosition(431, 828);
+        textChamps[2][2].setPosition(592, 828);
+
+        textChamps[3][0].setPosition(140, 583);
+        textChamps[3][1].setPosition(140, 423);
+        textChamps[3][2].setPosition(140, 258);
+
+        textChamps[0][0].setPosition(388, 130);
+        textChamps[0][1].setPosition(550, 130);
+        textChamps[0][2].setPosition(716, 130);
+
+        textChamps[1][0].setPosition(842, 697);
+        textChamps[1][1].setPosition(842, 535);
+        textChamps[1][2].setPosition(842, 373);
+
+
 
     }
     public void rotationJ4(){
@@ -699,6 +789,21 @@ public class Vue{
         sprChampJ4[1].setPosition(425, 765);
         sprChampJ4[2].setPosition(587, 765);
 
+        textChamps[3][0].setPosition(268,828);
+        textChamps[3][1].setPosition(431,828);
+        textChamps[3][2].setPosition(592,828);
+
+        textChamps[0][0].setPosition(140, 583);
+        textChamps[0][1].setPosition(140, 423);
+        textChamps[0][2].setPosition(140, 258);
+
+        textChamps[1][0].setPosition(388, 130);
+        textChamps[1][1].setPosition(550, 130);
+        textChamps[1][2].setPosition(716, 130);
+
+        textChamps[2][0].setPosition(842, 697);
+        textChamps[2][1].setPosition(842, 535);
+        textChamps[2][2].setPosition(842, 373);
     }
 
     public Sprite[] getSprsBoutonsEtapes(){
@@ -935,6 +1040,14 @@ public class Vue{
 
         afficherMain(idJoueurActif);
 
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(!textChamps[i][j].getString().equals("0")){
+                    fenetre.draw(textChamps[i][j]);
+                }
+            }
+        }
+
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
@@ -1003,7 +1116,13 @@ public class Vue{
             fenetre.draw(sprCartePiochee2);
         }
 
-
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(!textChamps[i][j].getString().equals("0")){
+                    fenetre.draw(textChamps[i][j]);
+                }
+            }
+        }
 
         fenetre.draw(etapeEnCours);
 
@@ -1077,6 +1196,14 @@ public class Vue{
 
         afficherMain(idJoueurActif);
 
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(!textChamps[i][j].getString().equals("0")){
+                    fenetre.draw(textChamps[i][j]);
+                }
+            }
+        }
+
         fenetre.draw(etapeEnCours);
 
         fenetre.display();
@@ -1144,13 +1271,20 @@ public class Vue{
             fenetre.draw(sprCartePiochee2);
         }
 
-        fenetre.draw(sprMenuOuiNonFond);
-        fenetre.draw(sprMenuOui);
-        fenetre.draw(sprMenuNon);
-
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(!textChamps[i][j].getString().equals("0")){
+                    fenetre.draw(textChamps[i][j]);
+                }
+            }
+        }
 
 
         afficherMain(idJoueurActif);
+
+        fenetre.draw(sprMenuOuiNonFond);
+        fenetre.draw(sprMenuOui);
+        fenetre.draw(sprMenuNon);
 
         fenetre.draw(etapeEnCours);
 
@@ -1215,6 +1349,14 @@ public class Vue{
 
         if(sprCartePiochee2.getTexture() != txtCarteVide){
             fenetre.draw(sprCartePiochee2);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(!textChamps[i][j].getString().equals("0")){
+                    fenetre.draw(textChamps[i][j]);
+                }
+            }
         }
 
 
@@ -1295,6 +1437,15 @@ public class Vue{
         afficherZonesEchanges();
 
         afficherScore();
+
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                if(!textChamps[i][j].getString().equals("0")){
+                    fenetre.draw(textChamps[i][j]);
+                }
+            }
+        }
+
 
         afficherMain(idJoueurActif);
 
