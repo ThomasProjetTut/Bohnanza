@@ -169,12 +169,13 @@ public class Controlleur {
 
                                 vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                                 nbplants++;
-                            }else{
+                            }else if (//model joueur a plus de 5 thune){
                                 if(etapeConfirmation(joueurActif.getIdJoueur(), vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2])){
 
                                     //model.acheter Champ
 
                                     vue.acheter3emeChamp(joueurActif.getIdJoueur());
+                                    vue.actualiserFenetre(joueurActif.getIdJoueur());
 
 
 
