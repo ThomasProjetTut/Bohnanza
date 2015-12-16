@@ -1,8 +1,6 @@
 package model;
 
 import model.Carte.Carte;
-import org.mockito.internal.matchers.Null;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +82,7 @@ public class Champ {
 
         for (int i = 1; i < patates.size() ; i++) {
 
-            if (i < valeurThune){
+            if (i <= valeurThune){
                 j.addThunes(derniereCarte());
             }
             else{
@@ -95,6 +93,8 @@ public class Champ {
         patates.clear();
 
         System.out.println("Récolte de "+valeurThune+" thunes avec cette récolte.");
+        System.out.println("Il y a "+j.getThunes().size()+" patates dans Thunes");
+        System.out.println("Il y a "+j.getNbThunes()+" patates dans Thunes");
     }
 
     public void printChamp(){

@@ -30,7 +30,6 @@ public class Pioche {
             else if(i<24){
                 pioche.add(new Carte_Pata_Tetraplegique());
             }
-
             else if(i<36){
                 pioche.add(new Carte_Pata_Tetenucleaire());
             }
@@ -51,6 +50,9 @@ public class Pioche {
     }
 
     public Carte giveNextCarte(){
+
+        verifTourDePioche();
+
         Carte carteRetour = pioche.get(pioche.size()-1);
         pioche.remove(pioche.size()-1);
 

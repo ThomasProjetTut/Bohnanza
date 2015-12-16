@@ -23,6 +23,7 @@ public class Controlleur {
     private Joueur joueurActif;
     private Pioche pioche;
     private Zone zonePioche;
+    private int[][] nbCarteChamps;
 
     public Controlleur() {
 
@@ -39,6 +40,8 @@ public class Controlleur {
         Joueur joueur3 = new Joueur("Joueur 3", 3);
         Joueur joueur4 = new Joueur("Joueur 4", 4);
 
+        nbCarteChamps = new int[4][3];
+
         joueurs[0] = joueur1;
         joueurs[1] = joueur2;
         joueurs[2] = joueur3;
@@ -48,9 +51,7 @@ public class Controlleur {
 
         pioche = new Pioche();
         zonePioche = new Zone();
-    }
 
-    private void jeu() {
         compteurTour = 1;
 
         for (Joueur j : joueurs) {
@@ -59,6 +60,36 @@ public class Controlleur {
             actualiserMain(j);
         }
         System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
+        System.out.println("nombre de tour de pioche : " + pioche.getTourDePioche());
+
+        vue.actualisationDepart();
+    }
+
+    private void reInitAttribut(){
+        vue.initAttribut();
+
+        joueurs[0] = new Joueur("Joueur 1", 1);
+        joueurs[1] = new Joueur("Joueur 2", 2);
+        joueurs[2] = new Joueur("Joueur 3", 3);
+        joueurs[3] = new Joueur("Joueur 4", 4);
+
+        joueurActif = joueurs[0];
+
+        pioche = new Pioche();
+        zonePioche = new Zone();
+
+        compteurTour = 1;
+
+        for (Joueur j : joueurs) {
+            j.recoisMain(pioche);
+            j.afficherMain();
+            actualiserMain(j);
+        }
+        System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
+        System.out.println("nombre de tour de pioche : " + pioche.getTourDePioche());
+    }
+
+    private void jeu() {
 
         vue.setSpriteCliquable(vue.getSprBouttonDepart());
 
@@ -74,6 +105,7 @@ public class Controlleur {
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED){
                     if(vue.cliqueSprite(event, vue.getSprBouttonDepart(), vue.getFenetre())){
+
                         try {
                             etapePlanter();
                         } catch (ExceptionFinDeJeu e) {
@@ -83,9 +115,6 @@ public class Controlleur {
                                     +e.getJoueurVainqueur().getNbThunes()+" thunes !");
 
                             finDePartie(e.getJoueurVainqueur().getIdJoueur());
-
-                            System.out.println("Nouvelle partie !!");
-                            initAttributs();
 
                         }
 
@@ -98,7 +127,10 @@ public class Controlleur {
     }
 
     private void etapePlanter() throws ExceptionFinDeJeu {
+        System.out.println("Nouvelle partie !!");
+
         System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
+        System.out.println("nombre de tour de pioche : " + pioche.getTourDePioche());
 
         System.out.println("ETAPE PLANTER");
         System.out.println("Joueur actif = "+joueurActif.getNom());
@@ -142,6 +174,8 @@ public class Controlleur {
 
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 0, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(1, pioche);
+                            actualiserScore();
+                            actualiserNbCarteChamp();
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre(joueurActif.getIdJoueur());
 
@@ -152,6 +186,8 @@ public class Controlleur {
 
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 1, joueurActif.getMain().get(0).getIdCarte());
                             joueurActif.planter(2, pioche);
+                            actualiserScore();
+                            actualiserNbCarteChamp();
                             actualiserMain(joueurActif);
                             vue.actualiserFenetre(joueurActif.getIdJoueur());
 
@@ -162,28 +198,24 @@ public class Controlleur {
                             if(joueurActif.getMaxChamps() >= 3){
                                 System.out.println("plante troisième champ");
 
-                                vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
-                                joueurActif.planter(3, pioche);
-                                actualiserMain(joueurActif);
-                                vue.actualiserFenetre(joueurActif.getIdJoueur());
+                            vue.planterChamp(joueurActif.getIdJoueur() - 1, 2, joueurActif.getMain().get(0).getIdCarte());
+                            joueurActif.planter(3, pioche);
+                            actualiserScore();
+                            actualiserNbCarteChamp();
+                            actualiserMain(joueurActif);
+                            vue.actualiserFenetre(joueurActif.getIdJoueur());
 
                                 vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                                 nbplants++;
-                            }else if (//model joueur a plus de 5 thune){
+                            }
+                            else if (joueurActif.getNbThunes()>=5){
                                 if(etapeConfirmation(joueurActif.getIdJoueur(), vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][2])){
-
-                                    //model.acheter Champ
-
+                                    joueurActif.acheterChamps(pioche);
                                     vue.acheter3emeChamp(joueurActif.getIdJoueur());
                                     vue.actualiserFenetre(joueurActif.getIdJoueur());
-
-
-
+                                    vue.creationSpriteCliquableEtape1(joueurActif.getIdJoueur());
                                 }
                             }
-
-
-
                         }
                     }
                 }
@@ -197,8 +229,7 @@ public class Controlleur {
         System.out.println("ETAPE ECHANGE");
 
         zonePioche.ajouterCarte(pioche.giveNextCarte());
-        pioche.verifTourDePioche();
-        if (pioche.getTourDePioche() > 3){
+        if (pioche.getTourDePioche() > 1){
 
             Joueur joueurRetour = new Joueur();
 
@@ -211,8 +242,7 @@ public class Controlleur {
         }
 
         zonePioche.ajouterCarte(pioche.giveNextCarte());
-        pioche.verifTourDePioche();
-        if (pioche.getTourDePioche() > 3){
+        if (pioche.getTourDePioche() > 1){
             Joueur joueurRetour = new Joueur();
 
             for (Joueur joueur : joueurs) {
@@ -660,6 +690,8 @@ public class Controlleur {
 
                     int champChoisi = choixChamp(sprite, i);
                     joueurs[i].planterViaZoneEchange(champChoisi, pioche, numCarteAPlanter);
+                    actualiserScore();
+                    actualiserNbCarteChamp();
                     System.out.println("retour choix " + champChoisi);
 
                     vue.planterEchange(i, champChoisi, joueurs[i].getZoneEchange().getZone().get(numCarteAPlanter - 1).getIdCarte(), numCarteAPlanter - 1);
@@ -747,7 +779,7 @@ public class Controlleur {
         System.out.println("ETAPE PIOCHE (ETAPE 4)");
         vue.afficherEtape(4);
         joueurActif.piocheEtape4(pioche);
-        if (pioche.getTourDePioche() > 3){
+        if (pioche.getTourDePioche() > 1){
             Joueur joueurRetour = new Joueur();
 
             for (Joueur joueur : joueurs) {
@@ -795,14 +827,13 @@ public class Controlleur {
     }
 
     private void finDePartie(int vainqueur) {
-        vue.actualiserFenetreFinDePartie(vainqueur);
 
         vue.setSpriteCliquable(vue.getSprBouttonQuitter());
         vue.setSpriteCliquable(vue.getSprBouttonRejouer());
 
         while (vue.getFenetre().isOpen()) {
 
-            vue.actualiserFenetreFinDePartie(1);
+            vue.actualiserFenetreFinDePartie(vainqueur);
 
             for(Event event : vue.getFenetre().pollEvents()){
 
@@ -812,6 +843,9 @@ public class Controlleur {
 
                 if (event.type == Event.Type.MOUSE_BUTTON_RELEASED){
                     if(vue.cliqueSprite(event, vue.getSprBouttonRejouer(), vue.getFenetre())){
+
+                        reInitAttribut();
+
                         try {
                             etapePlanter();
                         } catch (ExceptionFinDeJeu e) {
@@ -822,21 +856,15 @@ public class Controlleur {
 
                             finDePartie(e.getJoueurVainqueur().getIdJoueur());
 
-                            System.out.println("Nouvelle partie !!");
-                            jeu();
-
                         }
 
-                    }else{
-                        if(vue.cliqueSprite(event, vue.getSprBouttonQuitter(), vue.getFenetre())){
-                            vue.getFenetre().close();
-                        }
+                    }
+                    else if(vue.cliqueSprite(event, vue.getSprBouttonQuitter(), vue.getFenetre())){
+                        vue.getFenetre().close();
                     }
                 }
-
             }
         }
-
     }
 
     private void rotationPlateau() {
@@ -964,6 +992,43 @@ public class Controlleur {
     public void actualiserMain(Joueur j){
         vue.clearMain(j.getIdJoueur());
         putTextureCarte(j);
+    }
+
+    public void actualiserScore(){
+
+        for (Joueur j: joueurs){
+            switch (j.getIdJoueur()){
+
+                case 1:
+                    vue.setScoreJ1(String.valueOf(j.getNbThunes()));
+                    break;
+                case 2:
+                    vue.setScoreJ2(String.valueOf(j.getNbThunes()));
+                    break;
+                case 3:
+                    vue.setScoreJ3(String.valueOf(j.getNbThunes()));
+                    break;
+                case 4:
+                    vue.setScoreJ4(String.valueOf(j.getNbThunes()));
+                    break;
+            }
+        }
+    }
+
+    public void actualiserNbCarteChamp(){
+        for (Joueur joueur : joueurs){
+            for (int i = 0; i < 3; i++) {
+                if (i == 2 && joueur.getMaxChamps() == 2){
+                    nbCarteChamps[joueur.getIdJoueur()-1][i] = 0;
+                }
+                else {
+                    nbCarteChamps[joueur.getIdJoueur()-1][i] = joueur.getChamp(i+1).patates.size();
+                }
+            }
+        }
+
+        vue.actualiserNbPatateChamp(nbCarteChamps);
+
     }
 
 }

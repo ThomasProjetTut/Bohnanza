@@ -44,6 +44,7 @@ public class Vue{
 
     //scores
     private Texture txtScore = new Texture();
+
     private Text scoreJ1 = new Text();
     private Text scoreJ2 = new Text();;
     private Text scoreJ3 = new Text();;
@@ -197,7 +198,7 @@ public class Vue{
         creerFenetre();
     }
 
-    private void initAttribut() {
+    public void initAttribut() {
 
         for(int i = 0; i < 3; i++){
             sprChampJ1[i] = new Sprite();
@@ -2356,5 +2357,22 @@ public class Vue{
     public void acheter3emeChamp(int idJoueur) {
         sprsChamps[idJoueur - 1][2].setTexture(txtChampDispo);
     }
+
+    public void setScoreJ1(String scoreJ1) {
+        this.scoreJ1.setString(scoreJ1);
+    }
+
+    public void setScoreJ2(String scoreJ2) {
+        this.scoreJ2.setString(scoreJ2);
+    }
+
+    public void setScoreJ3(String scoreJ3) {
+        this.scoreJ3.setString(scoreJ3);
+    }
+
+    public void setScoreJ4(String scoreJ4) {
+        this.scoreJ4.setString(scoreJ4);
+    }
+
 
 }
