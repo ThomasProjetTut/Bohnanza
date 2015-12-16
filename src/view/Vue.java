@@ -670,13 +670,13 @@ public class Vue{
         sprChampJ4[1].setPosition(575, 235);
         sprChampJ4[0].setPosition(737, 235);
 
-        textChamps[1][2].setPosition(268, 828);
+        textChamps[1][0].setPosition(268, 828);
         textChamps[1][1].setPosition(431, 828);
-        textChamps[1][0].setPosition(592, 828);
+        textChamps[1][2].setPosition(592, 828);
 
-        textChamps[2][2].setPosition(140, 583);
+        textChamps[2][0].setPosition(140, 583);
         textChamps[2][1].setPosition(140, 423);
-        textChamps[2][0].setPosition(140, 258);
+        textChamps[2][2].setPosition(140, 258);
 
         textChamps[3][2].setPosition(388, 130);
         textChamps[3][1].setPosition(550, 130);
@@ -732,9 +732,9 @@ public class Vue{
         textChamps[2][1].setPosition(431, 828);
         textChamps[2][2].setPosition(592, 828);
 
-        textChamps[3][2].setPosition(140, 583);
+        textChamps[3][0].setPosition(140, 583);
         textChamps[3][1].setPosition(140, 423);
-        textChamps[3][0].setPosition(140, 258);
+        textChamps[3][2].setPosition(140, 258);
 
         textChamps[0][2].setPosition(388, 130);
         textChamps[0][1].setPosition(550, 130);
