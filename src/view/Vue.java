@@ -215,14 +215,8 @@ public class Vue{
             sprChampJ4[i] = new Sprite();
         }
 
-
-        try{
-            icone.loadFromFile(Paths.get("Sprites/patate.png"));
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-
         try {
+            icone.loadFromFile(Paths.get("Sprites/patate.png"));
             arial.loadFromFile(Paths.get("Sprites/arial.ttf"));
 
             txtFond.loadFromFile(Paths.get("Sprites/fond.png"));
@@ -451,6 +445,10 @@ public class Vue{
         //position champ d?part
         //J1
 
+        sprChampJ1[0].setRotation(0);
+        sprChampJ1[1].setRotation(0);
+        sprChampJ1[2].setRotation(0);
+
         sprChampJ1[0].setPosition(263, 767);
         sprChampJ1[1].setPosition(425, 767);
         sprChampJ1[2].setPosition(587, 767);
@@ -465,9 +463,9 @@ public class Vue{
 
         // J2
 
-        sprChampJ2[0].rotate(-270);
-        sprChampJ2[1].rotate(-270);
-        sprChampJ2[2].rotate(-270);
+        sprChampJ2[0].setRotation(-270);
+        sprChampJ2[1].setRotation(-270);
+        sprChampJ2[2].setRotation(270);
 
         sprChampJ2[0].setPosition(235, 262);
         sprChampJ2[1].setPosition(235, 425);
@@ -483,9 +481,9 @@ public class Vue{
 
         //J3
 
-        sprChampJ3[0].rotate(-180);
-        sprChampJ3[1].rotate(-180);
-        sprChampJ3[2].rotate(-180);
+        sprChampJ3[0].setRotation(-180);
+        sprChampJ3[1].setRotation(-180);
+        sprChampJ3[2].setRotation(-180);
 
         sprChampJ3[2].setPosition(413, 235);
         sprChampJ3[1].setPosition(575, 235);
@@ -502,9 +500,9 @@ public class Vue{
 
         //J4
 
-        sprChampJ4[0].rotate(-90);
-        sprChampJ4[1].rotate(-90);
-        sprChampJ4[2].rotate(-90);
+        sprChampJ4[0].setRotation(-90);
+        sprChampJ4[1].setRotation(-90);
+        sprChampJ4[2].setRotation(-90);
 
         sprChampJ4[0].setPosition(765, 737);
         sprChampJ4[1].setPosition(765, 575);
@@ -1466,6 +1464,8 @@ public class Vue{
         fenetre.display();
     }
     public void actualiserFenetreFinDePartie(int vainqueur) {
+        sprFond.setRotation(0);
+
         switch (vainqueur){
             case 1 :
                 sprFond.setTexture(txtVictoire1);
