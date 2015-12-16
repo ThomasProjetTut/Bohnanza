@@ -467,7 +467,7 @@ public class Vue{
 
         sprChampJ2[0].setRotation(-270);
         sprChampJ2[1].setRotation(-270);
-        sprChampJ2[2].setRotation(270);
+        sprChampJ2[2].setRotation(-270);
 
         sprChampJ2[0].setPosition(235, 262);
         sprChampJ2[1].setPosition(235, 425);
@@ -1512,6 +1512,16 @@ public class Vue{
         scoreJ3.setString(String.valueOf(score3));
         scoreJ4.setString(String.valueOf(score4));
     }
+
+    public void actualiserNbPatateChamp(int[][] nbPatates){
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 3; j++) {
+                textChamps[i][j].setString(String.valueOf(nbPatates[i][j]));
+            }
+        }
+
+    }
+
 
     public boolean cliqueSprite(Event event, Sprite sprite, RenderWindow fenetre){
         if(sprite.getRotation() == -180){
