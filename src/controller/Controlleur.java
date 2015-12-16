@@ -171,9 +171,7 @@ public class Controlleur {
 
                         if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][0], vue.getFenetre())) {
 
-                            finDePartie(joueurActif.getIdJoueur());
 
-                            /*
                             System.out.println("plante premier champ");
 
                             vue.planterChamp(joueurActif.getIdJoueur() - 1, 0, joueurActif.getMain().get(0).getIdCarte());
@@ -186,7 +184,7 @@ public class Controlleur {
                             vue.setSpriteCliquable(vue.getSprsBoutonsEtapes()[0]);
                             nbplants++;
 
-                            */
+
                         } else if (vue.cliqueSprite(event, vue.getSprsChamps()[joueurActif.getIdJoueur() - 1][1], vue.getFenetre())) {
                             System.out.println("plante deuxième champ");
 
