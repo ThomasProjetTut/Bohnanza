@@ -455,11 +455,11 @@ public class Vue{
         sprChampJ1[1].setPosition(425, 767);
         sprChampJ1[2].setPosition(587, 767);
 
-        textChamps[0][0].setString("1-1");
-        textChamps[0][1].setString("1-2");
-        textChamps[0][2].setString("1-3");
+        textChamps[0][0].setString("0");
+        textChamps[0][1].setString("0");
+        textChamps[0][2].setString("0");
 
-        textChamps[0][0].setPosition(268,828);
+        textChamps[0][0].setPosition(268, 828);
         textChamps[0][1].setPosition(431,828);
         textChamps[0][2].setPosition(592,828);
 
@@ -473,9 +473,9 @@ public class Vue{
         sprChampJ2[1].setPosition(235, 425);
         sprChampJ2[2].setPosition(235, 587);
 
-        textChamps[1][0].setString("2-1");
-        textChamps[1][1].setString("2-2");
-        textChamps[1][2].setString("2-3");
+        textChamps[1][0].setString("0");
+        textChamps[1][1].setString("0");
+        textChamps[1][2].setString("0");
 
         textChamps[1][2].setPosition(140, 583);
         textChamps[1][1].setPosition(140, 423);
@@ -491,9 +491,9 @@ public class Vue{
         sprChampJ3[1].setPosition(575, 235);
         sprChampJ3[0].setPosition(737, 235);
 
-        textChamps[2][0].setString("3-1");
-        textChamps[2][1].setString("3-2");
-        textChamps[2][2].setString("3-3");
+        textChamps[2][0].setString("0");
+        textChamps[2][1].setString("0");
+        textChamps[2][2].setString("0");
 
         textChamps[2][2].setPosition(388, 130);
         textChamps[2][1].setPosition(550, 130);
@@ -510,9 +510,9 @@ public class Vue{
         sprChampJ4[1].setPosition(765, 575);
         sprChampJ4[2].setPosition(765, 413);
 
-        textChamps[3][0].setString("4-1");
-        textChamps[3][1].setString("4-2");
-        textChamps[3][2].setString("4-3");
+        textChamps[3][0].setString("0");
+        textChamps[3][1].setString("0");
+        textChamps[3][2].setString("0");
 
         textChamps[3][0].setPosition(842, 697);
         textChamps[3][1].setPosition(842, 535);
