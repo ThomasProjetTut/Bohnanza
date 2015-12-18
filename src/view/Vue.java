@@ -608,9 +608,9 @@ public class Vue{
             sprChampJ4[i].setRotation(-90);
         }
 
-        sprChampJ4[0].setPosition(765, 413);
+        sprChampJ4[2].setPosition(765, 413);
         sprChampJ4[1].setPosition(765, 575);
-        sprChampJ4[2].setPosition(765, 737);
+        sprChampJ4[0].setPosition(765, 737);
 
         textChamps[0][0].setPosition(268, 828);
         textChamps[0][1].setPosition(431, 828);
@@ -624,9 +624,9 @@ public class Vue{
         textChamps[2][1].setPosition(550, 130);
         textChamps[2][0].setPosition(716, 130);
 
-        textChamps[3][2].setPosition(842, 697);
+        textChamps[3][0].setPosition(842, 697);
         textChamps[3][1].setPosition(842, 535);
-        textChamps[3][0].setPosition(842, 373);
+        textChamps[3][2].setPosition(842, 373);
 
     }
     public void rotationJ2(){
@@ -683,9 +683,9 @@ public class Vue{
         textChamps[3][1].setPosition(550, 130);
         textChamps[3][0].setPosition(716, 130);
 
-        textChamps[0][2].setPosition(842, 697);
+        textChamps[0][0].setPosition(842, 697);
         textChamps[0][1].setPosition(842, 535);
-        textChamps[0][0].setPosition(842, 373);
+        textChamps[0][2].setPosition(842, 373);
     }
     public void rotationJ3(){
 
@@ -798,9 +798,9 @@ public class Vue{
         textChamps[0][1].setPosition(140, 423);
         textChamps[0][0].setPosition(140, 258);
 
-        textChamps[1][0].setPosition(388, 130);
+        textChamps[1][2].setPosition(388, 130);
         textChamps[1][1].setPosition(550, 130);
-        textChamps[1][2].setPosition(716, 130);
+        textChamps[1][0].setPosition(716, 130);
 
         textChamps[2][0].setPosition(842, 697);
         textChamps[2][1].setPosition(842, 535);
@@ -1564,6 +1564,24 @@ public class Vue{
                 System.out.println("clique sprite non cliquable");
                 return false;
             }
+        }else if(sprite.getRotation() == -90) {
+            if(isCliquable(sprite)) {
+                event.asMouseEvent();
+                Vector2i posMouse = Mouse.getPosition(fenetre);
+                Vector2f positionSprite = sprite.getPosition();
+                FloatRect tailleSprite = sprite.getGlobalBounds();
+
+                if (posMouse.x > positionSprite.x && posMouse.x < positionSprite.x + tailleSprite.width && posMouse.y < positionSprite.y && posMouse.y > positionSprite.y - tailleSprite.height) {
+                    System.out.println("clique sprite oui");
+                    return true;
+                } else {
+                    System.out.println("clique sprite non position");
+                    return false;
+                }
+            }else{
+                System.out.println("clique sprite non cliquable");
+                return false;
+            }
         }else{
             if(isCliquable(sprite)) {
                 event.asMouseEvent();
@@ -1583,10 +1601,8 @@ public class Vue{
                 return false;
             }
         }
-
-
-
     }
+
     public boolean isCliquable(Sprite sprite){
         if(spriteCliquable.contains(sprite)){
             return true;
