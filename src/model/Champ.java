@@ -69,6 +69,9 @@ public class Champ {
         //Différentes Key pour cette carte
         List<Integer>nbThunes=new ArrayList<Integer>();
 
+        //Rends impossible la recolte pour un champs d'une carte
+        if(NombreCarte == 1)return;
+
 
         for(int key :patates.get(0).getPatatometre().keySet()){
             nbThunes.add(key);
