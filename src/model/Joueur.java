@@ -5,6 +5,7 @@ import model.Carte.Carte;
 import javax.net.ssl.SSLContext;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.CheckedInputStream;
 
 public class Joueur {
 
@@ -107,16 +108,32 @@ public class Joueur {
 
         if (numChamp > maxChamps || numChamp < 1)
             return;
+        if(verifChamps(main.get(0),champs.get(numChamp-1))) {
+            if (champs.get(numChamp - 1).planter(main.get(0))) {
+                main.remove(main.get(0));
+            } else {
+                champs.get(numChamp - 1).recolter(this, pioche);
 
-        if (champs.get(numChamp - 1).planter(main.get(0))){
-            main.remove(main.get(0));
+                champs.get(numChamp - 1).planter(main.get(0));
+
+                main.remove(main.get(0));
+            }
         }
-        else {
-            champs.get(numChamp-1).recolter(this, pioche);
-            champs.get(numChamp-1).planter(main.get(0));
-            main.remove(main.get(0));
+    }
+
+    public boolean verifChamps(Carte carte, Champ champ){
+        ArrayList<Integer> listNumChamps=new ArrayList<>();
+        listNumChamps.add(0);
+        listNumChamps.add(1);
+        listNumChamps.add(2);
+        listNumChamps.remove(champ.getNumeroChamp() - 1);
+        for (Integer num:listNumChamps) {
+            if (carte.getIdCarte() == champs.get(num).derniereCarte().getIdCarte()){
+                return false;
+            }
         }
 
+        return true;
     }
 
     public void planterViaZoneEchange(int numChamp, Pioche pioche, int placeInZone){
