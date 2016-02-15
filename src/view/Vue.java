@@ -9,6 +9,7 @@ import java.awt.*;
 
 public class Vue extends JFrame {
 
+
     private ImageIcon iconeChamps;
     private ImageIcon iconePanelChamps;
     private ImageIcon iconeNbPatate;
@@ -311,6 +312,7 @@ public class Vue extends JFrame {
         globalPanelSectionCentrale.add(panelGlobalChampsPerso, BorderLayout.CENTER);
 
     }
+
 
 
 }
