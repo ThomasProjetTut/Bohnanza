@@ -26,7 +26,6 @@ public class Controlleur {
     private int[][] nbCarteChamps;
 
     public Controlleur() {
-
         initAttributs();
     }
 
