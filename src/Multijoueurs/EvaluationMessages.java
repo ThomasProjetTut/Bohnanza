@@ -16,29 +16,7 @@ public class EvaluationMessages {
         this.controlleur = controlleur;
     }
 
-    public static void Evaluer(byte[] data, Echange destinataire) {
-
-        // COMPOSER UN MESSAGE
-        /*
-            byte[] id = ByteBuffer.allocate(Short.BYTES).putShort((short)2).array();
-            byte[] numeroJoueur = ByteBuffer.allocate(Integer.BYTES).putInt(numJoueur).array();
-            byte[] posX = ByteBuffer.allocate(Float.BYTES).putFloat(x).array();
-            byte[] posY = ByteBuffer.allocate(Float.BYTES).putFloat(y).array();
-            byte[] direction = ByteBuffer.allocate(Integer.BYTES).putInt(dir).array();
-
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream( );
-            try {
-                outputStream.write(id);
-                outputStream.write(numeroJoueur);
-                outputStream.write(posX);
-                outputStream.write(posY);
-                outputStream.write(direction);
-            } catch (IOException e) {
-                System.out.println("La concaténation des bytes a échouée.");
-            }
-
-            byte[] data = outputStream.toByteArray();
-        */
+    public static void Evaluer(byte[] data) {
 
         // DECOMPOSER UN MESSAGE
         /*
@@ -73,7 +51,10 @@ public class EvaluationMessages {
 
         switch (id) {
 
-
+            case EnvoyerMessages.MSG_TYPE_1:
+                // Decompose le message
+                // Appelle la méthode du controlleur correspondante
+                break;
 
         }
     }

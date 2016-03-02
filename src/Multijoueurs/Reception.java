@@ -44,7 +44,7 @@ public class Reception extends Thread {
                 in.readFully(message);
 
                 // Analyser le message
-                EvaluationMessages.Evaluer(message, echange);
+                EvaluationMessages.Evaluer(message);
 
             } catch (IOException e) {
                 StopThread();

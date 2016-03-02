@@ -30,15 +30,10 @@ public class Echange {
         }
     }
 
-    public void write(byte[] message, int msgLen) {
-        try {
-            // Envoie la taille du message puis le message
-            out.writeInt(msgLen);
-            out.write(message, 0, msgLen);
-            out.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void write(byte[] message) throws IOException {
+        out.writeInt(message.length);
+        out.write(message, 0, message.length);
+        out.flush();
     }
 
     public void StopEchange() throws IOException {
