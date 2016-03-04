@@ -1,4 +1,4 @@
-package View;
+//package View;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,13 +13,14 @@ import java.net.UnknownHostException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
+/*
 import multijoueur.ClientTCP;
 import multijoueur.ServeurTCP;
 import Model.Model;
+*/
+//public class VueConnexion extends JFrame {
 
-public class VueConnexion extends JFrame {
-
+    /*
     private JCheckBox checkBoxBonus;
 
     private String hostIP = "localhost";
@@ -250,6 +251,6 @@ public class VueConnexion extends JFrame {
 
     public JButton getConnectButton() {
         return connectButton;
-    }
+    }*/
 
-}
+//}
