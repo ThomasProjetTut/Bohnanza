@@ -190,7 +190,7 @@ public class Vue extends JFrame {
 
         setListener(controlleur);
 
-        setSize(920, 650);
+        setSize(1200, 650);
         setLocation(50,50);
         setResizable(false);
         setVisible(true);
@@ -203,7 +203,7 @@ public class Vue extends JFrame {
 
     private void initAttribut() {
 
-        iconeChamps = new ImageIcon("Sprites/champ.png");
+        iconeChamps = new ImageIcon("Sprites/Sprite_champ/champactif.png");
         iconeNomAJ = new ImageIcon("Sprites/labelNom.png");
         iconeNbPatate = new ImageIcon("Sprites/nbPatate.png");
         iconePanelChamps = new ImageIcon("Sprites/champAJ.png");
