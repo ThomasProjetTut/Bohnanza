@@ -5,9 +5,8 @@ import model.Carte.Carte;
 import model.Joueur;
 import model.Pioche;
 import model.Zone;
-import org.jsfml.graphics.Sprite;
-import org.jsfml.window.event.Event;
 import view.Vue;
+import view.vueDons;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,6 +18,7 @@ public class Controlleur {
     private int compteurTour;
 
     private Vue vue;
+    private vueDons vueDons;
     private Joueur[] joueurs;
     private Joueur joueurActif;
     private Pioche pioche;
@@ -30,7 +30,8 @@ public class Controlleur {
     }
 
     private void initAttributs() {
-        vue = new Vue();
+        vue = new Vue(this);
+        vueDons = new vueDons(this);
         joueurs = new Joueur[4];
         Joueur joueur1 = new Joueur("Joueur 1", 1);
         Joueur joueur2 = new Joueur("Joueur 2", 2);

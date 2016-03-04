@@ -1,14 +1,17 @@
 package view;
 
+import controller.Controlleur;
 import javafx.scene.layout.BorderWidths;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Vue extends JFrame {
 
+    private Controlleur controlleur;
 
     private ImageIcon iconeChamps;
     private ImageIcon iconePanelChamps;
@@ -112,21 +115,80 @@ public class Vue extends JFrame {
     ///////////////////////////////////////
 
     private JPanel panelGlobalInteraction = new JPanel();
+    private JPanel panelCartesLabelsPiochees = new JPanel();
+    private JPanel panelBoutonsOKCartePiochees = new JPanel();
+    private JPanel panelCombosChoix = new JPanel();
 
+    private JButton bouttonPLanter = new JButton("Planter");
+    private JButton bouttonPiocher = new JButton("Piocher");
 
+    private JLabel labelCartePiochee1 = new JLabel();
+    private JLabel labelCartePiochee2 = new JLabel();
 
+    private String[] listeChoix = {"Garder", "Echanger", "Donner"};
+
+    private JComboBox comboChoixCarte1 = new JComboBox(listeChoix);
+    private JComboBox comboChoixCarte2 = new JComboBox(listeChoix);
+
+    private JButton okCarte1 = new JButton("OK");
+    private JButton okCarte2 = new JButton("OK");
+
+    private JLabel cartesGardees = new JLabel("Cartes gard�es");
+
+    private JLabel cartesgardeesPlantees = new JLabel();
+
+    private JLabel sensDePlante = new JLabel("<-----------------");
+
+    private JButton bouttonPiocherFDT = new JButton("Piocher");
+
+    private JButton bouttonFinDeTour = new JButton("Fin de tour");;
 
     ///////////////////////////////////////
     //////////////Interaction//////////////
     ///////////////////////////////////////
 
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////Section centrale/////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public Vue(){
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////Section Basse////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    private JPanel panelGlobalSectionBasse = new JPanel();
+
+    /////////////////Informations
+
+    private JPanel panelGlobalInformation = new JPanel();
+
+    private JTextArea textAreaInformation = new JTextArea();
+
+    /////////////////Main
+
+    private JPanel panelGlobalMain = new JPanel();
+
+    private JLabel labelMain = new JLabel();
+
+///?????????????????
+
+    /////////////////Chat
+
+    private JPanel panelGlobalChat = new JPanel();
+
+    private JTextArea chatTexte = new JTextArea();
+    private JTextField chatLigne = new JTextField();
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////Section Basse////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public Vue(Controlleur controlleur){
+        this.controlleur = controlleur;
 
         initAttribut();
         creerFenetre();
+
+        setListener(controlleur);
 
         setSize(920, 650);
         setLocation(50,50);
@@ -198,21 +260,46 @@ public class Vue extends JFrame {
 
 
     private void initAttributSectionBasse() {
+        panelGlobalSectionBasse.setLayout(new BorderLayout());
+
+        //info
+
+        //main
+
+        //chat
+        panelGlobalChat.setLayout(new BorderLayout());
+
+        JScrollPane chatTextPane = new JScrollPane(chatTexte,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        panelGlobalChat.add(chatLigne, BorderLayout.SOUTH);
+        panelGlobalChat.add(chatTextPane, BorderLayout.CENTER);
+        panelGlobalChat.setPreferredSize(new Dimension(200, 200));
 
 
     }
 
     private void initAttributSectionCentrale() {
-        //interactino
-
-        panelGlobalInteraction.setPreferredSize(new Dimension(305, 500));
-        panelGlobalInteraction.setBackground(Color.BLUE);
-
 
         champPerso1.setIcon(iconeChamps);
         champPerso2.setIcon(iconeChamps);
         champPerso3.setIcon(iconeChamps);
 
+        //interactino
+
+        panelGlobalInteraction.setPreferredSize(new Dimension(305, 500));
+        panelGlobalInteraction.setBackground(Color.BLUE);
+        panelGlobalInteraction.setLayout(new BoxLayout(panelGlobalInteraction, BoxLayout.Y_AXIS));
+
+        labelCartePiochee1.setIcon(iconeChamps);
+        labelCartePiochee2.setIcon(iconeChamps);
+
+        panelCartesLabelsPiochees.setLayout(new BoxLayout(panelCartesLabelsPiochees, BoxLayout.X_AXIS));
+        panelBoutonsOKCartePiochees.setLayout(new BoxLayout(panelBoutonsOKCartePiochees, BoxLayout.X_AXIS));
+        panelCombosChoix.setLayout(new BoxLayout(panelCombosChoix, BoxLayout.X_AXIS));
+
+        cartesgardeesPlantees.setIcon(iconeChamps);
 
         globalPanelSectionCentrale.setLayout(new BorderLayout());
 
@@ -220,13 +307,16 @@ public class Vue extends JFrame {
 
     private void creerFenetre(){
         creerChampsAutresJoueurs();
-        creerFenetreSectionCentrale();
+        creerSectionCentrale();
+        creerSectionBasse();
 
         panelGlobal.add(globalPanelAutreJoueur, BorderLayout.NORTH);
         panelGlobal.add(globalPanelSectionCentrale, BorderLayout.CENTER);
+        panelGlobal.add(panelGlobalSectionBasse, BorderLayout.SOUTH);
 
         getContentPane().add(panelGlobal);
     }
+
 
     private void creerChampsAutresJoueurs() {
 
@@ -299,7 +389,7 @@ public class Vue extends JFrame {
 
     }
 
-    private void creerFenetreSectionCentrale(){
+    private void creerSectionCentrale(){
         //champs perso
 
         panelGlobalChampsPerso.setLayout(new BorderLayout());
@@ -310,6 +400,61 @@ public class Vue extends JFrame {
 
 
         globalPanelSectionCentrale.add(panelGlobalChampsPerso, BorderLayout.CENTER);
+
+        //interactions
+
+        panelCartesLabelsPiochees.add(labelCartePiochee1);
+        panelCartesLabelsPiochees.add(labelCartePiochee2);
+
+        panelBoutonsOKCartePiochees.add(okCarte1);
+        panelBoutonsOKCartePiochees.add(okCarte2);
+
+        panelCombosChoix.add(comboChoixCarte1);
+        panelCombosChoix.add(comboChoixCarte2);
+
+        panelGlobalInteraction.add(bouttonPLanter, CENTER_ALIGNMENT);
+        panelGlobalInteraction.add(bouttonPiocher, CENTER_ALIGNMENT);
+
+        panelGlobalInteraction.add(panelCartesLabelsPiochees, CENTER_ALIGNMENT);
+        panelGlobalInteraction.add(panelCombosChoix, CENTER_ALIGNMENT);
+        panelGlobalInteraction.add(panelBoutonsOKCartePiochees, CENTER_ALIGNMENT);
+
+        panelGlobalInteraction.add(cartesGardees, CENTER_ALIGNMENT);
+
+        panelGlobalInteraction.add(cartesgardeesPlantees, CENTER_ALIGNMENT);
+
+        panelGlobalInteraction.add(sensDePlante, CENTER_ALIGNMENT);
+
+        panelGlobalInteraction.add(bouttonPiocherFDT, CENTER_ALIGNMENT);
+
+        panelGlobalInteraction.add(bouttonFinDeTour, CENTER_ALIGNMENT);
+
+        globalPanelSectionCentrale.add(panelGlobalInteraction, BorderLayout.EAST);
+
+    }
+
+
+    private void creerSectionBasse() {
+        //info
+        panelGlobalInformation.add(textAreaInformation);
+
+        //main
+        panelGlobalMain.add(labelMain);
+
+
+        //chat
+        panelGlobalChat.add(chatTexte, BorderLayout.CENTER);
+        panelGlobalChat.add(chatLigne, BorderLayout.SOUTH);
+
+        //global
+
+        panelGlobalSectionBasse.add(panelGlobalInformation, BorderLayout.WEST);
+        panelGlobalSectionBasse.add(panelGlobalMain, BorderLayout.CENTER);
+        panelGlobalSectionBasse.add(panelGlobalChat, BorderLayout.EAST);
+
+    }
+
+    private void setListener(Controlleur controlleur) {
 
     }
 
