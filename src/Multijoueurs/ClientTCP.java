@@ -1,5 +1,7 @@
 package Multijoueurs;
 
+import controller.Controlleur;
+
 import java.io.IOException;
 import java.net.Socket;
 
@@ -11,36 +13,32 @@ public class ClientTCP {
 
     // Communication avec le serveur
     private Echange echange = null;
+    private Controlleur control;
 
-    boolean arret = false;
+    private String IPHost;
 
-    public ClientTCP(String ipServ, int port) throws IOException {
+    public ClientTCP(Controlleur controlleur, String ipServ, int port) throws IOException {
         conn = new Socket(ipServ, port);
+        IPHost = ipServ;
+        echange = new Echange(conn, controlleur);
+        control = controlleur;
     }
 
     public void Start() {
+        echange.Start();
+        System.out.println("Connecté à "+IPHost);
+    }
 
-        boolean fin = false;
-
-        while (!fin) {
-
-            synchronized (this) {
-                Thread.yield();
-                fin = arret;
-            }
-
-            if (arret)
-                break;
-
-            echange = new Echange(conn);
-        }
+    public boolean SocketIsClose() {
+        return conn.isClosed();
     }
 
     public Echange GetEchange() {
         return echange;
     }
 
-    public synchronized void StopClient() {
-        arret = true;
+    public void StopClient() throws IOException {
+        EnvoyerMessages.Envoyer(EnvoyerMessages.MSG_DECO_CLIENT, echange);
+        echange.StopEchange();
     }
 }

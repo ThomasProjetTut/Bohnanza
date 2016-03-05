@@ -1,11 +1,11 @@
-//package View;
+package view;
+
+import Multijoueurs.ClientTCP;
+import Multijoueurs.ServeurTCP;
+import controller.Controlleur;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,43 +13,36 @@ import java.net.UnknownHostException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-/*
-import multijoueur.ClientTCP;
-import multijoueur.ServeurTCP;
-import Model.Model;
-*/
-//public class VueConnexion extends JFrame {
 
-    /*
+public class vueConnexion extends JFrame {
+
     private JCheckBox checkBoxBonus;
 
     private String hostIP = "localhost";
-    private int port = ServeurTCP.portEcoute;
     private static boolean isHost = true;
+    private int port = 55;
 
     private JTextField ipField = null;
-    private JLabel label1,label2;
     private JTextField portField = null;
-    private JRadioButton hostOption = null;
-    private JRadioButton guestOption = null;
     private JButton connectButton = null;
 
-    private VueJeu vueJeu;
-    private VueMenu vueMenu;
-    private Model model;
-    private VueConnexion vueConnexion;
+    private Controlleur control;
 
-    private ServeurTCP serveur;
-    private ClientTCP client;
+    public vueConnexion(final Controlleur controlleur) {
+        control = controlleur;
 
-    public VueConnexion(Model model, VueJeu vueJeu, VueMenu vueMenu) {
-        this.vueMenu = vueMenu;
-        this.vueJeu = vueJeu;
-        this.model = model;
-        this.vueConnexion = this;
-
-        serveur = new ServeurTCP(model, vueJeu, vueMenu, this);
-        client = new ClientTCP(model, vueJeu, vueMenu, this);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosing(e);
+                try {
+                    controlleur.resetClient();
+                    controlleur.resetServeur();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
 
         JPanel optionsPane = initOptionsPane();
 
@@ -61,7 +54,6 @@ import Model.Model;
         try {
             ipv4 = java.net.InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -73,44 +65,24 @@ import Model.Model;
         setIconImage(new ImageIcon("images/Autres/icone.png").getImage());
         setResizable(false);
         pack();
-        setVisible(false);
-    }
-
-    public void deconnexion() {
-        client.deconnexion();
-        serveur.deconnexion();
+        setVisible(true);
     }
 
     public JPanel initOptionsPane() {
-        Tools tools = new Tools();
         JPanel paneNom;
         ActionAdapter buttonListener;
-        JPanel fond = null;
-        try {
-            fond = new JPanel() {
-                BufferedImage image = ImageIO.read(new File("images/Autres/fondText.jpg"));
-
-                public void paintComponent(Graphics g) {
-                    super.paintComponent(g);
-                    g.drawImage(image, 0, 0, 600, 400, this);
-                }
-            };
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        JPanel fond = new JPanel();
 
         // Create an options pane
         JPanel optionsPane = new JPanel(new GridLayout(4, 1));
 
         // IP address input
         paneNom = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        label1 = new JLabel("Hôte IP : ");
+        JLabel label1 = new JLabel("Hôte IP : ");
         paneNom.add(label1);
         ipField = new JTextField(10);
         ipField.setText(hostIP);
         ipField.setEnabled(false);
-        tools.changerFontJTextField(ipField, 30, Color.white, tools.getFontTexte());
-        tools.changerFontJLabel(label1, 30, Color.white, tools.getFontTexte());
         ipField.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
                 ipField.selectAll();
@@ -125,12 +97,10 @@ import Model.Model;
 
         // Port input
         paneNom = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        label2 = new JLabel("Port : ");
+        JLabel label2 = new JLabel("Port : ");
         paneNom.add(label2);
         portField = new JTextField(10);
         portField.setEditable(true);
-        tools.changerFontJTextField(portField, 30, Color.white, tools.getFontTexte());
-        tools.changerFontJLabel(label2, 30, Color.white, tools.getFontTexte());
         portField.setText((new Integer(port)).toString());
         portField.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
@@ -166,16 +136,14 @@ import Model.Model;
         };
 
         ButtonGroup bg = new ButtonGroup();
-        hostOption = new JRadioButton("Hôte", true);
+        JRadioButton hostOption = new JRadioButton("Hôte", true);
         hostOption.setMnemonic(KeyEvent.VK_H);
         hostOption.setActionCommand("host");
         hostOption.addActionListener(buttonListener);
-        guestOption = new JRadioButton("Client", false);
+        JRadioButton guestOption = new JRadioButton("Client", false);
         guestOption.setMnemonic(KeyEvent.VK_G);
         guestOption.setActionCommand("guest");
         guestOption.addActionListener(buttonListener);
-        tools.changerFontJRadioButton(hostOption, 30, Color.white, tools.getFontTexte());
-        tools.changerFontJRadioButton(guestOption,30,Color.white,tools.getFontTexte());
         bg.add(hostOption);
         bg.add(guestOption);
         paneNom = new JPanel(new GridLayout(2, 2));
@@ -191,32 +159,44 @@ import Model.Model;
             public void actionPerformed(ActionEvent e) {
 
                 if (isHost) {
-                    if (!serveur.isAlive()) {
-                        connectButton.setText("En attente..");
-                        serveur = new ServeurTCP(model, vueJeu, vueMenu, vueConnexion);
-                        serveur.start();
+                    if (control.getServeurTCP() == null) {
+                        try {
+                            control.InitServeur(port);
+                            connectButton.setText("En attente..");
+                        } catch (IOException e1) {
+                            System.out.println("Il y a eu un problème lors de la création du serveur.");
+                        }
+
                     }
                     else {
                         connectButton.setText("Connexion");
-                        serveur.deconnexion();
+                        try {
+                            control.resetServeur();
+                        } catch (IOException ignored) {
+                        }
                     }
                 }
                 else {
-                    if (!client.isAlive()) {
-                        connectButton.setText("En attente..");
-                        client = new ClientTCP(model, vueJeu, vueMenu, vueConnexion);
-                        client.start();
+                    if (control.getClientTCP() == null) {
+                        try {
+                            control.InitClient(hostIP, port);
+                            connectButton.setText("En attente..");
+                        } catch (IOException e1) {
+                            System.out.println("Le serveur distant n'est pas joignable.");
+                        }
                     }
                     else {
                         connectButton.setText("Connexion");
-                        client.deconnexion();
+                        try {
+                            control.resetClient();
+                        } catch (IOException ignored) {
+                        }
                     }
                 }
             }
         };
 
         connectButton = new JButton("Connexion");
-        tools.changerFontButton(connectButton, 30, Color.white, tools.getFontTexte());
         connectButton.setMnemonic(KeyEvent.VK_C);
         connectButton.setActionCommand("connect");
         connectButton.addActionListener(buttonListener);
@@ -237,6 +217,10 @@ import Model.Model;
         return fond;
     }
 
+    public void reiniButton() {
+        connectButton.setText("Connexion");
+    }
+
     public static boolean isHost() {
         return isHost;
     }
@@ -251,6 +235,6 @@ import Model.Model;
 
     public JButton getConnectButton() {
         return connectButton;
-    }*/
+    }
 
-//}
+}

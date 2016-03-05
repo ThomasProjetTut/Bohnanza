@@ -1,22 +1,35 @@
 package Multijoueurs;
 
+import controller.Controlleur;
+
 import java.io.*;
 import java.net.Socket;
 
 
 public class Echange {
 
+    private int idJoueur;
     private Socket socket = null;
     private DataInputStream in = null;
     private DataOutputStream out = null;
     private Reception reception = null;
 
-    public Echange(Socket s){
+    private Controlleur controlleur;
+
+    public Echange(Socket s, Controlleur controlleur){
         socket = s;
-        run();
+        this.controlleur = controlleur;
     }
 
-    private void run() {
+    public void setIdJoueur(int id) {
+        idJoueur = id;
+    }
+
+    public DataOutputStream getOut() {
+        return out;
+    }
+
+    public void Start() {
 
         try {
             in = new DataInputStream(socket.getInputStream());
@@ -30,17 +43,19 @@ public class Echange {
         }
     }
 
-    public void write(byte[] message) throws IOException {
-        out.writeInt(message.length);
-        out.write(message, 0, message.length);
-        out.flush();
-    }
-
     public void StopEchange() throws IOException {
-        reception.StopThread();
 
+        reception.StopThread();
         socket.close();
         in.close();
         out.close();
+    }
+
+    public int getIdJoueur() {
+        return idJoueur;
+    }
+
+    public Controlleur getControlleur() {
+        return controlleur;
     }
 }

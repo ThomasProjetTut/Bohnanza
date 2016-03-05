@@ -1,11 +1,14 @@
 package controller;
 
 //import jdk.nashorn.internal.ir.SplitReturn;
+import Multijoueurs.ClientTCP;
+import Multijoueurs.ServeurTCP;
 import model.Carte.Carte;
 import model.Joueur;
 import model.Pioche;
 import model.Zone;
 import view.Vue;
+import view.vueConnexion;
 import view.vueDons;
 
 import java.io.IOException;
@@ -17,6 +20,8 @@ public class Controlleur {
 
     private int compteurTour;
 
+    private vueConnexion vueCon;
+
     private Vue vue;
     private vueDons vueDons;
     private Joueur[] joueurs;
@@ -25,11 +30,55 @@ public class Controlleur {
     private Zone zonePioche;
     private int[][] nbCarteChamps;
 
+    private ServeurTCP serveurTCP;
+    private ClientTCP clientTCP;
+
     public Controlleur() {
         initAttributs();
     }
 
+    public void InitClient(String ipServ, int port) throws IOException {
+        System.out.println("Lancement du client.");
+        clientTCP = new ClientTCP(this, ipServ, port);
+        clientTCP.Start();
+    }
+
+    public void InitServeur(int port) throws IOException {
+        System.out.println("Lancement du serveur.");
+        serveurTCP = new ServeurTCP(this, port);
+        serveurTCP.Start();
+    }
+
+    public void resetClient() throws IOException {
+
+        if (clientTCP == null)
+            return;
+
+        if (!clientTCP.SocketIsClose())
+            clientTCP.StopClient();
+
+        clientTCP = null;
+        vueCon.reiniButton();
+        System.out.println("Déconnection réussie.");
+    }
+
+    public void resetServeur() throws IOException {
+
+        if (serveurTCP == null)
+            return;
+
+        if (!serveurTCP.SocketIsClose())
+            serveurTCP.StopServeur();
+
+        serveurTCP = null;
+        vueCon.reiniButton();
+        System.out.println("Le serveur à bien été stoppé.");
+    }
+
     private void initAttributs() {
+
+        vueCon = new vueConnexion(this);
+
         vue = new Vue(this);
         vueDons = new vueDons(this);
         joueurs = new Joueur[4];
@@ -59,6 +108,14 @@ public class Controlleur {
         System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
         System.out.println("nombre de tour de pioche : " + pioche.getTourDePioche());
 
+    }
+
+    public ServeurTCP getServeurTCP() {
+        return serveurTCP;
+    }
+
+    public ClientTCP getClientTCP() {
+        return clientTCP;
     }
 }
 

@@ -1,5 +1,7 @@
 package Multijoueurs;
 
+import controller.Controlleur;
+
 import javax.management.AttributeChangeNotification;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -36,15 +38,12 @@ public class Reception extends Thread {
                 if (arret)
                     break;
 
-                int msgLen = 0;
-                if ((msgLen = in.readInt()) == 0)
+                short MSG_TYPE;
+                if ((MSG_TYPE = in.readShort()) == 0)
                     continue;
 
-                byte[] message = new byte[msgLen];
-                in.readFully(message);
-
                 // Analyser le message
-                EvaluationMessages.Evaluer(message);
+                EvaluationMessages.Evaluer(MSG_TYPE, in, echange.getControlleur());
 
             } catch (IOException e) {
                 StopThread();
