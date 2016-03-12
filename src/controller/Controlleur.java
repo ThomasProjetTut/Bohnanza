@@ -35,7 +35,9 @@ public class Controlleur {
 
     public Controlleur() {
         initAttributs();
+        jeu();
     }
+
 
     public void InitClient(String ipServ, int port) throws IOException {
         System.out.println("Lancement du client.");
@@ -117,7 +119,51 @@ public class Controlleur {
     public ClientTCP getClientTCP() {
         return clientTCP;
     }
+
+
+    private void jeu() {
+        phaseDePlantage();
+        phaseDePioche1();
+        phaseDeChoix();
+        phaseDePlantage2();
+        phaseDePiocheFDT();
+        finDeTour();
+
+    }
+
+    private void phaseDePlantage() {
+
+
+    }
+
+    private void phaseDePioche1() {
+
+
+    }
+
+    private void phaseDeChoix() {
+
+
+    }
+
+    private void phaseDePlantage2() {
+
+
+    }
+
+    private void phaseDePiocheFDT() {
+
+
+    }
+
+    private void finDeTour() {
+
+
+    }
+
+
 }
+
 
 
 

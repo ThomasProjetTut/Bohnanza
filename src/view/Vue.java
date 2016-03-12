@@ -114,34 +114,7 @@ public class Vue extends JFrame {
     //////////////Interaction//////////////
     ///////////////////////////////////////
 
-    private JPanel panelGlobalInteraction = new JPanel();
-    private JPanel panelCartesLabelsPiochees = new JPanel();
-    private JPanel panelBoutonsOKCartePiochees = new JPanel();
-    private JPanel panelCombosChoix = new JPanel();
-
-    private JButton bouttonPLanter = new JButton("Planter");
-    private JButton bouttonPiocher = new JButton("Piocher");
-
-    private JLabel labelCartePiochee1 = new JLabel();
-    private JLabel labelCartePiochee2 = new JLabel();
-
-    private String[] listeChoix = {"Garder", "Echanger", "Donner"};
-
-    private JComboBox comboChoixCarte1 = new JComboBox(listeChoix);
-    private JComboBox comboChoixCarte2 = new JComboBox(listeChoix);
-
-    private JButton okCarte1 = new JButton("OK");
-    private JButton okCarte2 = new JButton("OK");
-
-    private JLabel cartesGardees = new JLabel("Cartes gard�es");
-
-    private JLabel cartesgardeesPlantees = new JLabel();
-
-    private JLabel sensDePlante = new JLabel("<-----------------");
-
-    private JButton bouttonPiocherFDT = new JButton("Piocher");
-
-    private JButton bouttonFinDeTour = new JButton("Fin de tour");;
+    PanelInteraction panelInteraction;
 
     ///////////////////////////////////////
     //////////////Interaction//////////////
@@ -190,7 +163,7 @@ public class Vue extends JFrame {
 
         setListener(controlleur);
 
-        setSize(1200, 650);
+        setSize(1000, 750);
         setLocation(50,50);
         setResizable(false);
         setVisible(true);
@@ -258,13 +231,17 @@ public class Vue extends JFrame {
 
     }
 
-
     private void initAttributSectionBasse() {
         panelGlobalSectionBasse.setLayout(new BorderLayout());
 
         //info
 
+        panelGlobalInformation.setBackground(Color.YELLOW);
+        panelGlobalInformation.setPreferredSize(new Dimension(300, 200));
+
         //main
+
+        panelGlobalMain.setPreferredSize(new Dimension(400,200));
 
         //chat
         panelGlobalChat.setLayout(new BorderLayout());
@@ -275,32 +252,22 @@ public class Vue extends JFrame {
 
         panelGlobalChat.add(chatLigne, BorderLayout.SOUTH);
         panelGlobalChat.add(chatTextPane, BorderLayout.CENTER);
-        panelGlobalChat.setPreferredSize(new Dimension(200, 200));
+        panelGlobalChat.setPreferredSize(new Dimension(300, 200));
 
 
     }
 
     private void initAttributSectionCentrale() {
 
+
+        panelGlobalChampsPerso.setPreferredSize(new Dimension(500, 350));
+
         champPerso1.setIcon(iconeChamps);
         champPerso2.setIcon(iconeChamps);
         champPerso3.setIcon(iconeChamps);
 
-        //interactino
-
-        panelGlobalInteraction.setPreferredSize(new Dimension(305, 500));
-        panelGlobalInteraction.setBackground(Color.BLUE);
-        panelGlobalInteraction.setLayout(new BoxLayout(panelGlobalInteraction, BoxLayout.Y_AXIS));
-
-        labelCartePiochee1.setIcon(iconeChamps);
-        labelCartePiochee2.setIcon(iconeChamps);
-
-        panelCartesLabelsPiochees.setLayout(new BoxLayout(panelCartesLabelsPiochees, BoxLayout.X_AXIS));
-        panelBoutonsOKCartePiochees.setLayout(new BoxLayout(panelBoutonsOKCartePiochees, BoxLayout.X_AXIS));
-        panelCombosChoix.setLayout(new BoxLayout(panelCombosChoix, BoxLayout.X_AXIS));
-
-        cartesgardeesPlantees.setIcon(iconeChamps);
-
+        //interaction
+        panelInteraction = new PanelInteraction();
         globalPanelSectionCentrale.setLayout(new BorderLayout());
 
     }
@@ -317,10 +284,13 @@ public class Vue extends JFrame {
         getContentPane().add(panelGlobal);
     }
 
-
     private void creerChampsAutresJoueurs() {
 
+        globalPanelAutreJoueur.setPreferredSize(new Dimension(1000,200));
+
         //AJ1
+
+        globalPanelAJ1.setPreferredSize(new Dimension(333,200));
 
         panelChampAJ1_1.add(champAJ1_1);
         panelChampAJ1_2.add(champAJ1_2);
@@ -335,6 +305,9 @@ public class Vue extends JFrame {
         globalPanelNbPatateAJ1.add(nbPatateChmp1_2, BorderLayout.CENTER);
 
         //AJ2
+
+        globalPanelAJ2.setPreferredSize(new Dimension(333,200));
+
         panelChampAJ2_1.add(champAJ2_1);
         panelChampAJ2_2.add(champAJ2_2);
         panelChampAJ2_3.add(champAJ2_3);
@@ -348,6 +321,9 @@ public class Vue extends JFrame {
         globalPanelNbPatateAJ2.add(nbPatateChmp2_2, BorderLayout.CENTER);
 
         //AJ3
+
+        globalPanelAJ3.setPreferredSize(new Dimension(333,200));
+
         panelChampAJ3_1.add(champAJ3_1);
         panelChampAJ3_2.add(champAJ3_2);
         panelChampAJ3_3.add(champAJ3_3);
@@ -398,41 +374,14 @@ public class Vue extends JFrame {
         panelGlobalChampsPerso.add(champPerso3, BorderLayout.SOUTH);
         panelGlobalChampsPerso.add(champPerso2, BorderLayout.CENTER);
 
+        //////////////////////Interaction//////////////////////
+
+
+        globalPanelSectionCentrale.add(panelInteraction.getPanelInteraction(), BorderLayout.EAST);
 
         globalPanelSectionCentrale.add(panelGlobalChampsPerso, BorderLayout.CENTER);
 
-        //interactions
-
-        panelCartesLabelsPiochees.add(labelCartePiochee1);
-        panelCartesLabelsPiochees.add(labelCartePiochee2);
-
-        panelBoutonsOKCartePiochees.add(okCarte1);
-        panelBoutonsOKCartePiochees.add(okCarte2);
-
-        panelCombosChoix.add(comboChoixCarte1);
-        panelCombosChoix.add(comboChoixCarte2);
-
-        panelGlobalInteraction.add(bouttonPLanter, CENTER_ALIGNMENT);
-        panelGlobalInteraction.add(bouttonPiocher, CENTER_ALIGNMENT);
-
-        panelGlobalInteraction.add(panelCartesLabelsPiochees, CENTER_ALIGNMENT);
-        panelGlobalInteraction.add(panelCombosChoix, CENTER_ALIGNMENT);
-        panelGlobalInteraction.add(panelBoutonsOKCartePiochees, CENTER_ALIGNMENT);
-
-        panelGlobalInteraction.add(cartesGardees, CENTER_ALIGNMENT);
-
-        panelGlobalInteraction.add(cartesgardeesPlantees, CENTER_ALIGNMENT);
-
-        panelGlobalInteraction.add(sensDePlante, CENTER_ALIGNMENT);
-
-        panelGlobalInteraction.add(bouttonPiocherFDT, CENTER_ALIGNMENT);
-
-        panelGlobalInteraction.add(bouttonFinDeTour, CENTER_ALIGNMENT);
-
-        globalPanelSectionCentrale.add(panelGlobalInteraction, BorderLayout.EAST);
-
     }
-
 
     private void creerSectionBasse() {
         //info
@@ -456,8 +405,8 @@ public class Vue extends JFrame {
 
     private void setListener(Controlleur controlleur) {
 
+
+
     }
-
-
 
 }
