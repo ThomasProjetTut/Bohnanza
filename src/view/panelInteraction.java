@@ -7,8 +7,8 @@ import java.awt.*;
 public class PanelInteraction {
 
     //image icone
-    ImageIcon iconeChamp = new ImageIcon("Sprites/champ65x80_test.png");
-    ImageIcon iconeCartesGardees = new ImageIcon("Sprites/cartesGardees200x75.png");
+    ImageIcon iconeCarte = new ImageIcon("Sprites/carteTest.png");
+    ImageIcon iconeCartesGardees = new ImageIcon("Sprites/cartesGardees.png");
 
     //Panels
     JLayeredPane globalPanel;
@@ -84,22 +84,22 @@ public class PanelInteraction {
 
         //Piocher
         bouttonPiocher = new JButton("Piocher");
-        bouttonPiocher.setBounds(50, 100, 150, 40);
+        bouttonPiocher.setBounds(50, 105, 150, 40);
         globalPanelEtape.add(bouttonPiocher);
 
         //Echange
         bouttonEchange = new JButton("Echange");
-        bouttonEchange.setBounds(50, 155, 150, 40);
+        bouttonEchange.setBounds(50, 160, 150, 40);
         globalPanelEtape.add(bouttonEchange);
 
         //Piocher2
         bouttonPiocherFDT = new JButton("Piocher");
-        bouttonPiocherFDT.setBounds(50, 210, 150, 40);
+        bouttonPiocherFDT.setBounds(50, 215, 150, 40);
         globalPanelEtape.add(bouttonPiocherFDT);
 
         //FDT
         bouttonFDT = new JButton("Fin de tour");
-        bouttonFDT.setBounds(50,265,150,40);
+        bouttonFDT.setBounds(50,270,150,40);
         globalPanelEtape.add(bouttonFDT);
 
     }
@@ -117,11 +117,11 @@ public class PanelInteraction {
 
         //cartes piochéees
         cartePiochee1 = new JLabel();
-        cartePiochee1.setIcon(iconeChamp);
+        cartePiochee1.setIcon(iconeCarte);
         cartePiochee1.setBounds(40, 50, 65, 80);
 
         cartePiochee2 = new JLabel();
-        cartePiochee2.setIcon(iconeChamp);
+        cartePiochee2.setIcon(iconeCarte);
         cartePiochee2.setBounds(145, 50, 65, 80);
 
         globalPanelEchange.add(cartePiochee1);

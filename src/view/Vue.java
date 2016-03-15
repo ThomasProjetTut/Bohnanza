@@ -13,10 +13,9 @@ public class Vue extends JFrame {
 
     private Controlleur controlleur;
 
-    private ImageIcon iconeChamps;
-    private ImageIcon iconePanelChamps;
-    private ImageIcon iconeNbPatate;
-    private ImageIcon iconeNomAJ;
+    private ImageIcon iconeCarte;
+    private ImageIcon iconeChampsAJ;
+    private ImageIcon iconeChampsPerso;
 
     private JPanel panelGlobal = new JPanel();
 
@@ -26,65 +25,17 @@ public class Vue extends JFrame {
     private JPanel globalPanelAutreJoueur = new JPanel();
     private JLabel titreChampsAJ = new JLabel("Champs autres joueurs");
 
-    ///////////////champs J1///////////////
-    private JPanel globalPanelAJ1 = new JPanel();
-    private JPanel globalPanelChampsAJ1 = new JPanel();
-    private JPanel globalPanelNbPatateAJ1 = new JPanel();
+    /////////////////Tableaux//////////////////
 
-    private JLabel nomAJ1 = new JLabel("Joueur 1");
+    private JPanel[] globalPanelChampsAJS = new JPanel[3];
+    private JPanel[] globalPanelNBpatate = new JPanel[3];
+    private JPanel[] globalPanelAJS = new JPanel[3];
 
-    private JPanel panelChampAJ1_1 = new JPanel();
-    private JPanel panelChampAJ1_2 = new JPanel();
-    private JPanel panelChampAJ1_3 = new JPanel();
+    private JPanel[] nomsAJS = new JPanel[3];
 
-    private JLabel champAJ1_1 = new JLabel();
-    private JLabel champAJ1_2 = new JLabel();
-    private JLabel champAJ1_3 = new JLabel();
-
-    private JLabel nbPatateChmp1_1 = new JLabel("1_1");
-    private JLabel nbPatateChmp1_2 = new JLabel("1_2");
-    private JLabel nbPatateChmp1_3 = new JLabel("1_3");
-
-
-    ///////////////champs J2///////////////
-    private JPanel globalPanelAJ2 = new JPanel();
-    private JPanel globalPanelChampsAJ2 = new JPanel();
-    private JPanel globalPanelNbPatateAJ2 = new JPanel();
-
-    private JLabel nomAJ2 = new JLabel("Joueur 2");
-
-    private JPanel panelChampAJ2_1 = new JPanel();
-    private JPanel panelChampAJ2_2 = new JPanel();
-    private JPanel panelChampAJ2_3 = new JPanel();
-
-    private JLabel champAJ2_1 = new JLabel();
-    private JLabel champAJ2_2 = new JLabel();
-    private JLabel champAJ2_3 = new JLabel();
-
-    private JLabel nbPatateChmp2_1 = new JLabel("2_1");
-    private JLabel nbPatateChmp2_2 = new JLabel("2_2");
-    private JLabel nbPatateChmp2_3 = new JLabel("2_3");
-
-
-    ///////////////champs J3///////////////
-    private JPanel globalPanelAJ3 = new JPanel();
-    private JPanel globalPanelChampsAJ3 = new JPanel();
-    private JPanel globalPanelNbPatateAJ3 = new JPanel();
-
-    private JLabel nomAJ3 = new JLabel("Joueur 3");
-
-    private JPanel panelChampAJ3_1 = new JPanel();
-    private JPanel panelChampAJ3_2 = new JPanel();
-    private JPanel panelChampAJ3_3 = new JPanel();
-
-    private JLabel champAJ3_1 = new JLabel();
-    private JLabel champAJ3_2 = new JLabel();
-    private JLabel champAJ3_3 = new JLabel();
-
-    private JLabel nbPatateChmp3_1 = new JLabel("3_1");
-    private JLabel nbPatateChmp3_2 = new JLabel("3_2");
-    private JLabel nbPatateChmp3_3 = new JLabel("3_3");
-
+    private JPanel[][] panelChampsAJS = new JPanel[3][3];
+    private JLabel[][] labelChampsAJS = new JLabel[3][3];
+    private JLabel[][] labelNBPatateAJS = new JLabel[3][3];
 
     ///////////////////////////////////////
     /////////Champs autres joueurs/////////
@@ -176,10 +127,9 @@ public class Vue extends JFrame {
 
     private void initAttribut() {
 
-        iconeChamps = new ImageIcon("Sprites/Sprite_champ/champactif.png");
-        iconeNomAJ = new ImageIcon("Sprites/labelNom.png");
-        iconeNbPatate = new ImageIcon("Sprites/nbPatate.png");
-        iconePanelChamps = new ImageIcon("Sprites/champAJ.png");
+        iconeCarte = new ImageIcon("Sprites/carteTest.png");
+        iconeChampsAJ = new ImageIcon("Sprites/champTest.png");
+        iconeChampsPerso = new ImageIcon("Sprites/champPerso.png");
 
         panelGlobal.setLayout(new BorderLayout());
 
@@ -194,40 +144,24 @@ public class Vue extends JFrame {
         //global
         globalPanelAutreJoueur.setLayout(new BorderLayout());
 
+        for (JPanel globalPanel : globalPanelAJS) {
+            globalPanel.setLayout(new BorderLayout());
+            globalPanel.setBorder(new EtchedBorder());
+        }
 
-        //champ J1
-        globalPanelAJ1.setLayout(new BorderLayout());
-        globalPanelChampsAJ1.setLayout(new BorderLayout());
-        globalPanelNbPatateAJ1.setLayout(new BorderLayout());
+        for (JPanel globalPanelChamps : globalPanelChampsAJS) {
+            globalPanelChamps.setLayout(new BorderLayout());
+        }
 
-        champAJ1_1.setIcon(iconeChamps);
-        champAJ1_2.setIcon(iconeChamps);
-        champAJ1_3.setIcon(iconeChamps);
+        for (JPanel globalPanelNbPatates : globalPanelNBpatate) {
+            globalPanelNbPatates.setLayout(new BorderLayout());
+        }
 
-        globalPanelAJ1.setBorder(new EtchedBorder());
-
-        //champ J2
-        globalPanelAJ2.setLayout(new BorderLayout());
-        globalPanelChampsAJ2.setLayout(new BorderLayout());
-        globalPanelNbPatateAJ2.setLayout(new BorderLayout());
-
-        champAJ2_1.setIcon(iconeChamps);
-        champAJ2_2.setIcon(iconeChamps);
-        champAJ2_3.setIcon(iconeChamps);
-
-        globalPanelAJ2.setBorder(new EtchedBorder());
-
-        //champ J3
-        globalPanelAJ3.setLayout(new BorderLayout());
-        globalPanelChampsAJ3.setLayout(new BorderLayout());
-        globalPanelNbPatateAJ3.setLayout(new BorderLayout());
-
-        champAJ3_1.setIcon(iconeChamps);
-        champAJ3_2.setIcon(iconeChamps);
-        champAJ3_3.setIcon(iconeChamps);
-
-        globalPanelAJ3.setBorder(new EtchedBorder());
-
+        for (JLabel[] tabChmp : labelChampsAJS) {
+            for (JLabel labChmp : tabChmp){
+                labChmp.setIcon(iconeChampsAJ);
+            }
+        }
 
     }
 
@@ -262,9 +196,9 @@ public class Vue extends JFrame {
 
         panelGlobalChampsPerso.setPreferredSize(new Dimension(500, 350));
 
-        champPerso1.setIcon(iconeChamps);
-        champPerso2.setIcon(iconeChamps);
-        champPerso3.setIcon(iconeChamps);
+        champPerso1.setIcon(iconeChampsPerso);
+        champPerso2.setIcon(iconeChampsPerso);
+        champPerso3.setIcon(iconeChampsPerso);
 
         //interaction
         panelInteraction = new PanelInteraction();
@@ -288,70 +222,38 @@ public class Vue extends JFrame {
 
         globalPanelAutreJoueur.setPreferredSize(new Dimension(1000,200));
 
-        //AJ1
+        for (JPanel gbP : globalPanelAJS) {
+            gbP.setPreferredSize(new Dimension(333,200));
+        }
 
-        globalPanelAJ1.setPreferredSize(new Dimension(333,200));
 
-        panelChampAJ1_1.add(champAJ1_1);
-        panelChampAJ1_2.add(champAJ1_2);
-        panelChampAJ1_3.add(champAJ1_3);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                panelChampsAJS[i][j].add(labelChampsAJS[i][j]);
 
-        globalPanelChampsAJ1.add(panelChampAJ1_1, BorderLayout.WEST);
-        globalPanelChampsAJ1.add(panelChampAJ1_3, BorderLayout.EAST);
-        globalPanelChampsAJ1.add(panelChampAJ1_2, BorderLayout.CENTER);
+            }
+        }
 
-        globalPanelNbPatateAJ1.add(nbPatateChmp1_1, BorderLayout.WEST);
-        globalPanelNbPatateAJ1.add(nbPatateChmp1_3, BorderLayout.EAST);
-        globalPanelNbPatateAJ1.add(nbPatateChmp1_2, BorderLayout.CENTER);
+        for (int i = 0; i < 3; i++) {
+            globalPanelAJS[i].add(panelChampsAJS[i][0], BorderLayout.WEST);
+            globalPanelAJS[i].add(panelChampsAJS[i][1], BorderLayout.CENTER);
+            globalPanelAJS[i].add(panelChampsAJS[i][2], BorderLayout.EAST);
 
-        //AJ2
+            globalPanelNBpatate[i].add(labelNBPatateAJS[i][0], BorderLayout.WEST);
+            globalPanelNBpatate[i].add(labelNBPatateAJS[i][1], BorderLayout.CENTER);
+            globalPanelNBpatate[i].add(labelNBPatateAJS[i][2], BorderLayout.EAST);
+        }
 
-        globalPanelAJ2.setPreferredSize(new Dimension(333,200));
-
-        panelChampAJ2_1.add(champAJ2_1);
-        panelChampAJ2_2.add(champAJ2_2);
-        panelChampAJ2_3.add(champAJ2_3);
-
-        globalPanelChampsAJ2.add(panelChampAJ2_1, BorderLayout.WEST);
-        globalPanelChampsAJ2.add(panelChampAJ2_3, BorderLayout.EAST);
-        globalPanelChampsAJ2.add(panelChampAJ2_2, BorderLayout.CENTER);
-
-        globalPanelNbPatateAJ2.add(nbPatateChmp2_1, BorderLayout.WEST);
-        globalPanelNbPatateAJ2.add(nbPatateChmp2_3, BorderLayout.EAST);
-        globalPanelNbPatateAJ2.add(nbPatateChmp2_2, BorderLayout.CENTER);
-
-        //AJ3
-
-        globalPanelAJ3.setPreferredSize(new Dimension(333,200));
-
-        panelChampAJ3_1.add(champAJ3_1);
-        panelChampAJ3_2.add(champAJ3_2);
-        panelChampAJ3_3.add(champAJ3_3);
-
-        globalPanelChampsAJ3.add(panelChampAJ3_1, BorderLayout.WEST);
-        globalPanelChampsAJ3.add(panelChampAJ3_3, BorderLayout.EAST);
-        globalPanelChampsAJ3.add(panelChampAJ3_2, BorderLayout.CENTER);
-
-        globalPanelNbPatateAJ3.add(nbPatateChmp3_1, BorderLayout.WEST);
-        globalPanelNbPatateAJ3.add(nbPatateChmp3_3, BorderLayout.EAST);
-        globalPanelNbPatateAJ3.add(nbPatateChmp3_2, BorderLayout.CENTER);
 
         //global
-
-        globalPanelAJ1.setBackground(Color.orange);
 
         globalPanelAJ1.add(nomAJ1, BorderLayout.NORTH);
         globalPanelAJ1.add(globalPanelNbPatateAJ1, BorderLayout.SOUTH);
         globalPanelAJ1.add(globalPanelChampsAJ1, BorderLayout.CENTER);
 
-        globalPanelAJ2.setBackground(Color.CYAN);
-
         globalPanelAJ2.add(nomAJ2, BorderLayout.NORTH);
         globalPanelAJ2.add(globalPanelNbPatateAJ2, BorderLayout.SOUTH);
         globalPanelAJ2.add(globalPanelChampsAJ2, BorderLayout.CENTER);
-
-
-        globalPanelAJ3.setBackground(Color.YELLOW);
 
         globalPanelAJ3.add(nomAJ3, BorderLayout.NORTH);
         globalPanelAJ3.add(globalPanelNbPatateAJ3, BorderLayout.SOUTH);
