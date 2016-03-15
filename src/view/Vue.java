@@ -31,7 +31,7 @@ public class Vue extends JFrame {
     private JPanel[] globalPanelNBpatate = new JPanel[3];
     private JPanel[] globalPanelAJS = new JPanel[3];
 
-    private JPanel[] nomsAJS = new JPanel[3];
+    private JLabel[] nomsAJS = new JLabel[3];
 
     private JPanel[][] panelChampsAJS = new JPanel[3][3];
     private JLabel[][] labelChampsAJS = new JLabel[3][3];
@@ -142,6 +142,24 @@ public class Vue extends JFrame {
     private void initAttributChampsAutreJoueurs() {
 
         //global
+        for (int i = 0; i < 3; i++) {
+            globalPanelChampsAJS[i] = new JPanel();
+            globalPanelNBpatate[i] = new JPanel();
+            globalPanelAJS[i] = new JPanel();
+
+            nomsAJS[i] = new JLabel("Nom joueur");
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                panelChampsAJS[i][j] = new JPanel();
+                labelChampsAJS[i][j] = new JLabel();
+                labelNBPatateAJS[i][j] = new JLabel("25555");
+
+            }
+        }
+
+
         globalPanelAutreJoueur.setLayout(new BorderLayout());
 
         for (JPanel globalPanel : globalPanelAJS) {
@@ -162,6 +180,10 @@ public class Vue extends JFrame {
                 labChmp.setIcon(iconeChampsAJ);
             }
         }
+
+        labelChampsAJS[0][1].setIcon(iconeCarte);
+        labelChampsAJS[1][1].setIcon(iconeCarte);
+        labelChampsAJS[2][1].setIcon(iconeCarte);
 
     }
 
@@ -242,28 +264,20 @@ public class Vue extends JFrame {
             globalPanelNBpatate[i].add(labelNBPatateAJS[i][0], BorderLayout.WEST);
             globalPanelNBpatate[i].add(labelNBPatateAJS[i][1], BorderLayout.CENTER);
             globalPanelNBpatate[i].add(labelNBPatateAJS[i][2], BorderLayout.EAST);
+
+            globalPanelAJS[i].add(nomsAJS[i], BorderLayout.NORTH);
+            globalPanelAJS[i].add(globalPanelChampsAJS[i], BorderLayout.CENTER);
+            globalPanelAJS[i].add(globalPanelNBpatate[i], BorderLayout.SOUTH);
+
+
+
         }
-
-
-        //global
-
-        globalPanelAJ1.add(nomAJ1, BorderLayout.NORTH);
-        globalPanelAJ1.add(globalPanelNbPatateAJ1, BorderLayout.SOUTH);
-        globalPanelAJ1.add(globalPanelChampsAJ1, BorderLayout.CENTER);
-
-        globalPanelAJ2.add(nomAJ2, BorderLayout.NORTH);
-        globalPanelAJ2.add(globalPanelNbPatateAJ2, BorderLayout.SOUTH);
-        globalPanelAJ2.add(globalPanelChampsAJ2, BorderLayout.CENTER);
-
-        globalPanelAJ3.add(nomAJ3, BorderLayout.NORTH);
-        globalPanelAJ3.add(globalPanelNbPatateAJ3, BorderLayout.SOUTH);
-        globalPanelAJ3.add(globalPanelChampsAJ3, BorderLayout.CENTER);
 
         globalPanelAutreJoueur.add(titreChampsAJ, BorderLayout.NORTH);
 
-        globalPanelAutreJoueur.add(globalPanelAJ1, BorderLayout.WEST);
-        globalPanelAutreJoueur.add(globalPanelAJ3, BorderLayout.EAST);
-        globalPanelAutreJoueur.add(globalPanelAJ2, BorderLayout.CENTER);
+        globalPanelAutreJoueur.add(globalPanelAJS[0], BorderLayout.WEST);
+        globalPanelAutreJoueur.add(globalPanelAJS[1], BorderLayout.EAST);
+        globalPanelAutreJoueur.add(globalPanelAJS[2], BorderLayout.CENTER);
 
     }
 

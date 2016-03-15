@@ -82,7 +82,6 @@ public class Controlleur {
         vueCon = new vueConnexion(this);
 
         vue = new Vue(this);
-        vueDons = new vueDons(this);
         joueurs = new Joueur[4];
         Joueur joueur1 = new Joueur("Joueur 1", 1);
         Joueur joueur2 = new Joueur("Joueur 2", 2);
