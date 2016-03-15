@@ -16,6 +16,8 @@ public class Vue extends JFrame {
     private ImageIcon iconeCarte;
     private ImageIcon iconeChampsAJ;
     private ImageIcon iconeChampsPerso;
+    private ImageIcon iconeNomAJ;
+    private ImageIcon iconNbPatate;
 
     private JPanel panelGlobal = new JPanel();
 
@@ -35,6 +37,7 @@ public class Vue extends JFrame {
 
     private JPanel[][] panelChampsAJS = new JPanel[3][3];
     private JLabel[][] labelChampsAJS = new JLabel[3][3];
+    private JPanel[][] panelNbPatateAJS = new JPanel[3][3];
     private JLabel[][] labelNBPatateAJS = new JLabel[3][3];
 
     ///////////////////////////////////////
@@ -130,6 +133,8 @@ public class Vue extends JFrame {
         iconeCarte = new ImageIcon("Sprites/carteTest.png");
         iconeChampsAJ = new ImageIcon("Sprites/champTest.png");
         iconeChampsPerso = new ImageIcon("Sprites/champPerso.png");
+        iconeNomAJ = new ImageIcon("Sprites/nomAJTest.png");
+        iconNbPatate = new ImageIcon("Sprites/nbPatateChamp.png");
 
         panelGlobal.setLayout(new BorderLayout());
 
@@ -147,18 +152,21 @@ public class Vue extends JFrame {
             globalPanelNBpatate[i] = new JPanel();
             globalPanelAJS[i] = new JPanel();
 
-            nomsAJS[i] = new JLabel("Nom joueur");
+            globalPanelAJS[i].setBackground(Color.white);
+
+            nomsAJS[i] = new JLabel();
+            nomsAJS[i].setIcon(iconeNomAJ);
+            nomsAJS[i].setBorder(new EtchedBorder());
         }
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 panelChampsAJS[i][j] = new JPanel();
                 labelChampsAJS[i][j] = new JLabel();
-                labelNBPatateAJS[i][j] = new JLabel("25555");
-
+                panelNbPatateAJS[i][j] = new JPanel();
+                labelNBPatateAJS[i][j] = new JLabel();
             }
         }
-
 
         globalPanelAutreJoueur.setLayout(new BorderLayout());
 
@@ -181,9 +189,11 @@ public class Vue extends JFrame {
             }
         }
 
-        labelChampsAJS[0][1].setIcon(iconeCarte);
-        labelChampsAJS[1][1].setIcon(iconeCarte);
-        labelChampsAJS[2][1].setIcon(iconeCarte);
+        for (JLabel[] tabNbPatate : labelNBPatateAJS) {
+            for (JLabel labChmp : tabNbPatate){
+                labChmp.setIcon(iconNbPatate);
+            }
+        }
 
     }
 
@@ -192,15 +202,18 @@ public class Vue extends JFrame {
 
         //info
 
-        panelGlobalInformation.setBackground(Color.YELLOW);
+        //panelGlobalInformation.setBackground(Color.YELLOW);
         panelGlobalInformation.setPreferredSize(new Dimension(300, 200));
+        panelGlobalInformation.setBorder(new EtchedBorder());
 
         //main
 
         panelGlobalMain.setPreferredSize(new Dimension(400,200));
+        panelGlobalMain.setBorder(new EtchedBorder());
 
         //chat
         panelGlobalChat.setLayout(new BorderLayout());
+        panelGlobalChat.setBorder(new EtchedBorder());
 
         JScrollPane chatTextPane = new JScrollPane(chatTexte,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -252,18 +265,23 @@ public class Vue extends JFrame {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 panelChampsAJS[i][j].add(labelChampsAJS[i][j]);
+                panelNbPatateAJS[i][j].add(labelNBPatateAJS[i][j]);
 
             }
         }
 
-        for (int i = 0; i < 3; i++) {
-            globalPanelAJS[i].add(panelChampsAJS[i][0], BorderLayout.WEST);
-            globalPanelAJS[i].add(panelChampsAJS[i][1], BorderLayout.CENTER);
-            globalPanelAJS[i].add(panelChampsAJS[i][2], BorderLayout.EAST);
 
-            globalPanelNBpatate[i].add(labelNBPatateAJS[i][0], BorderLayout.WEST);
-            globalPanelNBpatate[i].add(labelNBPatateAJS[i][1], BorderLayout.CENTER);
-            globalPanelNBpatate[i].add(labelNBPatateAJS[i][2], BorderLayout.EAST);
+
+        for (int i = 0; i < 3; i++) {
+            globalPanelChampsAJS[i].add(panelChampsAJS[i][0], BorderLayout.WEST);
+            globalPanelChampsAJS[i].add(panelChampsAJS[i][2], BorderLayout.EAST);
+            globalPanelChampsAJS[i].add(panelChampsAJS[i][1], BorderLayout.CENTER);
+
+
+
+            globalPanelNBpatate[i].add(panelNbPatateAJS[i][0], BorderLayout.WEST);
+            globalPanelNBpatate[i].add(panelNbPatateAJS[i][1], BorderLayout.CENTER);
+            globalPanelNBpatate[i].add(panelNbPatateAJS[i][2], BorderLayout.EAST);
 
             globalPanelAJS[i].add(nomsAJS[i], BorderLayout.NORTH);
             globalPanelAJS[i].add(globalPanelChampsAJS[i], BorderLayout.CENTER);
