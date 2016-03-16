@@ -158,4 +158,30 @@ public class PanelInteraction {
     public JLayeredPane getPanelInteraction(){
         return globalPanel;
     }
+
+    public JButton[] getEtapes(){
+        JButton[] tabretour = new JButton[5];
+        tabretour[0] = bouttonPlanter;
+        tabretour[1] = bouttonPiocher;
+        tabretour[2] = bouttonEchange;
+        tabretour[3] = bouttonPiocherFDT;
+        tabretour[4] = bouttonFDT;
+
+        return tabretour;
+    }
+    public JComboBox[] getChoix(){
+        JComboBox[] tabRetour = new JComboBox[2];
+        tabRetour[0] = choix1;
+        tabRetour[1] = choix2;
+
+        return tabRetour;
+    }
+    public JButton[] getOk(){
+        JButton[] tabRetour = new JButton[2];
+
+        tabRetour[0] = ok1;
+        tabRetour[1] = ok2;
+
+        return tabRetour;
+    }
 }

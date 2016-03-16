@@ -287,8 +287,6 @@ public class Vue extends JFrame {
             globalPanelAJS[i].add(globalPanelChampsAJS[i], BorderLayout.CENTER);
             globalPanelAJS[i].add(globalPanelNBpatate[i], BorderLayout.SOUTH);
 
-
-
         }
 
         globalPanelAutreJoueur.add(titreChampsAJ, BorderLayout.NORTH);
@@ -337,10 +335,43 @@ public class Vue extends JFrame {
 
     }
 
-    private void setListener(Controlleur controlleur) {
+    private void setListener(Controlleur controlleur){
+        for (JButton button : getEtapes()) {
+            button.addActionListener(controlleur);
+        }
 
+        for (JComboBox choix : getChoix()) {
+            choix.addActionListener(controlleur);
+        }
 
+        for (JButton button : getOk()) {
+            button.addActionListener(controlleur);
+        }
 
+        champPerso1.addActionListener(controlleur);
+        champPerso2.addActionListener(controlleur);
+        champPerso3.addActionListener(controlleur);
+
+    }
+
+    //getters
+    public JButton[] getEtapes(){
+        return panelInteraction.getEtapes();
+    }
+    public JButton[] getOk(){
+        return panelInteraction.getOk();
+    }
+    public JComboBox[] getChoix(){
+        return panelInteraction.getChoix();
+    }
+    public JButton[] getChamps(){
+        JButton[] tabRetour = new JButton[3];
+
+        tabRetour[0] = champPerso1;
+        tabRetour[1] = champPerso2;
+        tabRetour[2] = champPerso3;
+
+        return tabRetour;
     }
 
 }

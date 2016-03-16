@@ -11,12 +11,15 @@ import view.Vue;
 import view.vueConnexion;
 import view.vueDons;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Controlleur {
+public class Controlleur implements ActionListener {
 
     private int compteurTour;
 
@@ -32,6 +35,12 @@ public class Controlleur {
 
     private ServeurTCP serveurTCP;
     private ClientTCP clientTCP;
+
+    private ArrayList<JComponent> elementInteractif = null;
+    private JButton[] etapes = null;
+    private JButton[] oks = null;
+    private JComboBox[] choix = null;
+    private JButton[] champs = null;
 
     public Controlleur() {
         initAttributs();
@@ -88,6 +97,15 @@ public class Controlleur {
         Joueur joueur3 = new Joueur("Joueur 3", 3);
         Joueur joueur4 = new Joueur("Joueur 4", 4);
 
+        elementInteractif = new ArrayList<>();
+
+        etapes = vue.getEtapes();
+        champs = vue.getChamps();
+        oks = vue.getOk();
+        choix = vue.getChoix();
+
+        ajouterElementInteractif(etapes);
+
         nbCarteChamps = new int[4][3];
 
         joueurs[0] = joueur1;
@@ -131,6 +149,7 @@ public class Controlleur {
     }
 
     private void phaseDePlantage() {
+        elementInteractif.clear();
 
 
     }
@@ -160,6 +179,23 @@ public class Controlleur {
 
     }
 
+    public void ajouterElementInteractif(JComponent[] tabElement){
+
+        for (JComponent element : tabElement) {
+            elementInteractif.add(element);
+        }
+
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+
+
+
+
+    }
 
 }
 
