@@ -34,22 +34,21 @@ public class VueDepart extends JFrame{
 
 
     private void initAttribut() {
-
         panelGlobal.setPreferredSize(new Dimension(1000, 750));
-
-        bouttonCommencer.setBounds();
+        bouttonCommencer.setBounds(305, 515, 400, 75);
     }
 
     private void creerFenetre() {
-
-
-
+        panelGlobal.add(bouttonCommencer);
+        getContentPane().add(panelGlobal);
     }
 
     public void setListener(ControlleurDepart controlleurDepart){
-
-
+        bouttonCommencer.addActionListener(controlleurDepart);
     }
 
+    public JButton getBouttonCommencer(){
+        return bouttonCommencer;
+    }
 
 }

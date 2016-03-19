@@ -24,17 +24,12 @@ public class Controlleur implements ActionListener {
 
     private int compteurTour;
 
-    private vueConnexion vueCon;
-
     private Vue vue;
     private vueDons vueDons;
     private Joueur joueur;
     private Pioche pioche;
     private Zone zonePioche;
     private int[][] nbCarteChamps;
-
-    private ServeurTCP serveurTCP;
-    private ClientTCP clientTCP;
 
     private JButton[] etapes = null;
     private JButton[] oks = null;
@@ -243,47 +238,7 @@ public class Controlleur implements ActionListener {
 
     }
 
-    //Partie multi
-    public void InitClient(String ipServ, int port) throws IOException {
-        System.out.println("Lancement du client.");
-        clientTCP = new ClientTCP(this, ipServ, port);
-        clientTCP.Start();
-    }
-    public void InitServeur(int port) throws IOException {
-        System.out.println("Lancement du serveur.");
-        serveurTCP = new ServeurTCP(this, port);
-        serveurTCP.Start();
-    }
-    public void resetClient() throws IOException {
 
-        if (clientTCP == null)
-            return;
-
-        if (!clientTCP.SocketIsClose())
-            clientTCP.StopClient();
-
-        clientTCP = null;
-        vueCon.reiniButton();
-        System.out.println("Déconnection réussie.");
-    }
-    public void resetServeur() throws IOException {
-
-        if (serveurTCP == null)
-            return;
-
-        if (!serveurTCP.SocketIsClose())
-            serveurTCP.StopServeur();
-
-        serveurTCP = null;
-        vueCon.reiniButton();
-        System.out.println("Le serveur à bien été stoppé.");
-    }
-    public ServeurTCP getServeurTCP() {
-        return serveurTCP;
-    }
-    public ClientTCP getClientTCP() {
-        return clientTCP;
-    }
 
 }
 

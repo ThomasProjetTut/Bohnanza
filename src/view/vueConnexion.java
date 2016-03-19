@@ -3,6 +3,7 @@ package view;
 import Multijoueurs.ClientTCP;
 import Multijoueurs.ServeurTCP;
 import controller.Controlleur;
+import controller.ControlleurDepart;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -26,18 +27,18 @@ public class vueConnexion extends JFrame {
     private JTextField portField = null;
     private JButton connectButton = null;
 
-    private Controlleur control;
+    private ControlleurDepart control;
 
-    public vueConnexion(final Controlleur controlleur) {
-        control = controlleur;
+    public vueConnexion(final ControlleurDepart controlleurDepart) {
+        control = controlleurDepart;
 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 try {
-                    controlleur.resetClient();
-                    controlleur.resetServeur();
+                    control.resetClient();
+                    control.resetServeur();
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
