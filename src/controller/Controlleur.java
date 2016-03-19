@@ -56,6 +56,7 @@ public class Controlleur implements ActionListener {
     }
 
     public void InitAttributs() {
+        System.out.println("init");
 
         vue = new Vue(this);
         //joueur = new Joueur("Joueur 1", 1);
@@ -99,7 +100,9 @@ public class Controlleur implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("action performed");
         if (e.getSource() == etapes[0] && etapeEnCours == ETAPE_DEBUT && etapeTerminee){
+            System.out.println("on plante");
             etapePlante();
         }else if (e.getSource() == etapes[1] && etapeEnCours == ETAPE_PLANTE && etapeTerminee){
             etapePioche();

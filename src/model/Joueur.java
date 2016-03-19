@@ -161,14 +161,13 @@ public class Joueur {
     }
 
     public boolean verifChamps(Carte carte, Champ champ){
-        ArrayList<Integer> listNumChamps=new ArrayList<>();
-        listNumChamps.add(0);
-        listNumChamps.add(1);
-        listNumChamps.add(2);
-        listNumChamps.remove(champ.getNumeroChamp() - 1);
-        for (Integer num:listNumChamps) {
-            if (carte.getIdCarte() == champs.get(num).derniereCarte().getIdCarte()){
-                return false;
+        for (Champ champVerif : champs) {
+            if(champVerif != champ){
+                if(champVerif.patates.size() > 0){
+                    if (carte.getIdCarte() == champVerif.derniereCarte().getIdCarte()){
+                        return false;
+                    }
+                }
             }
         }
 
