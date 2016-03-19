@@ -38,7 +38,7 @@ public class ClientTCP {
     }
 
     public void StopClient() throws IOException {
-        EnvoyerMessages.Envoyer(EnvoyerMessages.MSG_DECO_CLIENT, echange);
+        EnvoyerMessages.DECONNEXION(echange);
         echange.StopEchange();
     }
 }

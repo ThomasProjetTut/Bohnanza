@@ -1,5 +1,6 @@
 package Multijoueurs;
 
+import Multijoueurs.Echange;
 import controller.Controlleur;
 
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class ServeurTCP {
     }
 
     public void kickClient(Echange ech) throws IOException {
-        EnvoyerMessages.Envoyer(EnvoyerMessages.MSG_FORCE_KICK_CLIENT, ech);
+        EnvoyerMessages.FORCE_KICK(ech);
     }
 
     public void deconnecterClient(Echange ech) throws IOException {
@@ -126,7 +127,7 @@ class Connexion extends Thread {
 
                 serverTCP.GetEchange().add(echange);
 
-                EnvoyerMessages.Envoyer(EnvoyerMessages.MSG_CONNEXION_CLIENT, echange);
+                EnvoyerMessages.CONNEXION(echange);
                 System.out.println("Joueur numéro "+echange.getIdJoueur()+" connecté.");
 
             } catch (IOException e) {

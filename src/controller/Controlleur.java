@@ -144,7 +144,6 @@ public class Controlleur implements ActionListener {
         }
     }
 
-
     //Partie déroulement du jeu
     //etape
     public void etapePlante(){
@@ -239,8 +238,6 @@ public class Controlleur implements ActionListener {
         }
 
     }
-
-
 
     //Partie multi
     public void InitClient(String ipServ, int port) throws IOException {
