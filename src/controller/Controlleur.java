@@ -52,8 +52,13 @@ public class Controlleur implements ActionListener {
     private final int ETAPE_PLANTE_ECHANGE = 4;
     private final int ETAPE_PLANTE_PIOCHE_FDT = 5;
 
-    public Controlleur() {
+    public Controlleur(Joueur joueur) {
+        this.joueur = joueur;
         initAttributs();
+
+    }
+
+    public void jouerTour(){
         debutDuTour();
     }
 
@@ -62,7 +67,6 @@ public class Controlleur implements ActionListener {
         //vueCon = new vueConnexion(this);
 
         vue = new Vue(this);
-        joueur = new Joueur("Joueur 1", 1);
 
         etapes = vue.getEtapes();
         champs = vue.getChamps();
