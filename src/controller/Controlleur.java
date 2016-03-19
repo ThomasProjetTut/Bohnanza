@@ -33,6 +33,7 @@ public class Controlleur implements ActionListener {
     private int etapeEnCours;
     private boolean etapeTerminee = false;
     private int nbPlants;
+    private int nbCarteEchangeGerees;
 
     private final int ETAPE_DEBUT = 0;
     private final int ETAPE_PLANTE = 1;
@@ -100,7 +101,11 @@ public class Controlleur implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("action performed");
+        System.out.println("///////////action performed////////////");
+        System.out.println("etape en cours = " + etapeEnCours);
+        System.out.println("etape terminée = " + etapeTerminee);
+        System.out.println("///////////action performed////////////");
+
         if (e.getSource() == etapes[0] && etapeEnCours == ETAPE_DEBUT && etapeTerminee){
             System.out.println("on plante");
             etapePlante();
@@ -169,6 +174,7 @@ public class Controlleur implements ActionListener {
     private void etapeEchange() {
         System.out.println("On echange");
         etapeEnCours = ETAPE_ECHANGE;
+        nbCarteEchangeGerees = 0;
         etapeTerminee = false;
     }
 
@@ -199,21 +205,33 @@ public class Controlleur implements ActionListener {
         System.out.println("On garde la carte" + idCarte);
         //ajouter carte zone pioche
 
-        etapeEnCours = ETAPE_PLANTE_ECHANGE;
+        nbCarteEchangeGerees++;
+
+        if(nbCarteEchangeGerees == 2){
+            etapeEnCours = ETAPE_PLANTE_ECHANGE;
+        }
     }
 
     private void donnerCarte(int idCarte) {
         System.out.println("On donne la carte" + idCarte);
         //ouverture fenetre don
 
-        etapeEnCours = ETAPE_PLANTE_ECHANGE;
+        nbCarteEchangeGerees++;
+
+        if(nbCarteEchangeGerees == 2){
+            etapeEnCours = ETAPE_PLANTE_ECHANGE;
+        }
     }
 
     private void echangerCarte(int idCarte) {
         System.out.println("On ehcnage la carte" + idCarte);
         //ouverture fenetre échange
 
-        etapeEnCours = ETAPE_PLANTE_ECHANGE;
+        nbCarteEchangeGerees++;
+
+        if(nbCarteEchangeGerees == 2){
+            etapeEnCours = ETAPE_PLANTE_ECHANGE;
+        }
     }
 
 
