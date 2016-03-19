@@ -250,6 +250,10 @@ public class Controlleur implements ActionListener {
 
     }
 
+    public Joueur getJoueur(){
+        return joueur;
+    }
+
 
 
 }

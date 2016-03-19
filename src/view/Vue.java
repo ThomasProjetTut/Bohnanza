@@ -2,12 +2,14 @@ package view;
 
 import controller.Controlleur;
 import javafx.scene.layout.BorderWidths;
+import model.Carte.Carte;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
-import java.util.ArrayList;
+import java.awt.List;
+import java.util.*;
 
 public class Vue extends JFrame {
 
@@ -18,6 +20,16 @@ public class Vue extends JFrame {
     private ImageIcon iconeChampsPerso;
     private ImageIcon iconeNomAJ;
     private ImageIcon iconNbPatate;
+
+    //Cartes
+    private ImageIcon iconeTecktonik;
+    private ImageIcon iconeTentacule;
+    private ImageIcon iconeTequilla;
+    private ImageIcon iconeTerroriste;
+    private ImageIcon iconeTestosterone;
+    private ImageIcon iconeTetenucleaire;
+    private ImageIcon iconeTetraplegique;
+    private ImageIcon iconeTwerk;
 
     private JPanel panelGlobal = new JPanel();
 
@@ -92,9 +104,8 @@ public class Vue extends JFrame {
 
     /////////////////Main
 
-    private JPanel panelGlobalMain = new JPanel();
-
-    private JLabel labelMain = new JLabel();
+    private JLayeredPane panelGlobalMain = new JLayeredPane();
+    private ArrayList<JLabel> mainLabel;
 
 ///?????????????????
 
@@ -135,6 +146,16 @@ public class Vue extends JFrame {
         iconeChampsPerso = new ImageIcon("Sprites/champPerso.png");
         iconeNomAJ = new ImageIcon("Sprites/nomAJTest.png");
         iconNbPatate = new ImageIcon("Sprites/nbPatateChamp.png");
+
+        //cartes
+        iconeTecktonik = new ImageIcon("Sprites/carteTest.png");
+        iconeTentacule = new ImageIcon("Sprites/carteTest.png");
+        iconeTequilla = new ImageIcon("Sprites/carteTest.png");
+        iconeTerroriste = new ImageIcon("Sprites/carteTest.png");
+        iconeTestosterone = new ImageIcon("Sprites/carteTest.png");
+        iconeTetenucleaire = new ImageIcon("Sprites/carteTest.png");
+        iconeTetraplegique = new ImageIcon("Sprites/carteTest.png");
+        iconeTwerk = new ImageIcon("Sprites/carteTest.png");
 
         panelGlobal.setLayout(new BorderLayout());
 
@@ -211,6 +232,8 @@ public class Vue extends JFrame {
         panelGlobalMain.setPreferredSize(new Dimension(400,200));
         panelGlobalMain.setBorder(new EtchedBorder());
 
+        mainLabel = new ArrayList<>();
+
         //chat
         panelGlobalChat.setLayout(new BorderLayout());
         panelGlobalChat.setBorder(new EtchedBorder());
@@ -222,7 +245,6 @@ public class Vue extends JFrame {
         panelGlobalChat.add(chatLigne, BorderLayout.SOUTH);
         panelGlobalChat.add(chatTextPane, BorderLayout.CENTER);
         panelGlobalChat.setPreferredSize(new Dimension(300, 200));
-
 
     }
 
@@ -320,7 +342,6 @@ public class Vue extends JFrame {
         panelGlobalInformation.add(textAreaInformation);
 
         //main
-        panelGlobalMain.add(labelMain);
 
 
         //chat
@@ -351,6 +372,62 @@ public class Vue extends JFrame {
         champPerso1.addActionListener(controlleur);
         champPerso2.addActionListener(controlleur);
         champPerso3.addActionListener(controlleur);
+
+    }
+
+    public void actualiserMain(){
+        mainLabel.clear();
+        for (Carte carte : controlleur.getJoueur().getMain()){
+            switch (carte.getIdCarte()){
+                case 1 :
+                    mainLabel.add(new JLabel(iconeTecktonik));
+                    break;
+                case 2 :
+                    mainLabel.add(new JLabel(iconeTentacule));
+                    break;
+                case 3 :
+                    mainLabel.add(new JLabel(iconeTequilla));
+                    break;
+                case 4 :
+                    mainLabel.add(new JLabel(iconeTerroriste));
+                    break;
+                case 5 :
+                    mainLabel.add(new JLabel(iconeTestosterone));
+                    break;
+                case 6 :
+                    mainLabel.add(new JLabel(iconeTetenucleaire));
+                    break;
+                case 7 :
+                    mainLabel.add(new JLabel(iconeTetraplegique));
+                    break;
+                case 8 :
+                    mainLabel.add(new JLabel(iconeTwerk));
+                    break;
+            }
+        }
+
+        actualiserAffichageMain();
+
+
+    }
+
+    private void actualiserAffichageMain() {
+        int espaceEntreCarte;
+
+        if(mainLabel.size()>0){
+            espaceEntreCarte = 400%(65*mainLabel.size())/mainLabel.size();
+        }else{
+            espaceEntreCarte = 0;
+        }
+
+        while(mainLabel.size()*(75+espaceEntreCarte) > 400){
+            espaceEntreCarte -= 5;
+        }
+
+        for (int i = mainLabel.size() - 1; i >=  0; i--){
+            mainLabel.get(i).setBounds(10 + i*(65 + espaceEntreCarte), 60, 65, 80);
+            panelGlobalMain.add(mainLabel.get(i));
+        }
 
     }
 
