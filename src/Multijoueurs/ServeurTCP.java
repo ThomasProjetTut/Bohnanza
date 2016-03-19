@@ -45,6 +45,7 @@ public class ServeurTCP {
 
         Pioche pioche = joueur.getControlleur().InitPioche();
         joueur.getControlleur().InitAttributs();
+        joueur.getControlleur().RecoisMain();
 
         try {
             for (Echange ech : echange) {
