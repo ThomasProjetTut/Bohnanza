@@ -44,6 +44,7 @@ public class EvaluationMessages {
                     controlleur.getClientTCP().GetEchange().getJoueur().addCarte(Carte.createCarteByID(dataInputStream.readInt()));
 
                 controlleur.getClientTCP().GetEchange().getJoueur().afficherMain();
+                controlleur.getClientTCP().GetEchange().getControlleur().actualiserAffichageMain();
                 break;
         }
     }

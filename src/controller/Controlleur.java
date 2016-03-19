@@ -58,6 +58,10 @@ public class Controlleur implements ActionListener {
         debutDuTour();
     }
 
+    public void actualiserAffichageMain() {
+        vue.actualiserMain();
+    }
+
     public void InitAttributs() {
 
         vue = new Vue(this);
@@ -89,10 +93,6 @@ public class Controlleur implements ActionListener {
 
         joueur.recoisMain(pioche);
         joueur.afficherMain();
-    }
-
-    public void InitPioche(Pioche pioche) {
-        this.pioche = pioche;
     }
 
     public Pioche InitPioche() {

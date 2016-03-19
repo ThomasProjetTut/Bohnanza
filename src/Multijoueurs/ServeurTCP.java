@@ -33,6 +33,7 @@ public class ServeurTCP {
         echange = new ArrayList<>();
 		conn = new ServerSocket(port);
         connexion = new Connexion(conn, this, controlleur);
+        control = controlleur;
 	}
 
 	public void Start() throws IOException {
@@ -58,6 +59,7 @@ public class ServeurTCP {
         }
 
         control.disposeVueConnexion();
+        joueur.getControlleur().actualiserAffichageMain();
 
         UpdateGame();
     }
