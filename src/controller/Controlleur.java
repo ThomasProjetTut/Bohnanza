@@ -48,6 +48,7 @@ public class Controlleur implements ActionListener {
     private final int ETAPE_ECHANGE = 3;
     private final int ETAPE_PLANTE_ECHANGE = 4;
     private final int ETAPE_PLANTE_PIOCHE_FDT = 5;
+    private final int ETAPE_TOUR_FINI = 6;
 
     public Controlleur(Joueur joueur) {
         this.joueur = joueur;
@@ -184,7 +185,7 @@ public class Controlleur implements ActionListener {
 
     private void etapeFDT() {
         System.out.println("On FDT");
-        etapeEnCours = ETAPE_DEBUT;
+        etapeEnCours = ETAPE_TOUR_FINI;
         etapeTerminee = true;
     }
 
