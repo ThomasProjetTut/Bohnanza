@@ -1,6 +1,5 @@
 package Multijoueurs;
 
-import controller.Controlleur;
 import controller.ControlleurDepart;
 import model.Joueur;
 import model.Pioche;
@@ -42,7 +41,7 @@ public class ServeurTCP {
 
     public void CreateGame() {
 
-        joueur = new Joueur("Joueur 0", 0);
+        joueur = new Joueur("Joueur 0", 0, control);
 
         Pioche pioche = joueur.getControlleur().InitPioche();
         joueur.getControlleur().InitAttributs();
@@ -61,7 +60,8 @@ public class ServeurTCP {
         control.disposeVueConnexion();
         joueur.getControlleur().actualiserAffichageMain();
 
-        UpdateGame();
+        UpdateGameFDT(joueur.getIdJoueur());
+
     }
 
     public boolean SocketIsClose() {
@@ -69,7 +69,20 @@ public class ServeurTCP {
     }
 
     // Déroulement du jeu
-    public void UpdateGame() {
+    public void UpdateGameFDT(int IDJoueur) {
+
+        if (IDJoueur != 0) {
+            try {
+                EnvoyerMessages.FIN_DU_TOUR(getEchangeByID(IDJoueur));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            joueur.getControlleur().jouerTour();
+        }
+
+
 
     }
 

@@ -1,25 +1,17 @@
 package controller;
 
 //import jdk.nashorn.internal.ir.SplitReturn;
-import Multijoueurs.ClientTCP;
-import Multijoueurs.Echange;
 import Multijoueurs.EnvoyerMessages;
-import Multijoueurs.ServeurTCP;
-import model.Carte.Carte;
 import model.Joueur;
 import model.Pioche;
 import model.Zone;
 import view.Vue;
-import view.vueConnexion;
 import view.vueDons;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringJoiner;
 
 
 public class Controlleur implements ActionListener {
@@ -187,6 +179,16 @@ public class Controlleur implements ActionListener {
         System.out.println("On FDT");
         etapeEnCours = ETAPE_TOUR_FINI;
         etapeTerminee = true;
+
+        if (joueur.getIdJoueur() == 0)
+            joueur.getControlleurDepart().getServeurTCP().UpdateGameFDT(1);
+        else {
+            try {
+                EnvoyerMessages.FIN_DU_TOUR(joueur.getControlleurDepart().getClientTCP().GetEchange());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     //Echange

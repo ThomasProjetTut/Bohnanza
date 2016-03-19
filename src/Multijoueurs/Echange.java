@@ -28,7 +28,7 @@ public class Echange {
     }
 
     public void CreerJoueur(String name, int idJoueur) {
-        joueur = new Joueur(name, idJoueur);
+        joueur = new Joueur(name, idJoueur, controlleurDepart);
     }
 
     public void setIdJoueur(int id) {

@@ -1,6 +1,5 @@
 package Multijoueurs;
 
-import controller.Controlleur;
 import controller.ControlleurDepart;
 import model.Carte.Carte;
 
@@ -45,6 +44,12 @@ public class EvaluationMessages {
 
                 controlleur.getClientTCP().GetEchange().getJoueur().afficherMain();
                 controlleur.getClientTCP().GetEchange().getControlleur().actualiserAffichageMain();
+                break;
+
+            // MET FIN AU TOUR PAR LE CLIENT
+            case EnvoyerMessages.MSG_FIN_DU_TOUR:
+                idJoueur = dataInputStream.readInt();
+                controlleur.getServeurTCP().UpdateGameFDT(idJoueur+1);
                 break;
         }
     }

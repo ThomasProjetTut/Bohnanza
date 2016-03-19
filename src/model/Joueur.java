@@ -1,6 +1,7 @@
 package model;
 
 import controller.Controlleur;
+import controller.ControlleurDepart;
 import model.Carte.Carte;
 
 import javax.net.ssl.SSLContext;
@@ -16,6 +17,12 @@ public class Joueur {
     private List<Carte> main;
     private List<Champ> champs;
     private Zone zoneEchange;
+
+    public ControlleurDepart getControlleurDepart() {
+        return controlleurDepart;
+    }
+
+    private ControlleurDepart controlleurDepart;
     private int idJoueur;
 
     public Controlleur getControlleur() {
@@ -43,6 +50,25 @@ public class Joueur {
     }
 
     public Joueur(String nom, int idJoueur) {
+        this.nom=nom;
+        this.idJoueur = idJoueur;
+        thunes = new ArrayList<Carte>();
+        maxChamps = 2;
+        champs = new ArrayList<Champ>();
+
+        for (int i = 0 ; i < maxChamps ; i++) {
+            champs.add(new Champ(i+1));
+        }
+
+        zoneEchange=new Zone();
+
+        main = new ArrayList<Carte>();
+
+        controlleur = new Controlleur(this);
+    }
+
+    public Joueur(String nom, int idJoueur, ControlleurDepart controlleurDepart) {
+        this.controlleurDepart = controlleurDepart;
         this.nom=nom;
         this.idJoueur = idJoueur;
         thunes = new ArrayList<Carte>();
