@@ -33,7 +33,7 @@ public class Zone {
     }
 
     public void printZone(){
-        System.out.println("Les cartes de la zone :");
+        // System.out.println("Les cartes de la zone :");
         for (Carte carte : zone) {
             System.out.println(carte.getNom());
         }

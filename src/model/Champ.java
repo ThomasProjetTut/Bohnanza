@@ -38,11 +38,11 @@ public class Champ {
         if (CompareDerniereCarte(c)){
             patates.add(c);
 
-            System.out.println("Ajout de "+c.getNom()+" réussie");
+            //System.out.println("Ajout de "+c.getNom()+" réussie");
             return true;
         }
         else{
-            System.out.println("Impossible de planter une "+c.getNom()+" car il y a au moins une "+derniereCarte().getNom()+" dans le champ.");
+            //System.out.println("Impossible de planter une "+c.getNom()+" car il y a au moins une "+derniereCarte().getNom()+" dans le champ.");
             return false;
         }
     }
@@ -95,17 +95,17 @@ public class Champ {
 
         patates.clear();
 
-        System.out.println("Récolte de "+valeurThune+" thunes avec cette récolte.");
-        System.out.println("Il y a "+j.getThunes().size()+" patates dans Thunes");
-        System.out.println("Il y a "+j.getNbThunes()+" patates dans Thunes");
+        //System.out.println("Récolte de "+valeurThune+" thunes avec cette récolte.");
+        // System.out.println("Il y a "+j.getThunes().size()+" patates dans Thunes");
+        //System.out.println("Il y a "+j.getNbThunes()+" patates dans Thunes");
     }
 
     public void printChamp(){
         if (patates.size() != 0){
-            System.out.println("Il y a "+patates.size()+" "+derniereCarte().getNom()+" dans le champ n°"+numeroChamp+".");
+            //System.out.println("Il y a "+patates.size()+" "+derniereCarte().getNom()+" dans le champ n°"+numeroChamp+".");
         }
         else {
-            System.out.println("Il n'y a aucune patate dans le champ n°"+numeroChamp+".");
+            //System.out.println("Il n'y a aucune patate dans le champ n°"+numeroChamp+".");
         }
 
     }

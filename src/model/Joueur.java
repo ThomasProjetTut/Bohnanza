@@ -69,13 +69,13 @@ public class Joueur {
     }
 
     public void afficherMain(){
-        System.out.println("Main de "+nom+" :");
+        //System.out.println("Main de "+nom+" :");
 
         for (Carte carte: main) {
-            System.out.println(carte.getNom());
+           // System.out.println(carte.getNom());
         }
 
-        System.out.println("Fin de l'affichage des mains.");
+        //System.out.println("Fin de l'affichage des mains.");
     }
 
     public void acheterChamps(Pioche pioche) {

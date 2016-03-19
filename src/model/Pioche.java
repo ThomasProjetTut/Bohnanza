@@ -75,7 +75,7 @@ public class Pioche {
         }
 
         tourDePioche++;
-        System.out.println("Tour de pioche : "+tourDePioche);
+        //System.out.println("Tour de pioche : "+tourDePioche);
     }
 
     //GETTER AND SETTER

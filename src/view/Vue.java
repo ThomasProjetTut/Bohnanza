@@ -68,7 +68,7 @@ public class Vue extends JFrame {
     //////////////Interaction//////////////
     ///////////////////////////////////////
 
-    PanelInteraction panelInteraction;
+    panelInteraction panelInteraction;
 
     ///////////////////////////////////////
     //////////////Interaction//////////////
@@ -236,7 +236,7 @@ public class Vue extends JFrame {
         champPerso3.setIcon(iconeChampsPerso);
 
         //interaction
-        panelInteraction = new PanelInteraction();
+        panelInteraction = new panelInteraction();
         globalPanelSectionCentrale.setLayout(new BorderLayout());
 
     }

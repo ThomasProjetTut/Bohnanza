@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
-public class PanelInteraction {
+public class panelInteraction {
 
     //image icone
     ImageIcon iconeCarte = new ImageIcon("Sprites/carteTest.png");
@@ -48,7 +48,7 @@ public class PanelInteraction {
 
 
 
-    public PanelInteraction(){
+    public panelInteraction(){
 
         //global fenetre
         globalPanel = new JLayeredPane();
