@@ -101,6 +101,7 @@ public class Controlleur implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("");
         System.out.println("///////////action performed////////////");
         System.out.println("etape en cours = " + etapeEnCours);
         System.out.println("etape terminée = " + etapeTerminee);
@@ -141,11 +142,11 @@ public class Controlleur implements ActionListener {
                     donnerCarte(2);
                     break;
             }
-        }else if (e.getSource() == champs[0] && etapeEnCours == ETAPE_PLANTE && !etapeTerminee){
+        }else if (e.getSource() == champs[0] && etapeEnCours == ETAPE_PLANTE){
             planterMain(1);
-        }else if (e.getSource() == champs[1] && etapeEnCours == ETAPE_PLANTE && !etapeTerminee){
+        }else if (e.getSource() == champs[1] && etapeEnCours == ETAPE_PLANTE){
             planterMain(2);
-        }else if (e.getSource() == champs[2] && etapeEnCours == ETAPE_PLANTE && !etapeTerminee){
+        }else if (e.getSource() == champs[2] && etapeEnCours == ETAPE_PLANTE){
             planterMain(3);
         }else if (e.getSource() == champs[0] && etapeEnCours == ETAPE_PLANTE_ECHANGE && !etapeTerminee){
             planterEchange(1);
@@ -154,6 +155,13 @@ public class Controlleur implements ActionListener {
         }else if (e.getSource() == champs[2] && etapeEnCours == ETAPE_PLANTE_ECHANGE && !etapeTerminee){
             planterEchange(3);
         }
+
+        System.out.println("");
+        System.out.println("///////////action performed////////////");
+        System.out.println("etape en cours = " + etapeEnCours);
+        System.out.println("etape terminée = " + etapeTerminee);
+        System.out.println("///////////action performed////////////");
+
     }
 
     //Partie déroulement du jeu
@@ -203,7 +211,7 @@ public class Controlleur implements ActionListener {
     //Echange
     private void garderCarte(int idCarte) {
         System.out.println("On garde la carte" + idCarte);
-        //ajouter carte zone pioche
+
 
         nbCarteEchangeGerees++;
 
@@ -256,22 +264,23 @@ public class Controlleur implements ActionListener {
         }
 
         //vue.actualiser();
-        if (nbPlants == 2){
+        if (nbPlants >= 1){
             etapeTerminee = true;
         }
     }
 
     private void planterEchange(int idChamp) {
-        System.out.println("On plante dans le champ : "  + idChamp);
+        System.out.println("On plante DEPUIS ECHANGE dans le champ : "  + idChamp);
 
-        joueur.planterViaZoneEchange(idChamp, pioche, nbPlants);
+        //joueur.planterViaZoneEchange(idChamp, pioche, nbPlants);
         nbPlants++;
 
         if(joueur.getZoneEchange().getZone().size() == 0){
             etapeTerminee = true;
-
         }
 
+        //provisoire
+        etapeTerminee = true;
     }
 
     public Joueur getJoueur(){
