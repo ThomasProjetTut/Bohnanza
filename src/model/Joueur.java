@@ -1,5 +1,6 @@
 package model;
 
+import controller.Controlleur;
 import model.Carte.Carte;
 
 import javax.net.ssl.SSLContext;
@@ -17,6 +18,12 @@ public class Joueur {
     private Zone zoneEchange;
     private int idJoueur;
 
+    public Controlleur getControlleur() {
+        return controlleur;
+    }
+
+    private Controlleur controlleur;
+
     public Joueur(){
         nom="";
         idJoueur = 0;
@@ -31,6 +38,8 @@ public class Joueur {
         zoneEchange=new Zone();
 
         main = new ArrayList<Carte>();
+
+        controlleur = new Controlleur(this);
     }
 
     public Joueur(String nom, int idJoueur) {
@@ -47,6 +56,8 @@ public class Joueur {
         zoneEchange=new Zone();
 
         main = new ArrayList<Carte>();
+
+        controlleur = new Controlleur(this);
     }
 
     public void recoisMain(Pioche pioche) {
@@ -57,6 +68,8 @@ public class Joueur {
             piocher(pioche);
         }
     }
+
+
 
     public void piocheEtape4(Pioche pioche){
         for (int i = 0 ; i < 3 ; i++) {

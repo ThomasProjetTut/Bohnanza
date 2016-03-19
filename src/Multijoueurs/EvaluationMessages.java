@@ -1,6 +1,8 @@
 package Multijoueurs;
 
 import controller.Controlleur;
+import controller.ControlleurDepart;
+import model.Carte.Carte;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -10,7 +12,7 @@ import java.io.IOException;
  */
 public class EvaluationMessages {
 
-    public static void Evaluer(short MSG_TYPE, DataInputStream dataInputStream, Controlleur controlleur) throws IOException {
+    public static void Evaluer(short MSG_TYPE, DataInputStream dataInputStream, ControlleurDepart controlleur) throws IOException {
 
         switch (MSG_TYPE) {
 
@@ -24,12 +26,24 @@ public class EvaluationMessages {
             // RECEPTION DE LA CONNEXION DU JOUEUR PAR LE CLIENT
             case EnvoyerMessages.MSG_CONNEXION_CLIENT:
                 idJoueur = dataInputStream.readInt();
-                controlleur.getClientTCP().GetEchange().setIdJoueur(idJoueur);
+                controlleur.getClientTCP().GetEchange().CreerJoueur("Joueur "+idJoueur, idJoueur);
                 break;
 
             // KICK LE JOUEUR PAR LE SERVEUR
             case EnvoyerMessages.MSG_FORCE_KICK_CLIENT:
                 controlleur.getClientTCP().StopClient();
+                break;
+
+            // COMMENCE LA PARTIE PAR LE CLIENT
+            case EnvoyerMessages.MSG_START_GAME:
+
+                controlleur.getClientTCP().GetEchange().getControlleurDepart().disposeVueConnexion();
+                controlleur.getClientTCP().GetEchange().getJoueur().getControlleur().InitAttributs();
+
+                for (int i = 0 ; i < 4 ; i++)
+                    controlleur.getClientTCP().GetEchange().getJoueur().addCarte(Carte.createCarteByID(dataInputStream.readInt()));
+
+                controlleur.getClientTCP().GetEchange().getJoueur().afficherMain();
                 break;
         }
     }

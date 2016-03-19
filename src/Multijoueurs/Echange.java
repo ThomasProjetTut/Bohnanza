@@ -1,6 +1,8 @@
 package Multijoueurs;
 
 import controller.Controlleur;
+import controller.ControlleurDepart;
+import model.Joueur;
 
 import java.io.*;
 import java.net.Socket;
@@ -8,21 +10,29 @@ import java.net.Socket;
 
 public class Echange {
 
-    private int idJoueur;
     private Socket socket = null;
     private DataInputStream in = null;
     private DataOutputStream out = null;
     private Reception reception = null;
+    private Joueur joueur;
 
-    private Controlleur controlleur;
+    public ControlleurDepart getControlleurDepart() {
+        return controlleurDepart;
+    }
 
-    public Echange(Socket s, Controlleur controlleur){
+    private ControlleurDepart controlleurDepart;
+
+    public Echange(Socket s, ControlleurDepart controlleurDepart){
         socket = s;
-        this.controlleur = controlleur;
+        this.controlleurDepart = controlleurDepart;
+    }
+
+    public void CreerJoueur(String name, int idJoueur) {
+        joueur = new Joueur(name, idJoueur);
     }
 
     public void setIdJoueur(int id) {
-        idJoueur = id;
+        joueur.setIdJoueur(id);
     }
 
     public DataOutputStream getOut() {
@@ -51,11 +61,15 @@ public class Echange {
         out.close();
     }
 
+    public Joueur getJoueur() {
+        return joueur;
+    }
+
     public int getIdJoueur() {
-        return idJoueur;
+        return joueur.getIdJoueur();
     }
 
     public Controlleur getControlleur() {
-        return controlleur;
+        return joueur.getControlleur();
     }
 }

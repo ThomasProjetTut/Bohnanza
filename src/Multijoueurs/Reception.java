@@ -43,7 +43,7 @@ public class Reception extends Thread {
                     continue;
 
                 // Analyser le message
-                EvaluationMessages.Evaluer(MSG_TYPE, in, echange.getControlleur());
+                EvaluationMessages.Evaluer(MSG_TYPE, in, echange.getControlleurDepart());
 
             } catch (IOException e) {
                 StopThread();

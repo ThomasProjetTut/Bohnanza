@@ -2,6 +2,8 @@ package controller;
 
 //import jdk.nashorn.internal.ir.SplitReturn;
 import Multijoueurs.ClientTCP;
+import Multijoueurs.Echange;
+import Multijoueurs.EnvoyerMessages;
 import Multijoueurs.ServeurTCP;
 import model.Carte.Carte;
 import model.Joueur;
@@ -49,19 +51,17 @@ public class Controlleur implements ActionListener {
 
     public Controlleur(Joueur joueur) {
         this.joueur = joueur;
-        initAttributs();
-
+        //InitAttributs();
     }
 
     public void jouerTour(){
         debutDuTour();
     }
 
-    private void initAttributs() {
-
-        //vueCon = new vueConnexion(this);
+    public void InitAttributs() {
 
         vue = new Vue(this);
+        //joueur = new Joueur("Joueur 1", 1);
 
         etapes = vue.getEtapes();
         champs = vue.getChamps();
@@ -70,7 +70,6 @@ public class Controlleur implements ActionListener {
 
         nbCarteChamps = new int[4][3];
 
-        pioche = new Pioche();
         zonePioche = new Zone();
 
         compteurTour = 1;
@@ -78,14 +77,27 @@ public class Controlleur implements ActionListener {
         ///////////////////////
         //reçoi main du serveur
         ///////////////////////
-        joueur.recoisMain(pioche);
-        joueur.afficherMain();
+        //joueur.recoisMain(pioche);
+        //joueur.afficherMain();
 
         //System.out.println("Taille de la pioche : " + pioche.getTaillePioche());
         //System.out.println("nombre de tour de pioche : " + pioche.getTourDePioche());
 
     }
 
+    public void RecoisMain() {
+
+        joueur.recoisMain(pioche);
+        joueur.afficherMain();
+    }
+
+    public void InitPioche(Pioche pioche) {
+        this.pioche = pioche;
+    }
+
+    public Pioche InitPioche() {
+       return pioche = new Pioche();
+    }
 
     private void debutDuTour() {
         etapeEnCours = ETAPE_DEBUT;

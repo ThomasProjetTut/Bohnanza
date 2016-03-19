@@ -1,39 +1,65 @@
 package Multijoueurs;
 
-import Multijoueurs.Echange;
 import controller.Controlleur;
+import controller.ControlleurDepart;
+import model.Joueur;
+import model.Pioche;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ServeurTCP {
 	private ServerSocket conn;
 	private int port;
     private int countIDJoueur;
-    private Controlleur control;
+    private ControlleurDepart control;
+    private Joueur joueur;
+
+    public List<Echange> getEchange() {
+        return echange;
+    }
 
     // Liste des clients
     private List<Echange> echange;
 
     private Connexion connexion;
 
-	public ServeurTCP(Controlleur controlleur, int port) throws IOException {
+	public ServeurTCP(ControlleurDepart controlleur, int port) throws IOException {
         countIDJoueur = 0;
 		this.port = port;
         echange = new ArrayList<>();
 		conn = new ServerSocket(port);
-        connexion = new Connexion(controlleur, conn, this);
-        control = controlleur;
+        connexion = new Connexion(conn, this, controlleur);
 	}
 
 	public void Start() throws IOException {
         connexion.start();
-        UpdateGame();
 	}
+
+    public void CreateGame() {
+
+        joueur = new Joueur("Joueur 0", 0);
+
+        Pioche pioche = joueur.getControlleur().InitPioche();
+        joueur.getControlleur().InitAttributs();
+
+        try {
+            for (Echange ech : echange) {
+                Joueur player = ech.getJoueur();
+                player.recoisMain(pioche);
+                EnvoyerMessages.START_GAME(ech);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        control.disposeVueConnexion();
+
+        UpdateGame();
+    }
 
     public boolean SocketIsClose() {
         return conn.isClosed();
@@ -92,14 +118,14 @@ class Connexion extends Thread {
 
     private ServerSocket conn;
     private ServeurTCP serverTCP;
-    private Controlleur controller;
+    private ControlleurDepart controlleurDepart;
 
     boolean arret = false;
 
-    public Connexion(Controlleur controlleur, ServerSocket s, ServeurTCP server){
+    public Connexion(ServerSocket s, ServeurTCP server,  ControlleurDepart controlleurDepart){
         conn = s;
         serverTCP = server;
-        controller = controlleur;
+        this.controlleurDepart = controlleurDepart;
     }
 
     public void run() {
@@ -120,15 +146,20 @@ class Connexion extends Thread {
 
                 Socket comm = conn.accept();
 
-                Echange echange = new Echange(comm, controller);
+                Echange echange = new Echange(comm, controlleurDepart);
                 echange.Start();
                 serverTCP.incrementCountIDJoueur();
-                echange.setIdJoueur(serverTCP.getCountIDJoueur());
+                echange.CreerJoueur("Joueur "+serverTCP.getCountIDJoueur(), serverTCP.getCountIDJoueur());
 
                 serverTCP.GetEchange().add(echange);
 
                 EnvoyerMessages.CONNEXION(echange);
                 System.out.println("Joueur numéro "+echange.getIdJoueur()+" connecté.");
+
+                if (serverTCP.getCountIDJoueur() == 1) {
+                    serverTCP.CreateGame();
+                    return;
+                }
 
             } catch (IOException e) {
                 Stop();

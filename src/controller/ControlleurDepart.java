@@ -21,7 +21,17 @@ public class ControlleurDepart implements ActionListener {
     private ClientTCP clientTCP;
 
     public ControlleurDepart(){
-        vueDepart = new VueDepart(this);
+        //vueDepart = new VueDepart(this);
+        LancerVueConnexion();
+    }
+
+    public void LancerVueConnexion() {
+
+        vueCon = new vueConnexion(this);
+    }
+
+    public void disposeVueConnexion() {
+        vueCon.dispose();
     }
 
     @Override

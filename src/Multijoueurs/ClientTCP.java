@@ -1,6 +1,7 @@
 package Multijoueurs;
 
 import controller.Controlleur;
+import controller.ControlleurDepart;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -13,11 +14,11 @@ public class ClientTCP {
 
     // Communication avec le serveur
     private Echange echange = null;
-    private Controlleur control;
+    private ControlleurDepart control;
 
     private String IPHost;
 
-    public ClientTCP(Controlleur controlleur, String ipServ, int port) throws IOException {
+    public ClientTCP(ControlleurDepart controlleur, String ipServ, int port) throws IOException {
         conn = new Socket(ipServ, port);
         IPHost = ipServ;
         echange = new Echange(conn, controlleur);
