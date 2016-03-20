@@ -1,6 +1,7 @@
 package view;
 
-import controller.Controlleur;
+import controller.ControlleurDons;
+
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
@@ -9,10 +10,12 @@ import java.awt.*;
  * Created by mvava on 29/02/2016.
  */
 public class vueDons extends JFrame {
-    private Controlleur controlleur;
+    private ControlleurDons controlleurDons;
 
     // Carte à donnee
     private JPanel panelCarteADonnee;
+    private JLabel carteADonner;
+    private ImageIcon carteIcone;
 
     //Image
     private ImageIcon imageJ1, imageJ2, imageJ3;
@@ -27,9 +30,9 @@ public class vueDons extends JFrame {
 
 
     //Label
-    private JLabel txtAccpterJ1=new JLabel("REFUSER");
-    private JLabel txtAccpterJ2= new JLabel("REFUSER");
-    private JLabel txtAccpterJ3= new JLabel("REFUSER");
+    private JLabel txtAccpterJ1=new JLabel("   REFUSER");
+    private JLabel txtAccpterJ2= new JLabel("   REFUSER");
+    private JLabel txtAccpterJ3= new JLabel("   REFUSER");
 
     private JLabel textJ1=new JLabel("JOUEUR 1");
     private JLabel textJ2=new JLabel("JOUEUR 2");
@@ -42,15 +45,16 @@ public class vueDons extends JFrame {
     private GridLayout g1=new GridLayout(3,3);
 
 
-    public vueDons(Controlleur controlleur){
-        this.controlleur = controlleur;
+    public vueDons(ControlleurDons controlleurDons){
+        this.controlleurDons = controlleurDons;
 
         initAttribut();
         creerFenetre();
 
-        setListener(controlleur);
+        setListener(controlleurDons);
 
-        setSize(920, 650);
+        //setSize(920, 650);
+        pack();
         setLocation(50,50);
         setResizable(false);
         setVisible(true);
@@ -61,14 +65,24 @@ public class vueDons extends JFrame {
     }
 
     private void initAttribut() {
+        carteADonner = new JLabel();
+        carteIcone = new ImageIcon("Sprites/champ65x80_test.png");
+        carteADonner.setIcon(carteIcone);
+
         Dimension dim=new Dimension(100,20);
         panGlobal.setLayout(new BoxLayout(panGlobal,BoxLayout.Y_AXIS));
         zoneJoueur.setLayout(g1);
         panelCarteADonnee=new JPanel();
+
+        btconclure.setAlignmentX(Component.CENTER_ALIGNMENT);
     }
 
 
     private void creerFenetre(){
+
+        //Carte à donner
+        panelCarteADonnee.add(carteADonner);
+
         zoneJoueur.add(textJ1);
         zoneJoueur.add(btacceptationJ1);
         zoneJoueur.add(txtAccpterJ1);
@@ -87,6 +101,6 @@ public class vueDons extends JFrame {
 
         getContentPane().add(panGlobal);
     }
-    private void setListener(Controlleur controlleur) {}
+    private void setListener(ControlleurDons controlleurDons) {}
 
 }
