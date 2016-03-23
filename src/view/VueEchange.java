@@ -39,7 +39,6 @@ public class VueEchange extends JFrame {
     private JButton proposer=new JButton("Proposer");
 
 
-
     //Label
     private JLabel carteADonner=new JLabel();
     private JLabel carteARecevoir=new JLabel();

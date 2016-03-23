@@ -148,14 +148,14 @@ public class Vue extends JFrame {
         iconNbPatate = new ImageIcon("Sprites/nbPatateChamp.png");
 
         //cartes
-        iconeTecktonik = new ImageIcon("Sprites/carteTest.png");
-        iconeTentacule = new ImageIcon("Sprites/carteTest.png");
-        iconeTequilla = new ImageIcon("Sprites/carteTest.png");
-        iconeTerroriste = new ImageIcon("Sprites/carteTest.png");
-        iconeTestosterone = new ImageIcon("Sprites/carteTest.png");
-        iconeTetenucleaire = new ImageIcon("Sprites/carteTest.png");
-        iconeTetraplegique = new ImageIcon("Sprites/carteTest.png");
-        iconeTwerk = new ImageIcon("Sprites/carteTest.png");
+        iconeTecktonik = new ImageIcon("Sprites/SpritesCartes/carteTecktonik.png");
+        iconeTentacule = new ImageIcon("Sprites/SpritesCartes/carteTentacule.png");
+        iconeTequilla = new ImageIcon("Sprites/SpritesCartes/carteTequilla.png");
+        iconeTerroriste = new ImageIcon("Sprites/SpritesCartes/carteTerroriste.png");
+        iconeTestosterone = new ImageIcon("Sprites/SpritesCartes/carteTestosterone.png");
+        iconeTetenucleaire = new ImageIcon("Sprites/SpritesCartes/carteTetenucleaire.png");
+        iconeTetraplegique = new ImageIcon("Sprites/SpritesCartes/carteTetraplegique.png");
+        iconeTwerk = new ImageIcon("Sprites/SpritesCartes/carteTwerk.png");
 
         panelGlobal.setLayout(new BorderLayout());
 
