@@ -66,7 +66,7 @@ public class vueDons extends JFrame {
 
     private void initAttribut() {
         carteADonner = new JLabel();
-        carteIcone = new ImageIcon("Sprites/champ65x80_test.png");
+        carteIcone = new ImageIcon("Sprites/SpritesCartes/carteTetenucleaire.png");
         carteADonner.setIcon(carteIcone);
 
         Dimension dim=new Dimension(100,20);

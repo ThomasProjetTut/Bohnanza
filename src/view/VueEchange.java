@@ -105,8 +105,8 @@ public class VueEchange extends JFrame {
     }
 
     private void initAttribut() {
-        carteADonnerIcone = new ImageIcon("Sprites/champ65x80_test.png");
-        carteARecevoirIcone = new ImageIcon("Sprites/champ65x80_test.png");
+        carteADonnerIcone = new ImageIcon("Sprites/SpritesCartes/carteTetenucleaire.png");
+        carteARecevoirIcone = new ImageIcon("Sprites/SpritesCartes/carteTentacule.png");
         flecheIcone = new ImageIcon("Sprites/fleche.png");
 
         iconeAvisFavorable = new ImageIcon("Sprites/favorable.png");
@@ -123,9 +123,9 @@ public class VueEchange extends JFrame {
         carteProposerJ2.setIcon(carteADonnerIcone);
         carteProposerJ3.setIcon(carteADonnerIcone);
 
-        carteRecuJ1.setIcon(carteADonnerIcone);
-        carteRecuJ2.setIcon(carteADonnerIcone);
-        carteRecuJ3.setIcon(carteADonnerIcone);
+        carteRecuJ1.setIcon(carteARecevoirIcone);
+        carteRecuJ2.setIcon(carteARecevoirIcone);
+        carteRecuJ3.setIcon(carteARecevoirIcone);
 
         carteADonner.setIcon(carteADonnerIcone);
         carteARecevoir.setIcon(carteARecevoirIcone);
